@@ -153,7 +153,7 @@
         _tableLabel.backgroundColor = kHexRGB(0xA20115);
         _tableLabel.text = @"结婚";
         _tableLabel.textColor = kWhiteColor;
-        _tableLabel.font = kFont15;
+        _tableLabel.font = kFont12;
         _tableLabel.numberOfLines = 0;
         _tableLabel.textAlignment = NSTextAlignmentCenter;
         _tableLabel.layer.cornerRadius = kIphone6Width(12.5);

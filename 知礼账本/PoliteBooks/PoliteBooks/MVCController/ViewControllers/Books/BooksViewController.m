@@ -58,9 +58,9 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
         _naviView.backgroundColor = kWhiteColor;
-        _naviView.title = @"往年";
+        _naviView.title = @"目录";
         _naviView.leftImage = @"NavigationBack";
-        _naviView.rightImage = @"addBooks";
+        _naviView.rightImage = @"addNewBooks";
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -203,6 +203,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     if (indexPath.row == 0) {
         cell.isShowTip = YES;
     }
+    
     cell.bookModel = models[0];
     UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(lpGR:)];
     longPressGR.minimumPressDuration = 1;
@@ -249,7 +250,14 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         action.backgroundColor = kWhiteColor;
         action.clickBlock = ^{
             // 删除点击事件Block
-            [dataBase jq_deleteAllDataFromTable:[NSString stringWithFormat:@"AccountBooks%@",models[0].bookName]];
+            NSString * tableName = [NSString stringWithFormat:@"AccountBooks%@",models[0].bookName];
+            [dataBase jq_deleteAllDataFromTable:tableName];
+            NSString * isDefault = [UserDefaultStorageManager readObjectForKey:@"AccountBooksDefaultDelete"];
+            if ([isDefault isEqualToString:@"1"]) {
+                if ([tableName isEqualToString:@"AccountBooks婚礼往来"]) {
+                    [UserDefaultStorageManager saveObject:@"0" forKey:@"AccountBooksDefaultDelete"];
+                }
+            }
             //删除表名称
             NSMutableArray * arr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
             NSMutableArray * newArr = [[NSMutableArray alloc] init];
@@ -273,6 +281,8 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
             
             [UserDefaultStorageManager removeObjectForKey:kUSERTABLENAMEKEY];
             [UserDefaultStorageManager saveObject:newArr forKey:kUSERTABLENAMEKEY];
+            
+        
             [weakSelf.collectionView reloadData]; //刷新tableView;
         };
     })

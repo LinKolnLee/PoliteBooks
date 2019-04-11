@@ -37,6 +37,7 @@
 		42B040492238DC7E00092539 /* LEEAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B040472238DC7E00092539 /* LEEAlert.m */; };
 		42B0404D2238F40900092539 /* TranslationMicTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B0404B2238F40900092539 /* TranslationMicTipView.m */; };
 		42B040502238F42200092539 /* UIView+LLFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B0404E2238F42100092539 /* UIView+LLFrame.m */; };
+		42B6F820225EE1F80026012D /* addNewBooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B6F81F225EE1F80026012D /* addNewBooks.png */; };
 		42B7FBA821E768A4007201A5 /* NSString+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B7FBA721E768A4007201A5 /* NSString+Color.m */; };
 		42BBB1AF224B2988002C11F6 /* ChinesebrushHold.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BBB1AE224B2988002C11F6 /* ChinesebrushHold.png */; };
 		42BBB1B8224B43CA002C11F6 /* WSDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42BBB1B4224B43C9002C11F6 /* WSDatePickerView.xib */; };
@@ -155,6 +156,7 @@
 		42B0404C2238F40900092539 /* TranslationMicTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationMicTipView.h; sourceTree = "<group>"; };
 		42B0404E2238F42100092539 /* UIView+LLFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LLFrame.m"; sourceTree = "<group>"; };
 		42B0404F2238F42200092539 /* UIView+LLFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LLFrame.h"; sourceTree = "<group>"; };
+		42B6F81F225EE1F80026012D /* addNewBooks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addNewBooks.png; sourceTree = "<group>"; };
 		42B7FBA621E768A4007201A5 /* NSString+Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Color.h"; sourceTree = "<group>"; };
 		42B7FBA721E768A4007201A5 /* NSString+Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Color.m"; sourceTree = "<group>"; };
 		42BBB1AE224B2988002C11F6 /* ChinesebrushHold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChinesebrushHold.png; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 		42294BB421E733DC00A1D4D0 /* ResourceFile */ = {
 			isa = PBXGroup;
 			children = (
+				42B6F81F225EE1F80026012D /* addNewBooks.png */,
 				9415454022532B79002D6E20 /* chart.png */,
 				42EFDC5F22363D5E00FD2EDB /* NavigationBack@2x.png */,
 				42EFDC5E22363D5D00FD2EDB /* NavigationBack@3x.png */,
@@ -756,6 +759,7 @@
 				42F0832621EC7FF300948743 /* Date.png in Resources */,
 				42ACFCBD21EEC96C00A40338 /* Cancel.png in Resources */,
 				42EFDC6122363D5E00FD2EDB /* NavigationBack@2x.png in Resources */,
+				42B6F820225EE1F80026012D /* addNewBooks.png in Resources */,
 				42294BD721E7475800A1D4D0 /* Bookcase.png in Resources */,
 				42BEAAA121E8375F001F5F3E /* backImage4.png in Resources */,
 				42BEAA9F21E8375F001F5F3E /* backImage2.png in Resources */,

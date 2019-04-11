@@ -49,6 +49,8 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [self addMasonry];
     self.currentItem = 0;
     self.tableNames = [[NSMutableArray alloc] init];
+    
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

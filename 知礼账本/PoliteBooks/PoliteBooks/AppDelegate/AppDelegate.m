@@ -27,10 +27,55 @@
     IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager]; // 获取类库的单例变量
     keyboardManager.enableAutoToolbar = NO;
     keyboardManager.shouldResignOnTouchOutside = YES;
+    [self createDefaultTable];
     // Override point for customization after application launch.
     return YES;
 }
-
+-(void)createDefaultTable{
+    NSString * isDefault = [UserDefaultStorageManager readObjectForKey:@"AccountBooksDefaultDelete"];
+    
+    if (![isDefault isEqualToString:@"0"]) {
+        //数据库名
+        NSMutableArray * oldNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
+        NSMutableArray * newNames = [[NSMutableArray alloc] init];
+        //书名
+        NSMutableArray * oldBookNames = [UserDefaultStorageManager readObjectForKey:kUSERBOOKNAMEKEY];
+        NSMutableArray * newBookNames = [[NSMutableArray alloc] init];
+        
+        NSString * tableName = [NSString stringWithFormat:@"AccountBooks%@",@"婚礼往来"];
+        if (![kDataBase jq_isExistTable:tableName]) {
+            [kDataBase jq_createTable:tableName dicOrModel:[BooksModel class]];
+            BooksModel * model = [[BooksModel alloc] init];
+            model.bookName = @"婚礼往来";
+            model.bookDate = [[NSDate getCurrentTimes] getCNDate];
+            model.bookImage = arc4random() % 1;
+            model.bookId = 0;
+            model.bookMoney = @"0";
+            model.name = @"";
+            model.money = @"";
+            model.data = @"";
+            model.tableType = 0;
+            [kDataBase jq_inDatabase:^{
+                [kDataBase jq_insertTable:tableName dicOrModel:model];
+            }];
+            for (NSString * name in oldNames) {
+                [newNames addObject:name];
+            }
+            [newNames addObject:tableName];
+            
+            for (NSString * bookname in oldBookNames) {
+                [newBookNames addObject:bookname];
+            }
+            [newBookNames addObject:@"婚礼往来"];
+            [UserDefaultStorageManager removeObjectForKey:kUSERTABLENAMEKEY];
+            [UserDefaultStorageManager saveObject:newNames forKey:kUSERTABLENAMEKEY];
+            [UserDefaultStorageManager removeObjectForKey:kUSERBOOKNAMEKEY];
+            [UserDefaultStorageManager saveObject:newBookNames forKey:kUSERBOOKNAMEKEY];
+            [UserDefaultStorageManager saveObject:@"1" forKey:@"AccountBooksDefaultDelete"];
+        }
+    }
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

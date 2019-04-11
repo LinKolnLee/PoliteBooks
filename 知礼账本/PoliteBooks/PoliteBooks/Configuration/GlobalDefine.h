@@ -9,8 +9,7 @@
 #ifndef GlobalDefine_h
 #define GlobalDefine_h
 
-#define TypeColor (@[kHexRGB(0xA73946),kHexRGB(0xf15b6c),kHexRGB(0xfea7a7),kHexRGB(0x4a4266),kHexRGB(0x224E81),kHexRGB(0xC9AF99),kHexRGB(0xc2ccd0),kHexRGB(0x000000)])
-#define TypeString (@[@"结婚",@"定亲",@"满月",@"节日",@"高升",@"高中",@"人情",@"丧事"])
+#define TypeColor (@[kHexRGB(0xffc773),kHexRGB(0xbce672),kHexRGB(0x7bcfa6),kHexRGB(0xc0ebd7),kHexRGB(0x815463),kHexRGB(0x758a99),kHexRGB(0x3d3b4f),kHexRGB(0xf15b6c),])
 
 #define kDataBase ([JQFMDB shareDatabase])
 

@@ -99,9 +99,9 @@
 }
 -(void)setupTipViewWithCell{
     CGFloat popHeight =kIphone6Width(35.0);
-    CGRect popRect = CGRectMake(0, kIphone6Width(0), kIphone6Width(100), popHeight);
-    self.micTipView = [[TranslationMicTipView alloc] initWithFrame:popRect Title:@"选中长按删除账本"];
-    self.micTipView.centerX = self.frame.size.width/2 + kIphone6Width(10);
+    CGRect popRect = CGRectMake(0, kIphone6Width(0), kIphone6Width(60), popHeight);
+    self.micTipView = [[TranslationMicTipView alloc] initWithFrame:popRect Title:@"长按删除"];
+    self.micTipView.centerX = self.frame.size.width/2;
     self.micTipView.centerY = kIphone6Width(20);
     [self.contentView addSubview:self.micTipView];
     [self performSelector:@selector(hideTipView) withObject:nil afterDelay:3.0];
@@ -128,4 +128,5 @@
     _isShowTip = isShowTip;
     [self setupTipViewWithCell];
 }
+
 @end
