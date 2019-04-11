@@ -45,7 +45,7 @@
         self.layer.backgroundColor = kHexRGB(0xe3f9fd).CGColor;
         UILabel *label = [[UILabel alloc] init];
         label.text = title;
-        label.font = [UIFont systemFontOfSize:13];
+        label.font = kPingFangTC_Light(10);
         label.textColor = [UIColor blackColor];
         [label sizeToFit];
         label.centerX = frame.size.width / 2.0;

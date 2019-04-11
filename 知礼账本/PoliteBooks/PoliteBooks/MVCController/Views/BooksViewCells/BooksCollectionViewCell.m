@@ -28,7 +28,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self.contentView addSubview:self.bgImageView];
-        [self.contentView addSubview:self.dataLabel];
+        //[self.contentView addSubview:self.dataLabel];
         [self.contentView addSubview:self.nameLabel];
         [self addMasonry];
     }
@@ -41,18 +41,18 @@
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
-    // 日期
-    [self.dataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
-        make.right.mas_equalTo(-kIphone6Width(5));
-        make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(kIphone6Width(20));
-    }];
+//    // 日期
+//    [self.dataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(0);
+//        make.right.mas_equalTo(-kIphone6Width(5));
+//        make.bottom.mas_equalTo(0);
+//        make.height.mas_equalTo(kIphone6Width(20));
+//    }];
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(0);
         make.left.mas_equalTo(0);
-        make.centerY.mas_equalTo(self.mas_centerY);
+        make.bottom.mas_equalTo(self.mas_centerY);
         make.height.mas_equalTo(kIphone6Width(30));
     }];
 }
@@ -63,7 +63,7 @@
         _bgImageView = [[UIImageView alloc] init];
         //_bgImageView.image = [UIImage imageNamed:@"backImage2"];
         _bgImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _bgImageView.layer.cornerRadius = kIphone6Width(10);
+        _bgImageView.layer.cornerRadius = kIphone6Width(5);
         _bgImageView.clipsToBounds = YES;
         _bgImageView.layer.shadowColor = kHexRGB(0xC9AF99).CGColor;
         _bgImageView.layer.shadowOffset = CGSizeMake(0, 5);//偏移距离
@@ -89,7 +89,7 @@
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.font = kFont20;
+        _nameLabel.font = kFont12;
         _nameLabel.textColor = kWhiteColor;
         _nameLabel.textAlignment = NSTextAlignmentCenter;
         _nameLabel.text = @"出账";
@@ -99,9 +99,9 @@
 }
 -(void)setupTipViewWithCell{
     CGFloat popHeight =kIphone6Width(35.0);
-    CGRect popRect = CGRectMake(0, kIphone6Width(0), kIphone6Width(140), popHeight);
+    CGRect popRect = CGRectMake(0, kIphone6Width(0), kIphone6Width(100), popHeight);
     self.micTipView = [[TranslationMicTipView alloc] initWithFrame:popRect Title:@"选中长按删除账本"];
-    self.micTipView.centerX = self.frame.size.width/2;
+    self.micTipView.centerX = self.frame.size.width/2 + kIphone6Width(10);
     self.micTipView.centerY = kIphone6Width(20);
     [self.contentView addSubview:self.micTipView];
     [self performSelector:@selector(hideTipView) withObject:nil afterDelay:3.0];
