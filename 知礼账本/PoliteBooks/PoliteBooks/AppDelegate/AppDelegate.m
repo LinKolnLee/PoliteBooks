@@ -55,8 +55,21 @@
             model.money = @"";
             model.data = @"";
             model.tableType = 0;
+            BooksModel * model1 = [[BooksModel alloc] init];
+            model1.bookName = @"婚礼往来";
+            model1.bookDate = [[NSDate getCurrentTimes] getCNDate];
+            model1.bookImage = arc4random() % 1;
+            model1.bookId = 0;
+            model1.bookMoney = @"0";
+            model1.name = @"示例";
+            model1.money = @"600";
+            model1.data = [[NSDate getCurrentTimes] getCNDate];
+            model1.tableType = 0;
             [kDataBase jq_inDatabase:^{
                 [kDataBase jq_insertTable:tableName dicOrModel:model];
+            }];
+            [kDataBase jq_inDatabase:^{
+                [kDataBase jq_insertTable:tableName dicOrModel:model1];
             }];
             for (NSString * name in oldNames) {
                 [newNames addObject:name];

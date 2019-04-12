@@ -76,7 +76,13 @@ UITextFieldDelegate
 }
 
 - (void)saveButtonTouchUpInside:(UIButton *)sender {
-    if (self.bookNameTextField.text.length == 0 || self.bookNameTextField.text.length > 5) {
+    if (self.bookNameTextField.text.length == 0 || self.bookNameTextField.text.length > 8) {
+        [LEEAlert actionsheet].config
+        .LeeTitle(@"提示")
+        .LeeContent(@"账本名称太长了")
+        .LeeAction(@"好的", ^{
+        })
+        .LeeShow();
         return;
     }else{
         if (self.CreatBookViewSaveButtonClickBlock) {

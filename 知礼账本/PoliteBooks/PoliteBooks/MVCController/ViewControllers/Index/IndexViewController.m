@@ -12,6 +12,7 @@
 #import "DetailViewController.h"
 #import "BooksViewController.h"
 #import "BaseCollectionView.h"
+#import "ChartViewController.h"
 #import "CreatBookView.h"
 @interface IndexViewController ()<
 UICollectionViewDelegateFlowLayout,
@@ -83,8 +84,8 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         _naviView.backgroundColor = kWhiteColor;
         _naviView.title = @"礼尚往来";
         _naviView.leftImage = @"Bookcase";
-        _naviView.rightImage = @"Hammer";
-        _naviView.rightHidden = YES;
+        _naviView.rightImage = @"BookChars";
+        _naviView.rightHidden = NO;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -93,6 +94,8 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         };
         _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{
             //右按钮点击
+            ChartViewController * chart = [[ChartViewController alloc] init];
+            [weakSelf.navigationController pushViewController:chart animated:YES];
         };
     }
     return _naviView;

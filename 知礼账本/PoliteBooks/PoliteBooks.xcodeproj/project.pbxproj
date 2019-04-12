@@ -53,6 +53,11 @@
 		42BEAAA721E83BA4001F5F3E /* NSString+Money.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEAAA621E83BA4001F5F3E /* NSString+Money.m */; };
 		42BEAAAE21E847E0001F5F3E /* NewInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEAAAD21E847E0001F5F3E /* NewInputButton.m */; };
 		42BEAAB021E8498A001F5F3E /* Chinesebrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BEAAAF21E8498A001F5F3E /* Chinesebrush.png */; };
+		42C5855222602A39000A5DE1 /* BookChars.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C5855122602A39000A5DE1 /* BookChars.png */; };
+		42C5855522602A9B000A5DE1 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5855422602A9B000A5DE1 /* ChartViewController.m */; };
+		42C58AB922602E8D000A5DE1 /* DVPieCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB322602E8D000A5DE1 /* DVPieCenterView.m */; };
+		42C58ABA22602E8D000A5DE1 /* DVFoodPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB422602E8D000A5DE1 /* DVFoodPieModel.m */; };
+		42C58ABB22602E8D000A5DE1 /* DVPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB822602E8D000A5DE1 /* DVPieChart.m */; };
 		42D2C1602224D76700A9977E /* DataBaseTableNameList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42D2C15F2224D76700A9977E /* DataBaseTableNameList.plist */; };
 		42E04A4921F1D26700A5567C /* addBooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 42E04A4821F1D26700A5567C /* addBooks.png */; };
 		42E04A4D21F1D39200A5567C /* BooksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E04A4C21F1D39200A5567C /* BooksModel.m */; };
@@ -178,6 +183,15 @@
 		42BEAAAC21E847E0001F5F3E /* NewInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewInputButton.h; sourceTree = "<group>"; };
 		42BEAAAD21E847E0001F5F3E /* NewInputButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewInputButton.m; sourceTree = "<group>"; };
 		42BEAAAF21E8498A001F5F3E /* Chinesebrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chinesebrush.png; sourceTree = "<group>"; };
+		42C5855122602A39000A5DE1 /* BookChars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BookChars.png; sourceTree = "<group>"; };
+		42C5855322602A9B000A5DE1 /* ChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
+		42C5855422602A9B000A5DE1 /* ChartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
+		42C58AB322602E8D000A5DE1 /* DVPieCenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPieCenterView.m; sourceTree = "<group>"; };
+		42C58AB422602E8D000A5DE1 /* DVFoodPieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVFoodPieModel.m; sourceTree = "<group>"; };
+		42C58AB522602E8D000A5DE1 /* DVPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPieChart.h; sourceTree = "<group>"; };
+		42C58AB622602E8D000A5DE1 /* DVPieCenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPieCenterView.h; sourceTree = "<group>"; };
+		42C58AB722602E8D000A5DE1 /* DVFoodPieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVFoodPieModel.h; sourceTree = "<group>"; };
+		42C58AB822602E8D000A5DE1 /* DVPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPieChart.m; sourceTree = "<group>"; };
 		42D2C15F2224D76700A9977E /* DataBaseTableNameList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DataBaseTableNameList.plist; sourceTree = "<group>"; };
 		42E04A4821F1D26700A5567C /* addBooks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addBooks.png; sourceTree = "<group>"; };
 		42E04A4B21F1D39200A5567C /* BooksModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BooksModel.h; sourceTree = "<group>"; };
@@ -256,6 +270,8 @@
 				4200E74321E86B8800B4A8DC /* DetailViewController.m */,
 				42F0831121EC477F00948743 /* InputViewController.h */,
 				42F0831221EC477F00948743 /* InputViewController.m */,
+				42C5855322602A9B000A5DE1 /* ChartViewController.h */,
+				42C5855422602A9B000A5DE1 /* ChartViewController.m */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -342,6 +358,7 @@
 		42294BB421E733DC00A1D4D0 /* ResourceFile */ = {
 			isa = PBXGroup;
 			children = (
+				42C5855122602A39000A5DE1 /* BookChars.png */,
 				42B6F81F225EE1F80026012D /* addNewBooks.png */,
 				9415454022532B79002D6E20 /* chart.png */,
 				42EFDC5F22363D5E00FD2EDB /* NavigationBack@2x.png */,
@@ -385,6 +402,7 @@
 		42294BB721E733DC00A1D4D0 /* ToolFile */ = {
 			isa = PBXGroup;
 			children = (
+				42C58AB222602E8D000A5DE1 /* DVDishPieHeader */,
 				42BBB1B0224B43C9002C11F6 /* WSDatePickerView */,
 				42B040452238DC7E00092539 /* LEEAlert */,
 			);
@@ -571,6 +589,19 @@
 			path = NewInputButton;
 			sourceTree = "<group>";
 		};
+		42C58AB222602E8D000A5DE1 /* DVDishPieHeader */ = {
+			isa = PBXGroup;
+			children = (
+				42C58AB722602E8D000A5DE1 /* DVFoodPieModel.h */,
+				42C58AB422602E8D000A5DE1 /* DVFoodPieModel.m */,
+				42C58AB622602E8D000A5DE1 /* DVPieCenterView.h */,
+				42C58AB322602E8D000A5DE1 /* DVPieCenterView.m */,
+				42C58AB522602E8D000A5DE1 /* DVPieChart.h */,
+				42C58AB822602E8D000A5DE1 /* DVPieChart.m */,
+			);
+			path = DVDishPieHeader;
+			sourceTree = "<group>";
+		};
 		42E04A4A21F1D37300A5567C /* BookModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -741,6 +772,7 @@
 				42D2C1602224D76700A9977E /* DataBaseTableNameList.plist in Resources */,
 				42BBB1B8224B43CA002C11F6 /* WSDatePickerView.xib in Resources */,
 				42BEAAB021E8498A001F5F3E /* Chinesebrush.png in Resources */,
+				42C5855222602A39000A5DE1 /* BookChars.png in Resources */,
 				42294BDB21E74A2E00A1D4D0 /* Yuppy SC.ttf in Resources */,
 				42F0831521EC685E00948743 /* line.png in Resources */,
 				42294BD921E7479B00A1D4D0 /* Hammer.png in Resources */,
@@ -842,6 +874,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C58ABB22602E8D000A5DE1 /* DVPieChart.m in Sources */,
 				42B7FBA821E768A4007201A5 /* NSString+Color.m in Sources */,
 				42EFDC5D2236309000FD2EDB /* BaseCollectionView.m in Sources */,
 				42F0830821EC279200948743 /* BooksViewController.m in Sources */,
@@ -852,6 +885,7 @@
 				42EFDC5A2236304900FD2EDB /* UIScrollView+EmptyDataSet.m in Sources */,
 				42294BF221E7594000A1D4D0 /* UserColorConfiguration.m in Sources */,
 				4200E74421E86B8800B4A8DC /* DetailViewController.m in Sources */,
+				42C58AB922602E8D000A5DE1 /* DVPieCenterView.m in Sources */,
 				42BBB1BA224B43CA002C11F6 /* NSDate+Extension.m in Sources */,
 				42294BEB21E7533900A1D4D0 /* UserDefaultStorageManager.m in Sources */,
 				42F0831E21EC73B800948743 /* InputClassTagsView.m in Sources */,
@@ -867,6 +901,7 @@
 				42F0832121EC79AD00948743 /* InputClassTagCollectionViewCell.m in Sources */,
 				42294BD421E742AA00A1D4D0 /* PBIndexNavigationBarView.m in Sources */,
 				42F0830C21EC3F1C00948743 /* BooksCollectionViewCell.m in Sources */,
+				42C58ABA22602E8D000A5DE1 /* DVFoodPieModel.m in Sources */,
 				42E7E13B21ED7BE7009B95FB /* YLNumberKeyboard.m in Sources */,
 				42F0832421EC7DE200948743 /* InputDateMarkView.m in Sources */,
 				4200E74B21E86F0800B4A8DC /* DetailOrderCollectionViewCell.m in Sources */,
@@ -877,6 +912,7 @@
 				42BEAAAE21E847E0001F5F3E /* NewInputButton.m in Sources */,
 				4200E74821E86CC200B4A8DC /* DetailCollectionViewCell.m in Sources */,
 				42BEAAA721E83BA4001F5F3E /* NSString+Money.m in Sources */,
+				42C5855522602A9B000A5DE1 /* ChartViewController.m in Sources */,
 				4200E74E21E87EB000B4A8DC /* DetailModel.m in Sources */,
 				42E04A5121F1D46200A5567C /* BookDetailModel.m in Sources */,
 				9415454422532CEB002D6E20 /* CreatBookViewController.m in Sources */,
