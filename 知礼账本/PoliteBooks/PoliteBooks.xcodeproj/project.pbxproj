@@ -34,6 +34,16 @@
 		42294BF821E75B1200A1D4D0 /* NSDate+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BF721E75B1200A1D4D0 /* NSDate+String.m */; };
 		42ACFCBD21EEC96C00A40338 /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 42ACFCBB21EEC96C00A40338 /* Cancel.png */; };
 		42ACFCBE21EEC96C00A40338 /* Sure.png in Resources */ = {isa = PBXBuildFile; fileRef = 42ACFCBC21EEC96C00A40338 /* Sure.png */; };
+		42AE9B662264556100F5FD08 /* SKCalendarAnimationManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AE9B572264556100F5FD08 /* SKCalendarAnimationManage.m */; };
+		42AE9B672264556100F5FD08 /* SKCalendarManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AE9B5A2264556100F5FD08 /* SKCalendarManage.m */; };
+		42AE9B682264556100F5FD08 /* SKWeekCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AE9B5E2264556100F5FD08 /* SKWeekCollectionViewCell.m */; };
+		42AE9B692264556100F5FD08 /* SKCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AE9B602264556100F5FD08 /* SKCalendarView.m */; };
+		42AE9B6A2264556100F5FD08 /* SKCalendarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AE9B612264556100F5FD08 /* SKCalendarCollectionViewCell.m */; };
+		42AE9B6B2264556100F5FD08 /* SKDateSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AE9B652264556100F5FD08 /* SKDateSecurity.m */; };
+		42AE9B6D2264581100F5FD08 /* IndexDateImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 42AE9B6C2264581100F5FD08 /* IndexDateImage.png */; };
+		42AE9B7022645AB800F5FD08 /* DateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AE9B6F22645AB800F5FD08 /* DateViewController.m */; };
+		42AE9B7222645F0100F5FD08 /* dateLeftImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 42AE9B7122645F0100F5FD08 /* dateLeftImage.png */; };
+		42AE9B7422645F4500F5FD08 /* rightDateImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 42AE9B7322645F4500F5FD08 /* rightDateImage.png */; };
 		42B040492238DC7E00092539 /* LEEAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B040472238DC7E00092539 /* LEEAlert.m */; };
 		42B0404D2238F40900092539 /* TranslationMicTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B0404B2238F40900092539 /* TranslationMicTipView.m */; };
 		42B040502238F42200092539 /* UIView+LLFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B0404E2238F42100092539 /* UIView+LLFrame.m */; };
@@ -59,6 +69,9 @@
 		42C58ABA22602E8D000A5DE1 /* DVFoodPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB422602E8D000A5DE1 /* DVFoodPieModel.m */; };
 		42C58ABB22602E8D000A5DE1 /* DVPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB822602E8D000A5DE1 /* DVPieChart.m */; };
 		42D2C1602224D76700A9977E /* DataBaseTableNameList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42D2C15F2224D76700A9977E /* DataBaseTableNameList.plist */; };
+		42DBB9C822671B320055DBD9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 42DBB9C722671B320055DBD9 /* share.png */; };
+		42DBBA1C22672B1E0055DBD9 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 42DBBA1B22672B1E0055DBD9 /* setting.png */; };
+		42DBBA1F22672B5A0055DBD9 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DBBA1E22672B5A0055DBD9 /* SettingViewController.m */; };
 		42E04A4921F1D26700A5567C /* addBooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 42E04A4821F1D26700A5567C /* addBooks.png */; };
 		42E04A4D21F1D39200A5567C /* BooksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E04A4C21F1D39200A5567C /* BooksModel.m */; };
 		42E04A5121F1D46200A5567C /* BookDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E04A5021F1D46200A5567C /* BookDetailModel.m */; };
@@ -154,6 +167,24 @@
 		42294BF721E75B1200A1D4D0 /* NSDate+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+String.m"; sourceTree = "<group>"; };
 		42ACFCBB21EEC96C00A40338 /* Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel.png; sourceTree = "<group>"; };
 		42ACFCBC21EEC96C00A40338 /* Sure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sure.png; sourceTree = "<group>"; };
+		42AE9B562264556100F5FD08 /* SKCalendarAnimationManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCalendarAnimationManage.h; sourceTree = "<group>"; };
+		42AE9B572264556100F5FD08 /* SKCalendarAnimationManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCalendarAnimationManage.m; sourceTree = "<group>"; };
+		42AE9B592264556100F5FD08 /* SKCalendarManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCalendarManage.h; sourceTree = "<group>"; };
+		42AE9B5A2264556100F5FD08 /* SKCalendarManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCalendarManage.m; sourceTree = "<group>"; };
+		42AE9B5C2264556100F5FD08 /* SKCalendarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCalendarCollectionViewCell.h; sourceTree = "<group>"; };
+		42AE9B5D2264556100F5FD08 /* SKCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCalendarView.h; sourceTree = "<group>"; };
+		42AE9B5E2264556100F5FD08 /* SKWeekCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKWeekCollectionViewCell.m; sourceTree = "<group>"; };
+		42AE9B5F2264556100F5FD08 /* SKWeekCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKWeekCollectionViewCell.h; sourceTree = "<group>"; };
+		42AE9B602264556100F5FD08 /* SKCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCalendarView.m; sourceTree = "<group>"; };
+		42AE9B612264556100F5FD08 /* SKCalendarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCalendarCollectionViewCell.m; sourceTree = "<group>"; };
+		42AE9B632264556100F5FD08 /* SKConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKConstant.h; sourceTree = "<group>"; };
+		42AE9B642264556100F5FD08 /* SKDateSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKDateSecurity.h; sourceTree = "<group>"; };
+		42AE9B652264556100F5FD08 /* SKDateSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKDateSecurity.m; sourceTree = "<group>"; };
+		42AE9B6C2264581100F5FD08 /* IndexDateImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IndexDateImage.png; sourceTree = "<group>"; };
+		42AE9B6E22645AB800F5FD08 /* DateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateViewController.h; sourceTree = "<group>"; };
+		42AE9B6F22645AB800F5FD08 /* DateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateViewController.m; sourceTree = "<group>"; };
+		42AE9B7122645F0100F5FD08 /* dateLeftImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dateLeftImage.png; sourceTree = "<group>"; };
+		42AE9B7322645F4500F5FD08 /* rightDateImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightDateImage.png; sourceTree = "<group>"; };
 		42B040462238DC7E00092539 /* LEEAlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlertHelper.h; sourceTree = "<group>"; };
 		42B040472238DC7E00092539 /* LEEAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEAlert.m; sourceTree = "<group>"; };
 		42B040482238DC7E00092539 /* LEEAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlert.h; sourceTree = "<group>"; };
@@ -193,6 +224,10 @@
 		42C58AB722602E8D000A5DE1 /* DVFoodPieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVFoodPieModel.h; sourceTree = "<group>"; };
 		42C58AB822602E8D000A5DE1 /* DVPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPieChart.m; sourceTree = "<group>"; };
 		42D2C15F2224D76700A9977E /* DataBaseTableNameList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DataBaseTableNameList.plist; sourceTree = "<group>"; };
+		42DBB9C722671B320055DBD9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		42DBBA1B22672B1E0055DBD9 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		42DBBA1D22672B5A0055DBD9 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		42DBBA1E22672B5A0055DBD9 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		42E04A4821F1D26700A5567C /* addBooks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addBooks.png; sourceTree = "<group>"; };
 		42E04A4B21F1D39200A5567C /* BooksModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BooksModel.h; sourceTree = "<group>"; };
 		42E04A4C21F1D39200A5567C /* BooksModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BooksModel.m; sourceTree = "<group>"; };
@@ -272,6 +307,10 @@
 				42F0831221EC477F00948743 /* InputViewController.m */,
 				42C5855322602A9B000A5DE1 /* ChartViewController.h */,
 				42C5855422602A9B000A5DE1 /* ChartViewController.m */,
+				42AE9B6E22645AB800F5FD08 /* DateViewController.h */,
+				42AE9B6F22645AB800F5FD08 /* DateViewController.m */,
+				42DBBA1D22672B5A0055DBD9 /* SettingViewController.h */,
+				42DBBA1E22672B5A0055DBD9 /* SettingViewController.m */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -358,6 +397,10 @@
 		42294BB421E733DC00A1D4D0 /* ResourceFile */ = {
 			isa = PBXGroup;
 			children = (
+				42DBBA1B22672B1E0055DBD9 /* setting.png */,
+				42AE9B7322645F4500F5FD08 /* rightDateImage.png */,
+				42AE9B7122645F0100F5FD08 /* dateLeftImage.png */,
+				42AE9B6C2264581100F5FD08 /* IndexDateImage.png */,
 				42C5855122602A39000A5DE1 /* BookChars.png */,
 				42B6F81F225EE1F80026012D /* addNewBooks.png */,
 				9415454022532B79002D6E20 /* chart.png */,
@@ -371,6 +414,7 @@
 				42294BDA21E74A2D00A1D4D0 /* Yuppy SC.ttf */,
 				42F0831421EC685E00948743 /* line.png */,
 				4200E74F21E8807800B4A8DC /* bookcase1.png */,
+				42DBB9C722671B320055DBD9 /* share.png */,
 				42294BD621E7475800A1D4D0 /* Bookcase.png */,
 				42F0832521EC7FF300948743 /* Date.png */,
 				42BEAAAF21E8498A001F5F3E /* Chinesebrush.png */,
@@ -402,6 +446,7 @@
 		42294BB721E733DC00A1D4D0 /* ToolFile */ = {
 			isa = PBXGroup;
 			children = (
+				42AE9B542264556100F5FD08 /* SKCalendarView */,
 				42C58AB222602E8D000A5DE1 /* DVDishPieHeader */,
 				42BBB1B0224B43C9002C11F6 /* WSDatePickerView */,
 				42B040452238DC7E00092539 /* LEEAlert */,
@@ -541,6 +586,58 @@
 				42294BF421E7596200A1D4D0 /* UserColorModel.m */,
 			);
 			path = UserColorConfiguration;
+			sourceTree = "<group>";
+		};
+		42AE9B542264556100F5FD08 /* SKCalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				42AE9B552264556100F5FD08 /* Animation */,
+				42AE9B582264556100F5FD08 /* Algorithm */,
+				42AE9B5B2264556100F5FD08 /* View */,
+				42AE9B622264556100F5FD08 /* Tool */,
+			);
+			path = SKCalendarView;
+			sourceTree = "<group>";
+		};
+		42AE9B552264556100F5FD08 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				42AE9B562264556100F5FD08 /* SKCalendarAnimationManage.h */,
+				42AE9B572264556100F5FD08 /* SKCalendarAnimationManage.m */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		42AE9B582264556100F5FD08 /* Algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				42AE9B592264556100F5FD08 /* SKCalendarManage.h */,
+				42AE9B5A2264556100F5FD08 /* SKCalendarManage.m */,
+			);
+			path = Algorithm;
+			sourceTree = "<group>";
+		};
+		42AE9B5B2264556100F5FD08 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				42AE9B5C2264556100F5FD08 /* SKCalendarCollectionViewCell.h */,
+				42AE9B5D2264556100F5FD08 /* SKCalendarView.h */,
+				42AE9B5E2264556100F5FD08 /* SKWeekCollectionViewCell.m */,
+				42AE9B5F2264556100F5FD08 /* SKWeekCollectionViewCell.h */,
+				42AE9B602264556100F5FD08 /* SKCalendarView.m */,
+				42AE9B612264556100F5FD08 /* SKCalendarCollectionViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		42AE9B622264556100F5FD08 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				42AE9B632264556100F5FD08 /* SKConstant.h */,
+				42AE9B642264556100F5FD08 /* SKDateSecurity.h */,
+				42AE9B652264556100F5FD08 /* SKDateSecurity.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		42B040452238DC7E00092539 /* LEEAlert */ = {
@@ -771,14 +868,18 @@
 				42294BCD21E73EDF00A1D4D0 /* LaunchScreen.storyboard in Resources */,
 				42D2C1602224D76700A9977E /* DataBaseTableNameList.plist in Resources */,
 				42BBB1B8224B43CA002C11F6 /* WSDatePickerView.xib in Resources */,
+				42DBB9C822671B320055DBD9 /* share.png in Resources */,
+				42AE9B7422645F4500F5FD08 /* rightDateImage.png in Resources */,
 				42BEAAB021E8498A001F5F3E /* Chinesebrush.png in Resources */,
 				42C5855222602A39000A5DE1 /* BookChars.png in Resources */,
 				42294BDB21E74A2E00A1D4D0 /* Yuppy SC.ttf in Resources */,
 				42F0831521EC685E00948743 /* line.png in Resources */,
 				42294BD921E7479B00A1D4D0 /* Hammer.png in Resources */,
 				42E04A5621F1D6A400A5567C /* creatBookbgImage.png in Resources */,
+				42DBBA1C22672B1E0055DBD9 /* setting.png in Resources */,
 				4200E75021E8807800B4A8DC /* bookcase1.png in Resources */,
 				94226B3D224B537100A88301 /* star.png in Resources */,
+				42AE9B6D2264581100F5FD08 /* IndexDateImage.png in Resources */,
 				42294B8B21E7320A00A1D4D0 /* Assets.xcassets in Resources */,
 				42BEAAA021E8375F001F5F3E /* backImage3.png in Resources */,
 				42BEAAA321E8375F001F5F3E /* backImage6.png in Resources */,
@@ -787,6 +888,7 @@
 				42BBB1AF224B2988002C11F6 /* ChinesebrushHold.png in Resources */,
 				42E04A4921F1D26700A5567C /* addBooks.png in Resources */,
 				42ACFCBE21EEC96C00A40338 /* Sure.png in Resources */,
+				42AE9B7222645F0100F5FD08 /* dateLeftImage.png in Resources */,
 				42294B8921E7320800A1D4D0 /* Main.storyboard in Resources */,
 				42F0832621EC7FF300948743 /* Date.png in Resources */,
 				42ACFCBD21EEC96C00A40338 /* Cancel.png in Resources */,
@@ -879,13 +981,17 @@
 				42EFDC5D2236309000FD2EDB /* BaseCollectionView.m in Sources */,
 				42F0830821EC279200948743 /* BooksViewController.m in Sources */,
 				42F0831B21EC6E7600948743 /* InputTextView.m in Sources */,
+				42AE9B6B2264556100F5FD08 /* SKDateSecurity.m in Sources */,
 				42B040492238DC7E00092539 /* LEEAlert.m in Sources */,
+				42AE9B662264556100F5FD08 /* SKCalendarAnimationManage.m in Sources */,
 				42B0404D2238F40900092539 /* TranslationMicTipView.m in Sources */,
 				42294BC521E7350A00A1D4D0 /* BaseNavigationController.m in Sources */,
 				42EFDC5A2236304900FD2EDB /* UIScrollView+EmptyDataSet.m in Sources */,
 				42294BF221E7594000A1D4D0 /* UserColorConfiguration.m in Sources */,
+				42AE9B6A2264556100F5FD08 /* SKCalendarCollectionViewCell.m in Sources */,
 				4200E74421E86B8800B4A8DC /* DetailViewController.m in Sources */,
 				42C58AB922602E8D000A5DE1 /* DVPieCenterView.m in Sources */,
+				42DBBA1F22672B5A0055DBD9 /* SettingViewController.m in Sources */,
 				42BBB1BA224B43CA002C11F6 /* NSDate+Extension.m in Sources */,
 				42294BEB21E7533900A1D4D0 /* UserDefaultStorageManager.m in Sources */,
 				42F0831E21EC73B800948743 /* InputClassTagsView.m in Sources */,
@@ -898,10 +1004,12 @@
 				42E04A5421F1D57400A5567C /* CreatBookView.m in Sources */,
 				42BBB1B9224B43CA002C11F6 /* WSDatePickerView.m in Sources */,
 				42294BC221E734E100A1D4D0 /* BaseViewController.m in Sources */,
+				42AE9B682264556100F5FD08 /* SKWeekCollectionViewCell.m in Sources */,
 				42F0832121EC79AD00948743 /* InputClassTagCollectionViewCell.m in Sources */,
 				42294BD421E742AA00A1D4D0 /* PBIndexNavigationBarView.m in Sources */,
 				42F0830C21EC3F1C00948743 /* BooksCollectionViewCell.m in Sources */,
 				42C58ABA22602E8D000A5DE1 /* DVFoodPieModel.m in Sources */,
+				42AE9B692264556100F5FD08 /* SKCalendarView.m in Sources */,
 				42E7E13B21ED7BE7009B95FB /* YLNumberKeyboard.m in Sources */,
 				42F0832421EC7DE200948743 /* InputDateMarkView.m in Sources */,
 				4200E74B21E86F0800B4A8DC /* DetailOrderCollectionViewCell.m in Sources */,
@@ -913,10 +1021,12 @@
 				4200E74821E86CC200B4A8DC /* DetailCollectionViewCell.m in Sources */,
 				42BEAAA721E83BA4001F5F3E /* NSString+Money.m in Sources */,
 				42C5855522602A9B000A5DE1 /* ChartViewController.m in Sources */,
+				42AE9B672264556100F5FD08 /* SKCalendarManage.m in Sources */,
 				4200E74E21E87EB000B4A8DC /* DetailModel.m in Sources */,
 				42E04A5121F1D46200A5567C /* BookDetailModel.m in Sources */,
 				9415454422532CEB002D6E20 /* CreatBookViewController.m in Sources */,
 				42E04A4D21F1D39200A5567C /* BooksModel.m in Sources */,
+				42AE9B7022645AB800F5FD08 /* DateViewController.m in Sources */,
 				42294BCA21E73D8E00A1D4D0 /* IndexViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

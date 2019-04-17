@@ -14,6 +14,9 @@
 #import "BaseCollectionView.h"
 #import "ChartViewController.h"
 #import "CreatBookView.h"
+#import "DateViewController.h"
+#import "SettingViewController.h"
+#import <Social/Social.h>
 @interface IndexViewController ()<
 UICollectionViewDelegateFlowLayout,
 UICollectionViewDataSource,
@@ -23,6 +26,10 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 @property(nonatomic,strong)CreatBookView * creatBookView;
 
 @property (nonatomic, strong) UIButton *closeButton;
+
+@property (nonatomic, strong) UIButton *dateButton;
+
+@property(nonatomic,strong)UIButton * shareButton;
 
 @property(nonatomic,strong)PBIndexNavigationBarView * naviView;
 
@@ -47,6 +54,8 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [self.view addSubview:self.naviView];
     [self.view addSubview:self.collectionView];
     [self.view addSubview: self.inputButton];
+    [self.view addSubview:self.dateButton];
+    [self.view addSubview:self.shareButton];
     [self addMasonry];
     self.currentItem = 0;
     self.tableNames = [[NSMutableArray alloc] init];
@@ -77,6 +86,26 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         make.width.mas_equalTo(kIphone6Width(42));
         make.height.mas_equalTo(kIphone6Width(60));
     }];
+    [self.dateButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.collectionView.mas_bottom).offset(kIphone6Width(20));
+        make.right.mas_equalTo(kIphone6Width((-20)));
+        make.width.mas_equalTo(kIphone6Width(20));
+        make.height.mas_equalTo(kIphone6Width(20));
+    }];
+    [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.collectionView.mas_bottom).offset(kIphone6Width(20));
+        make.left.mas_equalTo(kIphone6Width((20)));
+        make.width.mas_equalTo(kIphone6Width(20));
+        make.height.mas_equalTo(kIphone6Width(20));
+    }];
+}
+-(UIButton *)shareButton{
+    if (!_shareButton) {
+        _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_shareButton setImage:[UIImage imageNamed:@"setting.png"] forState:UIControlStateNormal];
+        [_shareButton addTarget:self action:@selector(shareButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _shareButton;
 }
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
@@ -116,10 +145,26 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     }
     return _inputButton;
 }
+-(UIButton *)dateButton{
+    if (!_dateButton) {
+        _dateButton = [[UIButton alloc] init];
+        [_dateButton setImage:[UIImage imageNamed:@"IndexDateImage"] forState:UIControlStateNormal];
+        [_dateButton addTarget:self action:@selector(dateButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _dateButton;
+}
+-(void)dateButtonTouchUpInside:(UIButton *)sender{
+    DateViewController * date = [[DateViewController alloc] init];
+    [self.navigationController hh_presentBackScaleVC:date height:ScreenHeight-kIphone6Width(230) completion:nil];
+}
 - (void)closeButtonTouchUpInside:(UIButton *)sender {
     self.view.userInteractionEnabled = YES;
     [self.creatBookView removeFromSuperview];
     [self.closeButton removeFromSuperview];
+}
+- (void)shareButtonTouchUpInside:(UIButton *)sender {
+    SettingViewController * setting = [[SettingViewController alloc] init];
+    [self.navigationController hh_pushTiltViewController:setting];
 }
 -(void)inputButtonTouchUpInside:(UIButton *)sender{
     NSMutableArray * tableArr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
@@ -242,6 +287,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         cell = [[IndexCollectionViewCell alloc] init];
     }
     cell.model = models[0];
+    
     return cell;
 }
 

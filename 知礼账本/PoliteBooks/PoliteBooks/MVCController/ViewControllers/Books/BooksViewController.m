@@ -142,7 +142,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         flowLayout.minimumLineSpacing = kIphone6Width(15);
         flowLayout.minimumInteritemSpacing = kIphone6Width(5);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        flowLayout.itemSize = CGSizeMake(kIphone6Width(80), kIphone6Width(120));
+        flowLayout.itemSize = CGSizeMake(kIphone6Width(100), kIphone6Width(140));
 //        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         CGFloat topHeight = kIphone6Width(110);
         if (IPHONEXR || IPHONEXSMAX || IPhoneX) {

@@ -13,6 +13,11 @@
 
 #define kDataBase ([JQFMDB shareDatabase])
 
+/**
+ APP版本
+ */
+#define kCurrentAppVersion ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"])
+
 #define imagesString (@[@"backImage1",@"backImage2"])
 /**
  vibration

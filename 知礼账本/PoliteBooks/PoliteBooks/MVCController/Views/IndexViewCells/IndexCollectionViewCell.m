@@ -23,6 +23,8 @@
 /// 账本总和
 @property (nonatomic, strong) UILabel *moneySum;
 
+
+
 @end
 
 @implementation IndexCollectionViewCell
@@ -38,11 +40,6 @@
         [self addMasonry];
     }
     return self;
-}
-
-#pragma mark - # Event Response
-- (void)newButtonTouchUpInside:(UIButton *)sender {
-    
 }
 
 #pragma mark - # Private Methods
@@ -119,7 +116,6 @@
     }
     return _moneySum;
 }
-
 
 
 -(void)setModel:(BooksModel *)model{
