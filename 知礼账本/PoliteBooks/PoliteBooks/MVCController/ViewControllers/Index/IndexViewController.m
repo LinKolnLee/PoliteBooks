@@ -17,6 +17,8 @@
 #import "DateViewController.h"
 #import "SettingViewController.h"
 #import <Social/Social.h>
+#import "WJFlowLayout.h"
+#import "WJColorChange.h"
 @interface IndexViewController ()<
 UICollectionViewDelegateFlowLayout,
 UICollectionViewDataSource,
@@ -45,6 +47,10 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 @property (nonatomic,strong)NSMutableArray * tableNames;
 
 @property(nonatomic,assign)NSInteger currentItem;
+
+@property (nonatomic,strong) WJColorChange *colorChange;
+
+@property (nonatomic,strong) NSMutableArray *colorDataArr;
 @end
 
 @implementation IndexViewController
@@ -59,8 +65,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [self addMasonry];
     self.currentItem = 0;
     self.tableNames = [[NSMutableArray alloc] init];
-    
-    
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -73,7 +78,6 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     }else{
         self.inputButton.hidden = NO;
     }
-
 }
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -99,6 +103,12 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         make.height.mas_equalTo(kIphone6Width(20));
     }];
 }
+- (NSMutableArray *)colorDataArr {
+    if (!_colorDataArr) {
+        _colorDataArr = [[NSMutableArray alloc]init];
+    }
+    return _colorDataArr;
+}
 -(UIButton *)shareButton{
     if (!_shareButton) {
         _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -110,11 +120,12 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        _naviView.backgroundColor = kWhiteColor;
+        //_naviView.backgroundColor = kWhiteColor;
         _naviView.title = @"礼尚往来";
         _naviView.leftImage = @"Bookcase";
         _naviView.rightImage = @"BookChars";
         _naviView.rightHidden = NO;
+        _naviView.backgroundColor = [UIColor clearColor];
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -243,24 +254,19 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 }
 - (BaseCollectionView *)collectionView {
     if (!_collectionView) {
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.minimumLineSpacing = kIphone6Width(14);
-        flowLayout.minimumInteritemSpacing = kIphone6Width(15);
-        flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        flowLayout.itemSize = CGSizeMake(kIphone6Width(345), kIphone6Width(480));
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        WJFlowLayout *layout = [[WJFlowLayout alloc]init];
         CGFloat topHeight = kIphone6Width(110);
         if (IPHONEXR || IPHONEXSMAX || IPhoneX) {
             topHeight = kIphone6Width(180);
         }
-        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(kIphone6Width(10), topHeight , ScreenWidth-kIphone6Width(20), kIphone6Width(500)) collectionViewLayout:flowLayout];
+        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(kIphone6Width(10), topHeight , ScreenWidth-kIphone6Width(20), kIphone6Width(500)) collectionViewLayout:layout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
         _collectionView.bounces = NO;
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.baseDelegate = self;
         _collectionView.btnTitle = @"点击添加账本";
         [_collectionView registerClass:[IndexCollectionViewCell class] forCellWithReuseIdentifier:@"IndexCollectionViewCell"];
@@ -283,11 +289,13 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     NSMutableArray * arr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
     NSArray <BooksModel *> * models = [dataBase jq_lookupTable:arr[indexPath.row] dicOrModel:[BooksModel class] whereFormat:@"where bookId = '0'"];
     IndexCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"IndexCollectionViewCell" forIndexPath:indexPath];
+    cell.layer.shadowColor = kHexRGB(0x75664d).CGColor;
+    cell.layer.shadowOffset = CGSizeMake(2, 4);
+    cell.layer.shadowOpacity = 0.5;
     if (!cell) {
         cell = [[IndexCollectionViewCell alloc] init];
     }
     cell.model = models[0];
-    
     return cell;
 }
 

@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import <Social/Social.h>
+#import "GuideViewController.h"
 @interface SettingViewController ()
 
 @property(nonatomic,strong)PBIndexNavigationBarView * naviView;
@@ -19,6 +20,9 @@
 @property(nonatomic,strong)UILabel * bookNumberLabel;
 
 @property(nonatomic,strong)UILabel * outBookLabel;
+
+@property(nonatomic,strong)UIButton * guideBtn;
+
 @end
 
 @implementation SettingViewController
@@ -30,6 +34,7 @@
     [self.view addSubview:self.versionLabel];
     [self.view addSubview:self.bookNumberLabel];
     [self.view addSubview:self.outBookLabel];
+    [self.view addSubview:self.guideBtn];
     
     // Do any additional setup after loading the view.
 }
@@ -92,6 +97,22 @@
         _outBookLabel.userInteractionEnabled = YES;
     }
     return _outBookLabel;
+}
+-(UIButton *)guideBtn{
+    if (!_guideBtn) {
+        _guideBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _guideBtn.frame = CGRectMake(0, 200, ScreenWidth, 25);
+        //[_guideBtn setImage:[UIImage imageNamed:@"passWord"] forState:UIControlStateNormal];
+        [_guideBtn setTitle:@"新手引导" forState:UIControlStateNormal];
+        [_guideBtn setTitleColor:TypeColor[6] forState:UIControlStateNormal];
+        _guideBtn.titleLabel.font = kPingFangTC_Light(15);
+        [_guideBtn addTarget:self action:@selector(guideBtnTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _guideBtn;
+}
+-(void)guideBtnTouchUpInside:(UIButton *)sender{
+    GuideViewController * guide = [[GuideViewController alloc] init];
+    [self.navigationController hh_pushBackViewController:guide];
 }
 -(void)outBookLabelTouchUpInside:(UIGestureRecognizer *)ges{
     NSMutableArray * tabelNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];

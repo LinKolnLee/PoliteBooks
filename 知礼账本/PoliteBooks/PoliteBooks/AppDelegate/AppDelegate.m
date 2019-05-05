@@ -27,6 +27,7 @@
     IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager]; // 获取类库的单例变量
     keyboardManager.enableAutoToolbar = NO;
     keyboardManager.shouldResignOnTouchOutside = YES;
+    //[Bmob registerWithAppKey:@"786255b502405006318e7c684d13e8ed"];
     [self createDefaultTable];
     // Override point for customization after application launch.
     return YES;

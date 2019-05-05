@@ -11,6 +11,10 @@
 
 #define TypeColor (@[kHexRGB(0xffc773),kHexRGB(0xbce672),kHexRGB(0x7bcfa6),kHexRGB(0xc0ebd7),kHexRGB(0x815463),kHexRGB(0x758a99),kHexRGB(0x3d3b4f),kHexRGB(0xf15b6c),])
 
+#define random(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+
+#define randomColor random(arc4random_uniform(256), 255.0, arc4random_uniform(256), 255.0)
+
 #define kDataBase ([JQFMDB shareDatabase])
 
 /**

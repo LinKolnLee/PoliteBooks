@@ -7,22 +7,22 @@
 //
 
 #import "DetailViewController.h"
-#import "DetailCollectionViewCell.h"
+#import "DetailOrderCollectionViewCell.h"
 #import "InputViewController.h"
 #import "TranslationMicTipView.h"
-
+#import "BaseCollectionView.h"
 @interface DetailViewController ()<
 UICollectionViewDelegateFlowLayout,
 UICollectionViewDataSource,
 UICollectionViewDelegate,
-UIScrollViewDelegate
+BaseCollectionViewButtonClickDelegate
 >
 /// collectionViewCollectionViewLayout
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionViewFlowLayout;
 /**
  账本列表
  */
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) BaseCollectionView *collectionView;
 
 /**
  navi
@@ -33,6 +33,7 @@ UIScrollViewDelegate
 
 @property(nonatomic,strong)TranslationMicTipView * micTipView;
 
+@property (nonatomic, strong) NSIndexPath *longPressIndexPath;
 
 @end
 
@@ -123,27 +124,30 @@ UIScrollViewDelegate
     }
     return _naviView;
 }
-- (UICollectionView *)collectionView {
+- (BaseCollectionView *)collectionView {
     if (!_collectionView) {
-        CGFloat topHeight = kIphone6Width(90);
-        if (IPHONEXR || IPHONEXSMAX || IPhoneX) {
-            topHeight = kIphone6Width(100);
-        }
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = kIphone6Width(14);
         flowLayout.minimumInteritemSpacing = kIphone6Width(15);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        flowLayout.itemSize = CGSizeMake(ScreenWidth, ScreenHeight - topHeight - kIphone6Width(49));
+        flowLayout.itemSize = CGSizeMake(ScreenWidth/7, ScreenHeight - 160);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, topHeight , ScreenWidth, ScreenHeight - topHeight - kIphone6Width(49)) collectionViewLayout:flowLayout];
+        CGFloat topHeight = kIphone6Width(100);
+        if (IPHONEXR || IPHONEXSMAX || IPhoneX) {
+            topHeight = kIphone6Width(120);
+        }
+        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, 84 , ScreenWidth, ScreenHeight - 100) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
         _collectionView.bounces = NO;
+        _collectionView.baseDelegate = self;
+        _collectionView.btnTitle = @"点击开始记账";
+        _collectionView.noDataTitle = @"你还没有记过该类型账";
         _collectionView.backgroundColor = [UIColor whiteColor];
-        [_collectionView registerClass:[DetailCollectionViewCell class] forCellWithReuseIdentifier:@"DetailCollectionViewCell"];
+        [_collectionView registerClass:[DetailOrderCollectionViewCell class] forCellWithReuseIdentifier:@"DetailOrderCollectionViewCell"];
     }
     return _collectionView;
 }
@@ -154,36 +158,91 @@ UIScrollViewDelegate
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
+    return self.dataSource.count - 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    DetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DetailCollectionViewCell" forIndexPath:indexPath];
+    DetailOrderCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DetailOrderCollectionViewCell" forIndexPath:indexPath];
     if (!cell) {
-        cell = [[DetailCollectionViewCell alloc] init];
+        cell = [[DetailOrderCollectionViewCell alloc] init];
     }
-    cell.currentTableName = self.currentTableName;
-    WS(weakSelf);
-    cell.detailCollectionViewCellCreateBookBlock = ^{
-        VIBRATION;
-        InputViewController *circleVC = [InputViewController new];
-        //circleVC.isNeedShow = YES;
-        circleVC.dateSource = weakSelf.dataSource;
-        circleVC.currentTableName = weakSelf.currentTableName;
-        //WS(weakSelf);
-        circleVC.InputViewControllerPopBlock = ^{
-            weakSelf.dataSource = [kDataBase jq_lookupTable:weakSelf.currentTableName dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",weakSelf.dataSource[0].bookName];
-            [weakSelf.collectionView reloadData];
-        };
-        [weakSelf.navigationController hh_presentTiltedVC:circleVC completion:nil];
-        VIBRATION;
-    };
-    cell.detailDataSource = self.dataSource;
+    cell.model = self.dataSource[indexPath.row + 1];
+    cell.layer.cornerRadius = kIphone6Width(10);
+    cell.layer.masksToBounds = YES;
+    cell.backgroundColor = kHexRGB(0xf6f5ec);
+    UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(lpGR:)];
+    longPressGR.minimumPressDuration = 1;
+    [cell addGestureRecognizer:longPressGR];
     return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = CGRectMake(0, 0, ScreenWidth/7, ScreenHeight-160);
+    
+    CAShapeLayer *borderLayer = [CAShapeLayer layer];
+    borderLayer.frame = CGRectMake(0, 0, ScreenWidth/7, ScreenHeight-160);
+    borderLayer.lineWidth = 1.f;
+    borderLayer.strokeColor = kBlackColor.CGColor;
+    borderLayer.fillColor = [UIColor clearColor].CGColor;
+    
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth/7, ScreenHeight-160) cornerRadius:kIphone6Width(15)];
+    maskLayer.path = bezierPath.CGPath;
+    borderLayer.path = bezierPath.CGPath;
+    
+    [cell.contentView.layer insertSublayer:borderLayer atIndex:0];
+    [cell.layer setMask:maskLayer];
 }
 
 //MARK: UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+}
+-(void)lpGR:(UILongPressGestureRecognizer *)lpGR
+{
+    if (lpGR.state == UIGestureRecognizerStateBegan) {//手势开始
+        CGPoint point = [lpGR locationInView:self.collectionView];
+        VIBRATION;
+        self.longPressIndexPath = [self.collectionView indexPathForItemAtPoint:point];// 可以获取我们在哪个cell上长按
+        [self showAlert];
+        
+    }
+}
+-(void)showAlert{
+    UIColor *blueColor = TypeColor[self.dataSource[0].tableType];
+    WS(weakSelf);
+    [LEEAlert alert].config
+    .LeeAddTitle(^(UILabel *label) {
+        label.text = @"确认删除?";
+        label.textColor = kWhiteColor;
+    })
+    .LeeAddContent(^(UILabel *label) {
+        label.text = @"删除后将无法恢复, 请慎重考虑";
+        label.textColor = [kWhiteColor colorWithAlphaComponent:0.75f];
+    })
+    .LeeAddAction(^(LEEAction *action) {
+        action.type = LEEActionTypeCancel;
+        action.title = @"取消";
+        action.titleColor = blueColor;
+        action.backgroundColor = kWhiteColor;
+        action.clickBlock = ^{
+        };
+    })
+    .LeeAddAction(^(LEEAction *action) {
+        action.type = LEEActionTypeDefault;
+        action.title = @"删除";
+        action.titleColor = blueColor;
+        action.backgroundColor = kWhiteColor;
+        action.clickBlock = ^{
+            // 删除点击事件Block
+            [kDataBase jq_inDatabase:^{
+                [kDataBase jq_deleteTable:self.currentTableName whereFormat:@"WHERE bookId = '%d'",self.dataSource[self.longPressIndexPath.row + 1].bookId];
+                self.dataSource = [kDataBase jq_lookupTable:self.currentTableName dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",self.dataSource[0].bookName];
+                [weakSelf.collectionView reloadData]; //刷新tableview
+            }];
+        };
+    })
+    .LeeHeaderColor(blueColor)
+    .LeeShow();
 }
 -(void)setIsLook:(BOOL)isLook{
     _isLook = isLook;
@@ -196,6 +255,20 @@ UIScrollViewDelegate
 }
 -(void)setCurrentTableName:(NSString *)currentTableName{
     _currentTableName = currentTableName;
+}
+-(void)baseCollectionViewButtonClick{
+    VIBRATION;
+    InputViewController *circleVC = [InputViewController new];
+    //circleVC.isNeedShow = YES;
+    circleVC.dateSource = self.dataSource;
+    circleVC.currentTableName = self.currentTableName;
+    WS(weakSelf);
+    circleVC.InputViewControllerPopBlock = ^{
+        weakSelf.dataSource = [kDataBase jq_lookupTable:weakSelf.currentTableName dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",weakSelf.dataSource[0].bookName];
+        [weakSelf.collectionView reloadData];
+    };
+    [self.navigationController hh_presentTiltedVC:circleVC completion:nil];
+    VIBRATION;
 }
 /*
 #pragma mark - Navigation

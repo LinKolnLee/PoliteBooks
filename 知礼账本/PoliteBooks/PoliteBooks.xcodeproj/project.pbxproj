@@ -32,6 +32,7 @@
 		42294BF221E7594000A1D4D0 /* UserColorConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BF021E7594000A1D4D0 /* UserColorConfiguration.m */; };
 		42294BF521E7596200A1D4D0 /* UserColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BF421E7596200A1D4D0 /* UserColorModel.m */; };
 		42294BF821E75B1200A1D4D0 /* NSDate+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BF721E75B1200A1D4D0 /* NSDate+String.m */; };
+		426989F722715E8B008174D3 /* passWord.png in Resources */ = {isa = PBXBuildFile; fileRef = 426989F622715E8B008174D3 /* passWord.png */; };
 		42ACFCBD21EEC96C00A40338 /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 42ACFCBB21EEC96C00A40338 /* Cancel.png */; };
 		42ACFCBE21EEC96C00A40338 /* Sure.png in Resources */ = {isa = PBXBuildFile; fileRef = 42ACFCBC21EEC96C00A40338 /* Sure.png */; };
 		42AE9B662264556100F5FD08 /* SKCalendarAnimationManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AE9B572264556100F5FD08 /* SKCalendarAnimationManage.m */; };
@@ -63,12 +64,24 @@
 		42BEAAA721E83BA4001F5F3E /* NSString+Money.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEAAA621E83BA4001F5F3E /* NSString+Money.m */; };
 		42BEAAAE21E847E0001F5F3E /* NewInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEAAAD21E847E0001F5F3E /* NewInputButton.m */; };
 		42BEAAB021E8498A001F5F3E /* Chinesebrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BEAAAF21E8498A001F5F3E /* Chinesebrush.png */; };
+		42C0FE5E22783D6D0094E791 /* WJColorChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0FE5A22783D6D0094E791 /* WJColorChange.m */; };
+		42C0FE5F22783D6D0094E791 /* WJFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0FE5D22783D6D0094E791 /* WJFlowLayout.m */; };
 		42C5855222602A39000A5DE1 /* BookChars.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C5855122602A39000A5DE1 /* BookChars.png */; };
 		42C5855522602A9B000A5DE1 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5855422602A9B000A5DE1 /* ChartViewController.m */; };
 		42C58AB922602E8D000A5DE1 /* DVPieCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB322602E8D000A5DE1 /* DVPieCenterView.m */; };
 		42C58ABA22602E8D000A5DE1 /* DVFoodPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB422602E8D000A5DE1 /* DVFoodPieModel.m */; };
 		42C58ABB22602E8D000A5DE1 /* DVPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB822602E8D000A5DE1 /* DVPieChart.m */; };
 		42D2C1602224D76700A9977E /* DataBaseTableNameList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42D2C15F2224D76700A9977E /* DataBaseTableNameList.plist */; };
+		42D37F592275461B00092049 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D37F582275461B00092049 /* GuideViewController.m */; };
+		42D37F702275478D00092049 /* TABBaseCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D37F5D2275478C00092049 /* TABBaseCardView.m */; };
+		42D37F712275478D00092049 /* TABCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D37F5E2275478C00092049 /* TABCardView.m */; };
+		42D37F81227547B400092049 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D37F80227547B400092049 /* CardView.m */; };
+		42D37F8922754AFD00092049 /* 4.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 42D37F8322754AFD00092049 /* 4.PNG */; };
+		42D37F8A22754AFD00092049 /* 5.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 42D37F8422754AFD00092049 /* 5.PNG */; };
+		42D37F8B22754AFD00092049 /* 6.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 42D37F8522754AFD00092049 /* 6.PNG */; };
+		42D37F8C22754AFD00092049 /* 2.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 42D37F8622754AFD00092049 /* 2.PNG */; };
+		42D37F8D22754AFD00092049 /* 3.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 42D37F8722754AFD00092049 /* 3.PNG */; };
+		42D37F8E22754AFD00092049 /* 1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 42D37F8822754AFD00092049 /* 1.PNG */; };
 		42DBB9C822671B320055DBD9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 42DBB9C722671B320055DBD9 /* share.png */; };
 		42DBBA1C22672B1E0055DBD9 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 42DBBA1B22672B1E0055DBD9 /* setting.png */; };
 		42DBBA1F22672B5A0055DBD9 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DBBA1E22672B5A0055DBD9 /* SettingViewController.m */; };
@@ -165,6 +178,7 @@
 		42294BF421E7596200A1D4D0 /* UserColorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserColorModel.m; sourceTree = "<group>"; };
 		42294BF621E75B1200A1D4D0 /* NSDate+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+String.h"; sourceTree = "<group>"; };
 		42294BF721E75B1200A1D4D0 /* NSDate+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+String.m"; sourceTree = "<group>"; };
+		426989F622715E8B008174D3 /* passWord.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = passWord.png; sourceTree = "<group>"; };
 		42ACFCBB21EEC96C00A40338 /* Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel.png; sourceTree = "<group>"; };
 		42ACFCBC21EEC96C00A40338 /* Sure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sure.png; sourceTree = "<group>"; };
 		42AE9B562264556100F5FD08 /* SKCalendarAnimationManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCalendarAnimationManage.h; sourceTree = "<group>"; };
@@ -214,6 +228,10 @@
 		42BEAAAC21E847E0001F5F3E /* NewInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewInputButton.h; sourceTree = "<group>"; };
 		42BEAAAD21E847E0001F5F3E /* NewInputButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewInputButton.m; sourceTree = "<group>"; };
 		42BEAAAF21E8498A001F5F3E /* Chinesebrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chinesebrush.png; sourceTree = "<group>"; };
+		42C0FE5A22783D6D0094E791 /* WJColorChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJColorChange.m; sourceTree = "<group>"; };
+		42C0FE5B22783D6D0094E791 /* WJFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJFlowLayout.h; sourceTree = "<group>"; };
+		42C0FE5C22783D6D0094E791 /* WJColorChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJColorChange.h; sourceTree = "<group>"; };
+		42C0FE5D22783D6D0094E791 /* WJFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJFlowLayout.m; sourceTree = "<group>"; };
 		42C5855122602A39000A5DE1 /* BookChars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BookChars.png; sourceTree = "<group>"; };
 		42C5855322602A9B000A5DE1 /* ChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
 		42C5855422602A9B000A5DE1 /* ChartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
@@ -224,6 +242,21 @@
 		42C58AB722602E8D000A5DE1 /* DVFoodPieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVFoodPieModel.h; sourceTree = "<group>"; };
 		42C58AB822602E8D000A5DE1 /* DVPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPieChart.m; sourceTree = "<group>"; };
 		42D2C15F2224D76700A9977E /* DataBaseTableNameList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DataBaseTableNameList.plist; sourceTree = "<group>"; };
+		42D37F572275461B00092049 /* GuideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
+		42D37F582275461B00092049 /* GuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
+		42D37F5C2275478C00092049 /* TABCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TABCardView.h; sourceTree = "<group>"; };
+		42D37F5D2275478C00092049 /* TABBaseCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TABBaseCardView.m; sourceTree = "<group>"; };
+		42D37F5E2275478C00092049 /* TABCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TABCardView.m; sourceTree = "<group>"; };
+		42D37F5F2275478C00092049 /* TABBaseCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TABBaseCardView.h; sourceTree = "<group>"; };
+		42D37F602275478C00092049 /* TABDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TABDefine.h; sourceTree = "<group>"; };
+		42D37F7F227547B400092049 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
+		42D37F80227547B400092049 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
+		42D37F8322754AFD00092049 /* 4.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.PNG; sourceTree = "<group>"; };
+		42D37F8422754AFD00092049 /* 5.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.PNG; sourceTree = "<group>"; };
+		42D37F8522754AFD00092049 /* 6.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.PNG; sourceTree = "<group>"; };
+		42D37F8622754AFD00092049 /* 2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.PNG; sourceTree = "<group>"; };
+		42D37F8722754AFD00092049 /* 3.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.PNG; sourceTree = "<group>"; };
+		42D37F8822754AFD00092049 /* 1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.PNG; sourceTree = "<group>"; };
 		42DBB9C722671B320055DBD9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		42DBBA1B22672B1E0055DBD9 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		42DBBA1D22672B5A0055DBD9 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -311,6 +344,8 @@
 				42AE9B6F22645AB800F5FD08 /* DateViewController.m */,
 				42DBBA1D22672B5A0055DBD9 /* SettingViewController.h */,
 				42DBBA1E22672B5A0055DBD9 /* SettingViewController.m */,
+				42D37F572275461B00092049 /* GuideViewController.h */,
+				42D37F582275461B00092049 /* GuideViewController.m */,
 			);
 			path = Index;
 			sourceTree = "<group>";
@@ -397,6 +432,7 @@
 		42294BB421E733DC00A1D4D0 /* ResourceFile */ = {
 			isa = PBXGroup;
 			children = (
+				426989F622715E8B008174D3 /* passWord.png */,
 				42DBBA1B22672B1E0055DBD9 /* setting.png */,
 				42AE9B7322645F4500F5FD08 /* rightDateImage.png */,
 				42AE9B7122645F0100F5FD08 /* dateLeftImage.png */,
@@ -446,6 +482,7 @@
 		42294BB721E733DC00A1D4D0 /* ToolFile */ = {
 			isa = PBXGroup;
 			children = (
+				42C0FE5922783D6D0094E791 /* ColorChangeTool */,
 				42AE9B542264556100F5FD08 /* SKCalendarView */,
 				42C58AB222602E8D000A5DE1 /* DVDishPieHeader */,
 				42BBB1B0224B43C9002C11F6 /* WSDatePickerView */,
@@ -503,6 +540,7 @@
 		42294BBC21E7345900A1D4D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				42D37F5A2275478C00092049 /* GuideViews */,
 				42F0830921EC3EFF00948743 /* BooksViewCells */,
 				4200E74521E86CA600B4A8DC /* DetailViewCells */,
 				42BEAAAB21E847B8001F5F3E /* NewInputButton */,
@@ -686,6 +724,17 @@
 			path = NewInputButton;
 			sourceTree = "<group>";
 		};
+		42C0FE5922783D6D0094E791 /* ColorChangeTool */ = {
+			isa = PBXGroup;
+			children = (
+				42C0FE5A22783D6D0094E791 /* WJColorChange.m */,
+				42C0FE5B22783D6D0094E791 /* WJFlowLayout.h */,
+				42C0FE5C22783D6D0094E791 /* WJColorChange.h */,
+				42C0FE5D22783D6D0094E791 /* WJFlowLayout.m */,
+			);
+			path = ColorChangeTool;
+			sourceTree = "<group>";
+		};
 		42C58AB222602E8D000A5DE1 /* DVDishPieHeader */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +747,43 @@
 			);
 			path = DVDishPieHeader;
 			sourceTree = "<group>";
+		};
+		42D37F5A2275478C00092049 /* GuideViews */ = {
+			isa = PBXGroup;
+			children = (
+				42D37F7F227547B400092049 /* CardView.h */,
+				42D37F80227547B400092049 /* CardView.m */,
+				42D37F5B2275478C00092049 /* TABCardView */,
+			);
+			path = GuideViews;
+			sourceTree = "<group>";
+		};
+		42D37F5B2275478C00092049 /* TABCardView */ = {
+			isa = PBXGroup;
+			children = (
+				42D37F8222754AFD00092049 /* Source */,
+				42D37F5C2275478C00092049 /* TABCardView.h */,
+				42D37F5D2275478C00092049 /* TABBaseCardView.m */,
+				42D37F5E2275478C00092049 /* TABCardView.m */,
+				42D37F5F2275478C00092049 /* TABBaseCardView.h */,
+				42D37F602275478C00092049 /* TABDefine.h */,
+			);
+			path = TABCardView;
+			sourceTree = "<group>";
+		};
+		42D37F8222754AFD00092049 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				42D37F8322754AFD00092049 /* 4.PNG */,
+				42D37F8422754AFD00092049 /* 5.PNG */,
+				42D37F8522754AFD00092049 /* 6.PNG */,
+				42D37F8622754AFD00092049 /* 2.PNG */,
+				42D37F8722754AFD00092049 /* 3.PNG */,
+				42D37F8822754AFD00092049 /* 1.PNG */,
+			);
+			name = Source;
+			path = PoliteBooks/MVCController/Views/GuideViews/Source;
+			sourceTree = SOURCE_ROOT;
 		};
 		42E04A4A21F1D37300A5567C /* BookModels */ = {
 			isa = PBXGroup;
@@ -864,8 +950,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				426989F722715E8B008174D3 /* passWord.png in Resources */,
 				9415454122532B79002D6E20 /* chart.png in Resources */,
 				42294BCD21E73EDF00A1D4D0 /* LaunchScreen.storyboard in Resources */,
+				42D37F8D22754AFD00092049 /* 3.PNG in Resources */,
 				42D2C1602224D76700A9977E /* DataBaseTableNameList.plist in Resources */,
 				42BBB1B8224B43CA002C11F6 /* WSDatePickerView.xib in Resources */,
 				42DBB9C822671B320055DBD9 /* share.png in Resources */,
@@ -875,18 +963,23 @@
 				42294BDB21E74A2E00A1D4D0 /* Yuppy SC.ttf in Resources */,
 				42F0831521EC685E00948743 /* line.png in Resources */,
 				42294BD921E7479B00A1D4D0 /* Hammer.png in Resources */,
+				42D37F8E22754AFD00092049 /* 1.PNG in Resources */,
 				42E04A5621F1D6A400A5567C /* creatBookbgImage.png in Resources */,
 				42DBBA1C22672B1E0055DBD9 /* setting.png in Resources */,
 				4200E75021E8807800B4A8DC /* bookcase1.png in Resources */,
 				94226B3D224B537100A88301 /* star.png in Resources */,
+				42D37F8A22754AFD00092049 /* 5.PNG in Resources */,
 				42AE9B6D2264581100F5FD08 /* IndexDateImage.png in Resources */,
+				42D37F8C22754AFD00092049 /* 2.PNG in Resources */,
 				42294B8B21E7320A00A1D4D0 /* Assets.xcassets in Resources */,
 				42BEAAA021E8375F001F5F3E /* backImage3.png in Resources */,
 				42BEAAA321E8375F001F5F3E /* backImage6.png in Resources */,
 				42BEAAA221E8375F001F5F3E /* backImage5.png in Resources */,
 				42EFDC6022363D5E00FD2EDB /* NavigationBack@3x.png in Resources */,
 				42BBB1AF224B2988002C11F6 /* ChinesebrushHold.png in Resources */,
+				42D37F8B22754AFD00092049 /* 6.PNG in Resources */,
 				42E04A4921F1D26700A5567C /* addBooks.png in Resources */,
+				42D37F8922754AFD00092049 /* 4.PNG in Resources */,
 				42ACFCBE21EEC96C00A40338 /* Sure.png in Resources */,
 				42AE9B7222645F0100F5FD08 /* dateLeftImage.png in Resources */,
 				42294B8921E7320800A1D4D0 /* Main.storyboard in Resources */,
@@ -976,6 +1069,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C0FE5F22783D6D0094E791 /* WJFlowLayout.m in Sources */,
 				42C58ABB22602E8D000A5DE1 /* DVPieChart.m in Sources */,
 				42B7FBA821E768A4007201A5 /* NSString+Color.m in Sources */,
 				42EFDC5D2236309000FD2EDB /* BaseCollectionView.m in Sources */,
@@ -989,6 +1083,7 @@
 				42EFDC5A2236304900FD2EDB /* UIScrollView+EmptyDataSet.m in Sources */,
 				42294BF221E7594000A1D4D0 /* UserColorConfiguration.m in Sources */,
 				42AE9B6A2264556100F5FD08 /* SKCalendarCollectionViewCell.m in Sources */,
+				42D37F712275478D00092049 /* TABCardView.m in Sources */,
 				4200E74421E86B8800B4A8DC /* DetailViewController.m in Sources */,
 				42C58AB922602E8D000A5DE1 /* DVPieCenterView.m in Sources */,
 				42DBBA1F22672B5A0055DBD9 /* SettingViewController.m in Sources */,
@@ -998,6 +1093,7 @@
 				42B040502238F42200092539 /* UIView+LLFrame.m in Sources */,
 				42294BF821E75B1200A1D4D0 /* NSDate+String.m in Sources */,
 				42BBB1BB224B43CA002C11F6 /* UIView+Extension.m in Sources */,
+				42D37F592275461B00092049 /* GuideViewController.m in Sources */,
 				42F0831321EC477F00948743 /* InputViewController.m in Sources */,
 				42294B9121E7320A00A1D4D0 /* main.m in Sources */,
 				42294BEE21E754D300A1D4D0 /* ConfigurationKeys.m in Sources */,
@@ -1008,6 +1104,7 @@
 				42F0832121EC79AD00948743 /* InputClassTagCollectionViewCell.m in Sources */,
 				42294BD421E742AA00A1D4D0 /* PBIndexNavigationBarView.m in Sources */,
 				42F0830C21EC3F1C00948743 /* BooksCollectionViewCell.m in Sources */,
+				42D37F81227547B400092049 /* CardView.m in Sources */,
 				42C58ABA22602E8D000A5DE1 /* DVFoodPieModel.m in Sources */,
 				42AE9B692264556100F5FD08 /* SKCalendarView.m in Sources */,
 				42E7E13B21ED7BE7009B95FB /* YLNumberKeyboard.m in Sources */,
@@ -1018,6 +1115,8 @@
 				42294B8321E7320800A1D4D0 /* AppDelegate.m in Sources */,
 				42294BF521E7596200A1D4D0 /* UserColorModel.m in Sources */,
 				42BEAAAE21E847E0001F5F3E /* NewInputButton.m in Sources */,
+				42C0FE5E22783D6D0094E791 /* WJColorChange.m in Sources */,
+				42D37F702275478D00092049 /* TABBaseCardView.m in Sources */,
 				4200E74821E86CC200B4A8DC /* DetailCollectionViewCell.m in Sources */,
 				42BEAAA721E83BA4001F5F3E /* NSString+Money.m in Sources */,
 				42C5855522602A9B000A5DE1 /* ChartViewController.m in Sources */,
@@ -1203,7 +1302,7 @@
 				DEVELOPMENT_TEAM = 5MZT7U826X;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/PoliteBooks/Configuration/PrefixHeader.pch";
 				INFOPLIST_FILE = PoliteBooks/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1223,7 +1322,7 @@
 				DEVELOPMENT_TEAM = 5MZT7U826X;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/PoliteBooks/Configuration/PrefixHeader.pch";
 				INFOPLIST_FILE = PoliteBooks/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

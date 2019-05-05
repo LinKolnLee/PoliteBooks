@@ -13,6 +13,7 @@
 #import "JQFMDB.h"
 #import "LEEAlert.h"
 #import "BooksModel.h"
+#import "BmobSDK/Bmob.h"
 #import <UIKit/UIKit.h>
 #import "GlobalDefine.h"
 #import "NSDate+String.h"
