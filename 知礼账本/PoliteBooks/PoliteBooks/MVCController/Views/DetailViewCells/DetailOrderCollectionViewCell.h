@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailOrderCollectionViewCell : UICollectionViewCell
 
-@property(nonatomic,strong)BooksModel * model;
+@property(nonatomic,strong)PBTableModel * model;
 
 @end
 

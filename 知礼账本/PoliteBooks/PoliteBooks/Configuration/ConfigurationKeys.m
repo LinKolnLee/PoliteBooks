@@ -16,5 +16,6 @@ NSString *const kUSERTABLENAMEKEY = @"kUSERTABLENAMEKEY";
 
 NSString *const kUSERBOOKNAMEKEY = @"kUSERBOOKNAMEKEY";
 
+NSString *const kBmobAppkey = @"786255b502405006318e7c684d13e8ed";
 
 @end

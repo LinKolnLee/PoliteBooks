@@ -106,11 +106,11 @@ UITextFieldDelegate
     }
     return _numberField;
 }
--(void)setModel:(BooksModel *)model{
+-(void)setModel:(PBBookModel *)model{
     _model = model;
-    self.tagImageView.backgroundColor = TypeColor[model.tableType];
-    self.bottomLineView.backgroundColor = TypeColor[model.tableType];
+    self.tagImageView.backgroundColor = TypeColor[model.bookColor];
+    self.bottomLineView.backgroundColor = TypeColor[model.bookColor];
     self.tagLabel.text = model.bookName;
-    self.tagLabel.textColor = TypeColor[model.tableType];
+    self.tagLabel.textColor = TypeColor[model.bookColor];
 }
 @end

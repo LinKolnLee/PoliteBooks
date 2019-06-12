@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// money
 @property (nonatomic, strong) UITextField *numberField;
 
-@property(nonatomic,strong)BooksModel * model;
+@property(nonatomic,strong)PBBookModel * model;
 
 @end
 

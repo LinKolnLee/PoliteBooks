@@ -12,11 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface InputViewController : BaseViewController
 
-@property(nonatomic,strong)NSArray<BooksModel *> * dateSource;
+@property(nonatomic,strong)PBBookModel * bookModel;
 
-@property(nonatomic,strong)NSString * currentTableName;
-
-@property (copy , nonatomic) void(^InputViewControllerPopBlock)();
+@property (copy , nonatomic) void(^InputViewControllerPopBlock)(void);
 
 
 @end

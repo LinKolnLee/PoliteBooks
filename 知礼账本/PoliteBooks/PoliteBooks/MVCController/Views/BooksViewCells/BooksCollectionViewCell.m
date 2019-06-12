@@ -115,9 +115,9 @@
     }];
 }
 
--(void)setBookModel:(BooksModel *)bookModel{
-    self.bgImageView.backgroundColor = TypeColor[bookModel.tableType];
-    if (bookModel.tableType == 7) {
+-(void)setBookModel:(PBBookModel *)bookModel{
+    self.bgImageView.backgroundColor = TypeColor[bookModel.bookColor];
+    if (bookModel.bookColor == 7) {
         self.nameLabel.textColor = kWhiteColor;
         self.dataLabel.textColor = kWhiteColor;
     }

@@ -35,6 +35,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 ///
 @property (nonatomic, strong) UIButton *closeButton;
 
+@property(nonatomic,strong)NSMutableArray<PBBookModel *> * dataSource;
 
 
 @end
@@ -45,6 +46,8 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [self.view addSubview:self.naviView];
     [self.view addSubview:self.collectionView];
     [self addMasonry];
+    self.dataSource = [[NSMutableArray alloc] init];
+    [self queryBookList];
     
 }
 -(void)addMasonry{
@@ -84,50 +87,11 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 
         _creatBookView.CreatBookViewSaveButtonClickBlock = ^(NSString * _Nonnull bookName, NSString * _Nonnull bookData, NSInteger bookColor) {
             weakSelf.view.userInteractionEnabled = YES;
-            //数据库名
-            NSMutableArray * oldNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-            NSMutableArray * newNames = [[NSMutableArray alloc] init];
-            //书名
-            NSMutableArray * oldBookNames = [UserDefaultStorageManager readObjectForKey:kUSERBOOKNAMEKEY];
-            NSMutableArray * newBookNames = [[NSMutableArray alloc] init];
-            
-            NSString * tableName = [NSString stringWithFormat:@"AccountBooks%@",bookName];
-            if (![kDataBase jq_isExistTable:tableName]) {
-                [kDataBase jq_createTable:tableName dicOrModel:[BooksModel class]];
-                BooksModel * model = [[BooksModel alloc] init];
-                model.bookName = bookName;
-                model.bookDate = bookData;
-                model.bookImage = arc4random() % 1;
-                model.bookId = 0;
-                model.bookMoney = @"0";
-                model.name = @"";
-                model.money = @"";
-                model.data = @"";
-                model.tableType = bookColor;
-                [kDataBase jq_inDatabase:^{
-                    [kDataBase jq_insertTable:tableName dicOrModel:model];
-                }];
-                for (NSString * name in oldNames) {
-                    [newNames addObject:name];
-                }
-                [newNames addObject:tableName];
-                
-                for (NSString * bookname in oldBookNames) {
-                    [newBookNames addObject:bookname];
-                }
-                [newBookNames addObject:bookName];
-                [UserDefaultStorageManager removeObjectForKey:kUSERTABLENAMEKEY];
-                [UserDefaultStorageManager saveObject:newNames forKey:kUSERTABLENAMEKEY];
-                [UserDefaultStorageManager removeObjectForKey:kUSERBOOKNAMEKEY];
-                [UserDefaultStorageManager saveObject:newBookNames forKey:kUSERBOOKNAMEKEY];
-            }else{
-                [LEEAlert actionsheet].config
-                .LeeTitle(@"提示")
-                .LeeContent([NSString stringWithFormat:@"您已经有一个名称为“%@”的账本了",bookName])
-                .LeeAction(@"好的", ^{
-                })
-                .LeeShow();
-            }
+            PBBookModel * model = [[PBBookModel alloc] init];
+            model.bookName = bookName;
+            model.bookDate = bookData;
+            model.bookColor = bookColor;
+            [weakSelf saveBookModel:model];
             creatBookViewNew.bookNameTextField.text = @"";
             [creatBookViewNew removeFromSuperview];
             [weakSelf.closeButton removeFromSuperview];
@@ -188,14 +152,10 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSMutableArray * arr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    return arr.count;
+    return self.dataSource.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    JQFMDB *dataBase = [JQFMDB shareDatabase];
-    NSMutableArray * arr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    NSArray <BooksModel *> * models = [dataBase jq_lookupTable:arr[indexPath.row] dicOrModel:[BooksModel class] whereFormat:@"where bookId = '0'"];
     BooksCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BooksCollectionViewCell" forIndexPath:indexPath];
     if (!cell) {
         cell = [[BooksCollectionViewCell alloc] init];
@@ -204,7 +164,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         cell.isShowTip = YES;
     }
     
-    cell.bookModel = models[0];
+    cell.bookModel = self.dataSource[indexPath.row];
     UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(lpGR:)];
     longPressGR.minimumPressDuration = 1;
     [cell addGestureRecognizer:longPressGR];
@@ -216,15 +176,13 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         CGPoint point = [lpGR locationInView:self.collectionView];
         VIBRATION;
         self.longPressIndexPath = [self.collectionView indexPathForItemAtPoint:point];// 可以获取我们在哪个cell上长按
-        [self showAlert];
+        [self showAlertWithModel:self.dataSource[self.longPressIndexPath.row]];
        
     }
 }
--(void)showAlert{
-    JQFMDB *dataBase = [JQFMDB shareDatabase];
-    NSMutableArray * arr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    NSArray <BooksModel *> * models = [dataBase jq_lookupTable:arr[self.longPressIndexPath.row] dicOrModel:[BooksModel class] whereFormat:@"where bookId = '0'"];
-    UIColor *blueColor = TypeColor[models[0].tableType];
+-(void)showAlertWithModel:(PBBookModel *)model{
+    
+    UIColor *blueColor = TypeColor[model.bookColor];
     WS(weakSelf);
     [LEEAlert alert].config
     .LeeAddTitle(^(UILabel *label) {
@@ -249,41 +207,9 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         action.titleColor = blueColor;
         action.backgroundColor = kWhiteColor;
         action.clickBlock = ^{
-            // 删除点击事件Block
-            NSString * tableName = [NSString stringWithFormat:@"AccountBooks%@",models[0].bookName];
-            [dataBase jq_deleteAllDataFromTable:tableName];
-            NSString * isDefault = [UserDefaultStorageManager readObjectForKey:@"AccountBooksDefaultDelete"];
-            if ([isDefault isEqualToString:@"1"]) {
-                if ([tableName isEqualToString:@"AccountBooks婚礼往来"]) {
-                    [UserDefaultStorageManager saveObject:@"0" forKey:@"AccountBooksDefaultDelete"];
-                }
-            }
-            //删除表名称
-            NSMutableArray * arr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-            NSMutableArray * newArr = [[NSMutableArray alloc] init];
-            for (int i = 0; i<arr.count; i++) {
-                if (i != weakSelf.longPressIndexPath.row) {
-                    [newArr addObject:arr[i]];
-                }
-            }
-            //删除账本名称
-            NSMutableArray * oldBookNames = [UserDefaultStorageManager readObjectForKey:kUSERBOOKNAMEKEY];
-            
-            NSMutableArray * newBookNameArr = [[NSMutableArray alloc] init];
-            for (int i = 0; i<oldBookNames.count; i++) {
-                if (i != weakSelf.longPressIndexPath.row) {
-                    [newBookNameArr addObject:oldBookNames[i]];
-                }
-            }
-            [UserDefaultStorageManager removeObjectForKey:kUSERBOOKNAMEKEY];
-            [UserDefaultStorageManager saveObject:newBookNameArr forKey:kUSERBOOKNAMEKEY];
-            
-            
-            [UserDefaultStorageManager removeObjectForKey:kUSERTABLENAMEKEY];
-            [UserDefaultStorageManager saveObject:newArr forKey:kUSERTABLENAMEKEY];
-            
-        
-            [weakSelf.collectionView reloadData]; //刷新tableView;
+            [BmobBookExtension delegateDataForModel:model success:^(id  _Nonnull responseObject) {
+                [weakSelf queryBookList];
+            }];
         };
     })
     .LeeHeaderColor(blueColor)
@@ -291,14 +217,10 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 }
 //MARK: UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSMutableArray * tableArr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    NSMutableArray * nameArr = [UserDefaultStorageManager readObjectForKey:kUSERBOOKNAMEKEY];
-    NSString *bookName = nameArr[indexPath.row];
-    NSArray *personArr = [kDataBase jq_lookupTable:tableArr[indexPath.row] dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",bookName];
     DetailViewController * detail = [[DetailViewController alloc] init];
     detail.isLook = YES;
-    detail.dataSource = personArr;
-    detail.currentTableName = tableArr[indexPath.row];
+    detail.bookModel = self.dataSource[indexPath.row];
+    detail.currentTableName = self.dataSource[indexPath.row].bookName;
     [self.navigationController pushViewController:detail animated:YES];
 }
 
@@ -321,5 +243,20 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [[UIApplication sharedApplication].keyWindow addSubview:self.creatBookView];
     [self animationWithView:self.creatBookView duration:0.5];
     [[UIApplication sharedApplication].keyWindow addSubview:self.closeButton];
+}
+-(void)saveBookModel:(PBBookModel *)model{
+    WS(weakSelf);
+    [BmobBookExtension inserDataForModel:model success:^(id  _Nonnull responseObject) {
+        [weakSelf queryBookList];
+    }];
+}
+-(void)queryBookList{
+    WS(weakSelf);
+    [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
+        weakSelf.dataSource = bookList;
+        [weakSelf.collectionView reloadData];
+    } fail:^(id _Nonnull error) {
+        
+    }];
 }
 @end

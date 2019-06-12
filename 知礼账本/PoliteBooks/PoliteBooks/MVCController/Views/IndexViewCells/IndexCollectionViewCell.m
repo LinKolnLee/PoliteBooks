@@ -118,25 +118,25 @@
 }
 
 
--(void)setModel:(BooksModel *)model{
-    self.backpaperView.backgroundColor = TypeColor[model.tableType];
-    if (model.tableType == 7) {
+-(void)setModel:(PBBookModel *)model{
+    self.backpaperView.backgroundColor = TypeColor[model.bookColor];
+    if (model.bookColor == 7) {
         self.nameLabel.textColor = kWhiteColor;
         self.dateLabel.textColor = kWhiteColor;
     }
     self.nameLabel.text = model.bookName;
     self.dateLabel.text = model.bookDate;
-    NSArray *personArr = [kDataBase jq_lookupTable:[NSString stringWithFormat:@"AccountBooks%@",model.bookName] dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",model.bookName];
-    if (personArr.count != 1) {
-        self.moneySum.hidden = NO;
-        NSInteger price = 0;
-        for (BooksModel * newModel in personArr) {
-            price += [newModel.money integerValue];
-        }
-        self.moneySum.text = [NSString stringWithFormat:@"总：%@",[[NSString stringWithFormat:@"%ld",price] getCnMoney]];
-    }else{
-        self.moneySum.hidden = YES;
-    }
+//    NSArray *personArr = [kDataBase jq_lookupTable:[NSString stringWithFormat:@"AccountBooks%@",model.bookName] dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",model.bookName];
+//    if (personArr.count != 1) {
+//        self.moneySum.hidden = NO;
+//        NSInteger price = 0;
+//        for (BooksModel * newModel in personArr) {
+//            price += [newModel.money integerValue];
+//        }
+//        self.moneySum.text = [NSString stringWithFormat:@"总：%@",[[NSString stringWithFormat:@"%ld",price] getCnMoney]];
+//    }else{
+//        self.moneySum.hidden = YES;
+//    }
     
 }
 @end

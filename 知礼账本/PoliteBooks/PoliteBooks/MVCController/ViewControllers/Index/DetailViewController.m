@@ -29,11 +29,13 @@ BaseCollectionViewButtonClickDelegate
  */
 @property(nonatomic,strong)PBIndexNavigationBarView * naviView;
 
-@property(nonatomic,strong)BooksModel * naviModel;
+@property(nonatomic,strong)PBBookModel * naviModel;
 
 @property(nonatomic,strong)TranslationMicTipView * micTipView;
 
 @property (nonatomic, strong) NSIndexPath *longPressIndexPath;
+
+@property(nonatomic,strong)NSMutableArray<PBTableModel *> * tableDataSource;
 
 @end
 
@@ -43,11 +45,12 @@ BaseCollectionViewButtonClickDelegate
     [super viewDidLoad];
     [self.view addSubview:self.naviView];
     [self.view addSubview:self.collectionView];
+    self.tableDataSource = [[NSMutableArray alloc] init];
     [self addMasonry];
-    if (self.dataSource.count != 1) {
+    if (self.tableDataSource.count != 1) {
         [self setupTipViewWithCell];
     }
-    // Do any additional setup after loading the view.
+    [self queryBookList];
 }
 -(void)setupTipViewWithCell{
     CGFloat popHeight =kIphone6Width(35.0);
@@ -70,13 +73,10 @@ BaseCollectionViewButtonClickDelegate
     [super viewDidAppear:animated];
     if (!_isLook) {
         InputViewController *circleVC = [InputViewController new];
-        //circleVC.isNeedShow = YES;
-        circleVC.dateSource = _dataSource;
-        circleVC.currentTableName = _currentTableName;
+        circleVC.bookModel = self.bookModel;
         WS(weakSelf);
         circleVC.InputViewControllerPopBlock = ^{
-            weakSelf.dataSource = [kDataBase jq_lookupTable:weakSelf.currentTableName dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",weakSelf.dataSource[0].bookName];
-            [weakSelf.collectionView reloadData];
+            [weakSelf queryBookList];
         };
         [self.navigationController hh_presentTiltedVC:circleVC completion:nil];
     }
@@ -86,12 +86,6 @@ BaseCollectionViewButtonClickDelegate
         make.left.right.top.mas_equalTo(0);
         make.height.mas_equalTo(74);
     }];
-//    [self.inputButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.mas_equalTo(self.collectionView.mas_centerX);
-//        make.centerY.mas_equalTo(self.collectionView.mas_bottom).offset(kIphone6Width(-20));
-//        make.width.mas_equalTo(kIphone6Width(42));
-//        make.height.mas_equalTo(kIphone6Width(60));
-//    }];
 }
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
@@ -110,13 +104,9 @@ BaseCollectionViewButtonClickDelegate
             //右按钮点击
             VIBRATION;
             InputViewController *circleVC = [InputViewController new];
-            //circleVC.isNeedShow = YES;
-            circleVC.dateSource = weakSelf.dataSource;
-            circleVC.currentTableName = weakSelf.currentTableName;
-            //WS(weakSelf);
+            circleVC.bookModel = weakSelf.bookModel;
             circleVC.InputViewControllerPopBlock = ^{
-                weakSelf.dataSource = [kDataBase jq_lookupTable:weakSelf.currentTableName dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",weakSelf.dataSource[0].bookName];
-                [weakSelf.collectionView reloadData];
+                [weakSelf queryBookList];
             };
             [weakSelf.navigationController hh_presentTiltedVC:circleVC completion:nil];
             VIBRATION;
@@ -128,7 +118,7 @@ BaseCollectionViewButtonClickDelegate
     if (!_collectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = kIphone6Width(14);
-        flowLayout.minimumInteritemSpacing = kIphone6Width(15);
+        flowLayout.minimumInteritemSpacing = kIphone6Width(25);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
         flowLayout.itemSize = CGSizeMake(ScreenWidth/7, ScreenHeight - 160);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -136,7 +126,7 @@ BaseCollectionViewButtonClickDelegate
         if (IPHONEXR || IPHONEXSMAX || IPhoneX) {
             topHeight = kIphone6Width(120);
         }
-        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, 84 , ScreenWidth, ScreenHeight - 100) collectionViewLayout:flowLayout];
+        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(10, 84 , ScreenWidth - 20, ScreenHeight - 100) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
@@ -158,7 +148,7 @@ BaseCollectionViewButtonClickDelegate
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataSource.count - 1;
+    return self.tableDataSource.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -166,7 +156,7 @@ BaseCollectionViewButtonClickDelegate
     if (!cell) {
         cell = [[DetailOrderCollectionViewCell alloc] init];
     }
-    cell.model = self.dataSource[indexPath.row + 1];
+    cell.model = self.tableDataSource[indexPath.row];
     cell.layer.cornerRadius = kIphone6Width(10);
     cell.layer.masksToBounds = YES;
     cell.backgroundColor = kHexRGB(0xf6f5ec);
@@ -208,7 +198,7 @@ BaseCollectionViewButtonClickDelegate
     }
 }
 -(void)showAlert{
-    UIColor *blueColor = TypeColor[self.dataSource[0].tableType];
+    UIColor *blueColor = TypeColor[self.bookModel.bookColor];
     WS(weakSelf);
     [LEEAlert alert].config
     .LeeAddTitle(^(UILabel *label) {
@@ -234,10 +224,13 @@ BaseCollectionViewButtonClickDelegate
         action.backgroundColor = kWhiteColor;
         action.clickBlock = ^{
             // 删除点击事件Block
-            [kDataBase jq_inDatabase:^{
-                [kDataBase jq_deleteTable:self.currentTableName whereFormat:@"WHERE bookId = '%d'",self.dataSource[self.longPressIndexPath.row + 1].bookId];
-                self.dataSource = [kDataBase jq_lookupTable:self.currentTableName dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",self.dataSource[0].bookName];
-                [weakSelf.collectionView reloadData]; //刷新tableview
+            [PBTableExtension delegateDataForModel:self.tableDataSource[self.longPressIndexPath.row] success:^(id  _Nonnull responseObject) {
+                [weakSelf.tableDataSource removeObjectAtIndex:weakSelf.longPressIndexPath.row];
+                if (self.tableDataSource.count == 0) {
+                    [weakSelf.collectionView reloadData];
+                }else{
+                    [weakSelf.collectionView deleteItemsAtIndexPaths:@[weakSelf.longPressIndexPath]];
+                }
             }];
         };
     })
@@ -248,36 +241,34 @@ BaseCollectionViewButtonClickDelegate
     _isLook = isLook;
     
 }
--(void)setDataSource:(NSArray<BooksModel *> *)dataSource{
-    _dataSource = dataSource;
-    self.naviModel = dataSource[0];
-    self.naviView.title = [NSString stringWithFormat:@"%@往来明细",self.naviModel.bookName];
+
+-(void)setBookModel:(PBBookModel *)bookModel{
+    _bookModel = bookModel;
+    self.naviModel = bookModel;
+    self.naviView.title = [NSString stringWithFormat:@"%@往来明细",self.bookModel.bookName];
 }
--(void)setCurrentTableName:(NSString *)currentTableName{
-    _currentTableName = currentTableName;
-}
+
 -(void)baseCollectionViewButtonClick{
     VIBRATION;
     InputViewController *circleVC = [InputViewController new];
-    //circleVC.isNeedShow = YES;
-    circleVC.dateSource = self.dataSource;
-    circleVC.currentTableName = self.currentTableName;
+    circleVC.bookModel = self.bookModel;
     WS(weakSelf);
     circleVC.InputViewControllerPopBlock = ^{
-        weakSelf.dataSource = [kDataBase jq_lookupTable:weakSelf.currentTableName dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",weakSelf.dataSource[0].bookName];
-        [weakSelf.collectionView reloadData];
+        [weakSelf queryBookList];
     };
     [self.navigationController hh_presentTiltedVC:circleVC completion:nil];
     VIBRATION;
 }
-/*
-#pragma mark - Navigation
+-(void)queryBookList{
+    WS(weakSelf);
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [PBTableExtension queryBookListWithModel:self.bookModel success:^(NSMutableArray<PBTableModel *> * _Nonnull tableList) {
+        weakSelf.tableDataSource = tableList;
+        [weakSelf.collectionView reloadData];
+    } fail:^(id _Nonnull error) {
+        
+    }];
 }
-*/
+
 
 @end

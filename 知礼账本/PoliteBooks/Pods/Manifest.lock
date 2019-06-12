@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - BmobSDK (2.3.1)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -26,6 +27,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - BmobSDK
   - HHTransition (~> 1.2.0)
   - IQKeyboardManager
   - JQFMDB
@@ -34,6 +36,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  BmobSDK: e0f9e4b451233a80af63a8ae4f2d239474bf567b
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   HHTransition: 35c278fbe8374cdf0931a805aef066d52256a897
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
@@ -41,6 +44,6 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 57ae90333c1bb5a32343754d56995b8fd68f2e30
+PODFILE CHECKSUM: ad16520e2c0e75ac830f2470625aa9153e9b7c80
 
 COCOAPODS: 1.4.0

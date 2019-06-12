@@ -203,28 +203,18 @@
 -(InputTitleView *)titleSettingView{
     if (!_titleSettingView) {
         _titleSettingView = [[InputTitleView alloc] init];
-        _titleSettingView.colorIndex = self.dateSource[0].tableType;
+        _titleSettingView.colorIndex = self.bookModel.bookColor;
     }
     return _titleSettingView;
 }
 -(InputTextView *)textInputView{
     if (!_textInputView) {
         _textInputView = [[InputTextView alloc] init];
-        _textInputView.model = self.dateSource[0];
+        _textInputView.model = self.bookModel;
     }
     return _textInputView;
 }
-//-(InputClassTagsView *)classTagView{
-//    if (!_classTagView) {
-//        _classTagView = [[InputClassTagsView alloc] init];
-//        WS(weakSelf);
-//        _classTagView.InputClassTagsViewCellTypeClickBlock = ^(NSInteger colorIndex) {
-//            weakSelf.textInputView.colorIndex = colorIndex;
-//            weakSelf.tableType = colorIndex;
-//        };
-//    }
-//    return _classTagView;
-//}
+
 -(InputDateMarkView *)dateMarkView{
     if (!_dateMarkView) {
         _dateMarkView = [[InputDateMarkView alloc] init];
@@ -274,37 +264,21 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)setupModelConfig{
-    BooksModel * model = [[BooksModel alloc] init];
-    model.bookId = self.dateSource.count;
-    model.bookName = self.dateSource[0].bookName;
-    model.bookImage = self.dateSource[0].bookImage;
-    model.bookDate = self.dateSource[0].bookDate;
-    model.name = self.nameString;
-    model.money = self.moneyString;
-    model.data = self.dateString;
-    model.tableType = self.dateSource[0].tableType;
-    if ([kDataBase jq_isExistTable:_currentTableName]) {
-        [kDataBase jq_createTable:_currentTableName dicOrModel:[BooksModel class]];
-        WS(weakSelf);
-        [kDataBase jq_inDatabase:^{
-            [kDataBase jq_insertTable:weakSelf.currentTableName dicOrModel:model];
-            [weakSelf dismissViewControllerAnimated:YES completion:^{
-                if (self.InputViewControllerPopBlock) {
-                    self.InputViewControllerPopBlock();
-                }
-            }];
-            
+    PBTableModel * model = [[PBTableModel alloc] init];
+    model.userName = self.nameString;
+    model.userMoney = [self.moneyString getCnMoney];
+    model.userDate = self.dateString;
+    model.userType = self.bookModel.bookName;
+    model.objectId = @"0";
+    WS(weakSelf);
+    [PBTableExtension inserDataForModel:model andBookModel:self.bookModel success:^(id  _Nonnull responseObject) {
+        weakSelf.InputViewControllerPopBlock();
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    }];
 
-        }];
-    }
+}
+-(void)setBookModel:(PBBookModel *)bookModel{
+    _bookModel = bookModel;
+}
 
-//    model.bookName =
-}
--(void)setDateSource:(NSArray<BooksModel *> *)dateSource{
-    _dateSource = dateSource;
-    self.titleSettingView.title = dateSource[0].bookName;
-}
--(void)setCurrentTableName:(NSString *)currentTableName{
-    _currentTableName = currentTableName;
-}
 @end

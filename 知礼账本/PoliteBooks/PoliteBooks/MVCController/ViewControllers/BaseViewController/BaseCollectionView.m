@@ -41,7 +41,7 @@
     return YES;
 }
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    NSString *text = self.noDataTitle?self.noDataTitle:@"你还没用创建账本";
+    NSString *text = self.noDataTitle?self.noDataTitle:@"你还没有创建账本";
     NSDictionary *attributes = @{NSFontAttributeName: kFont14,
                                  NSForegroundColorAttributeName: [UIColor grayColor]};
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];

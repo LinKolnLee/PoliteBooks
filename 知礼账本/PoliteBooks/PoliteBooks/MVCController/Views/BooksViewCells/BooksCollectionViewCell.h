@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BooksCollectionViewCell : UICollectionViewCell
 
-@property(nonatomic,strong)BooksModel * bookModel;
+@property(nonatomic,strong)PBBookModel * bookModel;
 
 
 @property(nonatomic,assign)BOOL isShowTip;

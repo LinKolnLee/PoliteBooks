@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailViewController : BaseViewController
 
-@property(nonatomic,strong)NSArray<BooksModel *> * dataSource;
+@property(nonatomic,strong)PBBookModel * bookModel;
 
 @property(nonatomic,assign)BOOL isLook;
 

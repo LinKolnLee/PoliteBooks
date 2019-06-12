@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IndexCollectionViewCell : UICollectionViewCell
 
-@property(nonatomic,strong)BooksModel * model;
+@property(nonatomic,strong)PBBookModel * model;
 
 @end
 

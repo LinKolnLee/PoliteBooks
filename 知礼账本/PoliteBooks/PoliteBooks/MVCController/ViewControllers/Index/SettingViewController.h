@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SettingViewController : BaseViewController
 
+@property(nonatomic,strong)NSMutableArray<PBBookModel *> * dataSource;
+
 @end
 
 NS_ASSUME_NONNULL_END

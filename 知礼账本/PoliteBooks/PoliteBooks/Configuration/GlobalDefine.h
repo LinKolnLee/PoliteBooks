@@ -17,6 +17,8 @@
 
 #define kDataBase ([JQFMDB shareDatabase])
 
+#define kMemberInfoManager ([BmobUser currentUser])
+
 /**
  APP版本
  */

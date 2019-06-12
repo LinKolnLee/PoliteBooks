@@ -169,12 +169,12 @@
     }
     return _lineView;
 }
--(void)setModel:(BooksModel *)model{
+-(void)setModel:(PBTableModel *)model{
     _model = model;
-    self.nameLabel.text = model.name;
-    self.moneyLabel.text = [model.money getCnMoney];
-    self.dateLabel.text = model.data;
-    self.tableLabel.text = model.bookName;
-    self.tableLabel.backgroundColor = TypeColor[model.tableType];
+    self.nameLabel.text = model.userName;
+    self.moneyLabel.text =model.userMoney;
+    self.dateLabel.text = model.userDate;
+    self.tableLabel.text = model.userType;
+    //self.tableLabel.backgroundColor = TypeColor[model.tableType];
 }
 @end

@@ -23,7 +23,6 @@
 		42294BCA21E73D8E00A1D4D0 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BC921E73D8E00A1D4D0 /* IndexViewController.m */; };
 		42294BCD21E73EDF00A1D4D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42294BCB21E73EDE00A1D4D0 /* LaunchScreen.storyboard */; };
 		42294BD421E742AA00A1D4D0 /* PBIndexNavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BD321E742AA00A1D4D0 /* PBIndexNavigationBarView.m */; };
-		42294BD721E7475800A1D4D0 /* Bookcase.png in Resources */ = {isa = PBXBuildFile; fileRef = 42294BD621E7475800A1D4D0 /* Bookcase.png */; };
 		42294BD921E7479B00A1D4D0 /* Hammer.png in Resources */ = {isa = PBXBuildFile; fileRef = 42294BD821E7479B00A1D4D0 /* Hammer.png */; };
 		42294BDB21E74A2E00A1D4D0 /* Yuppy SC.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42294BDA21E74A2D00A1D4D0 /* Yuppy SC.ttf */; };
 		42294BDF21E74F4200A1D4D0 /* IndexCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BDD21E74F4200A1D4D0 /* IndexCollectionViewCell.m */; };
@@ -33,6 +32,14 @@
 		42294BF521E7596200A1D4D0 /* UserColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BF421E7596200A1D4D0 /* UserColorModel.m */; };
 		42294BF821E75B1200A1D4D0 /* NSDate+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BF721E75B1200A1D4D0 /* NSDate+String.m */; };
 		426989F722715E8B008174D3 /* passWord.png in Resources */ = {isa = PBXBuildFile; fileRef = 426989F622715E8B008174D3 /* passWord.png */; };
+		4296F65922B0A1EA00FD70B7 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4296F65822B0A1EA00FD70B7 /* UserManager.m */; };
+		4296F66122B0A68600FD70B7 /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4296F65B22B0A68600FD70B7 /* FCUUID.m */; };
+		4296F66222B0A68600FD70B7 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4296F65C22B0A68600FD70B7 /* UICKeyChainStore.m */; };
+		4296F66322B0A68600FD70B7 /* UIDevice+FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4296F65D22B0A68600FD70B7 /* UIDevice+FCUUID.m */; };
+		4296F66722B0CEDD00FD70B7 /* BmobBookExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4296F66622B0CEDD00FD70B7 /* BmobBookExtension.m */; };
+		4296F66A22B0CFCD00FD70B7 /* PBBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4296F66922B0CFCD00FD70B7 /* PBBookModel.m */; };
+		4296F66D22B0E18F00FD70B7 /* PBTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4296F66C22B0E18F00FD70B7 /* PBTableModel.m */; };
+		4296F67022B0E1A000FD70B7 /* PBTableExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4296F66F22B0E1A000FD70B7 /* PBTableExtension.m */; };
 		42ACFCBD21EEC96C00A40338 /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 42ACFCBB21EEC96C00A40338 /* Cancel.png */; };
 		42ACFCBE21EEC96C00A40338 /* Sure.png in Resources */ = {isa = PBXBuildFile; fileRef = 42ACFCBC21EEC96C00A40338 /* Sure.png */; };
 		42AE9B662264556100F5FD08 /* SKCalendarAnimationManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AE9B572264556100F5FD08 /* SKCalendarAnimationManage.m */; };
@@ -82,6 +89,7 @@
 		42D37F8C22754AFD00092049 /* 2.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 42D37F8622754AFD00092049 /* 2.PNG */; };
 		42D37F8D22754AFD00092049 /* 3.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 42D37F8722754AFD00092049 /* 3.PNG */; };
 		42D37F8E22754AFD00092049 /* 1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 42D37F8822754AFD00092049 /* 1.PNG */; };
+		42D6443D22800D7600B01D4F /* Bookcase.png in Resources */ = {isa = PBXBuildFile; fileRef = 42D6443C22800D7600B01D4F /* Bookcase.png */; };
 		42DBB9C822671B320055DBD9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 42DBB9C722671B320055DBD9 /* share.png */; };
 		42DBBA1C22672B1E0055DBD9 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 42DBBA1B22672B1E0055DBD9 /* setting.png */; };
 		42DBBA1F22672B5A0055DBD9 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DBBA1E22672B5A0055DBD9 /* SettingViewController.m */; };
@@ -106,7 +114,6 @@
 		42F0832421EC7DE200948743 /* InputDateMarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0832321EC7DE200948743 /* InputDateMarkView.m */; };
 		42F0832621EC7FF300948743 /* Date.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F0832521EC7FF300948743 /* Date.png */; };
 		9415454122532B79002D6E20 /* chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 9415454022532B79002D6E20 /* chart.png */; };
-		9415454422532CEB002D6E20 /* CreatBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9415454322532CEB002D6E20 /* CreatBookViewController.m */; };
 		94226B3D224B537100A88301 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 94226B3C224B537100A88301 /* star.png */; };
 		CB2F92A17CEAF4BD2240FEDD /* libPods-PoliteBooks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD4CC66F2E6853BAC664DFD /* libPods-PoliteBooks.a */; };
 /* End PBXBuildFile section */
@@ -163,7 +170,6 @@
 		42294BCC21E73EDE00A1D4D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42294BD221E742AA00A1D4D0 /* PBIndexNavigationBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBIndexNavigationBarView.h; sourceTree = "<group>"; };
 		42294BD321E742AA00A1D4D0 /* PBIndexNavigationBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBIndexNavigationBarView.m; sourceTree = "<group>"; };
-		42294BD621E7475800A1D4D0 /* Bookcase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bookcase.png; sourceTree = "<group>"; };
 		42294BD821E7479B00A1D4D0 /* Hammer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hammer.png; sourceTree = "<group>"; };
 		42294BDA21E74A2D00A1D4D0 /* Yuppy SC.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Yuppy SC.ttf"; sourceTree = "<group>"; };
 		42294BDD21E74F4200A1D4D0 /* IndexCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexCollectionViewCell.m; sourceTree = "<group>"; };
@@ -179,6 +185,22 @@
 		42294BF621E75B1200A1D4D0 /* NSDate+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+String.h"; sourceTree = "<group>"; };
 		42294BF721E75B1200A1D4D0 /* NSDate+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+String.m"; sourceTree = "<group>"; };
 		426989F622715E8B008174D3 /* passWord.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = passWord.png; sourceTree = "<group>"; };
+		4296F65722B0A1EA00FD70B7 /* UserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		4296F65822B0A1EA00FD70B7 /* UserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		4296F65B22B0A68600FD70B7 /* FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUUID.m; sourceTree = "<group>"; };
+		4296F65C22B0A68600FD70B7 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
+		4296F65D22B0A68600FD70B7 /* UIDevice+FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+FCUUID.m"; sourceTree = "<group>"; };
+		4296F65E22B0A68600FD70B7 /* FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUUID.h; sourceTree = "<group>"; };
+		4296F65F22B0A68600FD70B7 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICKeyChainStore.h; sourceTree = "<group>"; };
+		4296F66022B0A68600FD70B7 /* UIDevice+FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+FCUUID.h"; sourceTree = "<group>"; };
+		4296F66522B0CEDD00FD70B7 /* BmobBookExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BmobBookExtension.h; sourceTree = "<group>"; };
+		4296F66622B0CEDD00FD70B7 /* BmobBookExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BmobBookExtension.m; sourceTree = "<group>"; };
+		4296F66822B0CFCD00FD70B7 /* PBBookModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBBookModel.h; sourceTree = "<group>"; };
+		4296F66922B0CFCD00FD70B7 /* PBBookModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBBookModel.m; sourceTree = "<group>"; };
+		4296F66B22B0E18F00FD70B7 /* PBTableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTableModel.h; sourceTree = "<group>"; };
+		4296F66C22B0E18F00FD70B7 /* PBTableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTableModel.m; sourceTree = "<group>"; };
+		4296F66E22B0E1A000FD70B7 /* PBTableExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTableExtension.h; sourceTree = "<group>"; };
+		4296F66F22B0E1A000FD70B7 /* PBTableExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTableExtension.m; sourceTree = "<group>"; };
 		42ACFCBB21EEC96C00A40338 /* Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel.png; sourceTree = "<group>"; };
 		42ACFCBC21EEC96C00A40338 /* Sure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sure.png; sourceTree = "<group>"; };
 		42AE9B562264556100F5FD08 /* SKCalendarAnimationManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCalendarAnimationManage.h; sourceTree = "<group>"; };
@@ -257,6 +279,7 @@
 		42D37F8622754AFD00092049 /* 2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.PNG; sourceTree = "<group>"; };
 		42D37F8722754AFD00092049 /* 3.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.PNG; sourceTree = "<group>"; };
 		42D37F8822754AFD00092049 /* 1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.PNG; sourceTree = "<group>"; };
+		42D6443C22800D7600B01D4F /* Bookcase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bookcase.png; sourceTree = "<group>"; };
 		42DBB9C722671B320055DBD9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		42DBBA1B22672B1E0055DBD9 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		42DBBA1D22672B5A0055DBD9 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -296,8 +319,6 @@
 		42F0832321EC7DE200948743 /* InputDateMarkView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputDateMarkView.m; sourceTree = "<group>"; };
 		42F0832521EC7FF300948743 /* Date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Date.png; sourceTree = "<group>"; };
 		9415454022532B79002D6E20 /* chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chart.png; sourceTree = "<group>"; };
-		9415454222532CEB002D6E20 /* CreatBookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatBookViewController.h; sourceTree = "<group>"; };
-		9415454322532CEB002D6E20 /* CreatBookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatBookViewController.m; sourceTree = "<group>"; };
 		94226B3C224B537100A88301 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		F58BE74C4CAC6F022904AF24 /* Pods-PoliteBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoliteBooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-PoliteBooks/Pods-PoliteBooks.release.xcconfig"; sourceTree = "<group>"; };
 		FAD4CC66F2E6853BAC664DFD /* libPods-PoliteBooks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PoliteBooks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -451,7 +472,7 @@
 				42F0831421EC685E00948743 /* line.png */,
 				4200E74F21E8807800B4A8DC /* bookcase1.png */,
 				42DBB9C722671B320055DBD9 /* share.png */,
-				42294BD621E7475800A1D4D0 /* Bookcase.png */,
+				42D6443C22800D7600B01D4F /* Bookcase.png */,
 				42F0832521EC7FF300948743 /* Date.png */,
 				42BEAAAF21E8498A001F5F3E /* Chinesebrush.png */,
 				42BBB1AE224B2988002C11F6 /* ChinesebrushHold.png */,
@@ -482,6 +503,7 @@
 		42294BB721E733DC00A1D4D0 /* ToolFile */ = {
 			isa = PBXGroup;
 			children = (
+				4296F65A22B0A68600FD70B7 /* FCUUID */,
 				42C0FE5922783D6D0094E791 /* ColorChangeTool */,
 				42AE9B542264556100F5FD08 /* SKCalendarView */,
 				42C58AB222602E8D000A5DE1 /* DVDishPieHeader */,
@@ -503,6 +525,7 @@
 		42294BB921E733DC00A1D4D0 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				4296F66422B0CEA300FD70B7 /* BmobExtended */,
 				42294BEF21E7594000A1D4D0 /* UserColorConfiguration */,
 				42294BC621E735F800A1D4D0 /* GlobalDefine.h */,
 				42294BC721E735F800A1D4D0 /* PrefixHeader.pch */,
@@ -622,8 +645,38 @@
 				42294BF021E7594000A1D4D0 /* UserColorConfiguration.m */,
 				42294BF321E7596200A1D4D0 /* UserColorModel.h */,
 				42294BF421E7596200A1D4D0 /* UserColorModel.m */,
+				4296F65722B0A1EA00FD70B7 /* UserManager.h */,
+				4296F65822B0A1EA00FD70B7 /* UserManager.m */,
 			);
 			path = UserColorConfiguration;
+			sourceTree = "<group>";
+		};
+		4296F65A22B0A68600FD70B7 /* FCUUID */ = {
+			isa = PBXGroup;
+			children = (
+				4296F65B22B0A68600FD70B7 /* FCUUID.m */,
+				4296F65C22B0A68600FD70B7 /* UICKeyChainStore.m */,
+				4296F65D22B0A68600FD70B7 /* UIDevice+FCUUID.m */,
+				4296F65E22B0A68600FD70B7 /* FCUUID.h */,
+				4296F65F22B0A68600FD70B7 /* UICKeyChainStore.h */,
+				4296F66022B0A68600FD70B7 /* UIDevice+FCUUID.h */,
+			);
+			path = FCUUID;
+			sourceTree = "<group>";
+		};
+		4296F66422B0CEA300FD70B7 /* BmobExtended */ = {
+			isa = PBXGroup;
+			children = (
+				4296F66522B0CEDD00FD70B7 /* BmobBookExtension.h */,
+				4296F66622B0CEDD00FD70B7 /* BmobBookExtension.m */,
+				4296F66822B0CFCD00FD70B7 /* PBBookModel.h */,
+				4296F66922B0CFCD00FD70B7 /* PBBookModel.m */,
+				4296F66E22B0E1A000FD70B7 /* PBTableExtension.h */,
+				4296F66F22B0E1A000FD70B7 /* PBTableExtension.m */,
+				4296F66B22B0E18F00FD70B7 /* PBTableModel.h */,
+				4296F66C22B0E18F00FD70B7 /* PBTableModel.m */,
+			);
+			path = BmobExtended;
 			sourceTree = "<group>";
 		};
 		42AE9B542264556100F5FD08 /* SKCalendarView */ = {
@@ -808,8 +861,6 @@
 			children = (
 				42F0830621EC279200948743 /* BooksViewController.h */,
 				42F0830721EC279200948743 /* BooksViewController.m */,
-				9415454222532CEB002D6E20 /* CreatBookViewController.h */,
-				9415454322532CEB002D6E20 /* CreatBookViewController.m */,
 			);
 			path = Books;
 			sourceTree = "<group>";
@@ -952,6 +1003,7 @@
 			files = (
 				426989F722715E8B008174D3 /* passWord.png in Resources */,
 				9415454122532B79002D6E20 /* chart.png in Resources */,
+				42D6443D22800D7600B01D4F /* Bookcase.png in Resources */,
 				42294BCD21E73EDF00A1D4D0 /* LaunchScreen.storyboard in Resources */,
 				42D37F8D22754AFD00092049 /* 3.PNG in Resources */,
 				42D2C1602224D76700A9977E /* DataBaseTableNameList.plist in Resources */,
@@ -987,7 +1039,6 @@
 				42ACFCBD21EEC96C00A40338 /* Cancel.png in Resources */,
 				42EFDC6122363D5E00FD2EDB /* NavigationBack@2x.png in Resources */,
 				42B6F820225EE1F80026012D /* addNewBooks.png in Resources */,
-				42294BD721E7475800A1D4D0 /* Bookcase.png in Resources */,
 				42BEAAA121E8375F001F5F3E /* backImage4.png in Resources */,
 				42BEAA9F21E8375F001F5F3E /* backImage2.png in Resources */,
 				42BEAA9E21E8375F001F5F3E /* backImage1.png in Resources */,
@@ -1075,6 +1126,8 @@
 				42EFDC5D2236309000FD2EDB /* BaseCollectionView.m in Sources */,
 				42F0830821EC279200948743 /* BooksViewController.m in Sources */,
 				42F0831B21EC6E7600948743 /* InputTextView.m in Sources */,
+				4296F66D22B0E18F00FD70B7 /* PBTableModel.m in Sources */,
+				4296F65922B0A1EA00FD70B7 /* UserManager.m in Sources */,
 				42AE9B6B2264556100F5FD08 /* SKDateSecurity.m in Sources */,
 				42B040492238DC7E00092539 /* LEEAlert.m in Sources */,
 				42AE9B662264556100F5FD08 /* SKCalendarAnimationManage.m in Sources */,
@@ -1095,6 +1148,7 @@
 				42BBB1BB224B43CA002C11F6 /* UIView+Extension.m in Sources */,
 				42D37F592275461B00092049 /* GuideViewController.m in Sources */,
 				42F0831321EC477F00948743 /* InputViewController.m in Sources */,
+				4296F66322B0A68600FD70B7 /* UIDevice+FCUUID.m in Sources */,
 				42294B9121E7320A00A1D4D0 /* main.m in Sources */,
 				42294BEE21E754D300A1D4D0 /* ConfigurationKeys.m in Sources */,
 				42E04A5421F1D57400A5567C /* CreatBookView.m in Sources */,
@@ -1102,6 +1156,7 @@
 				42294BC221E734E100A1D4D0 /* BaseViewController.m in Sources */,
 				42AE9B682264556100F5FD08 /* SKWeekCollectionViewCell.m in Sources */,
 				42F0832121EC79AD00948743 /* InputClassTagCollectionViewCell.m in Sources */,
+				4296F66222B0A68600FD70B7 /* UICKeyChainStore.m in Sources */,
 				42294BD421E742AA00A1D4D0 /* PBIndexNavigationBarView.m in Sources */,
 				42F0830C21EC3F1C00948743 /* BooksCollectionViewCell.m in Sources */,
 				42D37F81227547B400092049 /* CardView.m in Sources */,
@@ -1111,6 +1166,7 @@
 				42F0832421EC7DE200948743 /* InputDateMarkView.m in Sources */,
 				4200E74B21E86F0800B4A8DC /* DetailOrderCollectionViewCell.m in Sources */,
 				42294BDF21E74F4200A1D4D0 /* IndexCollectionViewCell.m in Sources */,
+				4296F66122B0A68600FD70B7 /* FCUUID.m in Sources */,
 				42F0831821EC692300948743 /* InputTitleView.m in Sources */,
 				42294B8321E7320800A1D4D0 /* AppDelegate.m in Sources */,
 				42294BF521E7596200A1D4D0 /* UserColorModel.m in Sources */,
@@ -1118,12 +1174,14 @@
 				42C0FE5E22783D6D0094E791 /* WJColorChange.m in Sources */,
 				42D37F702275478D00092049 /* TABBaseCardView.m in Sources */,
 				4200E74821E86CC200B4A8DC /* DetailCollectionViewCell.m in Sources */,
+				4296F67022B0E1A000FD70B7 /* PBTableExtension.m in Sources */,
 				42BEAAA721E83BA4001F5F3E /* NSString+Money.m in Sources */,
+				4296F66A22B0CFCD00FD70B7 /* PBBookModel.m in Sources */,
+				4296F66722B0CEDD00FD70B7 /* BmobBookExtension.m in Sources */,
 				42C5855522602A9B000A5DE1 /* ChartViewController.m in Sources */,
 				42AE9B672264556100F5FD08 /* SKCalendarManage.m in Sources */,
 				4200E74E21E87EB000B4A8DC /* DetailModel.m in Sources */,
 				42E04A5121F1D46200A5567C /* BookDetailModel.m in Sources */,
-				9415454422532CEB002D6E20 /* CreatBookViewController.m in Sources */,
 				42E04A4D21F1D39200A5567C /* BooksModel.m in Sources */,
 				42AE9B7022645AB800F5FD08 /* DateViewController.m in Sources */,
 				42294BCA21E73D8E00A1D4D0 /* IndexViewController.m in Sources */,
@@ -1300,6 +1358,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5MZT7U826X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PoliteBooks/ToolFile/Bmob",
+				);
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/PoliteBooks/Configuration/PrefixHeader.pch";
 				INFOPLIST_FILE = PoliteBooks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1320,6 +1382,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5MZT7U826X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PoliteBooks/ToolFile/Bmob",
+				);
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/PoliteBooks/Configuration/PrefixHeader.pch";
 				INFOPLIST_FILE = PoliteBooks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

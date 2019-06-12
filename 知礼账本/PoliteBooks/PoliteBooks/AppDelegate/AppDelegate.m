@@ -16,8 +16,12 @@
 
 @implementation AppDelegate
 
-
+-(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    [Bmob registerWithAppKey:kBmobAppkey];
+    return YES;
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //云服务器SDK
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [UserColorConfiguration initUserColorsInFirstboot];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -27,68 +31,12 @@
     IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager]; // 获取类库的单例变量
     keyboardManager.enableAutoToolbar = NO;
     keyboardManager.shouldResignOnTouchOutside = YES;
-    //[Bmob registerWithAppKey:@"786255b502405006318e7c684d13e8ed"];
-    [self createDefaultTable];
-    // Override point for customization after application launch.
-    return YES;
-}
--(void)createDefaultTable{
-    NSString * isDefault = [UserDefaultStorageManager readObjectForKey:@"AccountBooksDefaultDelete"];
-    
-    if (![isDefault isEqualToString:@"0"]) {
-        //数据库名
-        NSMutableArray * oldNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-        NSMutableArray * newNames = [[NSMutableArray alloc] init];
-        //书名
-        NSMutableArray * oldBookNames = [UserDefaultStorageManager readObjectForKey:kUSERBOOKNAMEKEY];
-        NSMutableArray * newBookNames = [[NSMutableArray alloc] init];
-        
-        NSString * tableName = [NSString stringWithFormat:@"AccountBooks%@",@"婚礼往来"];
-        if (![kDataBase jq_isExistTable:tableName]) {
-            [kDataBase jq_createTable:tableName dicOrModel:[BooksModel class]];
-            BooksModel * model = [[BooksModel alloc] init];
-            model.bookName = @"婚礼往来";
-            model.bookDate = [[NSDate getCurrentTimes] getCNDate];
-            model.bookImage = arc4random() % 1;
-            model.bookId = 0;
-            model.bookMoney = @"0";
-            model.name = @"";
-            model.money = @"";
-            model.data = @"";
-            model.tableType = 0;
-            BooksModel * model1 = [[BooksModel alloc] init];
-            model1.bookName = @"婚礼往来";
-            model1.bookDate = [[NSDate getCurrentTimes] getCNDate];
-            model1.bookImage = arc4random() % 1;
-            model1.bookId = 0;
-            model1.bookMoney = @"0";
-            model1.name = @"示例";
-            model1.money = @"600";
-            model1.data = [[NSDate getCurrentTimes] getCNDate];
-            model1.tableType = 0;
-            [kDataBase jq_inDatabase:^{
-                [kDataBase jq_insertTable:tableName dicOrModel:model];
-            }];
-            [kDataBase jq_inDatabase:^{
-                [kDataBase jq_insertTable:tableName dicOrModel:model1];
-            }];
-            for (NSString * name in oldNames) {
-                [newNames addObject:name];
-            }
-            [newNames addObject:tableName];
-            
-            for (NSString * bookname in oldBookNames) {
-                [newBookNames addObject:bookname];
-            }
-            [newBookNames addObject:@"婚礼往来"];
-            [UserDefaultStorageManager removeObjectForKey:kUSERTABLENAMEKEY];
-            [UserDefaultStorageManager saveObject:newNames forKey:kUSERTABLENAMEKEY];
-            [UserDefaultStorageManager removeObjectForKey:kUSERBOOKNAMEKEY];
-            [UserDefaultStorageManager saveObject:newBookNames forKey:kUSERBOOKNAMEKEY];
-            [UserDefaultStorageManager saveObject:@"1" forKey:@"AccountBooksDefaultDelete"];
-        }
+    BmobUser *bUser = [BmobUser currentUser];
+    if (!bUser) {
+        //对象为空时，可打开用户注册界面
+        [UserManager showUserLoginView];
     }
-    
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

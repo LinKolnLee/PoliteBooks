@@ -18,7 +18,6 @@
 #import "SettingViewController.h"
 #import <Social/Social.h>
 #import "WJFlowLayout.h"
-#import "WJColorChange.h"
 @interface IndexViewController ()<
 UICollectionViewDelegateFlowLayout,
 UICollectionViewDataSource,
@@ -48,9 +47,8 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 
 @property(nonatomic,assign)NSInteger currentItem;
 
-@property (nonatomic,strong) WJColorChange *colorChange;
+@property(nonatomic,strong)NSMutableArray<PBBookModel *> * dataSource;
 
-@property (nonatomic,strong) NSMutableArray *colorDataArr;
 @end
 
 @implementation IndexViewController
@@ -61,23 +59,18 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [self.view addSubview:self.collectionView];
     [self.view addSubview: self.inputButton];
     [self.view addSubview:self.dateButton];
-    [self.view addSubview:self.shareButton];
     [self addMasonry];
     self.currentItem = 0;
     self.tableNames = [[NSMutableArray alloc] init];
-
+    self.dataSource = [[NSMutableArray alloc] init];
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (self.collectionView) {
         [self.collectionView reloadData];
     }
-    NSMutableArray * oldNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    if (oldNames.count == 0) {
-        self.inputButton.hidden = YES;
-    }else{
-        self.inputButton.hidden = NO;
-    }
+    [self queryBookList];
 }
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -96,19 +89,8 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         make.width.mas_equalTo(kIphone6Width(20));
         make.height.mas_equalTo(kIphone6Width(20));
     }];
-    [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.collectionView.mas_bottom).offset(kIphone6Width(20));
-        make.left.mas_equalTo(kIphone6Width((20)));
-        make.width.mas_equalTo(kIphone6Width(20));
-        make.height.mas_equalTo(kIphone6Width(20));
-    }];
 }
-- (NSMutableArray *)colorDataArr {
-    if (!_colorDataArr) {
-        _colorDataArr = [[NSMutableArray alloc]init];
-    }
-    return _colorDataArr;
-}
+
 -(UIButton *)shareButton{
     if (!_shareButton) {
         _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -123,7 +105,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         //_naviView.backgroundColor = kWhiteColor;
         _naviView.title = @"礼尚往来";
         _naviView.leftImage = @"Bookcase";
-        _naviView.rightImage = @"BookChars";
+        _naviView.rightImage = @"setting";
         _naviView.rightHidden = NO;
         _naviView.backgroundColor = [UIColor clearColor];
         WS(weakSelf);
@@ -134,8 +116,8 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         };
         _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{
             //右按钮点击
-            ChartViewController * chart = [[ChartViewController alloc] init];
-            [weakSelf.navigationController pushViewController:chart animated:YES];
+            SettingViewController * setting = [[SettingViewController alloc] init];
+            [weakSelf.navigationController hh_pushTiltViewController:setting];
         };
     }
     return _naviView;
@@ -178,14 +160,9 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [self.navigationController hh_pushTiltViewController:setting];
 }
 -(void)inputButtonTouchUpInside:(UIButton *)sender{
-    NSMutableArray * tableArr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    NSMutableArray * nameArr = [UserDefaultStorageManager readObjectForKey:kUSERBOOKNAMEKEY];
-    NSString *bookName = nameArr[self.currentItem];
-    NSArray *personArr = [kDataBase jq_lookupTable:tableArr[self.currentItem] dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",bookName];
     DetailViewController * detail = [[DetailViewController alloc] init];
-    detail.dataSource = personArr;
+    detail.bookModel = self.dataSource[self.currentItem];
     detail.isLook = NO;
-    detail.currentTableName = tableArr[self.currentItem];
     [self.navigationController pushViewController:detail animated:YES];
 }
 - (UIButton *)closeButton {
@@ -209,42 +186,11 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         _creatBookView.CreatBookViewSaveButtonClickBlock = ^(NSString * _Nonnull bookName, NSString * _Nonnull bookData, NSInteger bookColor) {
             //数据库名
             weakSelf.view.userInteractionEnabled = YES;
-            NSMutableArray * oldNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-            NSMutableArray * newNames = [[NSMutableArray alloc] init];
-            //书名
-            NSMutableArray * oldBookNames = [UserDefaultStorageManager readObjectForKey:kUSERBOOKNAMEKEY];
-            NSMutableArray * newBookNames = [[NSMutableArray alloc] init];
-            
-            NSString * tableName = [NSString stringWithFormat:@"AccountBooks%@",bookName];
-            if (![kDataBase jq_isExistTable:tableName]) {
-                [kDataBase jq_createTable:tableName dicOrModel:[BooksModel class]];
-                BooksModel * model = [[BooksModel alloc] init];
-                model.bookName = bookName;
-                model.bookDate = bookData;
-                model.bookImage = arc4random() % 1;
-                model.bookId = 0;
-                model.bookMoney = @"0";
-                model.name = @"";
-                model.money = @"";
-                model.data = @"";
-                model.tableType = bookColor;
-                [kDataBase jq_inDatabase:^{
-                    [kDataBase jq_insertTable:tableName dicOrModel:model];
-                }];
-                for (NSString * name in oldNames) {
-                    [newNames addObject:name];
-                }
-                [newNames addObject:tableName];
-                
-                for (NSString * bookname in oldBookNames) {
-                    [newBookNames addObject:bookname];
-                }
-                [newBookNames addObject:bookName];
-                [UserDefaultStorageManager removeObjectForKey:kUSERTABLENAMEKEY];
-                [UserDefaultStorageManager saveObject:newNames forKey:kUSERTABLENAMEKEY];
-                [UserDefaultStorageManager removeObjectForKey:kUSERBOOKNAMEKEY];
-                [UserDefaultStorageManager saveObject:newBookNames forKey:kUSERBOOKNAMEKEY];
-            }
+            PBBookModel * model = [[PBBookModel alloc] init];
+            model.bookName = bookName;
+            model.bookDate = bookData;
+            model.bookColor = bookColor;
+            [weakSelf saveBookModel:model];
             [creatBookViewNew removeFromSuperview];
             [weakSelf.closeButton removeFromSuperview];
             [weakSelf.collectionView reloadData];
@@ -280,14 +226,10 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSMutableArray * arr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    return arr.count;
+    return self.dataSource.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    JQFMDB *dataBase = [JQFMDB shareDatabase];
-    NSMutableArray * arr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    NSArray <BooksModel *> * models = [dataBase jq_lookupTable:arr[indexPath.row] dicOrModel:[BooksModel class] whereFormat:@"where bookId = '0'"];
     IndexCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"IndexCollectionViewCell" forIndexPath:indexPath];
     cell.layer.shadowColor = kHexRGB(0x75664d).CGColor;
     cell.layer.shadowOffset = CGSizeMake(2, 4);
@@ -295,20 +237,16 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     if (!cell) {
         cell = [[IndexCollectionViewCell alloc] init];
     }
-    cell.model = models[0];
+    cell.model = self.dataSource[indexPath.row];
     return cell;
 }
 
 //MARK: UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSMutableArray * tableArr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    NSMutableArray * nameArr = [UserDefaultStorageManager readObjectForKey:kUSERBOOKNAMEKEY];
-    NSString *bookName = nameArr[indexPath.row];
-    NSArray *personArr = [kDataBase jq_lookupTable:tableArr[indexPath.row] dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",bookName];
+    
     DetailViewController * detail = [[DetailViewController alloc] init];
     detail.isLook = YES;
-    detail.dataSource = personArr;
-    detail.currentTableName = tableArr[indexPath.row];
+    detail.bookModel = self.dataSource[indexPath.row];
     [self.navigationController pushViewController:detail animated:YES];
 
 }
@@ -325,8 +263,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     }];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSMutableArray * tableArr = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    int page = (int)(scrollView.contentOffset.x / scrollView.frame.size.width + 0.5) % tableArr.count;
+    int page = (int)(scrollView.contentOffset.x / scrollView.frame.size.width + 0.5) % self.dataSource.count;
     self.currentItem = page;
 }
 -(void)baseCollectionViewButtonClick{
@@ -356,5 +293,24 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [view.layer addAnimation:animation forKey:nil];
 }
 
-
+-(void)saveBookModel:(PBBookModel *)model{
+    WS(weakSelf);
+    [BmobBookExtension inserDataForModel:model success:^(id  _Nonnull responseObject) {
+        [weakSelf queryBookList];
+    }];
+}
+-(void)queryBookList{
+    WS(weakSelf);
+    [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
+        weakSelf.dataSource = bookList;
+        if (bookList.count == 0) {
+            weakSelf.inputButton.hidden = YES;
+        }else{
+            weakSelf.inputButton.hidden = NO;
+        }
+        [weakSelf.collectionView reloadData];
+    } fail:^(id _Nonnull error) {
+        
+    }];
+}
 @end

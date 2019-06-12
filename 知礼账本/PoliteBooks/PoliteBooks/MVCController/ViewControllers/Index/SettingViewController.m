@@ -58,8 +58,6 @@
     if (!_bookNumberLabel) {
         _bookNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, ScreenHeight-150, ScreenWidth, 25)];
         _bookNumberLabel.font = kPingFangTC_Light(15);
-         NSMutableArray * tabelNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-        _bookNumberLabel.text = [NSString stringWithFormat:@"当前账本个数：%ld",tabelNames.count];
         _bookNumberLabel.textColor = TypeColor[5];
         _bookNumberLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -110,29 +108,16 @@
     }
     return _guideBtn;
 }
+-(void)outBookLabelTouchUpInside:(UIButton *)sender{
+    
+}
 -(void)guideBtnTouchUpInside:(UIButton *)sender{
     GuideViewController * guide = [[GuideViewController alloc] init];
     [self.navigationController hh_pushBackViewController:guide];
 }
--(void)outBookLabelTouchUpInside:(UIGestureRecognizer *)ges{
-    NSMutableArray * tabelNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    if (tabelNames.count == 0) {
-        return;
-    }
-    NSMutableArray * strs = [[NSMutableArray alloc] init];
-    for (NSString * monryTableName in tabelNames) {
-        NSString * str = @"======================";
-        
-        NSArray *personArr = [kDataBase jq_lookupTable:monryTableName dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",[monryTableName stringByReplacingOccurrencesOfString:@"AccountBooks" withString:@""]];
-        NSString * bookstr = [monryTableName stringByReplacingOccurrencesOfString:@"AccountBooks" withString:@""];
-        for (BooksModel * newModel in personArr) {
-            bookstr = [NSString stringWithFormat:@"%@******%@--%@--%@******",bookstr,newModel.name,newModel.money,newModel.data];
-        }
-        str = [NSString stringWithFormat:@"%@%@",str,bookstr];
-        [strs addObject:str];
-    }
-    UIActivityViewController *activityController=[[UIActivityViewController alloc]initWithActivityItems:strs applicationActivities:nil];
-    [self.navigationController presentViewController:activityController animated:YES completion:nil];
+-(void)setDataSource:(NSMutableArray<PBBookModel *> *)dataSource{
+    _dataSource = dataSource;
+    self.bookNumberLabel.text = [NSString stringWithFormat:@"当前账本个数：%ld",dataSource.count];
 }
 /*
 #pragma mark - Navigation

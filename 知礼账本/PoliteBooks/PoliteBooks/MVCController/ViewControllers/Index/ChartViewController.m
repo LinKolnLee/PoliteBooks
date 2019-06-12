@@ -13,7 +13,9 @@
 
 @property(nonatomic,strong)PBIndexNavigationBarView * naviView;
 
+@property(nonatomic,strong)UILabel * bookNumberLabel;
 
+@property(nonatomic,assign)CGFloat moneySum;
 @end
 
 @implementation ChartViewController
@@ -21,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.naviView];
+    self.moneySum = 0;
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
         make.height.mas_equalTo(84);
@@ -29,10 +32,11 @@
     DVPieChart *chart = [[DVPieChart alloc] initWithFrame:CGRectMake(0, kIphone6Width(220), ScreenWidth, kIphone6Width(320))];
     [self.view addSubview:chart];
     CGFloat moneySum = 0.00;
-    //账本名称
     NSMutableArray * models = [[NSMutableArray alloc] init];
     NSMutableArray * colors = [[NSMutableArray alloc] init];
     NSMutableArray * oldBookNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
+    //账本名称
+    
     for (NSString * monryTableName in oldBookNames) {
         NSArray *personArr = [kDataBase jq_lookupTable:monryTableName dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",[monryTableName stringByReplacingOccurrencesOfString:@"AccountBooks" withString:@""]];
         for (BooksModel * newModel in personArr) {
@@ -50,6 +54,7 @@
             color = newModel.tableType;
             name = newModel.bookName;
         }
+        self.moneySum = money;
         model.value = money;
         model.rate = money/moneySum;
         model.name = name;
@@ -60,15 +65,28 @@
     }
     chart.colors = colors;
     chart.dataArray = models;
-    
     chart.title = @"账本";
-    
     [chart draw];
-    
-    
-    
-    
+    [self.view addSubview:self.bookNumberLabel];
+
     // Do any additional setup after loading the view.
+}
+
+-(UILabel *)bookNumberLabel{
+    if (!_bookNumberLabel) {
+        _bookNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, ScreenWidth, 25)];
+        _bookNumberLabel.font = kPingFangTC_Light(15);
+        NSMutableArray * tabelNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
+        if (tabelNames.count == 0 || self.moneySum == 0) {
+            _bookNumberLabel.text = @"您还未开始记账";
+        }else{
+            _bookNumberLabel.hidden = YES;
+        }
+        
+        _bookNumberLabel.textColor = TypeColor[5];
+        _bookNumberLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _bookNumberLabel;
 }
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
