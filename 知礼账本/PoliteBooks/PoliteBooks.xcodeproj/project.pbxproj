@@ -78,6 +78,20 @@
 		42C58AB922602E8D000A5DE1 /* DVPieCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB322602E8D000A5DE1 /* DVPieCenterView.m */; };
 		42C58ABA22602E8D000A5DE1 /* DVFoodPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB422602E8D000A5DE1 /* DVFoodPieModel.m */; };
 		42C58ABB22602E8D000A5DE1 /* DVPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C58AB822602E8D000A5DE1 /* DVPieChart.m */; };
+		42C5BA4C22B1EC8800AB73D3 /* User.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C5BA4B22B1EC8800AB73D3 /* User.png */; };
+		42C5BA5022B1EE3100AB73D3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA4F22B1EE3100AB73D3 /* LoginViewController.m */; };
+		42C5BA5322B1F47600AB73D3 /* WKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA5122B1F47600AB73D3 /* WKWebViewController.m */; };
+		42C5BA5622B1F56800AB73D3 /* RegistrationAgreement.html in Resources */ = {isa = PBXBuildFile; fileRef = 42C5BA5422B1F56800AB73D3 /* RegistrationAgreement.html */; };
+		42C5BA5722B1F56800AB73D3 /* PrivacyAgreement.html in Resources */ = {isa = PBXBuildFile; fileRef = 42C5BA5522B1F56800AB73D3 /* PrivacyAgreement.html */; };
+		42C5BA5A22B1FBC000AB73D3 /* UITextField+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA5922B1FBC000AB73D3 /* UITextField+Extension.m */; };
+		42C5BA6522B1FCBD00AB73D3 /* WLTipview.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA5F22B1FCBD00AB73D3 /* WLTipview.m */; };
+		42C5BA6622B1FCBD00AB73D3 /* WLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA6222B1FCBD00AB73D3 /* WLToast.m */; };
+		42C5BA6722B1FCBD00AB73D3 /* UIView+GradientBgColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA6322B1FCBD00AB73D3 /* UIView+GradientBgColor.m */; };
+		42C5BA6822B1FCBD00AB73D3 /* ToastManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA6422B1FCBD00AB73D3 /* ToastManage.m */; };
+		42C5BA7522B2279E00AB73D3 /* LXSegmentBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA7422B2279E00AB73D3 /* LXSegmentBtnView.m */; };
+		42C5BA7922B24EC100AB73D3 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA7822B24EC100AB73D3 /* MineViewController.m */; };
+		42C5BA8022B258BE00AB73D3 /* BeautyLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA7B22B258BE00AB73D3 /* BeautyLoadView.m */; };
+		42C5BA8122B258BE00AB73D3 /* BeautyLoadingHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5BA7C22B258BE00AB73D3 /* BeautyLoadingHUD.m */; };
 		42D2C1602224D76700A9977E /* DataBaseTableNameList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42D2C15F2224D76700A9977E /* DataBaseTableNameList.plist */; };
 		42D37F592275461B00092049 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D37F582275461B00092049 /* GuideViewController.m */; };
 		42D37F702275478D00092049 /* TABBaseCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D37F5D2275478C00092049 /* TABBaseCardView.m */; };
@@ -263,6 +277,31 @@
 		42C58AB622602E8D000A5DE1 /* DVPieCenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVPieCenterView.h; sourceTree = "<group>"; };
 		42C58AB722602E8D000A5DE1 /* DVFoodPieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVFoodPieModel.h; sourceTree = "<group>"; };
 		42C58AB822602E8D000A5DE1 /* DVPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVPieChart.m; sourceTree = "<group>"; };
+		42C5BA4B22B1EC8800AB73D3 /* User.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = User.png; sourceTree = "<group>"; };
+		42C5BA4E22B1EE3100AB73D3 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		42C5BA4F22B1EE3100AB73D3 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		42C5BA5122B1F47600AB73D3 /* WKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewController.m; sourceTree = "<group>"; };
+		42C5BA5222B1F47600AB73D3 /* WKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewController.h; sourceTree = "<group>"; };
+		42C5BA5422B1F56800AB73D3 /* RegistrationAgreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RegistrationAgreement.html; sourceTree = "<group>"; };
+		42C5BA5522B1F56800AB73D3 /* PrivacyAgreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PrivacyAgreement.html; sourceTree = "<group>"; };
+		42C5BA5822B1FBC000AB73D3 /* UITextField+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Extension.h"; sourceTree = "<group>"; };
+		42C5BA5922B1FBC000AB73D3 /* UITextField+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Extension.m"; sourceTree = "<group>"; };
+		42C5BA5C22B1FCBD00AB73D3 /* ToastManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastManage.h; sourceTree = "<group>"; };
+		42C5BA5E22B1FCBD00AB73D3 /* WLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLToast.h; sourceTree = "<group>"; };
+		42C5BA5F22B1FCBD00AB73D3 /* WLTipview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLTipview.m; sourceTree = "<group>"; };
+		42C5BA6022B1FCBD00AB73D3 /* UIView+GradientBgColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GradientBgColor.h"; sourceTree = "<group>"; };
+		42C5BA6122B1FCBD00AB73D3 /* WLTipview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLTipview.h; sourceTree = "<group>"; };
+		42C5BA6222B1FCBD00AB73D3 /* WLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLToast.m; sourceTree = "<group>"; };
+		42C5BA6322B1FCBD00AB73D3 /* UIView+GradientBgColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GradientBgColor.m"; sourceTree = "<group>"; };
+		42C5BA6422B1FCBD00AB73D3 /* ToastManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastManage.m; sourceTree = "<group>"; };
+		42C5BA7322B2279E00AB73D3 /* LXSegmentBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSegmentBtnView.h; sourceTree = "<group>"; };
+		42C5BA7422B2279E00AB73D3 /* LXSegmentBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSegmentBtnView.m; sourceTree = "<group>"; };
+		42C5BA7722B24EC100AB73D3 /* MineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
+		42C5BA7822B24EC100AB73D3 /* MineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		42C5BA7B22B258BE00AB73D3 /* BeautyLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeautyLoadView.m; sourceTree = "<group>"; };
+		42C5BA7C22B258BE00AB73D3 /* BeautyLoadingHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeautyLoadingHUD.m; sourceTree = "<group>"; };
+		42C5BA7D22B258BE00AB73D3 /* BeautyLoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeautyLoadView.h; sourceTree = "<group>"; };
+		42C5BA7F22B258BE00AB73D3 /* BeautyLoadingHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeautyLoadingHUD.h; sourceTree = "<group>"; };
 		42D2C15F2224D76700A9977E /* DataBaseTableNameList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DataBaseTableNameList.plist; sourceTree = "<group>"; };
 		42D37F572275461B00092049 /* GuideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		42D37F582275461B00092049 /* GuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
@@ -453,6 +492,7 @@
 		42294BB421E733DC00A1D4D0 /* ResourceFile */ = {
 			isa = PBXGroup;
 			children = (
+				42C5BA4B22B1EC8800AB73D3 /* User.png */,
 				426989F622715E8B008174D3 /* passWord.png */,
 				42DBBA1B22672B1E0055DBD9 /* setting.png */,
 				42AE9B7322645F4500F5FD08 /* rightDateImage.png */,
@@ -503,6 +543,9 @@
 		42294BB721E733DC00A1D4D0 /* ToolFile */ = {
 			isa = PBXGroup;
 			children = (
+				42C5BA7A22B258BE00AB73D3 /* BeautyLoadingAnimation */,
+				42C5BA7222B2279E00AB73D3 /* LXSegmentBtn */,
+				42C5BA5B22B1FCBD00AB73D3 /* ToastManage */,
 				4296F65A22B0A68600FD70B7 /* FCUUID */,
 				42C0FE5922783D6D0094E791 /* ColorChangeTool */,
 				42AE9B542264556100F5FD08 /* SKCalendarView */,
@@ -540,6 +583,8 @@
 		42294BBA21E7345900A1D4D0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				42C5BA7622B24EB500AB73D3 /* Mine */,
+				42C5BA4D22B1EE1300AB73D3 /* Login */,
 				42F0830521EC276A00948743 /* Books */,
 				4200E74121E86B5500B4A8DC /* Index */,
 				42294BBB21E7345900A1D4D0 /* BaseViewController */,
@@ -600,6 +645,8 @@
 		42294BBF21E7349C00A1D4D0 /* UIKitExtendeds */ = {
 			isa = PBXGroup;
 			children = (
+				42C5BA5822B1FBC000AB73D3 /* UITextField+Extension.h */,
+				42C5BA5922B1FBC000AB73D3 /* UITextField+Extension.m */,
 				42B0404F2238F42200092539 /* UIView+LLFrame.h */,
 				42B0404E2238F42100092539 /* UIView+LLFrame.m */,
 				42EFDC592236304900FD2EDB /* UIScrollView+EmptyDataSet.h */,
@@ -799,6 +846,79 @@
 				42C58AB822602E8D000A5DE1 /* DVPieChart.m */,
 			);
 			path = DVDishPieHeader;
+			sourceTree = "<group>";
+		};
+		42C5BA4D22B1EE1300AB73D3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				42C5BA5522B1F56800AB73D3 /* PrivacyAgreement.html */,
+				42C5BA5422B1F56800AB73D3 /* RegistrationAgreement.html */,
+				42C5BA4E22B1EE3100AB73D3 /* LoginViewController.h */,
+				42C5BA4F22B1EE3100AB73D3 /* LoginViewController.m */,
+				42C5BA5222B1F47600AB73D3 /* WKWebViewController.h */,
+				42C5BA5122B1F47600AB73D3 /* WKWebViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		42C5BA5B22B1FCBD00AB73D3 /* ToastManage */ = {
+			isa = PBXGroup;
+			children = (
+				42C5BA5C22B1FCBD00AB73D3 /* ToastManage.h */,
+				42C5BA5D22B1FCBD00AB73D3 /* views */,
+				42C5BA6422B1FCBD00AB73D3 /* ToastManage.m */,
+			);
+			path = ToastManage;
+			sourceTree = "<group>";
+		};
+		42C5BA5D22B1FCBD00AB73D3 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				42C5BA6022B1FCBD00AB73D3 /* UIView+GradientBgColor.h */,
+				42C5BA6322B1FCBD00AB73D3 /* UIView+GradientBgColor.m */,
+				42C5BA6122B1FCBD00AB73D3 /* WLTipview.h */,
+				42C5BA5F22B1FCBD00AB73D3 /* WLTipview.m */,
+				42C5BA5E22B1FCBD00AB73D3 /* WLToast.h */,
+				42C5BA6222B1FCBD00AB73D3 /* WLToast.m */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		42C5BA7222B2279E00AB73D3 /* LXSegmentBtn */ = {
+			isa = PBXGroup;
+			children = (
+				42C5BA7322B2279E00AB73D3 /* LXSegmentBtnView.h */,
+				42C5BA7422B2279E00AB73D3 /* LXSegmentBtnView.m */,
+			);
+			path = LXSegmentBtn;
+			sourceTree = "<group>";
+		};
+		42C5BA7622B24EB500AB73D3 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				42C5BA7722B24EC100AB73D3 /* MineViewController.h */,
+				42C5BA7822B24EC100AB73D3 /* MineViewController.m */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		42C5BA7A22B258BE00AB73D3 /* BeautyLoadingAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				42C5BA7B22B258BE00AB73D3 /* BeautyLoadView.m */,
+				42C5BA7C22B258BE00AB73D3 /* BeautyLoadingHUD.m */,
+				42C5BA7D22B258BE00AB73D3 /* BeautyLoadView.h */,
+				42C5BA7E22B258BE00AB73D3 /* ZZCircleProgress */,
+				42C5BA7F22B258BE00AB73D3 /* BeautyLoadingHUD.h */,
+			);
+			path = BeautyLoadingAnimation;
+			sourceTree = "<group>";
+		};
+		42C5BA7E22B258BE00AB73D3 /* ZZCircleProgress */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ZZCircleProgress;
 			sourceTree = "<group>";
 		};
 		42D37F5A2275478C00092049 /* GuideViews */ = {
@@ -1034,13 +1154,16 @@
 				42D37F8922754AFD00092049 /* 4.PNG in Resources */,
 				42ACFCBE21EEC96C00A40338 /* Sure.png in Resources */,
 				42AE9B7222645F0100F5FD08 /* dateLeftImage.png in Resources */,
+				42C5BA5622B1F56800AB73D3 /* RegistrationAgreement.html in Resources */,
 				42294B8921E7320800A1D4D0 /* Main.storyboard in Resources */,
 				42F0832621EC7FF300948743 /* Date.png in Resources */,
 				42ACFCBD21EEC96C00A40338 /* Cancel.png in Resources */,
+				42C5BA4C22B1EC8800AB73D3 /* User.png in Resources */,
 				42EFDC6122363D5E00FD2EDB /* NavigationBack@2x.png in Resources */,
 				42B6F820225EE1F80026012D /* addNewBooks.png in Resources */,
 				42BEAAA121E8375F001F5F3E /* backImage4.png in Resources */,
 				42BEAA9F21E8375F001F5F3E /* backImage2.png in Resources */,
+				42C5BA5722B1F56800AB73D3 /* PrivacyAgreement.html in Resources */,
 				42BEAA9E21E8375F001F5F3E /* backImage1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1130,6 +1253,7 @@
 				4296F65922B0A1EA00FD70B7 /* UserManager.m in Sources */,
 				42AE9B6B2264556100F5FD08 /* SKDateSecurity.m in Sources */,
 				42B040492238DC7E00092539 /* LEEAlert.m in Sources */,
+				42C5BA7522B2279E00AB73D3 /* LXSegmentBtnView.m in Sources */,
 				42AE9B662264556100F5FD08 /* SKCalendarAnimationManage.m in Sources */,
 				42B0404D2238F40900092539 /* TranslationMicTipView.m in Sources */,
 				42294BC521E7350A00A1D4D0 /* BaseNavigationController.m in Sources */,
@@ -1140,8 +1264,12 @@
 				4200E74421E86B8800B4A8DC /* DetailViewController.m in Sources */,
 				42C58AB922602E8D000A5DE1 /* DVPieCenterView.m in Sources */,
 				42DBBA1F22672B5A0055DBD9 /* SettingViewController.m in Sources */,
+				42C5BA6822B1FCBD00AB73D3 /* ToastManage.m in Sources */,
+				42C5BA5022B1EE3100AB73D3 /* LoginViewController.m in Sources */,
+				42C5BA5A22B1FBC000AB73D3 /* UITextField+Extension.m in Sources */,
 				42BBB1BA224B43CA002C11F6 /* NSDate+Extension.m in Sources */,
 				42294BEB21E7533900A1D4D0 /* UserDefaultStorageManager.m in Sources */,
+				42C5BA6522B1FCBD00AB73D3 /* WLTipview.m in Sources */,
 				42F0831E21EC73B800948743 /* InputClassTagsView.m in Sources */,
 				42B040502238F42200092539 /* UIView+LLFrame.m in Sources */,
 				42294BF821E75B1200A1D4D0 /* NSDate+String.m in Sources */,
@@ -1153,13 +1281,16 @@
 				42294BEE21E754D300A1D4D0 /* ConfigurationKeys.m in Sources */,
 				42E04A5421F1D57400A5567C /* CreatBookView.m in Sources */,
 				42BBB1B9224B43CA002C11F6 /* WSDatePickerView.m in Sources */,
+				42C5BA8122B258BE00AB73D3 /* BeautyLoadingHUD.m in Sources */,
 				42294BC221E734E100A1D4D0 /* BaseViewController.m in Sources */,
 				42AE9B682264556100F5FD08 /* SKWeekCollectionViewCell.m in Sources */,
 				42F0832121EC79AD00948743 /* InputClassTagCollectionViewCell.m in Sources */,
 				4296F66222B0A68600FD70B7 /* UICKeyChainStore.m in Sources */,
 				42294BD421E742AA00A1D4D0 /* PBIndexNavigationBarView.m in Sources */,
+				42C5BA7922B24EC100AB73D3 /* MineViewController.m in Sources */,
 				42F0830C21EC3F1C00948743 /* BooksCollectionViewCell.m in Sources */,
 				42D37F81227547B400092049 /* CardView.m in Sources */,
+				42C5BA8022B258BE00AB73D3 /* BeautyLoadView.m in Sources */,
 				42C58ABA22602E8D000A5DE1 /* DVFoodPieModel.m in Sources */,
 				42AE9B692264556100F5FD08 /* SKCalendarView.m in Sources */,
 				42E7E13B21ED7BE7009B95FB /* YLNumberKeyboard.m in Sources */,
@@ -1175,12 +1306,15 @@
 				42D37F702275478D00092049 /* TABBaseCardView.m in Sources */,
 				4200E74821E86CC200B4A8DC /* DetailCollectionViewCell.m in Sources */,
 				4296F67022B0E1A000FD70B7 /* PBTableExtension.m in Sources */,
+				42C5BA6722B1FCBD00AB73D3 /* UIView+GradientBgColor.m in Sources */,
+				42C5BA6622B1FCBD00AB73D3 /* WLToast.m in Sources */,
 				42BEAAA721E83BA4001F5F3E /* NSString+Money.m in Sources */,
 				4296F66A22B0CFCD00FD70B7 /* PBBookModel.m in Sources */,
 				4296F66722B0CEDD00FD70B7 /* BmobBookExtension.m in Sources */,
 				42C5855522602A9B000A5DE1 /* ChartViewController.m in Sources */,
 				42AE9B672264556100F5FD08 /* SKCalendarManage.m in Sources */,
 				4200E74E21E87EB000B4A8DC /* DetailModel.m in Sources */,
+				42C5BA5322B1F47600AB73D3 /* WKWebViewController.m in Sources */,
 				42E04A5121F1D46200A5567C /* BookDetailModel.m in Sources */,
 				42E04A4D21F1D39200A5567C /* BooksModel.m in Sources */,
 				42AE9B7022645AB800F5FD08 /* DateViewController.m in Sources */,

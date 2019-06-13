@@ -16,6 +16,7 @@
 #import "UserManager.h"
 #import "PBBookModel.h"
 #import <UIKit/UIKit.h>
+#import "ToastManage.h"
 #import "PBTableModel.h"
 #import <BmobSDK/Bmob.h>
 #import "GlobalDefine.h"
@@ -23,6 +24,7 @@
 #import "NSString+Color.h"
 #import "NSString+Money.h"
 #import "UserColorModel.h"
+#import "BeautyLoadingHUD.h"
 #import "PBTableExtension.h"
 #import "BmobBookExtension.h"
 #import "IQKeyboardManager.h"

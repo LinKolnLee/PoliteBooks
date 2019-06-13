@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)PBTableModel * model;
 
+@property(nonatomic,strong)PBBookModel * bookModel;
 @end
 
 NS_ASSUME_NONNULL_END

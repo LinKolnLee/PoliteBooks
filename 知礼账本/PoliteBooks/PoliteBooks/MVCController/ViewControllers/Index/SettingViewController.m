@@ -9,6 +9,8 @@
 #import "SettingViewController.h"
 #import <Social/Social.h>
 #import "GuideViewController.h"
+#import "DateViewController.h"
+
 @interface SettingViewController ()
 
 @property(nonatomic,strong)PBIndexNavigationBarView * naviView;
@@ -23,6 +25,8 @@
 
 @property(nonatomic,strong)UIButton * guideBtn;
 
+@property(nonatomic,strong)UIButton * loginOutBtn;
+
 @end
 
 @implementation SettingViewController
@@ -35,6 +39,7 @@
     [self.view addSubview:self.bookNumberLabel];
     [self.view addSubview:self.outBookLabel];
     [self.view addSubview:self.guideBtn];
+    [self.view addSubview:self.loginOutBtn];
     
     // Do any additional setup after loading the view.
 }
@@ -87,7 +92,7 @@
     if (!_outBookLabel) {
         _outBookLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, ScreenWidth, 25)];
         _outBookLabel.font = kPingFangTC_Light(15);
-        _outBookLabel.text = @"导出账本";
+        _outBookLabel.text = @"查看日历";
         _outBookLabel.textColor = TypeColor[6];
         _outBookLabel.textAlignment = NSTextAlignmentCenter;
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(outBookLabelTouchUpInside:)];
@@ -108,8 +113,20 @@
     }
     return _guideBtn;
 }
+-(UIButton *)loginOutBtn{
+    if (!_loginOutBtn) {
+        _loginOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _loginOutBtn.frame = CGRectMake(0, 250, ScreenWidth, 25);
+        [_loginOutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+        [_loginOutBtn setTitleColor:TypeColor[6] forState:UIControlStateNormal];
+        _loginOutBtn.titleLabel.font = kPingFangTC_Light(15);
+        [_loginOutBtn addTarget:self action:@selector(loginOutBtnTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _loginOutBtn;
+}
 -(void)outBookLabelTouchUpInside:(UIButton *)sender{
-    
+    DateViewController * date = [[DateViewController alloc] init];
+    [self.navigationController hh_presentBackScaleVC:date height:ScreenHeight-kIphone6Width(230) completion:nil];
 }
 -(void)guideBtnTouchUpInside:(UIButton *)sender{
     GuideViewController * guide = [[GuideViewController alloc] init];
@@ -118,6 +135,12 @@
 -(void)setDataSource:(NSMutableArray<PBBookModel *> *)dataSource{
     _dataSource = dataSource;
     self.bookNumberLabel.text = [NSString stringWithFormat:@"当前账本个数：%ld",dataSource.count];
+}
+-(void)loginOutBtnTouchUpInside:(UIButton *)sender{
+    [BmobUser logout];
+    [UserManager showUserLoginView];
+    [ToastManage showTopToastWith:@"账户已退出登录"];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 /*
 #pragma mark - Navigation

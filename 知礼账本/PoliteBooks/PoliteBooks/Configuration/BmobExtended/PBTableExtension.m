@@ -17,6 +17,8 @@
     [table setObject:model.userName forKey:@"dUserName"];
     [table setObject:model.userDate forKey:@"dUserData"];
     [table setObject:model.userType forKey:@"dUserType"];
+    [table setObject:@(model.inType) forKey:@"dUserInType"];
+    [table setObject:@(model.outType) forKey:@"dUserOutType"];
     BmobObject *bookAu = [BmobObject objectWithoutDataWithClassName:@"userBooks" objectId:bookModel.objectId];
     [table setObject:bookAu forKey:@"bookAu"];
     //异步保存
@@ -58,6 +60,8 @@
                 model.userType = [book objectForKey:@"dUserType"];
                 model.userMoney = [book objectForKey:@"dUserMoney"];
                 model.userDate = [book objectForKey:@"dUserData"];
+                model.inType = [[book objectForKey:@"dUserInType"] integerValue];
+                model.outType = [[book objectForKey:@"dUserOutType"] integerValue];
                 model.objectId = book.objectId;
                 [arr addObject:model];
             }
@@ -65,7 +69,9 @@
         }
     }];
 }
-
++(void)updataForModel:(PBTableModel *)model success:(void (^)(id _Nonnull))success{
+    
+}
 /*
 +(void)inserDataForModel:(PBTableModel *)model andBookModel:(PBBookModel*)bookModel succ{
     BmobObject  *table = [BmobObject objectWithClassName:@"userTables"];

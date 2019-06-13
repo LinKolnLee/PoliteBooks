@@ -26,6 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSString * userDate;
 
 @property(nonatomic,strong)NSString * userType;
+
+@property(nonatomic,assign)NSInteger inType;
+
+@property(nonatomic,assign)NSInteger outType;
+
 @end
 
 NS_ASSUME_NONNULL_END

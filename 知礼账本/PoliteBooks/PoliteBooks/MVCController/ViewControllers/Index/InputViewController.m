@@ -39,6 +39,7 @@
  */
 @property(nonatomic,assign)NSInteger classType;
 
+
 /**
  记账明细类别
  */
@@ -153,13 +154,14 @@
         make.height.mas_equalTo(kIphone6Width(100));
     }];
     [self.textInputView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.titleSettingView.mas_bottom).offset(kIphone6Width(10));
+        make.left.mas_equalTo(10);
+        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(self.titleSettingView.mas_bottom).offset(kIphone6Width(44));
         make.height.mas_equalTo(kIphone6Width(50));
     }];
     [self.dateMarkView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.textInputView.mas_bottom).offset(50);
-        make.centerX.mas_equalTo(0);
+        make.top.mas_equalTo(self.textInputView.mas_bottom).offset(54);
+        make.right.mas_equalTo(0);
         make.height.mas_equalTo(kIphone6Width(100));
         make.width.mas_equalTo(kIphone6Width(300));
     }];
@@ -204,6 +206,7 @@
     if (!_titleSettingView) {
         _titleSettingView = [[InputTitleView alloc] init];
         _titleSettingView.colorIndex = self.bookModel.bookColor;
+        _titleSettingView.title = self.bookModel.bookName;
     }
     return _titleSettingView;
 }
@@ -232,10 +235,14 @@
                 dateMarkView1.titleStr = [dateString getCNDate];
                 weakSelf.dateString = [dateString getCNDate];
             }];
+            
             datepicker.dateLabelColor = TypeColor[weakSelf.tableType];
             datepicker.datePickerColor = TypeColor[weakSelf.tableType];
             datepicker.doneButtonColor = TypeColor[weakSelf.tableType];
             [datepicker show];
+        };
+        _dateMarkView.InputDateMarkViewTypeSelectBlock = ^(NSInteger type) {
+            weakSelf.classType = type;
         };
     }
     return _dateMarkView;
@@ -269,6 +276,13 @@
     model.userMoney = [self.moneyString getCnMoney];
     model.userDate = self.dateString;
     model.userType = self.bookModel.bookName;
+    if (self.classType == 0) {
+        model.inType = 1;
+        model.outType = 0;
+    }else{
+        model.inType = 0;
+        model.outType = 1;
+    }
     model.objectId = @"0";
     WS(weakSelf);
     [PBTableExtension inserDataForModel:model andBookModel:self.bookModel success:^(id  _Nonnull responseObject) {

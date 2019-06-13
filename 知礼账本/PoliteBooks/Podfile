@@ -8,4 +8,5 @@ target 'PoliteBooks' do
   pod 'HHTransition', '~> 1.2.0'
   pod 'JQFMDB'
   pod 'BmobSDK'
+  pod 'LCText'
 end

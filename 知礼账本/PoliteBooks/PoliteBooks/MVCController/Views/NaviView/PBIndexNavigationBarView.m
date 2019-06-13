@@ -53,7 +53,7 @@
         make.left.mas_equalTo(kIphone6Width(20));
         make.width.mas_equalTo(kIphone6Width(25));
         make.height.mas_equalTo(kIphone6Width(25));
-        make.bottom.mas_equalTo(0);
+        make.bottom.mas_equalTo(-5);
 
     }];
     // 右侧按钮
@@ -61,7 +61,7 @@
         make.right.mas_equalTo(-kIphone6Width(20));
         make.width.mas_equalTo(kIphone6Width(25));
         make.height.mas_equalTo(kIphone6Width(25));
-        make.bottom.mas_equalTo(0);
+        make.bottom.mas_equalTo(-5);
     }];
     // titlt
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

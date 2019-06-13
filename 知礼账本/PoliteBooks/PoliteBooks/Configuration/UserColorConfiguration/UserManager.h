@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 //+(BOOL)userIsLogin;
 
++(NSString*)getNameString;
+
 @end
 
 NS_ASSUME_NONNULL_END

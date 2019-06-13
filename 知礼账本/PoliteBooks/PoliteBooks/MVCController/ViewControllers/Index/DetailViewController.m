@@ -120,7 +120,7 @@ BaseCollectionViewButtonClickDelegate
         flowLayout.minimumLineSpacing = kIphone6Width(14);
         flowLayout.minimumInteritemSpacing = kIphone6Width(25);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        flowLayout.itemSize = CGSizeMake(ScreenWidth/7, ScreenHeight - 160);
+        flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - 160);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         CGFloat topHeight = kIphone6Width(100);
         if (IPHONEXR || IPHONEXSMAX || IPhoneX) {
@@ -156,6 +156,7 @@ BaseCollectionViewButtonClickDelegate
     if (!cell) {
         cell = [[DetailOrderCollectionViewCell alloc] init];
     }
+    cell.bookModel = self.bookModel;
     cell.model = self.tableDataSource[indexPath.row];
     cell.layer.cornerRadius = kIphone6Width(10);
     cell.layer.masksToBounds = YES;
@@ -168,15 +169,15 @@ BaseCollectionViewButtonClickDelegate
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = CGRectMake(0, 0, ScreenWidth/7, ScreenHeight-160);
+    maskLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-160);
     
     CAShapeLayer *borderLayer = [CAShapeLayer layer];
-    borderLayer.frame = CGRectMake(0, 0, ScreenWidth/7, ScreenHeight-160);
+    borderLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-160);
     borderLayer.lineWidth = 1.f;
     borderLayer.strokeColor = kBlackColor.CGColor;
     borderLayer.fillColor = [UIColor clearColor].CGColor;
     
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth/7, ScreenHeight-160) cornerRadius:kIphone6Width(15)];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-160) cornerRadius:kIphone6Width(15)];
     maskLayer.path = bezierPath.CGPath;
     borderLayer.path = bezierPath.CGPath;
     
@@ -186,6 +187,61 @@ BaseCollectionViewButtonClickDelegate
 
 //MARK: UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    PBTableModel * model = self.tableDataSource[indexPath.row];
+    if (model.inType && model.outType) {
+        return;
+    }
+    if (model.inType) {
+        //回礼
+        [self showAlertWithType:@"收禮" andModel:model];
+    }
+    if (model.outType) {
+        [self showAlertWithType:@"進禮" andModel:model];
+        //进礼
+    }
+}
+-(void)showAlertWithType:(NSString *)type andModel:(PBTableModel *)model{
+    [LEEAlert alert].config
+    .LeeAddTitle(^(UILabel *label) {
+        label.text = type;
+        label.textColor = kWhiteColor;
+    })
+    .LeeAddContent(^(UILabel *label) {
+        label.text = [NSString stringWithFormat:@"是否对%@%@，%@后将无法修改, 请慎重考虑",model.userName,type,type];
+        label.textColor = [kWhiteColor colorWithAlphaComponent:0.75f];
+    })
+    .LeeAddAction(^(LEEAction *action) {
+        action.type = LEEActionTypeCancel;
+        action.title = @"取消";
+        action.titleColor = TypeColor[self.bookModel.bookColor];
+        action.backgroundColor = kWhiteColor;
+        action.clickBlock = ^{
+        };
+    })
+    .LeeAddAction(^(LEEAction *action) {
+        action.type = LEEActionTypeDefault;
+        action.title = type;
+        action.titleColor = TypeColor[self.bookModel.bookColor];
+        action.backgroundColor = kWhiteColor;
+        WS(weakSelf);
+        action.clickBlock = ^{
+            BmobObject  *table = [BmobObject objectWithoutDataWithClassName:@"userTables" objectId:model.objectId];
+            if (!model.inType) {
+                [table setObject:[NSNumber numberWithInt:1] forKey:@"dUserInType"];
+            }
+            if (!model.outType) {
+                [table setObject:[NSNumber numberWithInt:1] forKey:@"dUserOutType"];
+            }
+            [table updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                if (isSuccessful) {
+                    [weakSelf queryBookList];
+                } else {
+                }
+            }];
+        };
+    })
+    .LeeHeaderColor(TypeColor[self.bookModel.bookColor])
+    .LeeShow();
 }
 -(void)lpGR:(UILongPressGestureRecognizer *)lpGR
 {
@@ -266,7 +322,6 @@ BaseCollectionViewButtonClickDelegate
         weakSelf.tableDataSource = tableList;
         [weakSelf.collectionView reloadData];
     } fail:^(id _Nonnull error) {
-        
     }];
 }
 

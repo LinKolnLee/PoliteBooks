@@ -22,6 +22,7 @@ PODS:
   - IQKeyboardManager (6.2.0)
   - JQFMDB (1.1.6):
     - FMDB
+  - LCText (0.0.2)
   - Masonry (1.1.0)
   - YYModel (1.0.4)
 
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - HHTransition (~> 1.2.0)
   - IQKeyboardManager
   - JQFMDB
+  - LCText
   - Masonry
   - YYModel
 
@@ -41,9 +43,10 @@ SPEC CHECKSUMS:
   HHTransition: 35c278fbe8374cdf0931a805aef066d52256a897
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   JQFMDB: 39ab0d6d7c26fd30e51c4dd92edcb27506a34c3a
+  LCText: d4dc2a932fc9a5cedb6982455239a101959f5858
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: ad16520e2c0e75ac830f2470625aa9153e9b7c80
+PODFILE CHECKSUM: 70de6be929b7a28b67d83435f6811c866bfea264
 
 COCOAPODS: 1.4.0

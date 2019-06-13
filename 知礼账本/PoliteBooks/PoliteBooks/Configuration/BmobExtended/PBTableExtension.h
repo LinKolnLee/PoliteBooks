@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)delegateDataForModel:(PBTableModel *)model success:(void (^)(id responseObject))success;
 
 + (void)queryBookListWithModel:(PBBookModel *)model success:(void (^)(NSMutableArray<PBTableModel *> *tableList))success fail:(void (^)(id))fail;
+
++(void)updataForModel:(PBTableModel *)model success:(void (^)(id responseObject))success;
 @end
 
 NS_ASSUME_NONNULL_END

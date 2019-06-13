@@ -109,6 +109,12 @@
 #define kFont50 ([UIFont fontWithName:@"Yuppy SC" size:kIphone6Width(50)])
 #define kFont60 ([UIFont fontWithName:@"Yuppy SC" size:kIphone6Width(60)])
 #define kFont70 ([UIFont fontWithName:@"Yuppy SC" size:kIphone6Width(70)])
+
+#define kMBFont7 ([UIFont fontWithName:@"电影海报字体" size:kIphone6Width(7)])
+#define kMBFont10 ([UIFont fontWithName:@"电影海报字体" size:kIphone6Width(10)])
+#define kMBFont11 ([UIFont fontWithName:@"电影海报字体" size:kIphone6Width(11)])
+#define kMBFont12 ([UIFont fontWithName:@"电影海报字体" size:kIphone6Width(12)])
+#define kMBFont13 ([UIFont fontWithName:@"电影海报字体" size:kIphone6Width(13)])
 /**
  字体
  */

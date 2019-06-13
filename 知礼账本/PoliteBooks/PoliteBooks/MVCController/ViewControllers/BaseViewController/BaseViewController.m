@@ -20,7 +20,13 @@
     self.view.backgroundColor = kWhiteColor;
     // Do any additional setup after loading the view.
 }
+-(void)showLoadingAnimation{
+    [[BeautyLoadingHUD shareManager] startAnimating];
+}
 
+-(void)hiddenLoadingAnimation{
+    [[BeautyLoadingHUD shareManager] stopAnimating];
+}
 /*
 #pragma mark - Navigation
 

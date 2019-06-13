@@ -13,11 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface InputDateMarkView : UIView
 
 @property (copy , nonatomic) void(^InputDateMarkViewTouchClickBlock)(void);
+@property (copy , nonatomic) void(^InputDateMarkViewTypeSelectBlock)(NSInteger type);
 
 @property (strong,nonatomic)NSString * titleStr;
 
 @property (nonatomic, strong) UITextField *markTextField;
-
 
 @end
 

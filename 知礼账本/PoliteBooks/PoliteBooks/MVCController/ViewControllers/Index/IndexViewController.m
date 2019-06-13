@@ -18,6 +18,7 @@
 #import "SettingViewController.h"
 #import <Social/Social.h>
 #import "WJFlowLayout.h"
+#import "LoginViewController.h"
 @interface IndexViewController ()<
 UICollectionViewDelegateFlowLayout,
 UICollectionViewDataSource,
@@ -28,7 +29,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 
 @property (nonatomic, strong) UIButton *closeButton;
 
-@property (nonatomic, strong) UIButton *dateButton;
+@property (nonatomic, strong) UIButton *userButton;
 
 @property(nonatomic,strong)UIButton * shareButton;
 
@@ -58,7 +59,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [self.view addSubview:self.naviView];
     [self.view addSubview:self.collectionView];
     [self.view addSubview: self.inputButton];
-    [self.view addSubview:self.dateButton];
+    [self.view addSubview:self.userButton];
     [self addMasonry];
     self.currentItem = 0;
     self.tableNames = [[NSMutableArray alloc] init];
@@ -70,7 +71,12 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     if (self.collectionView) {
         [self.collectionView reloadData];
     }
-    [self queryBookList];
+    if (kMemberInfoManager.objectId) {
+        [self queryBookList];
+    }else{
+        self.inputButton.hidden = YES;
+    }
+    
 }
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -83,11 +89,11 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         make.width.mas_equalTo(kIphone6Width(42));
         make.height.mas_equalTo(kIphone6Width(60));
     }];
-    [self.dateButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.collectionView.mas_bottom).offset(kIphone6Width(20));
+    [self.userButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(kIphone6Width(-20));
         make.right.mas_equalTo(kIphone6Width((-20)));
-        make.width.mas_equalTo(kIphone6Width(20));
-        make.height.mas_equalTo(kIphone6Width(20));
+        make.width.mas_equalTo(kIphone6Width(30));
+        make.height.mas_equalTo(kIphone6Width(30));
     }];
 }
 
@@ -134,21 +140,30 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         _inputButton.layer.shadowOffset = CGSizeMake(0, 5);//偏移距离
         _inputButton.layer.shadowOpacity = 3.5;
         _inputButton.layer.shadowRadius = 2.0;
+        _inputButton.hidden = YES;
         [_inputButton addTarget:self action:@selector(inputButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _inputButton;
 }
--(UIButton *)dateButton{
-    if (!_dateButton) {
-        _dateButton = [[UIButton alloc] init];
-        [_dateButton setImage:[UIImage imageNamed:@"IndexDateImage"] forState:UIControlStateNormal];
-        [_dateButton addTarget:self action:@selector(dateButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+-(UIButton *)userButton{
+    if (!_userButton) {
+        _userButton = [[UIButton alloc] init];
+        [_userButton setImage:[UIImage imageNamed:@"User"] forState:UIControlStateNormal];
+        [_userButton addTarget:self action:@selector(userButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _dateButton;
+    return _userButton;
 }
--(void)dateButtonTouchUpInside:(UIButton *)sender{
-    DateViewController * date = [[DateViewController alloc] init];
-    [self.navigationController hh_presentBackScaleVC:date height:ScreenHeight-kIphone6Width(230) completion:nil];
+-(void)userButtonTouchUpInside:(UIButton *)sender{
+//    DateViewController * date = [[DateViewController alloc] init];
+//    [self.navigationController hh_presentBackScaleVC:date height:ScreenHeight-kIphone6Width(230) completion:nil];
+    if (kMemberInfoManager.mobilePhoneNumber) {
+        //个人中心
+        
+    }else{
+        //注册
+        LoginViewController * login = [[LoginViewController alloc] init];
+        [self.navigationController hh_pushErectViewController:login];
+    }
 }
 - (void)closeButtonTouchUpInside:(UIButton *)sender {
     self.view.userInteractionEnabled = YES;
