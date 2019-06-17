@@ -11,6 +11,7 @@
 #import "BooksModel.h"
 #import "DetailViewController.h"
 #import "BaseCollectionView.h"
+#import "TranslationMicTipView.h"
 @interface BooksViewController()<
 UICollectionViewDelegateFlowLayout,
 UICollectionViewDataSource,
@@ -18,6 +19,7 @@ UICollectionViewDelegate,
 UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 >
 
+@property(nonatomic,strong)TranslationMicTipView * micTipView;
 
 @property(nonatomic,strong)PBIndexNavigationBarView * naviView;
 
@@ -48,7 +50,14 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [self addMasonry];
     self.dataSource = [[NSMutableArray alloc] init];
     [self queryBookList];
+    [self setupTipViewWithCell];
     
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([UserGuideManager isGuideWithIndex:1]) {
+        [self guidanceWithIndex:1];
+    }
 }
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -176,9 +185,25 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         CGPoint point = [lpGR locationInView:self.collectionView];
         VIBRATION;
         self.longPressIndexPath = [self.collectionView indexPathForItemAtPoint:point];// 可以获取我们在哪个cell上长按
-        [self showAlertWithModel:self.dataSource[self.longPressIndexPath.row]];
+        [self showActionsheetWithModel:self.dataSource[self.longPressIndexPath.row]];
        
     }
+}
+-(void)showActionsheetWithModel:(PBBookModel *)model{
+    WS(weakSelf);
+    [LEEAlert actionsheet].config
+    .LeeTitle(@"账本编辑")
+    .LeeContent(@"删除账本、编辑账本名称")
+    .LeeAction(@"编辑账本名称", ^{
+        VIBRATION;
+        [weakSelf editBookNameWithModel:model];
+    })
+    .LeeAction(@"删除账本", ^{
+        [weakSelf showAlertWithModel:model];
+    })
+    .LeeCancelAction(@"取消", nil)
+    .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)
+    .LeeShow();
 }
 -(void)showAlertWithModel:(PBBookModel *)model{
     
@@ -214,6 +239,47 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     })
     .LeeHeaderColor(blueColor)
     .LeeShow();
+}
+-(void)editBookNameWithModel:(PBBookModel *)model{
+     __block UITextField *tf = nil;
+    WS(weakSelf);
+    [LEEAlert alert].config
+    .LeeTitle(@"账本编辑")
+    .LeeContent(@"修改账本名称")
+    .LeeAddTextField(^(UITextField *textField) {
+        textField.placeholder = @"输入账本名称";
+        tf = textField;
+    })
+    .LeeAction(@"确定", ^{
+        if (tf.text.length == 0 || tf.text.length > 8) {
+            [ToastManage showTopToastWith:@"账本名称最多8个字"];
+        }else{
+            [weakSelf changeBookModel:model withBookName:tf.text];
+        }
+    })
+    .LeeCancelAction(@"取消", nil)
+    .LeeShow();
+}
+-(void)changeBookModel:(PBBookModel *)model withBookName:(NSString *)bookName{
+    [self showLoadingAnimation];
+    BmobQuery  *bquery = [BmobQuery queryWithClassName:@"userBooks"];
+    WS(weakSelf);
+    [bquery getObjectInBackgroundWithId:model.objectId block:^(BmobObject *object,NSError *error){
+        [weakSelf hiddenLoadingAnimation];
+        if (!error) {
+            if (object) {
+                BmobObject *obj1 = [BmobObject objectWithoutDataWithClassName:@"userBooks" objectId:model.objectId];
+                [obj1 setObject:bookName forKey:@"bookName"];
+                //异步更新数据
+                [obj1 updateInBackground];
+                [ToastManage showTopToastWith:@"修改成功"];
+                model.bookName = bookName;
+                [weakSelf.collectionView reloadItemsAtIndexPaths:@[weakSelf.longPressIndexPath]];
+            }
+        }else{
+            [weakSelf hiddenLoadingAnimation];
+        }
+    }];
 }
 //MARK: UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -251,12 +317,32 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     }];
 }
 -(void)queryBookList{
+    [self showLoadingAnimation];
     WS(weakSelf);
     [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
+        [weakSelf hiddenLoadingAnimation];
         weakSelf.dataSource = bookList;
         [weakSelf.collectionView reloadData];
     } fail:^(id _Nonnull error) {
         
     }];
 }
+-(void)setupTipViewWithCell{
+    CGFloat popHeight =kIphone6Width(35.0);
+    CGRect popRect = CGRectMake(0, kIphone6Width(0), kIphone6Width(140), popHeight);
+    self.micTipView = [[TranslationMicTipView alloc] initWithFrame:popRect Title:@"选中长按编辑条目"];
+    self.micTipView.centerX = ScreenWidth/2;
+    self.micTipView.centerY = ScreenHeight - kIphone6Width(50);
+    [self.view addSubview:self.micTipView];
+    [self performSelector:@selector(hideTipView) withObject:nil afterDelay:3.0];
+}
+- (void)hideTipView {
+    WS(weakSelf);
+    [UIView animateWithDuration:0.25 animations:^{
+        weakSelf.micTipView.alpha = 0;
+    } completion:^(BOOL finished) {
+        weakSelf.micTipView.hidden = YES;
+    }];
+}
+
 @end

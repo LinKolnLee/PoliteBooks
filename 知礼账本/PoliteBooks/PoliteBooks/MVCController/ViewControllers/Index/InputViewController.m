@@ -90,7 +90,7 @@
     [super viewWillAppear:animated];
     [self performSelector:@selector(showMoneyKeyboard) withObject:nil afterDelay:0.25];
     IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager]; // 获取类库的单例变量
-    keyboardManager.shouldResignOnTouchOutside = NO;
+    keyboardManager.shouldResignOnTouchOutside = YES;
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -228,7 +228,6 @@
             [weakSelf.keyboard removeFromSuperview];
             [weakSelf.keyboard.textFiled resignFirstResponder];
             WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
-                
                 NSString *dateString = [selectDate stringWithFormat:@"yyyy-MM-dd"];
                 NSLog(@"选择的日期：%@",dateString);
                 [weakSelf showMoneyKeyboard];
@@ -261,38 +260,117 @@
     return YES;
 }
 -(void)sureButtonTouchUpInside:(UIButton *)sender{
+    self.sureButton.enabled = NO;
     self.moneyString =  self.textInputView.numberField.text;
     if (self.nameString.length == 0 || self.moneyString.length == 0 ) {
         return;
     }
-    [self setupModelConfig];
+    if (self.isEdit) {
+        [self updateModelConfig];
+    }else{
+        [self setupModelConfig];
+    }
 }
 -(void)cancelButtonTouchUpInside:(UIButton *)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+-(void)updateModelConfig{
+    BmobObject  *table = [BmobObject objectWithoutDataWithClassName:@"userTables" objectId:self.tableModel.objectId];
+    [table setObject:self.moneyString forKey:@"dUserMoney"];
+    [table setObject:self.nameString forKey:@"dUserName"];
+    WS(weakSelf);
+    [table updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            if (weakSelf.bookModel.bookInMoney && weakSelf.bookModel.bookOutMoney) {
+                weakSelf.bookModel.bookInMoney = weakSelf.bookModel.bookInMoney -[weakSelf.tableModel.userMoney integerValue] + [weakSelf.moneyString integerValue];
+                weakSelf.bookModel.bookOutMoney = weakSelf.bookModel.bookOutMoney -[weakSelf.tableModel.userMoney integerValue] + [weakSelf.moneyString integerValue];
+                [BmobBookExtension updataForModel:weakSelf.bookModel withType:2 success:^(id  _Nonnull responseObject) {
+                    [table updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                        if (isSuccessful) {
+                            [ToastManage showTopToastWith:@"账单修改成功"];
+                             weakSelf.InputViewControllerPopBlock();
+                            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                        } else {
+                            [ToastManage showTopToastWith:@"账单修改失败"];
+                        }
+                    }];
+                }];
+                return ;
+            }
+            if (weakSelf.bookModel.bookInMoney) {
+                weakSelf.bookModel.bookInMoney = weakSelf.bookModel.bookInMoney -[weakSelf.tableModel.userMoney integerValue] + [weakSelf.moneyString integerValue];
+                [BmobBookExtension updataForModel:weakSelf.bookModel withType:1 success:^(id  _Nonnull responseObject) {
+                    [table updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                        if (isSuccessful) {
+                            [ToastManage showTopToastWith:@"账单修改成功"];
+                             weakSelf.InputViewControllerPopBlock();
+                            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                        } else {
+                            [ToastManage showTopToastWith:@"账单修改失败"];
+                        }
+                    }];
+                }];
+            }
+            if (weakSelf.bookModel.bookOutMoney) {
+                weakSelf.bookModel.bookOutMoney = weakSelf.bookModel.bookOutMoney -[weakSelf.tableModel.userMoney integerValue] + [weakSelf.moneyString integerValue];
+                [BmobBookExtension updataForModel:weakSelf.bookModel withType:0 success:^(id  _Nonnull responseObject) {
+                    [table updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                        if (isSuccessful) {
+                            [ToastManage showTopToastWith:@"账单修改成功"];
+                             weakSelf.InputViewControllerPopBlock();
+                            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                        } else {
+                            [ToastManage showTopToastWith:@"账单修改失败"];
+                        }
+                    }];
+                }];
+            }
+        } else {
+            [ToastManage showTopToastWith:@"账单修改失败"];
+        }
+    }];
+}
 -(void)setupModelConfig{
     PBTableModel * model = [[PBTableModel alloc] init];
     model.userName = self.nameString;
-    model.userMoney = [self.moneyString getCnMoney];
+    model.userMoney = self.moneyString;
     model.userDate = self.dateString;
     model.userType = self.bookModel.bookName;
+    model.bookColor = self.bookModel.bookColor;
     if (self.classType == 0) {
         model.inType = 1;
         model.outType = 0;
+        self.bookModel.bookOutMoney = self.bookModel.bookOutMoney + [self.moneyString integerValue];
+        [BmobBookExtension updataForModel:self.bookModel withType:0 success:^(id  _Nonnull responseObject) {
+        }];
+        
     }else{
         model.inType = 0;
         model.outType = 1;
+        self.bookModel.bookOutMoney = self.bookModel.bookInMoney + [self.moneyString integerValue];
+        [BmobBookExtension updataForModel:self.bookModel withType:1 success:^(id  _Nonnull responseObject) {
+        }];
     }
     model.objectId = @"0";
     WS(weakSelf);
     [PBTableExtension inserDataForModel:model andBookModel:self.bookModel success:^(id  _Nonnull responseObject) {
+        self.sureButton.enabled = YES;
         weakSelf.InputViewControllerPopBlock();
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
-
 }
 -(void)setBookModel:(PBBookModel *)bookModel{
     _bookModel = bookModel;
 }
-
+-(void)setTableModel:(PBTableModel *)tableModel{
+    _tableModel = tableModel;
+    self.moneyString = tableModel.userMoney;
+    self.textInputView.numberField.text = tableModel.userMoney;
+    self.nameString = tableModel.userName;
+    self.dateMarkView.markTextField.text = tableModel.userName;
+    
+}
+-(void)setIsEdit:(BOOL)isEdit{
+    _isEdit = isEdit;
+}
 @end

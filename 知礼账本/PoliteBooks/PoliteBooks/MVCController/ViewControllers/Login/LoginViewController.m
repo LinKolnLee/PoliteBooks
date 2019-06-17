@@ -37,6 +37,10 @@ static  NSInteger timeNum;
 @property(nonatomic,strong)UILabel * subTitleLabel;
 
 @property(nonatomic,strong)NSString * codeNumber;
+
+@property(nonatomic,strong)NSMutableArray<PBTableModel *> *oldDataSource;
+
+@property(nonatomic,strong)BmobUser *oldUser;
 @end
 
 @implementation LoginViewController
@@ -52,6 +56,7 @@ static  NSInteger timeNum;
     [self.view addSubview:self.cancelBindButton];
     timeNum = 30;
     self.codeNumber = 0;
+    self.oldDataSource = [[NSMutableArray alloc] init];
     [self addMasonry];
     [self setupSubView];
     // Do any additional setup after loading the view.
@@ -273,8 +278,6 @@ static  NSInteger timeNum;
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)sureBindButtonTouchUpInside:(UIButton *)sender{
-    [BmobUser logout];
-    kMemberInfoManager.objectId = 0;
     self.codeNumber = self.codeTextField.text;
     if (self.codeNumber.length != 6 ) {
         [ToastManage showTopToastWith:@"请输入正确的验证码"];
@@ -306,44 +309,114 @@ static  NSInteger timeNum;
 -(void)userLoginWithPhone:(NSString *)phone andCode:(NSString *)code{
     [self showLoadingAnimation];
     WS(weakSelf);
-    [BmobUser loginInbackgroundWithAccount:phone andPassword:@"zhiliBook" block:^(BmobUser *user, NSError *error) {
-        [weakSelf hiddenLoadingAnimation];
-        if (error) {
-            [ToastManage showTopToastWith:@"用户登录失败"];
-        }else{
-            [ToastManage showTopToastWith:@"用户登录成功"];
-            kMemberInfoManager.objectId = user.objectId;
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-        }
+    [self setupOldUserAccountSuccess:^(NSMutableArray<PBBookModel *> *bookList) {
+        [BmobUser loginInbackgroundWithAccount:phone andPassword:@"zhiliBook" block:^(BmobUser *user, NSError *error) {
+            [weakSelf hiddenLoadingAnimation];
+            if (error) {
+                [UserManager sharedInstance].user_id = weakSelf.oldUser.objectId;
+                [ToastManage showTopToastWith:@"用户登录失败"];
+            }else{
+                [ToastManage showTopToastWith:@"用户登录成功"];
+                [UserManager sharedInstance].user_id = user.objectId;
+                if (!self.oldUser.mobilePhoneNumber) {
+                    [self accoutMergeWithNewUser:user andBookList:bookList];
+                }else{
+                     [weakSelf.navigationController popViewControllerAnimated:YES];
+                }
+            }
+        }];
     }];
+    
 }
 -(void)newUserLoginWithPhoneNumber:(NSString *)phone{
     [self showLoadingAnimation];
-    BmobUser *buser = [[BmobUser alloc] init];;
-    buser.mobilePhoneNumber = phone;
-    [buser setObject:[NSNumber numberWithBool:YES] forKey:@"mobilePhoneNumberVerified"];
-    NSString *strName = [FCUUID uuid];
-    NSString *nickName = [UserManager getNameString];
-    [buser setUsername:strName];
-    [buser setPassword:@"zhiliBook"];
-    WS(weakSelf);
-    [buser signUpInBackgroundWithBlock:^ (BOOL isSuccessful, NSError *error){
-        [weakSelf hiddenLoadingAnimation];
-        if (isSuccessful){
-            [buser setObject:nickName forKey:@"nickName"];
-            [buser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                [ToastManage showTopToastWith:@"用户注册登录成功"];
-                BmobUser *newUser = [BmobUser currentUser];
-                [UserManager sharedInstance].user_id = newUser.objectId;
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-            }];
-        } else {
-            NSLog(@"%@",error);
-        }
+    [self setupOldUserAccountSuccess:^(NSMutableArray<PBBookModel *> *bookList) {
+        BmobUser *buser = [[BmobUser alloc] init];;
+        buser.mobilePhoneNumber = phone;
+        [buser setObject:[NSNumber numberWithBool:YES] forKey:@"mobilePhoneNumberVerified"];
+        NSString *strName = [FCUUID uuid];
+        NSString *nickName = [UserManager getNameString];
+        [buser setUsername:strName];
+        [buser setPassword:@"zhiliBook"];
+        WS(weakSelf);
+        [buser signUpInBackgroundWithBlock:^ (BOOL isSuccessful, NSError *error){
+            [weakSelf hiddenLoadingAnimation];
+            if (isSuccessful){
+                [buser setObject:nickName forKey:@"nickName"];
+                [buser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    [ToastManage showTopToastWith:@"用户注册登录成功"];
+                    BmobUser *newUser = [BmobUser currentUser];
+                    [UserManager sharedInstance].user_id = newUser.objectId;
+                    if (!self.oldUser.mobilePhoneNumber) {
+                         [weakSelf accoutMergeWithNewUser:newUser andBookList:bookList];
+                    }else{
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    }
+                }];
+            } else {
+                NSLog(@"%@",error);
+            }
+        }];
     }];
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     [textField resignFirstResponder];
+}
+//账户是否合并判断
+-(void)accoutMergeWithNewUser:(BmobUser *)newUser andBookList:(NSMutableArray *)oldBookList{
+    if (oldBookList.count != 0) {
+        WS(weakSelf);
+        [LEEAlert alert].config
+        .LeeAddTitle(^(UILabel *label) {
+            label.text = @"合并账户";
+            label.textColor = kHexRGB(0x3f3f4d);
+        })
+        .LeeAddContent(^(UILabel *label) {
+            label.text = @"是否合并当前账目到账户中";
+            label.textColor = [kHexRGB(0x3f3f4d) colorWithAlphaComponent:0.75f];
+        })
+        .LeeAddAction(^(LEEAction *action) {
+            action.type = LEEActionTypeCancel;
+            action.title = @"取消";
+            action.backgroundColor = kWhiteColor;
+            action.clickBlock = ^{
+                 [weakSelf.navigationController popViewControllerAnimated:YES];
+            };
+        })
+        .LeeAddAction(^(LEEAction *action) {
+            action.type = LEEActionTypeDefault;
+            action.title = @"合并";
+            action.backgroundColor = kWhiteColor;
+            action.clickBlock = ^{
+                kMemberInfoManager.objectId = newUser.objectId;
+                for (int i = 0; i < oldBookList.count; i++) {
+                    [weakSelf showLoadingAnimation];
+                    [BmobBookExtension updataAuthorForModel:oldBookList[i] andNewUser:newUser success:^(id  _Nonnull responseObject) {
+                        if (i == oldBookList.count - 1) {
+                            [weakSelf hiddenLoadingAnimation];
+                            [ToastManage showTopToastWith:@"账本合并成功"];
+                            [weakSelf.navigationController popViewControllerAnimated:YES];
+                        }
+                    }];
+                }
+            };
+        })
+        .LeeHeaderColor(kWhiteColor)
+        .LeeShow();
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+-(void)setupOldUserAccountSuccess:(void (^)(NSMutableArray<PBBookModel *> *bookList))success{
+    WS(weakSelf);
+    [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
+        weakSelf.oldUser = [BmobUser currentUser];
+        [BmobUser logout];
+        kMemberInfoManager.objectId = 0;
+        success(bookList);
+    } fail:^(id _Nonnull error) {
+        
+    }];
 }
 /*
 #pragma mark - Navigation

@@ -79,6 +79,10 @@ BaseCollectionViewButtonClickDelegate
             [weakSelf queryBookList];
         };
         [self.navigationController hh_presentTiltedVC:circleVC completion:nil];
+    }else{
+        if ([UserGuideManager isGuideWithIndex:2]) {
+            [self guidanceWithIndex:2];
+        }
     }
 }
 -(void)addMasonry{
@@ -117,7 +121,7 @@ BaseCollectionViewButtonClickDelegate
 - (BaseCollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.minimumLineSpacing = kIphone6Width(14);
+        flowLayout.minimumLineSpacing = kIphone6Width(25);
         flowLayout.minimumInteritemSpacing = kIphone6Width(25);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
         flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - 160);
@@ -156,7 +160,6 @@ BaseCollectionViewButtonClickDelegate
     if (!cell) {
         cell = [[DetailOrderCollectionViewCell alloc] init];
     }
-    cell.bookModel = self.bookModel;
     cell.model = self.tableDataSource[indexPath.row];
     cell.layer.cornerRadius = kIphone6Width(10);
     cell.layer.masksToBounds = YES;
@@ -189,15 +192,64 @@ BaseCollectionViewButtonClickDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     PBTableModel * model = self.tableDataSource[indexPath.row];
     if (model.inType && model.outType) {
+        [self showInOrOutWithModel:model WithTitle:@""];
         return;
     }
     if (model.inType) {
         //回礼
-        [self showAlertWithType:@"收禮" andModel:model];
+        [self showInOrOutWithModel:model WithTitle:@"收禮"];
     }
     if (model.outType) {
-        [self showAlertWithType:@"進禮" andModel:model];
+        [self showInOrOutWithModel:model WithTitle:@"進禮"];
         //进礼
+    }
+    
+    
+}
+-(void)showInOrOutWithModel:(PBTableModel *)model WithTitle:(NSString *)title{
+    if ([title isEqualToString:@""]) {
+       // WS(weakSelf);
+        [LEEAlert actionsheet].config
+        .LeeTitle(@"账单编辑")
+        .LeeContent([NSString stringWithFormat:@"编辑账单内容"])
+        .LeeAction(@"编辑账单", ^{
+            VIBRATION;
+            InputViewController * input = [[InputViewController alloc] init];
+            input.isEdit = YES;
+            input.tableModel = model;
+            input.bookModel = self.bookModel;
+            WS(weakSelf);
+            input.InputViewControllerPopBlock = ^{
+                [weakSelf queryBookList];
+            };
+            [self.navigationController hh_presentTiltedVC:input completion:nil];
+        })
+        .LeeCancelAction(@"取消", nil)
+        .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)
+        .LeeShow();
+    }else{
+        WS(weakSelf);
+        [LEEAlert actionsheet].config
+        .LeeTitle(@"账单编辑")
+        .LeeContent([NSString stringWithFormat:@"一键%@、编辑账单内容",title])
+        .LeeAction(@"编辑账单", ^{
+             VIBRATION;
+            InputViewController * input = [[InputViewController alloc] init];
+            input.isEdit = YES;
+            input.tableModel = model;
+            input.bookModel = self.bookModel;
+            WS(weakSelf);
+            input.InputViewControllerPopBlock = ^{
+                [weakSelf queryBookList];
+            };
+            [self.navigationController hh_presentTiltedVC:input completion:nil];
+        })
+        .LeeAction(title, ^{
+            [weakSelf showAlertWithType:title andModel:model];
+        })
+        .LeeCancelAction(@"取消", nil)
+        .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)
+        .LeeShow();
     }
 }
 -(void)showAlertWithType:(NSString *)type andModel:(PBTableModel *)model{
@@ -228,16 +280,30 @@ BaseCollectionViewButtonClickDelegate
             BmobObject  *table = [BmobObject objectWithoutDataWithClassName:@"userTables" objectId:model.objectId];
             if (!model.inType) {
                 [table setObject:[NSNumber numberWithInt:1] forKey:@"dUserInType"];
+                weakSelf.bookModel.bookOutMoney = weakSelf.bookModel.bookOutMoney +[model.userMoney integerValue];
+                [BmobBookExtension updataForModel:weakSelf.bookModel withType:0 success:^(id  _Nonnull responseObject) {
+                    [table updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                        if (isSuccessful) {
+                            [weakSelf queryBookList];
+                        } else {
+                        }
+                    }];
+                }];
             }
             if (!model.outType) {
                 [table setObject:[NSNumber numberWithInt:1] forKey:@"dUserOutType"];
+                weakSelf.bookModel.bookInMoney = weakSelf.bookModel.bookInMoney +[model.userMoney integerValue];
+                [BmobBookExtension updataForModel:weakSelf.bookModel withType:1 success:^(id  _Nonnull responseObject) {
+                    [table updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                        if (isSuccessful) {
+                            [weakSelf queryBookList];
+                        } else {
+                        }
+                    }];
+                }];
             }
-            [table updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                if (isSuccessful) {
-                    [weakSelf queryBookList];
-                } else {
-                }
-            }];
+            
+            
         };
     })
     .LeeHeaderColor(TypeColor[self.bookModel.bookColor])
@@ -280,9 +346,10 @@ BaseCollectionViewButtonClickDelegate
         action.backgroundColor = kWhiteColor;
         action.clickBlock = ^{
             // 删除点击事件Block
-            [PBTableExtension delegateDataForModel:self.tableDataSource[self.longPressIndexPath.row] success:^(id  _Nonnull responseObject) {
+            [weakSelf updateBookModel:weakSelf.bookModel andTableModel:weakSelf.tableDataSource[weakSelf.longPressIndexPath.row]];
+            [PBTableExtension delegateDataForModel:weakSelf.tableDataSource[weakSelf.longPressIndexPath.row] success:^(id  _Nonnull responseObject) {
                 [weakSelf.tableDataSource removeObjectAtIndex:weakSelf.longPressIndexPath.row];
-                if (self.tableDataSource.count == 0) {
+                if (weakSelf.tableDataSource.count == 0) {
                     [weakSelf.collectionView reloadData];
                 }else{
                     [weakSelf.collectionView deleteItemsAtIndexPaths:@[weakSelf.longPressIndexPath]];
@@ -292,6 +359,25 @@ BaseCollectionViewButtonClickDelegate
     })
     .LeeHeaderColor(blueColor)
     .LeeShow();
+}
+-(void)updateBookModel:(PBBookModel *)model andTableModel:(PBTableModel *)tableModel{
+    if (tableModel.inType && tableModel.outType) {
+        model.bookOutMoney = model.bookOutMoney - [tableModel.userMoney integerValue];
+        model.bookInMoney = model.bookInMoney - [tableModel.userMoney integerValue];
+        [BmobBookExtension updataForModel:model withType:2 success:^(id  _Nonnull responseObject) {
+        }];
+        return;
+    }
+    if (tableModel.inType) {
+        model.bookOutMoney = model.bookOutMoney - [tableModel.userMoney integerValue];
+        [BmobBookExtension updataForModel:model withType:0 success:^(id  _Nonnull responseObject) {
+        }];
+    }
+    if (tableModel.outType) {
+        model.bookInMoney = model.bookInMoney - [tableModel.userMoney integerValue];
+        [BmobBookExtension updataForModel:model withType:0 success:^(id  _Nonnull responseObject) {
+        }];
+    }
 }
 -(void)setIsLook:(BOOL)isLook{
     _isLook = isLook;
@@ -316,9 +402,10 @@ BaseCollectionViewButtonClickDelegate
     VIBRATION;
 }
 -(void)queryBookList{
+    [self showLoadingAnimation];
     WS(weakSelf);
-
     [PBTableExtension queryBookListWithModel:self.bookModel success:^(NSMutableArray<PBTableModel *> * _Nonnull tableList) {
+        [weakSelf hiddenLoadingAnimation];
         weakSelf.tableDataSource = tableList;
         [weakSelf.collectionView reloadData];
     } fail:^(id _Nonnull error) {

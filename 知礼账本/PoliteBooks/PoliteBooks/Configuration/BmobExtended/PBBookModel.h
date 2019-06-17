@@ -26,7 +26,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic,strong)NSString * bookDate;
 
+/**
+ 进礼金额
+ */
+@property(nonatomic,assign)NSInteger bookOutMoney;
 
+/**
+ 收礼金额
+ */
+@property(nonatomic,assign)NSInteger bookInMoney;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -126,7 +126,7 @@
 }
 -(void)setIsShowTip:(BOOL)isShowTip{
     _isShowTip = isShowTip;
-    [self setupTipViewWithCell];
+   // [self setupTipViewWithCell];
 }
 
 @end

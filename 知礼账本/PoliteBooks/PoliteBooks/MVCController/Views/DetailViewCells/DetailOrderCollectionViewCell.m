@@ -28,6 +28,8 @@
 ///标签
 @property (nonatomic, strong) UILabel *tableLabel;
 
+
+
 /**
  标签线条
  */
@@ -84,14 +86,14 @@
         make.top.mas_equalTo(self.dateLabel.mas_bottom).mas_offset(kIphone6Width(24));
         make.width.mas_equalTo(kIphone6Width(25));
         make.height.mas_equalTo(kIphone6Width(45));
-        make.left.mas_equalTo(5);
+        make.left.mas_equalTo(15);
         
     }];
     [self.inTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.dateLabel.mas_bottom).mas_offset(kIphone6Width(24));
         make.width.mas_equalTo(kIphone6Width(25));
         make.height.mas_equalTo(kIphone6Width(45));
-        make.right.mas_equalTo(-5);
+        make.right.mas_equalTo(-15);
         
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -201,7 +203,7 @@
 -(void)setModel:(PBTableModel *)model{
     _model = model;
     self.nameLabel.text = model.userName;
-    self.moneyLabel.text =[NSString stringWithFormat:@"%@整",model.userMoney];
+    self.moneyLabel.text =[NSString stringWithFormat:@"%@整",[model.userMoney getCnMoney]];
     self.tableLabel.text = model.userType;
     NSArray * datas = [model.userDate componentsSeparatedByString:@"年"];
     NSArray * month = [datas[1] componentsSeparatedByString:@"月"];
@@ -218,10 +220,8 @@
     }else{
         self.inTypeLabel.hidden = YES;
     }
+    self.outTypeLabel.backgroundColor = TypeColor[model.bookColor];
+    self.tableLabel.backgroundColor = TypeColor[model.bookColor];
 }
--(void)setBookModel:(PBBookModel *)bookModel{
-    _bookModel = bookModel;
-    self.outTypeLabel.backgroundColor = TypeColor[bookModel.bookColor];
-    self.tableLabel.backgroundColor = TypeColor[bookModel.bookColor];
-}
+
 @end

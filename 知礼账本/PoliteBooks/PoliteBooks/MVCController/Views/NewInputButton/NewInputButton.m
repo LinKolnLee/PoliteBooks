@@ -54,7 +54,7 @@
         _ntitleLabel.font = kFont13;
         _ntitleLabel.textColor = kBlackColor;
         _ntitleLabel.textAlignment = NSTextAlignmentCenter;
-        _ntitleLabel.text = @"新计";
+        _ntitleLabel.text = @"新记";
     }
     return _ntitleLabel;
 }

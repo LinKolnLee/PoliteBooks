@@ -19,6 +19,7 @@
 #import <Social/Social.h>
 #import "WJFlowLayout.h"
 #import "LoginViewController.h"
+#import "MineViewController.h"
 @interface IndexViewController ()<
 UICollectionViewDelegateFlowLayout,
 UICollectionViewDataSource,
@@ -68,15 +69,18 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if (self.collectionView) {
-        [self.collectionView reloadData];
-    }
     if (kMemberInfoManager.objectId) {
         [self queryBookList];
     }else{
         self.inputButton.hidden = YES;
     }
     
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([UserGuideManager isGuideWithIndex:0]) {
+        [self guidanceWithIndex:0];
+    }
 }
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -92,8 +96,8 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [self.userButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(kIphone6Width(-20));
         make.right.mas_equalTo(kIphone6Width((-20)));
-        make.width.mas_equalTo(kIphone6Width(30));
-        make.height.mas_equalTo(kIphone6Width(30));
+        make.width.mas_equalTo(kIphone6Width(25));
+        make.height.mas_equalTo(kIphone6Width(25));
     }];
 }
 
@@ -154,11 +158,10 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     return _userButton;
 }
 -(void)userButtonTouchUpInside:(UIButton *)sender{
-//    DateViewController * date = [[DateViewController alloc] init];
-//    [self.navigationController hh_presentBackScaleVC:date height:ScreenHeight-kIphone6Width(230) completion:nil];
     if (kMemberInfoManager.mobilePhoneNumber) {
         //个人中心
-        
+        MineViewController * mine = [[MineViewController alloc] init];
+        [self.navigationController hh_pushErectViewController:mine];
     }else{
         //注册
         LoginViewController * login = [[LoginViewController alloc] init];
@@ -236,9 +239,9 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 }
 #pragma mark - # Delegate
 //MARK: UICollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
+//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+//    return 1;
+//}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.dataSource.count;
@@ -315,8 +318,10 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     }];
 }
 -(void)queryBookList{
+    //[self showLoadingAnimation];
     WS(weakSelf);
     [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
+     //   [weakSelf hiddenLoadingAnimation];
         weakSelf.dataSource = bookList;
         if (bookList.count == 0) {
             weakSelf.inputButton.hidden = YES;
@@ -325,7 +330,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         }
         [weakSelf.collectionView reloadData];
     } fail:^(id _Nonnull error) {
-        
+        [weakSelf hiddenLoadingAnimation];
     }];
 }
 @end

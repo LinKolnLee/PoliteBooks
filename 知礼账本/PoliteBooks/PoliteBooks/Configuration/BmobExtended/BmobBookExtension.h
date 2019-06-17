@@ -18,6 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)delegateDataForModel:(PBBookModel *)model success:(void (^)(id responseObject))success;
 
 + (void)queryBookListsuccess:(void (^)(NSMutableArray<PBBookModel *> *bookList))success fail:(void (^)(id))fail;
+
+/**
+ @param type 0:进礼 1：收礼
+ */
++(void)updataForModel:(PBBookModel *)model withType:(NSInteger)type success:(void (^)(id responseObject))success;
+
++(void)updataAuthorForModel:(PBBookModel *)model andNewUser:(BmobUser *)user success:(void (^)(id responseObject))success;
 @end
 
 NS_ASSUME_NONNULL_END

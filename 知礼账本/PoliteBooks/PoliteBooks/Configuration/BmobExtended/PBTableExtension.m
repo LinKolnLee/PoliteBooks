@@ -11,6 +11,7 @@
 @implementation PBTableExtension
 
 +(void)inserDataForModel:(PBTableModel *)model andBookModel:(PBBookModel *)bookModel success:(void (^)(id _Nonnull))success{
+    [[BeautyLoadingHUD shareManager] startAnimating];
     BmobObject  *table = [BmobObject objectWithClassName:@"userTables"];
     //设置帖子的标题和内容
     [table setObject:model.userMoney forKey:@"dUserMoney"];
@@ -19,10 +20,12 @@
     [table setObject:model.userType forKey:@"dUserType"];
     [table setObject:@(model.inType) forKey:@"dUserInType"];
     [table setObject:@(model.outType) forKey:@"dUserOutType"];
+    [table setObject:@(model.bookColor) forKey:@"dUserBookColor"];
     BmobObject *bookAu = [BmobObject objectWithoutDataWithClassName:@"userBooks" objectId:bookModel.objectId];
     [table setObject:bookAu forKey:@"bookAu"];
     //异步保存
     [table saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (isSuccessful) {
             success(@"1");
         }else{
@@ -34,6 +37,7 @@
 +(void)delegateDataForModel:(PBTableModel *)model success:(void (^)(id _Nonnull))success{
     BmobQuery *bquery = [BmobQuery queryWithClassName:@"userTables"];
     [bquery getObjectInBackgroundWithId:model.objectId block:^(BmobObject *object, NSError *error){
+         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (error) {
         }else{
             if (object) {
@@ -51,6 +55,7 @@
     //匹配查询
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         if (error) {
+             [[BeautyLoadingHUD shareManager] stopAnimating];
             fail(error);
         } else if (array){
             NSMutableArray * arr = [[NSMutableArray alloc] init];
@@ -63,6 +68,7 @@
                 model.inType = [[book objectForKey:@"dUserInType"] integerValue];
                 model.outType = [[book objectForKey:@"dUserOutType"] integerValue];
                 model.objectId = book.objectId;
+                model.bookColor = [[book objectForKey:@"dUserBookColor"] integerValue];
                 [arr addObject:model];
             }
             success(arr);
@@ -71,6 +77,41 @@
 }
 +(void)updataForModel:(PBTableModel *)model success:(void (^)(id _Nonnull))success{
     
+}
++(void)querySearchBookListWithStr:(NSString *)str success:(void (^)(NSMutableArray<PBTableModel *> * _Nonnull))success fail:(void (^)(id _Nonnull))fail{
+    [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
+        if (bookList.count != 0) {
+            NSMutableArray * arr = [[NSMutableArray alloc] init];
+            for (PBBookModel * model in bookList) {
+                BmobQuery *query = [BmobQuery queryWithClassName:@"userTables"];
+                BmobObject *bookAu = [BmobObject objectWithoutDataWithClassName:@"userBooks" objectId:model.objectId];
+                [query whereKey:@"bookAu" equalTo:bookAu];
+                [query whereKey:@"dUserName" equalTo:str];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+                    if (error) {
+                        fail(error);
+                    } else if (array){
+                        for (BmobObject *book in array) {
+                            PBTableModel * model = [[PBTableModel alloc] init];
+                            model.userName = [book objectForKey:@"dUserName"];
+                            model.userType = [book objectForKey:@"dUserType"];
+                            model.userMoney = [book objectForKey:@"dUserMoney"];
+                            model.userDate = [book objectForKey:@"dUserData"];
+                            model.inType = [[book objectForKey:@"dUserInType"] integerValue];
+                            model.outType = [[book objectForKey:@"dUserOutType"] integerValue];
+                            model.objectId = book.objectId;
+                            model.bookColor = [[book objectForKey:@"dUserBookColor"] integerValue];
+                            [arr addObject:model];
+                        }
+                         success(arr);
+                    }
+                }];
+            }
+        }else{
+            [[BeautyLoadingHUD shareManager] stopAnimating];
+        }
+    } fail:^(id _Nonnull error) {
+    }];
 }
 /*
 +(void)inserDataForModel:(PBTableModel *)model andBookModel:(PBBookModel*)bookModel succ{

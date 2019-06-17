@@ -20,10 +20,11 @@
 /// 账本日期
 @property (nonatomic, strong) UILabel *dateLabel;
 
-/// 账本总和
-@property (nonatomic, strong) UILabel *moneySum;
+/// 出账
+@property (nonatomic, strong) UILabel *outTypeLabel;
 
-
+/// 进账
+@property (nonatomic, strong) UILabel *inTypeLabel;
 
 @end
 
@@ -36,7 +37,8 @@
         [self.contentView addSubview:self.backpaperView];
         [self.backpaperView addSubview:self.nameLabel];
         [self.backpaperView addSubview:self.dateLabel];
-        [self.backpaperView addSubview:self.moneySum];
+        [self.backpaperView addSubview:self.outTypeLabel];
+        [self.backpaperView addSubview:self.inTypeLabel];
         [self addMasonry];
     }
     return self;
@@ -62,12 +64,16 @@
         make.right.mas_equalTo(-kIphone6Width(10));
         make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(kIphone6Width(10));
     }];
-    // 账本总和
-    [self.moneySum mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kIphone6Width(25));
-        make.bottom.mas_equalTo(-kIphone6Width(30));
-        make.width.mas_equalTo(kIphone6Width(15));
+    [self.outTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-kIphone6Width(10));
+        make.width.mas_equalTo(20);
+        make.top.mas_equalTo(self.dateLabel.mas_bottom).offset(kIphone6Width(10));
     }];
+    [self.inTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-kIphone6Width(50));
+       make.width.mas_equalTo(20); make.top.mas_equalTo(self.dateLabel.mas_bottom).offset(kIphone6Width(10));
+    }];
+    
 }
 
 #pragma mark - # Getter
@@ -106,15 +112,29 @@
     return _dateLabel;
 }
 
-- (UILabel *)moneySum {
-    if (!_moneySum) {
-        _moneySum = [[UILabel alloc] init];
-        _moneySum.font = kPingFangSC_Semibold(13);
-        _moneySum.textAlignment = NSTextAlignmentCenter;
-        _moneySum.textColor = kWhiteColor;
-        _moneySum.numberOfLines = 0;
+-(UILabel *)outTypeLabel{
+    if (!_outTypeLabel) {
+        _outTypeLabel = [[UILabel alloc] init];
+        _outTypeLabel.font = kFont14;
+        _outTypeLabel.textColor = kWhiteColor;
+        _outTypeLabel.textAlignment = NSTextAlignmentCenter;
+        _outTypeLabel.text = @"進禮";
+        _outTypeLabel.hidden = YES;
+        _outTypeLabel.numberOfLines = 0;
     }
-    return _moneySum;
+    return _outTypeLabel;
+}
+-(UILabel *)inTypeLabel{
+    if (!_inTypeLabel) {
+        _inTypeLabel = [[UILabel alloc] init];
+        _inTypeLabel.font = kFont14;
+        _inTypeLabel.textColor = kWhiteColor;
+        _inTypeLabel.textAlignment = NSTextAlignmentCenter;
+        _inTypeLabel.text = @"收禮";
+        _inTypeLabel.hidden = YES;
+        _inTypeLabel.numberOfLines = 0;
+    }
+    return _inTypeLabel;
 }
 
 
@@ -126,17 +146,18 @@
     }
     self.nameLabel.text = model.bookName;
     self.dateLabel.text = model.bookDate;
-//    NSArray *personArr = [kDataBase jq_lookupTable:[NSString stringWithFormat:@"AccountBooks%@",model.bookName] dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",model.bookName];
-//    if (personArr.count != 1) {
-//        self.moneySum.hidden = NO;
-//        NSInteger price = 0;
-//        for (BooksModel * newModel in personArr) {
-//            price += [newModel.money integerValue];
-//        }
-//        self.moneySum.text = [NSString stringWithFormat:@"总：%@",[[NSString stringWithFormat:@"%ld",price] getCnMoney]];
-//    }else{
-//        self.moneySum.hidden = YES;
-//    }
     
+    if (model.bookOutMoney) {
+        self.inTypeLabel.text = [NSString stringWithFormat:@"進禮 .. %@",[[NSString stringWithFormat:@"%ld",model.bookOutMoney] getCnMoney]];
+        self.inTypeLabel.hidden = NO;
+    }else{
+        self.inTypeLabel.hidden = YES;
+    }
+    if (model.bookInMoney) {
+        self.outTypeLabel.text = [NSString stringWithFormat:@"收禮 .. %@",[[NSString stringWithFormat:@"%ld",model.bookInMoney] getCnMoney]];
+        self.outTypeLabel.hidden = NO;
+    }else{
+        self.outTypeLabel.hidden = YES;
+    }
 }
 @end

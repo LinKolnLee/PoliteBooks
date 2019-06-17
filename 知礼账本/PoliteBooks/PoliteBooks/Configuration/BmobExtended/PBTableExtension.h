@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)queryBookListWithModel:(PBBookModel *)model success:(void (^)(NSMutableArray<PBTableModel *> *tableList))success fail:(void (^)(id))fail;
 
 +(void)updataForModel:(PBTableModel *)model success:(void (^)(id responseObject))success;
+
++ (void)querySearchBookListWithStr:(NSString *)str success:(void (^)(NSMutableArray<PBTableModel *> *tableList))success fail:(void (^)(id))fail;
 @end
 
 NS_ASSUME_NONNULL_END

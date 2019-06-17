@@ -9,4 +9,6 @@ target 'PoliteBooks' do
   pod 'JQFMDB'
   pod 'BmobSDK'
   pod 'LCText'
+  pod 'AAChartKit', :git => 'https://github.com/AAChartModel/AAChartKit.git'
+
 end

@@ -33,7 +33,7 @@
     self.layer.speed = 1;
     [self setUpAnimation];
     [self addSubview:self.titleLabel];
-     self.titleLabel.text = @"数据加载中...";
+     self.titleLabel.text = @"";
 }
 -(void)startAnimatingWithMessage:(NSString *)message {
     [self startAnimating];

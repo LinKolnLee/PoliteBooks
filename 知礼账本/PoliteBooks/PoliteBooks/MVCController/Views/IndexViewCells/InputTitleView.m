@@ -49,7 +49,7 @@
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
         make.top.mas_equalTo(0);
-        make.height.mas_equalTo(20);
+        make.height.mas_equalTo(1);
     }];
     // 左边线条
     [self.lLineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,7 +73,7 @@
     if (!_lineImageView) {
         _lineImageView = [[UIImageView alloc] init];
         _lineImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _lineImageView.image = [UIImage imageNamed:@"line"];
+        //_lineImageView.image = [UIImage imageNamed:@"line"];
     }
     return _lineImageView;
 }
@@ -106,5 +106,7 @@
 -(void)setColorIndex:(NSInteger)colorIndex{
     _colorIndex = colorIndex;
     self.appearButton.backgroundColor = TypeColor[colorIndex];
+    self.lineImageView.backgroundColor = TypeColor[colorIndex];
+    self.lLineView.backgroundColor = TypeColor[colorIndex];
 }
 @end

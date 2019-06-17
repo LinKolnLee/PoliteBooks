@@ -7,7 +7,6 @@
 //
 
 #import "BaseViewController.h"
-
 @interface BaseViewController ()
 
 @end
@@ -27,6 +26,7 @@
 -(void)hiddenLoadingAnimation{
     [[BeautyLoadingHUD shareManager] stopAnimating];
 }
+
 /*
 #pragma mark - Navigation
 

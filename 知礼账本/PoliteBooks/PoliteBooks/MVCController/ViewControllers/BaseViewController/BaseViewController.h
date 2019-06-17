@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BaseViewController : UIViewController
 -(void)showLoadingAnimation;
 -(void)hiddenLoadingAnimation;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

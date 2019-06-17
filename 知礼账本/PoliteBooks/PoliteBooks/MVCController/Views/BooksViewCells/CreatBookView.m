@@ -7,12 +7,13 @@
 //
 
 #import "CreatBookView.h"
+#import "TranslationMicTipView.h"
 
 @interface CreatBookView () <
 UITextFieldDelegate
 >
 
-
+@property(nonatomic,strong)TranslationMicTipView * micTipView;
 /// 背景
 @property (nonatomic, strong) UIView *lineView;
 
@@ -33,6 +34,8 @@ UITextFieldDelegate
 
 @property(nonatomic,assign)NSInteger colorType;
 
+@property(nonatomic,strong)UILabel * guideLabel;
+
 @end
 
 @implementation CreatBookView
@@ -51,9 +54,21 @@ UITextFieldDelegate
         [self addSubview:self.saveButton];
         [self setupLineViews];
         [self addMasonry];
-        //[self animationWithView:self duration:0.25];
+        if ([UserGuideManager isGuideWithIndex:3]) {
+            [self setupTipViewWithCell];
+        }
     }
     return self;
+}
+-(void)setupTipViewWithCell{
+    CGFloat popHeight =kIphone6Width(35.0);
+    CGRect popRect = CGRectMake(0, kIphone6Width(0), kIphone6Width(160), popHeight);
+    self.micTipView = [[TranslationMicTipView alloc] initWithFrame:popRect Title:@"点击左侧颜色条更改账簿颜色"];
+    self.micTipView.centerX = self.frame.size.width/2;
+    self.micTipView.centerY = kIphone6Width(18.5);
+    [self addSubview:self.micTipView];
+    
+    [self performSelector:@selector(hideTipView) withObject:nil afterDelay:3.0];
 }
 -(void)setupLineViews{
     CGFloat width = self.frame.size.height/8;
@@ -69,6 +84,7 @@ UITextFieldDelegate
 -(void)colorSelector:(UIGestureRecognizer *)ges{
     self.backgroundColor = TypeColor[ges.view.tag - 200];
     self.colorType = ges.view.tag - 200;
+    
 }
 #pragma mark - # Event Response
 - (void)closeButtonTouchUpInside:(UIButton *)sender {
@@ -79,7 +95,7 @@ UITextFieldDelegate
     if (self.bookNameTextField.text.length == 0 || self.bookNameTextField.text.length > 8) {
         [LEEAlert actionsheet].config
         .LeeTitle(@"提示")
-        .LeeContent(@"账本名称太长了")
+        .LeeContent(@"账本名称最多8个字")
         .LeeAction(@"好的", ^{
         })
         .LeeShow();
@@ -136,6 +152,12 @@ UITextFieldDelegate
         make.width.mas_equalTo(40);
         make.height.mas_equalTo(40);
     }];
+//    [self.guideLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(kIphone6Width(25));
+//        make.bottom.mas_equalTo(kIphone6Width(-5));
+//        make.width.mas_equalTo(kIphone6Width(15));
+//        make.height.mas_equalTo(kIphone6Width(100));
+//    }];
 }
 
 #pragma mark - # Getter
@@ -186,6 +208,16 @@ UITextFieldDelegate
     }
     return _dateLabel;
 }
+-(UILabel *)guideLabel{
+    if (!_guideLabel) {
+        _guideLabel = [[UILabel alloc] init];
+        _guideLabel.textColor = kWhiteColor;
+        //_guideLabel.textAlignment = NSTextAlignmentCenter;
+        _guideLabel.font = kFont7;
+        _guideLabel.text = @"点击左侧颜色条可修改账本颜色";
+    }
+    return _guideLabel;
+}
 -(void)cleanBtnClick:(UIButton *)sender{
     
 }
@@ -210,6 +242,14 @@ UITextFieldDelegate
         return NO;
     }
     return YES;
+}
+- (void)hideTipView {
+    WS(weakSelf);
+    [UIView animateWithDuration:0.25 animations:^{
+        weakSelf.micTipView.alpha = 0;
+    } completion:^(BOOL finished) {
+        weakSelf.micTipView.hidden = YES;
+    }];
 }
 @end
 

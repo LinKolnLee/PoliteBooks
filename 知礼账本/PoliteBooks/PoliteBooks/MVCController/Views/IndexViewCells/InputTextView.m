@@ -97,7 +97,7 @@ UITextFieldDelegate
     if (!_numberField) {
         _numberField = [[UITextField alloc] init];
         [_numberField setDelegate:self];
-        [_numberField setPlaceholder:@"¥:"];
+        [_numberField setPlaceholder:@"¥:请输入金额"];
         _numberField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 8, 0)];
         _numberField.leftViewMode = UITextFieldViewModeAlways;
         _numberField.clearButtonMode = UITextFieldViewModeWhileEditing;
