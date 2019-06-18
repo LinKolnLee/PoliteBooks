@@ -78,7 +78,7 @@
     if (!_versionLabel) {
         _versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, ScreenHeight-100, ScreenWidth, 25)];
         _versionLabel.font = kPingFangTC_Light(15);
-        _versionLabel.text = [NSString stringWithFormat:@"当前版本：知礼账本%@",kCurrentAppVersion];
+        _versionLabel.text = [NSString stringWithFormat:@"当前版本：知礼账簿%@",kCurrentAppVersion];
         _versionLabel.textColor = TypeColor[5];
         _versionLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -126,7 +126,7 @@
     if (!_searchButton) {
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _searchButton.frame = CGRectMake(0, 200, ScreenWidth, 25);
-        [_searchButton setTitle:@"账本搜索" forState:UIControlStateNormal];
+        [_searchButton setTitle:@"账簿搜索" forState:UIControlStateNormal];
         [_searchButton setTitleColor:TypeColor[6] forState:UIControlStateNormal];
         _searchButton.titleLabel.font = kPingFangTC_Light(15);
         [_searchButton addTarget:self action:@selector(searchButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
@@ -162,14 +162,15 @@
 
 -(void)setDataSource:(NSMutableArray<PBBookModel *> *)dataSource{
     _dataSource = dataSource;
-    self.bookNumberLabel.text = [NSString stringWithFormat:@"当前账本个数：%ld",dataSource.count];
+    self.bookNumberLabel.text = [NSString stringWithFormat:@"当前账簿个数：%ld",dataSource.count];
 }
 -(void)loginOutBtnTouchUpInside:(UIButton *)sender{
     [BmobUser logout];
     kMemberInfoManager.objectId = 0;
+    WS(weakSelf);
     [UserManager showUserLoginView];
     [ToastManage showTopToastWith:@"账户已退出登录"];
-    [self.navigationController popViewControllerAnimated:YES];
+    [weakSelf.navigationController popViewControllerAnimated:YES];
 }
 -(void)searchButtonTouchUpInside:(UIButton *)search{
     SearchViewController * searchVc = [[SearchViewController alloc] init];

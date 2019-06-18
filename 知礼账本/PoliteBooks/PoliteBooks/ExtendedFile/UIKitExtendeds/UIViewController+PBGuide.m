@@ -28,14 +28,14 @@
 }
 -(void)setupHomeGudie{
     XSpotLight *SpotLight = [[XSpotLight alloc]init];
-    SpotLight.messageArray = @[@"查看账本列表",@"查看设置页面"];;
+    SpotLight.messageArray = @[@"查看账簿列表",@"查看设置页面"];;
     SpotLight.rectArray = @[[NSValue valueWithCGRect:CGRectMake(kIphone6Width(30),kIphone6Width(60),kIphone6Width(50),kIphone6Width(50))],[NSValue valueWithCGRect:CGRectMake(ScreenWidth-30,kIphone6Width(60),kIphone6Width(50),kIphone6Width(50))]];;
     [self presentViewController:SpotLight animated:YES completion:^{
     }];
 }
 -(void)setupBookGudie{
     XSpotLight *SpotLight = [[XSpotLight alloc]init];
-    SpotLight.messageArray = @[@"点击新建账本"];;
+    SpotLight.messageArray = @[@"点击新建账簿"];;
     SpotLight.rectArray = @[[NSValue valueWithCGRect:CGRectMake(ScreenWidth-30,kIphone6Width(60),kIphone6Width(50),kIphone6Width(50))]];;
     [self presentViewController:SpotLight animated:YES completion:^{
     }];

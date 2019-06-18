@@ -95,7 +95,7 @@ UITextFieldDelegate
     if (self.bookNameTextField.text.length == 0 || self.bookNameTextField.text.length > 8) {
         [LEEAlert actionsheet].config
         .LeeTitle(@"提示")
-        .LeeContent(@"账本名称最多8个字")
+        .LeeContent(@"账簿名称最多8个字")
         .LeeAction(@"好的", ^{
         })
         .LeeShow();
@@ -194,7 +194,7 @@ UITextFieldDelegate
         NSMutableParagraphStyle *style = [_bookNameTextField.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
         style.alignment = NSTextAlignmentCenter;
         UIFont * font = kPingFangSC_Semibold(20);
-        _bookNameTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"账本名称" attributes:@{NSForegroundColorAttributeName:kWhiteColor,NSFontAttributeName:font,NSParagraphStyleAttributeName:style}];
+        _bookNameTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"账簿名称" attributes:@{NSForegroundColorAttributeName:kWhiteColor,NSFontAttributeName:font,NSParagraphStyleAttributeName:style}];
     }
     return _bookNameTextField;
 }
@@ -214,7 +214,7 @@ UITextFieldDelegate
         _guideLabel.textColor = kWhiteColor;
         //_guideLabel.textAlignment = NSTextAlignmentCenter;
         _guideLabel.font = kFont7;
-        _guideLabel.text = @"点击左侧颜色条可修改账本颜色";
+        _guideLabel.text = @"点击左侧颜色条可修改账簿颜色";
     }
     return _guideLabel;
 }

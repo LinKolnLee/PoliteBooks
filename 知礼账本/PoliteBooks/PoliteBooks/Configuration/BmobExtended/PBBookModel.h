@@ -14,15 +14,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)NSString * objectId;
 /**
- 账本纸张颜色
+ 账簿纸张颜色
  */
 @property(nonatomic,assign)NSInteger bookColor;
 /**
- 账本名称
+ 账簿名称
  */
 @property(nonatomic,strong)NSString * bookName;
 /**
- 账本名称
+ 账簿名称
  */
 @property(nonatomic,strong)NSString * bookDate;
 

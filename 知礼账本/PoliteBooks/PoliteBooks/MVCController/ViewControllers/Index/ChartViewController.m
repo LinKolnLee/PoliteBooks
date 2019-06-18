@@ -35,7 +35,7 @@
     NSMutableArray * models = [[NSMutableArray alloc] init];
     NSMutableArray * colors = [[NSMutableArray alloc] init];
     NSMutableArray * oldBookNames = [UserDefaultStorageManager readObjectForKey:kUSERTABLENAMEKEY];
-    //账本名称
+    //账簿名称
     
     for (NSString * monryTableName in oldBookNames) {
         NSArray *personArr = [kDataBase jq_lookupTable:monryTableName dicOrModel:[BooksModel class] whereFormat:@"where bookName = '%@'",[monryTableName stringByReplacingOccurrencesOfString:@"AccountBooks" withString:@""]];
@@ -65,7 +65,7 @@
     }
     chart.colors = colors;
     chart.dataArray = models;
-    chart.title = @"账本";
+    chart.title = @"账簿";
     [chart draw];
     [self.view addSubview:self.bookNumberLabel];
 

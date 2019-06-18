@@ -13,27 +13,27 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UserColorModel : NSObject
 
 /**
- 账本颜色
+ 账簿颜色
  */
 @property(nonatomic,strong)NSString * image;
 
 /**
- 账本纸张颜色
+ 账簿纸张颜色
  */
 @property(nonatomic,assign)NSInteger paperColor;
 
 /**
- 账本名称
+ 账簿名称
  */
 @property(nonatomic,strong)NSString * bookName;
 
 /**
- 账本创建时间
+ 账簿创建时间
  */
 @property(nonatomic,strong)NSString * bookCreatDate;
 
 /**
- 账本金额总和
+ 账簿金额总和
  */
 @property(nonatomic,strong)NSString * moneySun;
 

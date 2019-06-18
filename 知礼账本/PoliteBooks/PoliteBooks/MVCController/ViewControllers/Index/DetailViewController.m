@@ -20,7 +20,7 @@ BaseCollectionViewButtonClickDelegate
 /// collectionViewCollectionViewLayout
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionViewFlowLayout;
 /**
- 账本列表
+ 账簿列表
  */
 @property (nonatomic, strong) BaseCollectionView *collectionView;
 

@@ -14,10 +14,10 @@
 /// 背景图片
 @property (nonatomic, strong) UIImageView *backpaperView;
 
-/// 账本名称
+/// 账簿名称
 @property (nonatomic, strong) UILabel *nameLabel;
 
-/// 账本日期
+/// 账簿日期
 @property (nonatomic, strong) UILabel *dateLabel;
 
 /// 出账
@@ -52,14 +52,14 @@
         make.left.top.mas_equalTo(kIphone6Width(10));
         make.right.bottom.mas_equalTo(kIphone6Width(-10));
     }];
-    // 账本名称
+    // 账簿名称
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kIphone6Width(10));
         make.top.mas_equalTo(kIphone6Width(45));
         make.width.mas_equalTo(kIphone6Width(300));
         make.height.mas_equalTo(kIphone6Width(40));
     }];
-    // 账本日期
+    // 账簿日期
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kIphone6Width(10));
         make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(kIphone6Width(10));

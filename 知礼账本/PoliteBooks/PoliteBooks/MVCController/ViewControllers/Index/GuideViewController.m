@@ -54,7 +54,7 @@ self.cardView = [[TABCardView alloc] initWithFrame:CGRectMake(ScreenWidth/4, (Sc
     if (!_stateLabel) {
         _stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, ScreenHeight-100, ScreenWidth - 20, 55)];
         _stateLabel.font = kPingFangTC_Light(15);
-        _stateLabel.text = @"账本目录列表： 可以查看和删除账本";
+        _stateLabel.text = @"账簿目录列表： 可以查看和删除账簿";
         _stateLabel.textColor = TypeColor[5];
         _stateLabel.textAlignment = NSTextAlignmentCenter;
         _stateLabel.numberOfLines  =0;
@@ -95,22 +95,22 @@ self.cardView = [[TABCardView alloc] initWithFrame:CGRectMake(ScreenWidth/4, (Sc
             break;
         case 2:
         {
-            self.stateLabel.text = @"图示页面：可以查看各个账本金额所占的比例";
+            self.stateLabel.text = @"图示页面：可以查看各个账簿金额所占的比例";
         }
             break;
         case 3:
         {
-             self.stateLabel.text = @"账本详情页面：可以查看和删除当前账本里的每一条详细信息";
+             self.stateLabel.text = @"账簿详情页面：可以查看和删除当前账簿里的每一条详细信息";
         }
             break;
         case 4:
         {
-           self.stateLabel.text = @"新建账本页面：点击左边颜色条可以创建不同颜色的账本";
+           self.stateLabel.text = @"新建账簿页面：点击左边颜色条可以创建不同颜色的账簿";
         }
             break;
         case 5:
         {
-            self.stateLabel.text = @"账本目录列表： 可以查看和删除账本";
+            self.stateLabel.text = @"账簿目录列表： 可以查看和删除账簿";
         }
             break;
             

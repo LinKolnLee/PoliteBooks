@@ -23,7 +23,7 @@
     //异步保存
     [book saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
-            success(nil);
+            success(@"1");
         }else{
             if (error) {
                  [[BeautyLoadingHUD shareManager] stopAnimating];

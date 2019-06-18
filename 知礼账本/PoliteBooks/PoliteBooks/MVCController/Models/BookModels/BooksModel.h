@@ -13,27 +13,27 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BooksModel : NSObject
 
 /**
- 账本
+ 账簿
  */
 @property(nonatomic,assign)NSInteger  bookId;
 
 /**
- 账本名称
+ 账簿名称
  */
 @property(nonatomic,strong)NSString * bookName;
 
 /**
- 账本图片
+ 账簿图片
  */
 @property(nonatomic,assign)NSInteger  bookImage;
 
 /**
- 账本日期
+ 账簿日期
  */
 @property(nonatomic,strong)NSString * bookDate;
 
 /**
- 账本金额
+ 账簿金额
  */
 @property(nonatomic,strong)NSString * bookMoney;
 

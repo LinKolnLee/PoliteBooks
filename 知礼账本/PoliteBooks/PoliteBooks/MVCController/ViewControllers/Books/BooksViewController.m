@@ -26,7 +26,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 /// collectionViewCollectionViewLayout
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionViewFlowLayout;
 /**
- 账本列表
+ 账簿列表
  */
 @property (nonatomic, strong) BaseCollectionView *collectionView;
 
@@ -130,7 +130,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         _collectionView.bounces = NO;
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.baseDelegate = self;
-        _collectionView.btnTitle = @"点击添加账本";
+        _collectionView.btnTitle = @"点击添加账簿";
         [_collectionView registerClass:[BooksCollectionViewCell class] forCellWithReuseIdentifier:@"BooksCollectionViewCell"];
     }
     return _collectionView;
@@ -192,13 +192,13 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 -(void)showActionsheetWithModel:(PBBookModel *)model{
     WS(weakSelf);
     [LEEAlert actionsheet].config
-    .LeeTitle(@"账本编辑")
-    .LeeContent(@"删除账本、编辑账本名称")
-    .LeeAction(@"编辑账本名称", ^{
+    .LeeTitle(@"账簿编辑")
+    .LeeContent(@"删除账簿、编辑账簿名称")
+    .LeeAction(@"编辑账簿名称", ^{
         VIBRATION;
         [weakSelf editBookNameWithModel:model];
     })
-    .LeeAction(@"删除账本", ^{
+    .LeeAction(@"删除账簿", ^{
         [weakSelf showAlertWithModel:model];
     })
     .LeeCancelAction(@"取消", nil)
@@ -244,15 +244,15 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
      __block UITextField *tf = nil;
     WS(weakSelf);
     [LEEAlert alert].config
-    .LeeTitle(@"账本编辑")
-    .LeeContent(@"修改账本名称")
+    .LeeTitle(@"账簿编辑")
+    .LeeContent(@"修改账簿名称")
     .LeeAddTextField(^(UITextField *textField) {
-        textField.placeholder = @"输入账本名称";
+        textField.placeholder = @"输入账簿名称";
         tf = textField;
     })
     .LeeAction(@"确定", ^{
         if (tf.text.length == 0 || tf.text.length > 8) {
-            [ToastManage showTopToastWith:@"账本名称最多8个字"];
+            [ToastManage showTopToastWith:@"账簿名称最多8个字"];
         }else{
             [weakSelf changeBookModel:model withBookName:tf.text];
         }

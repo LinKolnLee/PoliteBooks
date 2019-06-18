@@ -39,7 +39,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 /// collectionViewCollectionViewLayout
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionViewFlowLayout;
 /**
- 账本列表
+ 账簿列表
  */
 @property (nonatomic, strong) BaseCollectionView *collectionView;
 
@@ -232,7 +232,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         _collectionView.bounces = NO;
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.baseDelegate = self;
-        _collectionView.btnTitle = @"点击添加账本";
+        _collectionView.btnTitle = @"点击添加账簿";
         [_collectionView registerClass:[IndexCollectionViewCell class] forCellWithReuseIdentifier:@"IndexCollectionViewCell"];
     }
     return _collectionView;
