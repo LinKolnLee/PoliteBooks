@@ -11,6 +11,7 @@
 #import "InputViewController.h"
 #import "TranslationMicTipView.h"
 #import "BaseCollectionView.h"
+#import "SPMultipleSwitch.h"
 @interface DetailViewController ()<
 UICollectionViewDelegateFlowLayout,
 UICollectionViewDataSource,
@@ -31,43 +32,36 @@ BaseCollectionViewButtonClickDelegate
 
 @property(nonatomic,strong)PBBookModel * naviModel;
 
-@property(nonatomic,strong)TranslationMicTipView * micTipView;
 
 @property (nonatomic, strong) NSIndexPath *longPressIndexPath;
 
 @property(nonatomic,strong)NSMutableArray<PBTableModel *> * tableDataSource;
+//关系处理
+@property(nonatomic,strong)NSMutableArray<PBTableModel *> * stroneTableDataSource;
 
+@property(nonatomic,strong)SPMultipleSwitch * relationTypeSwitch;
+
+@property(nonatomic,assign)NSInteger tableRealtionType;
+
+@property(nonatomic,strong)NSArray * relationItems;
+
+@property(nonatomic,strong)NSMutableArray<PBTableModel *> * realtionDataSource;
 @end
 
 @implementation DetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.naviView];
+    [self.view addSubview:self.relationTypeSwitch];
     [self.view addSubview:self.collectionView];
     self.tableDataSource = [[NSMutableArray alloc] init];
+    self.realtionDataSource = [[NSMutableArray alloc] init];
+    self.relationItems = @[@"全部",@"亲戚",@"朋友",@"同学",@"同事",@"邻里"];
+    self.tableRealtionType = 0;
     [self addMasonry];
-    if (self.tableDataSource.count != 1) {
-        [self setupTipViewWithCell];
-    }
     [self queryBookList];
-}
--(void)setupTipViewWithCell{
-    CGFloat popHeight =kIphone6Width(35.0);
-    CGRect popRect = CGRectMake(0, kIphone6Width(0), kIphone6Width(140), popHeight);
-    self.micTipView = [[TranslationMicTipView alloc] initWithFrame:popRect Title:@"选中长按删除条目"];
-    self.micTipView.centerX = ScreenWidth/2;
-    self.micTipView.centerY = ScreenHeight - kIphone6Width(50);
-    [self.view addSubview:self.micTipView];
-    [self performSelector:@selector(hideTipView) withObject:nil afterDelay:3.0];
-}
-- (void)hideTipView {
-    WS(weakSelf);
-    [UIView animateWithDuration:0.25 animations:^{
-        weakSelf.micTipView.alpha = 0;
-    } completion:^(BOOL finished) {
-        weakSelf.micTipView.hidden = YES;
-    }];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -88,7 +82,7 @@ BaseCollectionViewButtonClickDelegate
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(74);
+        make.height.mas_equalTo(kIphone6Width(74));
     }];
 }
 -(PBIndexNavigationBarView *)naviView{
@@ -118,19 +112,32 @@ BaseCollectionViewButtonClickDelegate
     }
     return _naviView;
 }
+-(SPMultipleSwitch *)relationTypeSwitch{
+    if (!_relationTypeSwitch) {
+        _relationTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"全部",@"亲戚",@"朋友",@"同学",@"同事",@"邻里"]];
+        _relationTypeSwitch.frame = CGRectMake(15, kIphone6Width(85), ScreenWidth-30, 30);
+        _relationTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
+        _relationTypeSwitch.selectedTitleColor = kWhiteColor;
+        _relationTypeSwitch.titleColor = kHexRGB(0x665757);
+        _relationTypeSwitch.trackerColor = TypeColor[self.bookModel.bookColor];
+        _relationTypeSwitch.contentInset = 5;
+        _relationTypeSwitch.spacing = 10;
+        _relationTypeSwitch.titleFont = kFont14;
+        //        _relationTypeSwitch.layer.borderWidth = 1 / [UIScreen mainScreen].scale;
+        //        _relationTypeSwitch.layer.borderColor = kHexRGB(0x665757).CGColor;
+        [_relationTypeSwitch addTarget:self action:@selector(relationTypeSwitchAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _relationTypeSwitch;
+}
 - (BaseCollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = kIphone6Width(14);
-        flowLayout.minimumInteritemSpacing = kIphone6Width(25);
+        flowLayout.minimumInteritemSpacing = kIphone6Width(5);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - 160);
+        flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - kIphone6Width(160));
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        CGFloat topHeight = kIphone6Width(100);
-        if (IPHONEXR || IPHONEXSMAX || IPhoneX) {
-            topHeight = kIphone6Width(120);
-        }
-        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(3, 84 , ScreenWidth - 6, ScreenHeight - 100) collectionViewLayout:flowLayout];
+        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, kIphone6Width(125) , ScreenWidth, ScreenHeight - 140) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
@@ -138,16 +145,16 @@ BaseCollectionViewButtonClickDelegate
         _collectionView.pagingEnabled = YES;
         //_collectionView.bounces = NO;
         _collectionView.baseDelegate = self;
-        _collectionView.btnTitle = @"点击开始记账";
-        _collectionView.noDataTitle = @"你还没有记过该类型账";
+        _collectionView.btnTitle = @"记一笔~";
+        //_collectionView.noDataTitle = @"你还没有记过该类型账";
         _collectionView.backgroundColor = [UIColor whiteColor];
         // right
-        [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
-            [ToastManage showTopToastWith:@"没有更多数据了"];
-        }];
-        [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
-            [ToastManage showTopToastWith:@"已经是最新的啦"];
-        }];
+//        [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
+//            [ToastManage showTopToastWith:@"没有更多数据了"];
+//        }];
+//        [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
+//            [ToastManage showTopToastWith:@"已经是最新的啦"];
+//        }];
         [_collectionView registerClass:[DetailOrderCollectionViewCell class] forCellWithReuseIdentifier:@"DetailOrderCollectionViewCell"];
     }
     return _collectionView;
@@ -421,10 +428,26 @@ BaseCollectionViewButtonClickDelegate
     [PBTableExtension queryBookListWithModel:self.bookModel success:^(NSMutableArray<PBTableModel *> * _Nonnull tableList) {
         [weakSelf hiddenLoadingAnimation];
         weakSelf.tableDataSource = tableList;
+        weakSelf.stroneTableDataSource = tableList;
         [weakSelf.collectionView reloadData];
     } fail:^(id _Nonnull error) {
     }];
 }
-
+-(void)relationTypeSwitchAction:(SPMultipleSwitch *)swit{
+    self.tableRealtionType = swit.selectedSegmentIndex;
+    if (swit.selectedSegmentIndex) {
+        [self.realtionDataSource removeAllObjects];
+        for (PBTableModel * model in self.stroneTableDataSource) {
+            if ([model.userRelation isEqualToString:self.relationItems[swit.selectedSegmentIndex]]) {
+                [self.realtionDataSource addObject:model];
+            }
+        }
+        self.tableDataSource = self.realtionDataSource;
+        [self.collectionView reloadData];
+    }else{
+        self.tableDataSource = self.stroneTableDataSource;
+         [self.collectionView reloadData];
+    }
+}
 
 @end

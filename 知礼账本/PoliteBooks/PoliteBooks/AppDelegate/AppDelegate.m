@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "IndexViewController.h"
 #import "BaseNavigationController.h"
-
 @interface AppDelegate ()
 
 @end
@@ -21,7 +20,13 @@
     return YES;
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //云服务器SDK
+    if (@available(iOS 11.0, *)) {
+        
+        [UITableView appearance].estimatedRowHeight = 0;
+        [UITableView appearance].estimatedSectionHeaderHeight = 0;
+        [UITableView appearance].estimatedSectionFooterHeight = 0;
+        [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {}
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [UserColorConfiguration initUserColorsInFirstboot];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

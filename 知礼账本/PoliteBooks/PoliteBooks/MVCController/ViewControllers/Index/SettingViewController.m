@@ -12,6 +12,8 @@
 #import "DateViewController.h"
 #import "SearchViewController.h"
 #import "WKWebViewController.h"
+#import "FeedbackViewController.h"
+#import "ExportExcellViewController.h"
 @interface SettingViewController ()
 
 @property(nonatomic,strong)PBIndexNavigationBarView * naviView;
@@ -24,13 +26,17 @@
 
 @property(nonatomic,strong)UILabel * outBookLabel;
 
-@property(nonatomic,strong)UIButton * loginOutBtn;
+@property(nonatomic,strong)UIButton * exportButton;
 
 @property(nonatomic,strong)UIButton * searchButton;
+
+@property(nonatomic,strong)UIButton * feedbackButton;
 
 @property(nonatomic,strong)UIButton * registerButton;
 
 @property(nonatomic,strong)UIButton * priveButton;
+
+@property(nonatomic,strong)UIButton * loginOutBtn;
 @end
 
 @implementation SettingViewController
@@ -42,7 +48,9 @@
     [self.view addSubview:self.versionLabel];
     [self.view addSubview:self.bookNumberLabel];
     [self.view addSubview:self.outBookLabel];
+    [self.view addSubview:self.exportButton];
     [self.view addSubview:self.searchButton];
+    [self.view addSubview:self.feedbackButton];
     [self.view addSubview:self.registerButton];
     [self.view addSubview:self.priveButton];
     [self.view addSubview:self.loginOutBtn];
@@ -107,25 +115,21 @@
     }
     return _outBookLabel;
 }
-
--(UIButton *)loginOutBtn{
-    if (!_loginOutBtn) {
-        _loginOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _loginOutBtn.frame = CGRectMake(0, 350, ScreenWidth, 25);
-        [_loginOutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
-        [_loginOutBtn setTitleColor:TypeColor[6] forState:UIControlStateNormal];
-        _loginOutBtn.titleLabel.font = kPingFangTC_Light(15);
-        if (![BmobUser currentUser].mobilePhoneNumber) {
-            _loginOutBtn.hidden = YES;
-        }
-        [_loginOutBtn addTarget:self action:@selector(loginOutBtnTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+-(UIButton *)exportButton{
+    if (!_exportButton) {
+        _exportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _exportButton.frame = CGRectMake(0, 200, ScreenWidth, 25);
+        [_exportButton setTitle:@"导出EXCEL" forState:UIControlStateNormal];
+        [_exportButton setTitleColor:TypeColor[6] forState:UIControlStateNormal];
+        _exportButton.titleLabel.font = kPingFangTC_Light(15);
+        [_exportButton addTarget:self action:@selector(exportButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _loginOutBtn;
+    return _exportButton;
 }
 -(UIButton *)searchButton{
     if (!_searchButton) {
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _searchButton.frame = CGRectMake(0, 200, ScreenWidth, 25);
+        _searchButton.frame = CGRectMake(0, 250, ScreenWidth, 25);
         [_searchButton setTitle:@"账簿搜索" forState:UIControlStateNormal];
         [_searchButton setTitleColor:TypeColor[6] forState:UIControlStateNormal];
         _searchButton.titleLabel.font = kPingFangTC_Light(15);
@@ -133,10 +137,21 @@
     }
     return _searchButton;
 }
+-(UIButton *)feedbackButton{
+    if (!_feedbackButton) {
+        _feedbackButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _feedbackButton.frame = CGRectMake(0, 300, ScreenWidth, 25);
+        [_feedbackButton setTitle:@"意见反馈" forState:UIControlStateNormal];
+        [_feedbackButton setTitleColor:TypeColor[6] forState:UIControlStateNormal];
+        _feedbackButton.titleLabel.font = kPingFangTC_Light(15);
+        [_feedbackButton addTarget:self action:@selector(feedbackButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _feedbackButton;
+}
 -(UIButton *)registerButton{
     if (!_registerButton) {
         _registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _registerButton.frame = CGRectMake(0, 250, ScreenWidth, 25);
+        _registerButton.frame = CGRectMake(0, 350, ScreenWidth, 25);
         [_registerButton setTitle:@"注册协议" forState:UIControlStateNormal];
         [_registerButton setTitleColor:TypeColor[6] forState:UIControlStateNormal];
         _registerButton.titleLabel.font = kPingFangTC_Light(15);
@@ -147,13 +162,27 @@
 -(UIButton *)priveButton{
     if (!_priveButton) {
         _priveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _priveButton.frame = CGRectMake(0, 300, ScreenWidth, 25);
+        _priveButton.frame = CGRectMake(0, 400, ScreenWidth, 25);
         [_priveButton setTitle:@"隐私政策" forState:UIControlStateNormal];
         [_priveButton setTitleColor:TypeColor[6] forState:UIControlStateNormal];
         _priveButton.titleLabel.font = kPingFangTC_Light(15);
         [_priveButton addTarget:self action:@selector(priveButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _priveButton;
+}
+-(UIButton *)loginOutBtn{
+    if (!_loginOutBtn) {
+        _loginOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _loginOutBtn.frame = CGRectMake(0, 450, ScreenWidth, 25);
+        [_loginOutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+        [_loginOutBtn setTitleColor:TypeColor[6] forState:UIControlStateNormal];
+        _loginOutBtn.titleLabel.font = kPingFangTC_Light(15);
+        if (![BmobUser currentUser].mobilePhoneNumber) {
+            _loginOutBtn.hidden = YES;
+        }
+        [_loginOutBtn addTarget:self action:@selector(loginOutBtnTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _loginOutBtn;
 }
 -(void)outBookLabelTouchUpInside:(UIButton *)sender{
     DateViewController * date = [[DateViewController alloc] init];
@@ -176,6 +205,10 @@
     SearchViewController * searchVc = [[SearchViewController alloc] init];
     [self.navigationController hh_pushBackViewController:searchVc];
 }
+-(void)feedbackButtonTouchUpInside:(UIButton *)sender{
+    FeedbackViewController * feedBack = [[FeedbackViewController alloc] init];
+    [self.navigationController hh_pushBackViewController:feedBack];
+}
 -(void)registerButtonTouchUpInside:(UIButton *)sender{
     WKWebViewController *webVC = [[WKWebViewController alloc] init];
     webVC.titleStr  = @"注册协议";
@@ -188,6 +221,11 @@
     webVC.urlStr = [[[NSBundle mainBundle] URLForResource:@"PrivacyAgreement.html" withExtension:nil] absoluteString];
     [self.navigationController pushViewController:webVC  animated:NO];
 }
+-(void)exportButtonTouchUpInside:(UIButton *)sender{
+    ExportExcellViewController * export = [[ExportExcellViewController alloc] init];
+    [self.navigationController hh_pushBackViewController:export];
+}
+
 /*
 #pragma mark - Navigation
 

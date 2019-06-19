@@ -9,6 +9,7 @@
 #import "MineViewController.h"
 #import "MineChartCollectionViewCell.h"
 #import "WJFlowLayout.h"
+#import "RealtionViewController.h"
 @interface MineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property(nonatomic,strong)NSMutableArray * dataSource;
@@ -24,6 +25,7 @@
 @property(nonatomic,strong)UILabel * outMoneyLabel;
 
 @property(nonatomic,strong)NSString * bookNumber;
+
 @end
 
 @implementation MineViewController
@@ -64,12 +66,17 @@
         _naviView.title = @"用户账簿信息";
         _naviView.titleFont = kFont15;
         _naviView.leftImage = @"NavigationBack";
-        _naviView.rightImage = @"BookChars";
-        _naviView.rightHidden = YES;
+        _naviView.rightImage = @"realtion";
+        _naviView.rightHidden = NO;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
             [weakSelf.navigationController popViewControllerAnimated:YES];
+        };
+        _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{
+            //右按钮点击
+            RealtionViewController * realtion = [[RealtionViewController alloc] init];
+            [weakSelf.navigationController hh_pushBackViewController:realtion];
         };
     }
     return _naviView;

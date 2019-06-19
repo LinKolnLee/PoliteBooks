@@ -21,6 +21,11 @@ UIKIT_EXTERN NSString *const kUSERBOOKNAMEKEY;
 UIKIT_EXTERN NSString *const kBmobAppkey;
 
 UIKIT_EXTERN NSString *const kUserRegiseBook;
+
+
+UIKIT_EXTERN NSString *const WXAppKey;
+
+UIKIT_EXTERN NSString *const WXAppSecret;
 @end
 
 NS_ASSUME_NONNULL_END

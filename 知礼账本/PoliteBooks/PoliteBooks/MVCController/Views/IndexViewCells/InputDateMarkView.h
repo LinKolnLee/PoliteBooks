@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong,nonatomic)NSString * titleStr;
 
+@property(strong,nonatomic)PBBookModel * bookModel;
+
 @property (nonatomic, strong) UITextField *markTextField;
 
 

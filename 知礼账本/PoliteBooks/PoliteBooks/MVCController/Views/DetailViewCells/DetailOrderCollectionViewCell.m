@@ -28,7 +28,7 @@
 ///标签
 @property (nonatomic, strong) UILabel *tableLabel;
 
-
+@property (nonatomic, strong) UILabel *relationLabel;
 
 /**
  标签线条
@@ -40,7 +40,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        
+        [self.contentView addSubview:self.relationLabel];
         [self.contentView addSubview:self.nameLabel];
         [self.contentView addSubview:self.moneyLabel];
         [self.contentView addSubview:self.dateLabel];
@@ -63,10 +63,15 @@
 - (void)addMasonry {
     // 名字
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kIphone6Width(15));
+        make.top.mas_equalTo(kIphone6Width(20));
         make.width.mas_equalTo(kIphone6Width(20));
         make.height.mas_equalTo(kIphone6Width(80));
         make.centerX.mas_equalTo(0);
+    }];
+    [self.relationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-5);
+        make.width.mas_equalTo(kIphone6Width(15));
+        make.top.mas_equalTo(10);
     }];
     // 金额
     [self.moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,6 +117,17 @@
 }
 
 #pragma mark - # Getter
+-(UILabel *)relationLabel{
+    if (!_relationLabel) {
+        _relationLabel = [[UILabel alloc] init];
+        _relationLabel.font = kFont10;
+        _relationLabel.textColor = TypeColor[self.model.bookColor];
+        _relationLabel.textAlignment = NSTextAlignmentCenter;
+        _relationLabel.text = @"朋友";
+        _relationLabel.numberOfLines = 0;
+    }
+    return _relationLabel;
+}
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] init];
@@ -227,7 +243,7 @@
     if (moneyStr.length > 4) {
         self.moneyLabel.font = [UIFont fontWithName:@"Yuppy SC" size:kIphone6Width(18 - (moneyStr.length - 2) )];
     }
-    
+   self.relationLabel.text = model.userRelation;
 }
 
 @end

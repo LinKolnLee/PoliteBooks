@@ -7,7 +7,7 @@
 //
 
 #import "InputDateMarkView.h"
-#import "LXSegmentBtnView.h"
+#import "SPMultipleSwitch.h"
 @interface InputDateMarkView () <
 UITextFieldDelegate
 >
@@ -21,7 +21,7 @@ UITextFieldDelegate
 
 @property (nonatomic,strong)UIView * lineView;
 
-@property (nonatomic , strong) LXSegmentBtnView *segmentView;
+@property(nonatomic,strong)SPMultipleSwitch * moneyTypeSwitch;
 @end
 
 @implementation InputDateMarkView
@@ -30,13 +30,12 @@ UITextFieldDelegate
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.dataButton];
         [self addSubview:self.markLabel];
-        [self addSubview:self.segmentView];
+        [self addSubview:self.moneyTypeSwitch];
         [self addSubview:self.markTextField];
         [self addSubview:self.dataImageView];
         [self addSubview:self.lineView];
         [self addMasonry];
         [self.dataButton setTitle:[[NSDate getCurrentTimes] getCNDate] forState:UIControlStateNormal];
-        self.segmentView.btnTitleArray = @[@"進禮",@"收禮"];
     }
     return self;
 }
@@ -57,15 +56,15 @@ UITextFieldDelegate
         make.width.mas_equalTo(kIphone6Width(80));
         make.height.mas_equalTo(kIphone6Width(25));
     }];
-    [self.segmentView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.moneyTypeSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(kIphone6Width(-10));
-        make.top.mas_equalTo(self.markLabel.mas_bottom).offset(kIphone6Width(54));
-        make.width.mas_equalTo(kIphone6Width(100));
-        make.height.mas_equalTo(kIphone6Width(30));
+        make.top.mas_equalTo(self.markLabel.mas_bottom).offset(kIphone6Width(34));
+        make.width.mas_equalTo(kIphone6Width(150));
+        make.height.mas_equalTo(kIphone6Width(40));
     }];
     [self.dataImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(kIphone6Width(-160));
-        make.top.mas_equalTo(self.segmentView.mas_bottom).offset(kIphone6Width(54));
+        make.top.mas_equalTo(self.moneyTypeSwitch.mas_bottom).offset(kIphone6Width(34));
         make.width.mas_equalTo(kIphone6Width(20));
         make.height.mas_equalTo(kIphone6Width(20));
     }];
@@ -140,22 +139,22 @@ UITextFieldDelegate
     }
     return _lineView;
 }
--(LXSegmentBtnView *)segmentView{
-    if (!_segmentView) {
-        _segmentView = [[LXSegmentBtnView alloc] init];
-        _segmentView.btnBackgroundNormalColor = kWhiteColor;
-        _segmentView.btnBackgroundSelectColor = kHexRGB(0x665757);
-        _segmentView.titleFont = kFont14;
-        _segmentView.btnTitleNormalColor = kHexRGB(0x3d3d4f);
-        _segmentView.btnTitleSelectColor = kWhiteColor;
-        WS(weakSelf);
-        _segmentView.lxSegmentBtnSelectIndexBlock = ^(NSInteger index) {
-            if (weakSelf.InputDateMarkViewTypeSelectBlock) {
-                weakSelf.InputDateMarkViewTypeSelectBlock(index);
-            }
-        };
+-(SPMultipleSwitch *)moneyTypeSwitch{
+    if (!_moneyTypeSwitch) {
+        _moneyTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"進禮",@"收禮"]];
+        _moneyTypeSwitch.backgroundColor = kWhiteColor;
+        _moneyTypeSwitch.selectedTitleColor = kWhiteColor;
+        _moneyTypeSwitch.titleColor = kHexRGB(0x665757);
+        _moneyTypeSwitch.contentInset = 5;
+        _moneyTypeSwitch.spacing = 10;
+        _moneyTypeSwitch.titleFont = kFont14;
+        _moneyTypeSwitch.layer.borderWidth = 1 / [UIScreen mainScreen].scale;
+        _moneyTypeSwitch.layer.borderColor = kHexRGB(0x665757).CGColor;
+//        _moneyTypeSwitch.layer.cornerRadius = kIphone6Width(20);
+//        _moneyTypeSwitch.layer.masksToBounds = YES;
+        [_moneyTypeSwitch addTarget:self action:@selector(moneyTypeSwitchAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _segmentView;
+    return _moneyTypeSwitch;
 }
 -(void)dataButtonTouchUpInside:(UIButton *)sender{
     if (self.InputDateMarkViewTouchClickBlock) {
@@ -166,6 +165,14 @@ UITextFieldDelegate
     _titleStr = titleStr;
     [_dataButton setTitle:titleStr forState:UIControlStateNormal];
 }
+-(void)moneyTypeSwitchAction:(SPMultipleSwitch *)swit{
+    if (self.InputDateMarkViewTypeSelectBlock) {
+        self.InputDateMarkViewTypeSelectBlock( swit.selectedSegmentIndex);
+    }
+}
 
-
+-(void)setBookModel:(PBBookModel *)bookModel{
+    _bookModel = bookModel;
+    _moneyTypeSwitch.trackerColor = TypeColor[bookModel.bookColor];
+}
 @end

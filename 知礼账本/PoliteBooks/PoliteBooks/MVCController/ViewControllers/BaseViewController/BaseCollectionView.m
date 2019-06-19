@@ -17,7 +17,6 @@
         self.isShowEmptyData = YES;
         self.emptyDataSetSource = self;
         self.emptyDataSetDelegate = self;
-        
     }
     return self;
 }
@@ -27,6 +26,11 @@
         self.isShowEmptyData = YES;
         self.emptyDataSetSource = self;
         self.emptyDataSetDelegate = self;
+        if (@available(iOS 11.0, *)) {
+            self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            // Fallback on earlier versions
+        }
     }
     return self;
 }
@@ -41,7 +45,7 @@
     return YES;
 }
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    NSString *text = self.noDataTitle?self.noDataTitle:@"你还没有创建账簿";
+    NSString *text = self.noDataTitle?self.noDataTitle:@"";
     NSDictionary *attributes = @{NSFontAttributeName: kFont14,
                                  NSForegroundColorAttributeName: [UIColor grayColor]};
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];

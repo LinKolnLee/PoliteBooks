@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)NSInteger outType;
 
 @property(nonatomic,assign)NSInteger bookColor;
+
+@property (nonatomic,strong)NSString * userRelation;
 @end
 
 NS_ASSUME_NONNULL_END

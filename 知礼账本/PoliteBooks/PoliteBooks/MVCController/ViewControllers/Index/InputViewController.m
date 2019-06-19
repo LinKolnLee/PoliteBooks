@@ -13,7 +13,7 @@
 #import "InputDateMarkView.h"
 #import "YLNumberKeyboard.h"
 #import "WSDatePickerView.h"
-
+#import "SPMultipleSwitch.h"
 @interface InputViewController ()<UITextFieldDelegate>
 
 @property(nonatomic,strong)UIButton * sureButton;
@@ -34,6 +34,8 @@
 
 @property(nonatomic,strong)InputDateMarkView * dateMarkView;
 
+@property(nonatomic,strong)SPMultipleSwitch * relationTypeSwitch;
+
 /**
  进账/出账
  */
@@ -44,6 +46,11 @@
  记账明细类别
  */
 @property(nonatomic,assign)NSInteger tableType;
+
+/**
+ 关系类别
+ */
+@property(nonatomic,assign)NSInteger tableRealtionType;
 
 /**
  账单金额
@@ -61,6 +68,8 @@
 @property(nonatomic,strong)NSString * nameString;
 
 @property(nonatomic,strong)YLNumberKeyboard * keyboard;
+
+@property(nonatomic,strong)NSArray * relationItems;
 @end
 
 @implementation InputViewController
@@ -75,14 +84,15 @@
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.titleSettingView];
     [self.view addSubview:self.textInputView];
-    //[self.view addSubview:self.classTagView];
     [self.view addSubview:self.dateMarkView];
+    [self.view addSubview:self.relationTypeSwitch];
     [self addMasonry];
     self.classType = 0;
     self.tableType = 0;
+    self.tableRealtionType = 0;
     self.moneyString = @"";
     self.dateString = [[NSDate getCurrentTimes] getCNDate];
-
+    self.relationItems = @[@"亲戚",@"朋友",@"同学",@"同事",@"邻里"];
 }
 
 
@@ -109,7 +119,7 @@
     [self.textInputView.numberField becomeFirstResponder];
     // 个性化设置键盘
     _keyboard.bgColor = kWhiteColor;
-    _keyboard.returnBgColor = kHexRGB(0x665757);
+    _keyboard.returnBgColor = TypeColor[self.bookModel.bookColor];;
     _keyboard.returnTitleColor = kWhiteColor;
     //kHexRGB(0xD4CF96);
     _keyboard.formatString = @"00000.000";
@@ -150,21 +160,27 @@
     }];
     [self.titleSettingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(kIphone6Width(20));
-        make.height.mas_equalTo(kIphone6Width(100));
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(kIphone6Width(15));
+        make.height.mas_equalTo(kIphone6Width(40));
     }];
     [self.textInputView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
         make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(self.titleSettingView.mas_bottom).offset(kIphone6Width(44));
+        make.top.mas_equalTo(self.titleSettingView.mas_bottom).offset(kIphone6Width(15));
         make.height.mas_equalTo(kIphone6Width(50));
     }];
     [self.dateMarkView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.textInputView.mas_bottom).offset(54);
+        make.top.mas_equalTo(self.textInputView.mas_bottom).offset(35);
         make.right.mas_equalTo(0);
-        make.height.mas_equalTo(kIphone6Width(100));
-        make.width.mas_equalTo(kIphone6Width(300));
+        make.height.mas_equalTo(kIphone6Width(214));
+        make.width.mas_equalTo(ScreenWidth);
     }];
+//    [self.relationTypeSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.dateMarkView.mas_bottom).offset(kIphone6Width(20));
+//        make.left.mas_equalTo(kIphone6Width(20));
+//        make.right.mas_equalTo(kIphone6Width(-20));
+//        make.height.mas_equalTo(kIphone6Width(40));
+//    }];
 }
 
 #pragma mark - # Getter
@@ -222,6 +238,7 @@
     if (!_dateMarkView) {
         _dateMarkView = [[InputDateMarkView alloc] init];
         _dateMarkView.markTextField.delegate = self;
+        _dateMarkView.bookModel = self.bookModel;
         WS(weakSelf);
          __weak InputDateMarkView *dateMarkView1 = _dateMarkView;
         _dateMarkView.InputDateMarkViewTouchClickBlock = ^{
@@ -246,6 +263,26 @@
     }
     return _dateMarkView;
 }
+-(SPMultipleSwitch *)relationTypeSwitch{
+    if (!_relationTypeSwitch) {
+        _relationTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"亲戚",@"朋友",@"同学",@"同事",@"邻里"]];
+        _relationTypeSwitch.frame = CGRectMake(15, ScreenHeight - kIphone6Width(260), ScreenWidth-30, 40);
+        _relationTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
+        _relationTypeSwitch.selectedTitleColor = kWhiteColor;
+        _relationTypeSwitch.titleColor = kHexRGB(0x665757);
+        _relationTypeSwitch.trackerColor = TypeColor[self.bookModel.bookColor];
+        _relationTypeSwitch.contentInset = 5;
+        _relationTypeSwitch.spacing = 10;
+        _relationTypeSwitch.titleFont = kFont14;
+//        _relationTypeSwitch.layer.borderWidth = 1 / [UIScreen mainScreen].scale;
+//        _relationTypeSwitch.layer.borderColor = kHexRGB(0x665757).CGColor;
+        [_relationTypeSwitch addTarget:self action:@selector(relationTypeSwitchAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _relationTypeSwitch;
+}
+-(void)relationTypeSwitchAction:(SPMultipleSwitch *)swit{
+    self.tableRealtionType = swit.selectedSegmentIndex;
+}
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     self.nameString = textField.text;
 }
@@ -260,7 +297,6 @@
     return YES;
 }
 -(void)sureButtonTouchUpInside:(UIButton *)sender{
-    self.sureButton.enabled = NO;
     self.moneyString =  self.textInputView.numberField.text;
     if (self.nameString.length == 0 || self.moneyString.length == 0 ) {
         return;
@@ -270,6 +306,7 @@
     }else{
         [self setupModelConfig];
     }
+    self.sureButton.enabled = NO;
 }
 -(void)cancelButtonTouchUpInside:(UIButton *)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -278,6 +315,7 @@
     BmobObject  *table = [BmobObject objectWithoutDataWithClassName:@"userTables" objectId:self.tableModel.objectId];
     [table setObject:self.moneyString forKey:@"dUserMoney"];
     [table setObject:self.nameString forKey:@"dUserName"];
+    [table setObject:self.relationItems[self.tableRealtionType] forKey:@"dUserRealtion"];
     WS(weakSelf);
     [table updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
@@ -337,6 +375,7 @@
     model.userDate = self.dateString;
     model.userType = self.bookModel.bookName;
     model.bookColor = self.bookModel.bookColor;
+    model.userRelation = self.relationItems[self.tableRealtionType];
     if (self.classType == 0) {
         model.inType = 1;
         model.outType = 0;
@@ -347,7 +386,7 @@
     }else{
         model.inType = 0;
         model.outType = 1;
-        self.bookModel.bookOutMoney = self.bookModel.bookInMoney + [self.moneyString integerValue];
+        self.bookModel.bookInMoney = self.bookModel.bookInMoney + [self.moneyString integerValue];
         [BmobBookExtension updataForModel:self.bookModel withType:1 success:^(id  _Nonnull responseObject) {
         }];
     }
@@ -368,7 +407,15 @@
     self.textInputView.numberField.text = tableModel.userMoney;
     self.nameString = tableModel.userName;
     self.dateMarkView.markTextField.text = tableModel.userName;
-    
+    if (tableModel.userRelation) {
+        for (int i = 0; i < self.relationItems.count; i++) {
+            if ([tableModel.userRelation isEqualToString:self.relationItems[i]]) {
+                self.tableRealtionType = i;
+            }
+        }
+    }else{
+        self.tableRealtionType = 0;
+    }
 }
 -(void)setIsEdit:(BOOL)isEdit{
     _isEdit = isEdit;

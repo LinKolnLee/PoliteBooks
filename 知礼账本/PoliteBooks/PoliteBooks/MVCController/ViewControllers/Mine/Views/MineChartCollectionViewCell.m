@@ -113,4 +113,42 @@
         self.title = @"进礼金额分析";
     }
 }
+
+//-(void)setRoalIndex:(NSInteger)roalIndex{
+//     _roalIndex = roalIndex;
+//     NSArray * items = @[@"亲戚",@"朋友",@"同学",@"同事",@"邻里"];
+//    self.title = [NSString stringWithFormat:@"%@金额分析",items[roalIndex]];
+//}
+//-(void)setRealtionModels:(NSMutableArray<PBBookModel *> *)realtionModels{
+//    _realtionModels = realtionModels;
+//    for (PBBookModel * model in realtionModels) {
+//        [PBTableExtension queryBookListWithModel:model success:^(NSMutableArray<PBTableModel *> * _Nonnull tableList) {
+//            if (<#condition#>) {
+//                <#statements#>
+//            }
+//            
+//        } fail:^(id _Nonnull error) {
+//        }];
+//    }
+//    NSArray * items = @[@"亲戚",@"朋友",@"同学",@"同事",@"邻里"];
+//    [self.dataArray removeAllObjects];
+//    [self.colorArray removeAllObjects];
+//    for (PBTableModel * model in realtionModels) {
+//        if ([model.userRelation isEqualToString:items[self.roalIndex]]) {
+//            [self.dataArray addObject:@[model.userRelation,@([model.userMoney integerValue])]];
+//            [self.colorArray addObject:TypeColorStr[model.bookColor]];
+//        }
+//    }
+//    if (self.dataArray) {
+//        self.aaChartView.hidden = NO;
+//        self.noDataLabel.hidden = YES;
+//        AAOptions *aaOptions = [self configureChartWithBackgroundImage:self.dataArray];
+//        [self.aaChartView aa_drawChartWithOptions:aaOptions];
+//    }else{
+//        self.aaChartView.hidden = YES;
+//        self.noDataLabel.hidden = NO;
+//    }
+//    
+//    
+//}
 @end

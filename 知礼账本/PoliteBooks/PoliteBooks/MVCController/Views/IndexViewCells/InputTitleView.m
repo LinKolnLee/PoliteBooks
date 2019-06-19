@@ -34,7 +34,7 @@
         keyAnimaion.values = @[@(-10 / 180.0 * M_PI),@(10 /180.0 * M_PI),@(-10/ 180.0 * M_PI)];//度数转弧度
         keyAnimaion.removedOnCompletion = NO;
         keyAnimaion.fillMode = kCAFillModeForwards;
-        keyAnimaion.duration = 0.3;
+        keyAnimaion.duration = 0.5;
         keyAnimaion.repeatCount = MAXFLOAT;
         [self.appearButton.layer addAnimation:keyAnimaion forKey:nil];
     }

@@ -53,8 +53,8 @@ UICollectionViewDelegate,BaseCollectionViewButtonClickDelegate
         _collectionView.pagingEnabled = YES;
         _collectionView.bounces = NO;
         _collectionView.baseDelegate = self;
-        _collectionView.btnTitle = @"点击开始记账";
-        _collectionView.noDataTitle = @"你还没有记过该类型账";
+        _collectionView.btnTitle = @"记一笔~";
+        //_collectionView.noDataTitle = @"你还没有记过该类型账";
         _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerClass:[DetailOrderCollectionViewCell class] forCellWithReuseIdentifier:@"DetailOrderCollectionViewCell"];
     }

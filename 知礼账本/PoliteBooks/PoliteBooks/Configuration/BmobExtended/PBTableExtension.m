@@ -18,6 +18,7 @@
     [table setObject:model.userName forKey:@"dUserName"];
     [table setObject:model.userDate forKey:@"dUserData"];
     [table setObject:model.userType forKey:@"dUserType"];
+    [table setObject:model.userRelation forKey:@"dUserRealtion"];
     [table setObject:@(model.inType) forKey:@"dUserInType"];
     [table setObject:@(model.outType) forKey:@"dUserOutType"];
     [table setObject:@(model.bookColor) forKey:@"dUserBookColor"];
@@ -64,6 +65,7 @@
                 model.userName = [book objectForKey:@"dUserName"];
                 model.userType = [book objectForKey:@"dUserType"];
                 model.userMoney = [book objectForKey:@"dUserMoney"];
+                model.userRelation = [book objectForKey:@"dUserRealtion"];
                 model.userDate = [book objectForKey:@"dUserData"];
                 model.inType = [[book objectForKey:@"dUserInType"] integerValue];
                 model.outType = [[book objectForKey:@"dUserOutType"] integerValue];
@@ -113,49 +115,33 @@
     } fail:^(id _Nonnull error) {
     }];
 }
-/*
-+(void)inserDataForModel:(PBTableModel *)model andBookModel:(PBBookModel*)bookModel succ{
-    BmobObject  *table = [BmobObject objectWithClassName:@"userTables"];
-    //设置帖子的标题和内容
-    [table setObject:model.userMoney forKey:@"userMoney"];
-    [table setObject:model.userName forKey:@"userName"];
-    [table setObject:model.userDate forKey:@"userDate"];
-    [table setObject:model.userType forKey:@"userType"];
-    BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"userTables" objectId:bookModel.objectId];
-    [table setObject:author forKey:@"author"];
-    //异步保存
-    [table saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-        }else{
-            if (error) {
-            }
+
++(void)queryRealtionTableLissuccess:(void (^)(NSMutableArray<PBTableModel *> * _Nonnull))success fail:(void (^)(id _Nonnull))fail{
+    NSMutableArray * allTableList = [[NSMutableArray alloc] init];
+    [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
+        if (bookList.count) {
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                NSLog(@"开始");
+                dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+                for (int i = 0; i < bookList.count; i++) {
+                    [self queryBookListWithModel:bookList[i] success:^(NSMutableArray<PBTableModel *> * _Nonnull tableList) {
+                        [allTableList addObjectsFromArray:tableList];
+                        if (i == bookList.count - 1) {
+                            [[BeautyLoadingHUD shareManager] stopAnimating];
+                            success(allTableList);
+                        }
+                        dispatch_semaphore_signal(sema);
+                    } fail:^(id _Nonnull error) {
+                        [[BeautyLoadingHUD shareManager] stopAnimating];
+                    }];
+                    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+
+                }
+            });
         }
+    } fail:^(id _Nonnull error) {
+        [[BeautyLoadingHUD shareManager] stopAnimating];
     }];
 }
-+(void)delegateDataForModel:(PBTableModel*)model{
- 
-}
-+(void)queryBookListWithModel:(PBBookModel *)model success:(void (^)(NSMutableArray<PBTableModel *> * _Nonnull))success fail:(void (^)(id _Nonnull))fail{
-    BmobQuery *query = [BmobQuery queryWithClassName:@"userTables"];
-    //构建objectId为vbhGAAAY 的作者
-    BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:kMemberInfoManager.objectId];
-    //添加作者是objectId为vbhGAAAY条件
-    [query whereKey:@"author" equalTo:author];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (error) {
-            fail(error);
-        } else if (array){
-            NSMutableArray * arr = [[NSMutableArray alloc] init];
-            for (BmobObject *book in array) {
-                PBBookModel * model = [[PBBookModel alloc] init];
-                model.bookName = [book objectForKey:@"bookName"];
-                model.bookDate = [book objectForKey:@"bookData"];
-                model.bookColor = [[book objectForKey:@"bookColor"] integerValue];
-                model.objectId = book.objectId;
-                [arr addObject:model];
-            }
-            success(arr);
-        }
-    }];
-}*/
+
 @end
