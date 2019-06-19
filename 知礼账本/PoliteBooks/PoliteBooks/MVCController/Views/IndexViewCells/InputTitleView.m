@@ -61,8 +61,8 @@
     // 出账按钮
     [self.appearButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.lLineView.mas_bottom).mas_offset(0);
-        make.width.mas_equalTo(60);
-        make.height.mas_equalTo(20);
+//        make.width.mas_equalTo(60);
+//        make.height.mas_equalTo(20);
         make.centerX.mas_equalTo(self.lLineView);
     }];
 

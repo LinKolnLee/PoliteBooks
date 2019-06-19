@@ -41,7 +41,7 @@
 }
 -(void)addMosary{
     [self.bookNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(ScreenWidth + 110);
+        make.top.mas_equalTo(ScreenWidth + 124);
         make.right.mas_equalTo(kIphone6Width(-15));
     }];
     [self.inMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -59,7 +59,7 @@
 #pragma mark - # Getter
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
-        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
+        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 84)];
         _naviView.backgroundColor = kWhiteColor;
         _naviView.title = @"用户账簿信息";
         _naviView.titleFont = kFont15;
@@ -82,7 +82,7 @@
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
         flowLayout.itemSize = CGSizeMake(ScreenWidth-50, ScreenWidth-20);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(kIphone6Width(10), 84 , ScreenWidth-20,ScreenWidth) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(kIphone6Width(10), 104 , ScreenWidth-20,ScreenWidth) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;

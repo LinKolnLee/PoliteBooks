@@ -65,7 +65,11 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     self.currentItem = 0;
     self.tableNames = [[NSMutableArray alloc] init];
     self.dataSource = [[NSMutableArray alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadSelfDataSource) name:kUserRegiseBook object:nil];
     
+}
+-(void)reloadSelfDataSource{
+    [self queryBookList];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -82,6 +86,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         [self guidanceWithIndex:0];
     }
 }
+
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
@@ -318,10 +323,10 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     }];
 }
 -(void)queryBookList{
-    //[self showLoadingAnimation];
+    [self showLoadingAnimation];
     WS(weakSelf);
     [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
-     //   [weakSelf hiddenLoadingAnimation];
+       [weakSelf hiddenLoadingAnimation];
         weakSelf.dataSource = bookList;
         if (bookList.count == 0) {
             weakSelf.inputButton.hidden = YES;

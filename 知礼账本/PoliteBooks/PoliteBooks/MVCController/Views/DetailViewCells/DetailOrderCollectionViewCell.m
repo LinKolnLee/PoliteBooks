@@ -70,9 +70,9 @@
     }];
     // 金额
     [self.moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(kIphone6Width(15));
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).mas_offset(kIphone6Width(0));
         make.width.mas_equalTo(kIphone6Width(20));
-        make.height.mas_equalTo(kIphone6Width(144));
+        make.height.mas_equalTo(kIphone6Width(150));
         make.centerX.mas_equalTo(0);
     }];
     // 日期
@@ -203,7 +203,6 @@
 -(void)setModel:(PBTableModel *)model{
     _model = model;
     self.nameLabel.text = model.userName;
-    self.moneyLabel.text =[NSString stringWithFormat:@"%@整",[model.userMoney getCnMoney]];
     self.tableLabel.text = model.userType;
     NSArray * datas = [model.userDate componentsSeparatedByString:@"年"];
     NSArray * month = [datas[1] componentsSeparatedByString:@"月"];
@@ -222,6 +221,13 @@
     }
     self.outTypeLabel.backgroundColor = TypeColor[model.bookColor];
     self.tableLabel.backgroundColor = TypeColor[model.bookColor];
+    
+    NSString * moneyStr =[NSString stringWithFormat:@"%@整",[model.userMoney getCnMoney]];
+    self.moneyLabel.text = moneyStr;
+    if (moneyStr.length > 4) {
+        self.moneyLabel.font = [UIFont fontWithName:@"Yuppy SC" size:kIphone6Width(18 - (moneyStr.length - 2) )];
+    }
+    
 }
 
 @end

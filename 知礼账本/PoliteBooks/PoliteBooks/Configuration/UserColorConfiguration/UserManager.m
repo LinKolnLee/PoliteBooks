@@ -20,7 +20,7 @@ static UserManager *manager = nil;
     });
     return manager;
 }
-+(void)showUserLoginView{
++(void) showUserLoginView{
     //直接注册
     BmobUser *bUser = [[BmobUser alloc] init];
     NSString *strName = [FCUUID uuid];
@@ -38,6 +38,7 @@ static UserManager *manager = nil;
                 bookModel.bookColor = 0;
                 bookModel.bookDate = [[NSDate getCurrentTimes] getCNDate];;
                 [BmobBookExtension inserDataForModel:bookModel success:^(id  _Nonnull responseObject) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"kUserRegiseBook" object:nil];
                     DLog(@"用户注册成功");
                 }];
             }];

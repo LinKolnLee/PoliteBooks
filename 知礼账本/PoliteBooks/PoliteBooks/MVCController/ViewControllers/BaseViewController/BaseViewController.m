@@ -19,6 +19,10 @@
     self.view.backgroundColor = kWhiteColor;
     // Do any additional setup after loading the view.
 }
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self hiddenLoadingAnimation];
+}
 -(void)showLoadingAnimation{
     [[BeautyLoadingHUD shareManager] startAnimating];
 }

@@ -16,11 +16,13 @@
 @property (nonatomic, strong) UIImageView *bgImageView;
 
 /// 日期
-@property (nonatomic, strong) UILabel *dataLabel;
-
-/// 日期
 @property (nonatomic, strong) UILabel *nameLabel;
 
+/// 出账
+@property (nonatomic, strong) UILabel *outTypeLabel;
+
+/// 进账
+@property (nonatomic, strong) UILabel *inTypeLabel;
 @end
 
 @implementation BooksCollectionViewCell
@@ -28,8 +30,9 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self.contentView addSubview:self.bgImageView];
-        //[self.contentView addSubview:self.dataLabel];
         [self.contentView addSubview:self.nameLabel];
+        [self.contentView addSubview:self.outTypeLabel];
+        [self.contentView addSubview:self.inTypeLabel];
         [self addMasonry];
     }
     return self;
@@ -41,19 +44,20 @@
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
-//    // 日期
-//    [self.dataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(0);
-//        make.right.mas_equalTo(-kIphone6Width(5));
-//        make.bottom.mas_equalTo(0);
-//        make.height.mas_equalTo(kIphone6Width(20));
-//    }];
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(0);
         make.left.mas_equalTo(0);
         make.bottom.mas_equalTo(self.mas_centerY);
         make.height.mas_equalTo(kIphone6Width(30));
+    }];
+    [self.outTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kIphone6Width(10));
+    make.bottom.mas_equalTo(self.inTypeLabel.mas_top).offset(kIphone6Width(-5));
+    }];
+    [self.inTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kIphone6Width(10));
+        make.bottom.mas_equalTo(-2);
     }];
 }
 
@@ -74,17 +78,6 @@
     return _bgImageView;
 }
 
-- (UILabel *)dataLabel {
-    if (!_dataLabel) {
-        _dataLabel = [[UILabel alloc] init];
-        _dataLabel.font = kFont12;
-        _dataLabel.textColor = kWhiteColor;
-        _dataLabel.textAlignment = NSTextAlignmentCenter;
-        _dataLabel.text = @"貳零壹玖年壹月";
-        _dataLabel.numberOfLines = 0;
-    }
-    return _dataLabel;
-}
 
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
@@ -97,32 +90,50 @@
     }
     return _nameLabel;
 }
--(void)setupTipViewWithCell{
-    CGFloat popHeight =kIphone6Width(35.0);
-    CGRect popRect = CGRectMake(0, kIphone6Width(0), kIphone6Width(60), popHeight);
-    self.micTipView = [[TranslationMicTipView alloc] initWithFrame:popRect Title:@"长按删除"];
-    self.micTipView.centerX = self.frame.size.width/2;
-    self.micTipView.centerY = kIphone6Width(20);
-    [self.contentView addSubview:self.micTipView];
-    [self performSelector:@selector(hideTipView) withObject:nil afterDelay:3.0];
+-(UILabel *)outTypeLabel{
+    if (!_outTypeLabel) {
+        _outTypeLabel = [[UILabel alloc] init];
+        _outTypeLabel.font = kFont7;
+        _outTypeLabel.textColor = kWhiteColor;
+        _outTypeLabel.textAlignment = NSTextAlignmentCenter;
+        _outTypeLabel.text = @"進禮";
+        _outTypeLabel.hidden = YES;
+        _outTypeLabel.numberOfLines = 0;
+    }
+    return _outTypeLabel;
 }
-- (void)hideTipView {
-    WS(weakSelf);
-    [UIView animateWithDuration:0.25 animations:^{
-        weakSelf.micTipView.alpha = 0;
-    } completion:^(BOOL finished) {
-        weakSelf.micTipView.hidden = YES;
-    }];
+-(UILabel *)inTypeLabel{
+    if (!_inTypeLabel) {
+        _inTypeLabel = [[UILabel alloc] init];
+        _inTypeLabel.font = kFont7;
+        _inTypeLabel.textColor = kWhiteColor;
+        _inTypeLabel.textAlignment = NSTextAlignmentCenter;
+        _inTypeLabel.text = @"收禮";
+        _inTypeLabel.hidden = YES;
+        _inTypeLabel.numberOfLines = 0;
+    }
+    return _inTypeLabel;
 }
+
 
 -(void)setBookModel:(PBBookModel *)bookModel{
     self.bgImageView.backgroundColor = TypeColor[bookModel.bookColor];
     if (bookModel.bookColor == 7) {
         self.nameLabel.textColor = kWhiteColor;
-        self.dataLabel.textColor = kWhiteColor;
     }
     self.nameLabel.text = bookModel.bookName;
-    self.dataLabel.text = bookModel.bookDate;
+    if (bookModel.bookOutMoney) {
+        self.inTypeLabel.text = [NSString stringWithFormat:@"進禮 : %@",[[NSString stringWithFormat:@"%ld",bookModel.bookOutMoney] getCnMoney]];
+        self.inTypeLabel.hidden = NO;
+    }else{
+        self.inTypeLabel.hidden = YES;
+    }
+    if (bookModel.bookInMoney) {
+        self.outTypeLabel.text = [NSString stringWithFormat:@"收禮 : %@",[[NSString stringWithFormat:@"%ld",bookModel.bookInMoney] getCnMoney]];
+        self.outTypeLabel.hidden = NO;
+    }else{
+        self.outTypeLabel.hidden = YES;
+    }
 }
 -(void)setIsShowTip:(BOOL)isShowTip{
     _isShowTip = isShowTip;

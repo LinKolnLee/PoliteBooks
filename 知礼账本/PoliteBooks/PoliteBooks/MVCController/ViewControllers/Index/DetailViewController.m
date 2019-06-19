@@ -121,7 +121,7 @@ BaseCollectionViewButtonClickDelegate
 - (BaseCollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.minimumLineSpacing = kIphone6Width(25);
+        flowLayout.minimumLineSpacing = kIphone6Width(14);
         flowLayout.minimumInteritemSpacing = kIphone6Width(25);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
         flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - 160);
@@ -130,17 +130,24 @@ BaseCollectionViewButtonClickDelegate
         if (IPHONEXR || IPHONEXSMAX || IPhoneX) {
             topHeight = kIphone6Width(120);
         }
-        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(10, 84 , ScreenWidth - 20, ScreenHeight - 100) collectionViewLayout:flowLayout];
+        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(3, 84 , ScreenWidth - 6, ScreenHeight - 100) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
-        _collectionView.bounces = NO;
+        //_collectionView.bounces = NO;
         _collectionView.baseDelegate = self;
         _collectionView.btnTitle = @"点击开始记账";
         _collectionView.noDataTitle = @"你还没有记过该类型账";
         _collectionView.backgroundColor = [UIColor whiteColor];
+        // right
+        [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
+            [ToastManage showTopToastWith:@"没有更多数据了"];
+        }];
+        [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
+            [ToastManage showTopToastWith:@"已经是最新的啦"];
+        }];
         [_collectionView registerClass:[DetailOrderCollectionViewCell class] forCellWithReuseIdentifier:@"DetailOrderCollectionViewCell"];
     }
     return _collectionView;
@@ -190,6 +197,7 @@ BaseCollectionViewButtonClickDelegate
 
 //MARK: UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.longPressIndexPath = indexPath;
     PBTableModel * model = self.tableDataSource[indexPath.row];
     if (model.inType && model.outType) {
         [self showInOrOutWithModel:model WithTitle:@""];
@@ -208,7 +216,7 @@ BaseCollectionViewButtonClickDelegate
 }
 -(void)showInOrOutWithModel:(PBTableModel *)model WithTitle:(NSString *)title{
     if ([title isEqualToString:@""]) {
-       // WS(weakSelf);
+        WS(weakSelf);
         [LEEAlert actionsheet].config
         .LeeTitle(@"账单编辑")
         .LeeContent([NSString stringWithFormat:@"编辑账单内容"])
@@ -223,6 +231,9 @@ BaseCollectionViewButtonClickDelegate
                 [weakSelf queryBookList];
             };
             [self.navigationController hh_presentTiltedVC:input completion:nil];
+        })
+        .LeeAction(@"删除账单", ^{
+            [weakSelf showAlert];
         })
         .LeeCancelAction(@"取消", nil)
         .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)
@@ -246,6 +257,9 @@ BaseCollectionViewButtonClickDelegate
         })
         .LeeAction(title, ^{
             [weakSelf showAlertWithType:title andModel:model];
+        })
+        .LeeAction(@"删除账单", ^{
+            [weakSelf showAlert];
         })
         .LeeCancelAction(@"取消", nil)
         .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)

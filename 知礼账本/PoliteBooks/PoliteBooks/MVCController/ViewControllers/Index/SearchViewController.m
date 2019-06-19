@@ -38,9 +38,7 @@ UICollectionViewDelegate>
     self.dataSource = [[NSMutableArray alloc] init];
     [self.view addSubview:self.backButton];
     [self.view addSubview:self.searchView];
-    [self.view addSubview:self.collectionView];
-    
-    // 左侧按钮
+        // 左侧按钮
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kIphone6Width(20));
         make.width.mas_equalTo(kIphone6Width(25));
@@ -151,6 +149,7 @@ UICollectionViewDelegate>
     [PBTableExtension querySearchBookListWithStr:word success:^(NSMutableArray<PBTableModel *> * _Nonnull tableList) {
         [weakSelf hiddenLoadingAnimation];
         weakSelf.tableDataSource = tableList;
+        [self.view addSubview:self.collectionView];
         [weakSelf.collectionView reloadData];
     } fail:^(id _Nonnull error) {
         [weakSelf hiddenLoadingAnimation];

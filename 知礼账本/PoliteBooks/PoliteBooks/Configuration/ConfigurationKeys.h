@@ -19,6 +19,8 @@ UIKIT_EXTERN NSString *const kUSERTABLENAMEKEY;
 UIKIT_EXTERN NSString *const kUSERBOOKNAMEKEY;
 
 UIKIT_EXTERN NSString *const kBmobAppkey;
+
+UIKIT_EXTERN NSString *const kUserRegiseBook;
 @end
 
 NS_ASSUME_NONNULL_END

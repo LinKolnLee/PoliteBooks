@@ -144,7 +144,7 @@ UITextFieldDelegate
     if (!_segmentView) {
         _segmentView = [[LXSegmentBtnView alloc] init];
         _segmentView.btnBackgroundNormalColor = kWhiteColor;
-        _segmentView.btnBackgroundSelectColor = kHexRGB(0xD4CF96);
+        _segmentView.btnBackgroundSelectColor = kHexRGB(0x665757);
         _segmentView.titleFont = kFont14;
         _segmentView.btnTitleNormalColor = kHexRGB(0x3d3d4f);
         _segmentView.btnTitleSelectColor = kWhiteColor;

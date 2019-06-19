@@ -24,6 +24,7 @@
 #import "NSString+Color.h"
 #import "NSString+Money.h"
 #import "UserColorModel.h"
+#import "AAPullToRefresh.h"
 #import "UserGuideManager.h"
 #import "BeautyLoadingHUD.h"
 #import "PBTableExtension.h"

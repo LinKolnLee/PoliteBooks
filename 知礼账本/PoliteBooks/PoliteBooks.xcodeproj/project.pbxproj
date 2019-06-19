@@ -70,6 +70,7 @@
 		42BEAAA721E83BA4001F5F3E /* NSString+Money.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEAAA621E83BA4001F5F3E /* NSString+Money.m */; };
 		42BEAAAE21E847E0001F5F3E /* NewInputButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BEAAAD21E847E0001F5F3E /* NewInputButton.m */; };
 		42BEAAB021E8498A001F5F3E /* Chinesebrush.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BEAAAF21E8498A001F5F3E /* Chinesebrush.png */; };
+		42C0533822B8F22B00ED321A /* AAPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0533622B8F22B00ED321A /* AAPullToRefresh.m */; };
 		42C0FE5E22783D6D0094E791 /* WJColorChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0FE5A22783D6D0094E791 /* WJColorChange.m */; };
 		42C0FE5F22783D6D0094E791 /* WJFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C0FE5D22783D6D0094E791 /* WJFlowLayout.m */; };
 		42C5855222602A39000A5DE1 /* BookChars.png in Resources */ = {isa = PBXBuildFile; fileRef = 42C5855122602A39000A5DE1 /* BookChars.png */; };
@@ -272,6 +273,8 @@
 		42BEAAAC21E847E0001F5F3E /* NewInputButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewInputButton.h; sourceTree = "<group>"; };
 		42BEAAAD21E847E0001F5F3E /* NewInputButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewInputButton.m; sourceTree = "<group>"; };
 		42BEAAAF21E8498A001F5F3E /* Chinesebrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chinesebrush.png; sourceTree = "<group>"; };
+		42C0533622B8F22B00ED321A /* AAPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPullToRefresh.m; sourceTree = "<group>"; };
+		42C0533722B8F22B00ED321A /* AAPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPullToRefresh.h; sourceTree = "<group>"; };
 		42C0FE5A22783D6D0094E791 /* WJColorChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJColorChange.m; sourceTree = "<group>"; };
 		42C0FE5B22783D6D0094E791 /* WJFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJFlowLayout.h; sourceTree = "<group>"; };
 		42C0FE5C22783D6D0094E791 /* WJColorChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJColorChange.h; sourceTree = "<group>"; };
@@ -572,6 +575,8 @@
 		42294BB721E733DC00A1D4D0 /* ToolFile */ = {
 			isa = PBXGroup;
 			children = (
+				42C0533722B8F22B00ED321A /* AAPullToRefresh.h */,
+				42C0533622B8F22B00ED321A /* AAPullToRefresh.m */,
 				42D8C96722B73C0A00FE34C5 /* XSpotLight */,
 				42C5BA7A22B258BE00AB73D3 /* BeautyLoadingAnimation */,
 				42C5BA7222B2279E00AB73D3 /* LXSegmentBtn */,
@@ -1355,6 +1360,7 @@
 				42B040502238F42200092539 /* UIView+LLFrame.m in Sources */,
 				42294BF821E75B1200A1D4D0 /* NSDate+String.m in Sources */,
 				42BBB1BB224B43CA002C11F6 /* UIView+Extension.m in Sources */,
+				42C0533822B8F22B00ED321A /* AAPullToRefresh.m in Sources */,
 				42D37F592275461B00092049 /* GuideViewController.m in Sources */,
 				42F0831321EC477F00948743 /* InputViewController.m in Sources */,
 				4296F66322B0A68600FD70B7 /* UIDevice+FCUUID.m in Sources */,

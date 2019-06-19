@@ -55,10 +55,10 @@
         _serchTextField.returnKeyType = UIReturnKeySearch;
         _serchTextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 0)];
         _serchTextField.leftViewMode = UITextFieldViewModeAlways;
-        _serchTextField.placeholder = @"请输入搜索姓名";
+        _serchTextField.placeholder = @"请输入搜索人姓名";
                  NSMutableParagraphStyle *style = [_serchTextField.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
                 UIFont * font = kPingFangSC_Semibold(13);
-                _serchTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"请输入搜索姓名" attributes:@{NSForegroundColorAttributeName:kHexRGB(0x3f3f4d),NSFontAttributeName:font,NSParagraphStyleAttributeName:style}];
+                _serchTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"请输入搜索人姓名" attributes:@{NSForegroundColorAttributeName:kHexRGB(0x3f3f4d),NSFontAttributeName:font,NSParagraphStyleAttributeName:style}];
         
         //_serchTextField.rightViewMode = UITextFieldViewModeAlways;
         //_serchTextField.rightView = rightView;

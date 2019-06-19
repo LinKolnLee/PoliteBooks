@@ -109,7 +109,7 @@
     [self.textInputView.numberField becomeFirstResponder];
     // 个性化设置键盘
     _keyboard.bgColor = kWhiteColor;
-    _keyboard.returnBgColor = kHexRGB(0xD4CF96);
+    _keyboard.returnBgColor = kHexRGB(0x665757);
     _keyboard.returnTitleColor = kWhiteColor;
     //kHexRGB(0xD4CF96);
     _keyboard.formatString = @"00000.000";
@@ -150,7 +150,7 @@
     }];
     [self.titleSettingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(kIphone6Width(10));
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(kIphone6Width(20));
         make.height.mas_equalTo(kIphone6Width(100));
     }];
     [self.textInputView mas_makeConstraints:^(MASConstraintMaker *make) {

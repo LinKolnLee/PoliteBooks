@@ -9,8 +9,8 @@
 #ifndef GlobalDefine_h
 #define GlobalDefine_h
 
-#define TypeColor (@[kHexRGB(0xf15b6c),kHexRGB(0x2e4e7e),kHexRGB(0xffc773),kHexRGB(0xbce672),kHexRGB(0x7bcfa6),kHexRGB(0x815463),kHexRGB(0x758a99),kHexRGB(0x3d3b4f)])
-#define TypeColorStr (@[@"#f15b6c",@"#2e4e7e",@"#ffc773",@"#bce672",@"#7bcfa6",@"#815463",@"#758a99",@"#3d3b4f"])
+#define TypeColor (@[kHexRGB(0xf15b6c),kHexRGB(0x2e4e7e),kHexRGB(0xffc773),kHexRGB(0xbce672),kHexRGB(0xf47983),kHexRGB(0x815463),kHexRGB(0x758a99),kHexRGB(0x3d3b4f)])
+#define TypeColorStr (@[@"#f15b6c",@"#2e4e7e",@"#ffc773",@"#bce672",@"#f47983",@"#815463",@"#758a99",@"#3d3b4f"])
 
 #define random(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
 
