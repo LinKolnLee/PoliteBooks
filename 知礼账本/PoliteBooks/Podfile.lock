@@ -25,7 +25,6 @@ PODS:
     - FMDB
   - LCText (0.0.2)
   - Masonry (1.1.0)
-  - UMengAnalytics-NO-IDFA (4.2.5)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
@@ -37,7 +36,6 @@ DEPENDENCIES:
   - JQFMDB
   - LCText
   - Masonry
-  - UMengAnalytics-NO-IDFA
   - YYModel
 
 EXTERNAL SOURCES:
@@ -59,9 +57,8 @@ SPEC CHECKSUMS:
   JQFMDB: 39ab0d6d7c26fd30e51c4dd92edcb27506a34c3a
   LCText: d4dc2a932fc9a5cedb6982455239a101959f5858
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: ba12b6102573ae33aa735419a317014533e5ed8b
+PODFILE CHECKSUM: dd85316cea8f4e279816a1bc96ba080a2fa7ef79
 
 COCOAPODS: 1.4.0

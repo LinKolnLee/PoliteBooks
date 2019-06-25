@@ -121,7 +121,6 @@
     if (!_relationLabel) {
         _relationLabel = [[UILabel alloc] init];
         _relationLabel.font = kFont10;
-        _relationLabel.textColor = TypeColor[self.model.bookColor];
         _relationLabel.textAlignment = NSTextAlignmentCenter;
         _relationLabel.text = @"朋友";
         _relationLabel.numberOfLines = 0;
@@ -241,9 +240,10 @@
     NSString * moneyStr =[NSString stringWithFormat:@"%@整",[model.userMoney getCnMoney]];
     self.moneyLabel.text = moneyStr;
     if (moneyStr.length > 4) {
-        self.moneyLabel.font = [UIFont fontWithName:@"Yuppy SC" size:kIphone6Width(18 - (moneyStr.length - 2) )];
+        self.moneyLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:kIphone6Width(18 - (moneyStr.length - 2) )];
     }
    self.relationLabel.text = model.userRelation;
+    self.relationLabel.textColor = TypeColor[model.bookColor];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "IndexViewController.h"
+#import "NewTabbarViewController.h"
 #import "BaseNavigationController.h"
 @interface AppDelegate ()
 
@@ -31,7 +32,9 @@
     [UserColorConfiguration initUserColorsInFirstboot];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    BaseNavigationController * navi = [[BaseNavigationController alloc] initWithRootViewController:[[IndexViewController alloc]init]];
+    
+    NewTabbarViewController * tab = [[NewTabbarViewController alloc] init];
+    BaseNavigationController * navi = [[BaseNavigationController alloc] initWithRootViewController:tab];
     self.window.rootViewController = navi;
     IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager]; // 获取类库的单例变量
     keyboardManager.enableAutoToolbar = NO;

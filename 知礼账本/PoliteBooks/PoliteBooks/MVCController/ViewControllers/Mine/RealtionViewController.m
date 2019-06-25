@@ -72,16 +72,15 @@
         flowLayout.minimumLineSpacing = kIphone6Width(14);
         flowLayout.minimumInteritemSpacing = kIphone6Width(10);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        flowLayout.itemSize = CGSizeMake(ScreenWidth/4, kIphone6Width(500));
+        flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - kIphone6Width(160));
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        
-        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(3, kIphone6Width(140) , ScreenWidth - 6, kIphone6Width(530)) collectionViewLayout:flowLayout];
+        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, kIphone6Width(135) , ScreenWidth, ScreenHeight - 140) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
-        _collectionView.noDataTitle = @"记一笔~";
+        _collectionView.noDataTitle = @"未记录该关系账目";
         _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerClass:[DetailOrderCollectionViewCell class] forCellWithReuseIdentifier:@"DetailOrderCollectionViewCell"];
     }
