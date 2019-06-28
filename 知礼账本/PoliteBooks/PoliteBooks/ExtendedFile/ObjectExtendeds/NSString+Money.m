@@ -66,5 +66,11 @@
     return date;
     
 }
-
+-(NSDate *)getStringDate{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];//解决8小时时间差问题
+   NSDate *date = [dateFormatter dateFromString:self];
+    return date;
+}
 @end

@@ -44,6 +44,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (copy , nonatomic) void(^PBIndexNavigationBarViewRightButtonBlock)(void);
 
+/**
+ label点击
+ */
+@property (copy , nonatomic) void(^PBIndexNavigationBarViewTitleLabelBlock)(void);
+
 
 @end
 

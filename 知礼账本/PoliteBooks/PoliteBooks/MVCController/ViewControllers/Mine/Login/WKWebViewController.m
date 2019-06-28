@@ -26,7 +26,7 @@
     [self.view addSubview:self.naviView];
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(84);
+        make.height.mas_equalTo(74);
     }];
     [self.view addSubview:self.webView];
     
@@ -102,9 +102,8 @@
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
-        _naviView.backgroundColor = kWhiteColor;
+        _naviView.titleFont = kFont16;
         _naviView.title = @"用户协议及隐私政策";
-        _naviView.titleFont = kFont15;
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"BookChars";
         _naviView.rightHidden = YES;

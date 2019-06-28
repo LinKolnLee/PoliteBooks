@@ -88,11 +88,10 @@ BaseCollectionViewButtonClickDelegate
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        _naviView.backgroundColor = kWhiteColor;
         //@"貳零壹玖年壹月往来明细";
         _naviView.titleFont = kFont12;
         _naviView.leftImage = @"NavigationBack";
-        _naviView.rightImage = @"Chinesebrush";
+        _naviView.rightImage = @"NewEdit";
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击

@@ -36,9 +36,9 @@ self.cardView = [[TABCardView alloc] initWithFrame:CGRectMake(ScreenWidth/4, (Sc
 }
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
-        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
-        _naviView.backgroundColor = kWhiteColor;
+        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 74)];
         _naviView.title = @"新手引导";
+        _naviView.titleFont = kFont16;
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"BookChars";
         _naviView.rightHidden = YES;

@@ -9,6 +9,7 @@
 #import "NSDate+String.h"
 
 @implementation NSDate (String)
+
 -(NSString *)timeToString{
     NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
     selectDateFormatter.dateFormat = @"yyyy-MM-dd"; // 设置时间和日期的格式

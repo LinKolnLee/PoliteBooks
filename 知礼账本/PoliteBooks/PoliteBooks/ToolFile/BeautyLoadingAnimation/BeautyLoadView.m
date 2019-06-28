@@ -69,7 +69,7 @@
     CGFloat minEdge = MIN(animationRect.size.width, animationRect.size.height);
     self.layer.sublayers = nil;
     CGSize size = CGSizeMake(kIphone6Width(40), kIphone6Width(40));
-    [self setupAnimation:self.layer size:size color:kHexRGB(0x3f3f4d)];
+    [self setupAnimation:self.layer size:size color:kColor_Loding];
 }
 - (CALayer *)layerWithSize:(CGSize)size color:(UIColor *)color {
     CAShapeLayer *layer = [[CAShapeLayer alloc] init];
@@ -129,7 +129,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kIphone6Width(55), self.width, kIphone6Width(15))];
         _titleLabel.font = kFont12;
-        _titleLabel.textColor = kHexRGB(0x3f3f4d);
+        _titleLabel.textColor = kColor_Loding;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.text = @"";
     }

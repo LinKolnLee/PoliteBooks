@@ -135,9 +135,5 @@
         self.outTypeLabel.hidden = YES;
     }
 }
--(void)setIsShowTip:(BOOL)isShowTip{
-    _isShowTip = isShowTip;
-   // [self setupTipViewWithCell];
-}
 
 @end

@@ -17,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)queryBookListsuccess:(void (^)(NSMutableArray<PBWatherModel *> *bookList))success fail:(void (^)(id))fail;
 
++ (void)queryDayBookListWithDate:(NSDate *)date success:(void (^)(NSMutableArray<NSMutableArray<PBWatherModel *> *>*bookList))success fail:(void (^)(id))fail;
++ (void)queryWeekBookListWithDate:(NSDate *)date withType:(NSInteger)type success:(void (^)(NSMutableArray<NSMutableArray<PBWatherModel *> *>*bookList))success fail:(void (^)(id))fail;
++ (void)queryMonthBookListWithDate:(NSDate *)date withType:(NSInteger)type success:(void (^)(NSMutableArray<NSMutableArray<PBWatherModel *> *>*bookList))success fail:(void (^)(id))fail;
++ (void)queryYearBookListWithDate:(NSDate *)date withType:(NSInteger)type success:(void (^)(NSMutableArray<NSMutableArray<PBWatherModel *> *>*bookList))success fail:(void (^)(id))fail;
+
 +(void)updataForModel:(PBWatherModel *)model success:(void (^)(id responseObject))success;
 @end
 

@@ -25,11 +25,12 @@
 
 #define kColor_BG                  RGBA(250,250,250,1)
 #define kColor_Text_Gary           kHexColor(@"#999999")
-#define kColor_Main_Color          RGBA(255,217,68,1)
+#define kColor_Main_Color          (kHexRGB(0Xf8e58c))
 #define kColor_Main_Dark_Color     RGBA(241,206,65,1)
 #define kColor_Text_Black          RGBA(52, 50, 51, 1)       // 深
 #define kColor_Text_Light          HexColor(@"#8B8B8B")      // 浅
-#define kColor_Text_Red            HexColor(@"#FD4751")  
+#define kColor_Text_Red            HexColor(@"#FD4751")
+#define kColor_Loding            (kHexRGB(0X3f3f4d))
 /**
  APP版本
  */
@@ -85,6 +86,9 @@
  黑色
  */
 #define kBlackColor [UIColor blackColor]
+
+//线条颜色
+#define kLineColor (kHexRGB(0XF5F5F5))
 
 /**
  WeakSelf

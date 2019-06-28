@@ -43,7 +43,7 @@ UICollectionViewDelegate
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(84);
+        make.height.mas_equalTo(74);
     }];
 }
 -(PBIndexNavigationBarView *)naviView{
@@ -53,7 +53,7 @@ UICollectionViewDelegate
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"export";
         _naviView.rightHidden = YES;
-        _naviView.backgroundColor = [UIColor clearColor];
+        _naviView.titleFont = kFont16;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击

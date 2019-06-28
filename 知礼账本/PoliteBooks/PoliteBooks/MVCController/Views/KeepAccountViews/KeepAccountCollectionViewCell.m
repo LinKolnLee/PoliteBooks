@@ -45,7 +45,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = kFont13;
-        _titleLabel.textColor = kHexRGB(0x3f3f4d);
+        _titleLabel.textColor = kColor_Loding;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;

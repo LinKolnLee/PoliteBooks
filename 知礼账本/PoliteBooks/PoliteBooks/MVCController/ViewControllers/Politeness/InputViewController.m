@@ -203,7 +203,7 @@
 - (UIImageView *)topTitleImage {
     if (!_topTitleImage) {
         _topTitleImage = [[UIImageView alloc] init];
-        _topTitleImage.image = [UIImage imageNamed:@"Chinesebrush"];
+        _topTitleImage.image = [UIImage imageNamed:@"NewEdit"];
     }
     return _topTitleImage;
 }
@@ -420,4 +420,5 @@
 -(void)setIsEdit:(BOOL)isEdit{
     _isEdit = isEdit;
 }
+
 @end

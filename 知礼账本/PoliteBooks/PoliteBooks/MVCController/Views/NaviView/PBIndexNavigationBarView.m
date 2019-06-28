@@ -28,6 +28,7 @@
         [self addSubview:self.leftButton];
         [self addSubview:self.rightButton];
         [self addSubview:self.titleLabel];
+        self.backgroundColor = kColor_Main_Color;
         [self addMasonry];
     }
     return self;
@@ -48,12 +49,19 @@
 
 #pragma mark - # Private Methods
 - (void)addMasonry {
+    // titlt
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(kIphone6Width(180));
+        make.height.mas_equalTo(kIphone6Width(25));
+        make.centerX.mas_equalTo(-5);
+        make.centerY.mas_equalTo(kIphone6Width(10));
+    }];
     // 左侧按钮
     [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kIphone6Width(20));
         make.width.mas_equalTo(kIphone6Width(25));
         make.height.mas_equalTo(kIphone6Width(25));
-        make.bottom.mas_equalTo(-5);
+        make.centerY.mas_equalTo(self.titleLabel);
 
     }];
     // 右侧按钮
@@ -61,15 +69,9 @@
         make.right.mas_equalTo(-kIphone6Width(20));
         make.width.mas_equalTo(kIphone6Width(25));
         make.height.mas_equalTo(kIphone6Width(25));
-        make.bottom.mas_equalTo(-5);
+         make.centerY.mas_equalTo(self.titleLabel);
     }];
-    // titlt
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(kIphone6Width(180));
-        make.height.mas_equalTo(kIphone6Width(25));
-        make.centerX.mas_equalTo(0);
-        make.centerY.mas_equalTo(kIphone6Width(20));
-    }];
+    
 }
 
 #pragma mark - # Getter
@@ -99,6 +101,9 @@
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.textColor = kBlackColor;
         _titleLabel.font = kFont22;
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(titleLabelTouchClick:)];
+        _titleLabel.userInteractionEnabled = YES;
+        [_titleLabel addGestureRecognizer:tap];
     }
     return _titleLabel;
 }
@@ -118,6 +123,11 @@
     _rightHidden = rightHidden;
     if (rightHidden) {
         self.rightButton.hidden = rightHidden;
+    }
+}
+-(void)titleLabelTouchClick:(UIGestureRecognizer *)ges{
+    if (self.PBIndexNavigationBarViewTitleLabelBlock) {
+        self.PBIndexNavigationBarViewTitleLabelBlock();
     }
 }
 @end

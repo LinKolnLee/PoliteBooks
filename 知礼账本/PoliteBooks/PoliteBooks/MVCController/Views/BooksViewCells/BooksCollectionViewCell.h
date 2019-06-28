@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)PBBookModel * bookModel;
 
-
-@property(nonatomic,assign)BOOL isShowTip;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -41,7 +41,7 @@
     if (!_nimageView) {
         _nimageView = [[UIImageView alloc] init];
         _nimageView.contentMode = UIViewContentModeScaleAspectFill;
-        _nimageView.image = [UIImage imageNamed:@"Chinesebrush"];
+        _nimageView.image = [UIImage imageNamed:@"NewEdit"];
         _nimageView.backgroundColor = kWhiteColor;
         _nimageView.layer.cornerRadius = 5;
         _nimageView.layer.masksToBounds = YES;

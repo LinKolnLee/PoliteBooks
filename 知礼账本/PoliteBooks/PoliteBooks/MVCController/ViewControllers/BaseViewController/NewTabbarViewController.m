@@ -9,7 +9,7 @@
 #import "NewTabbarViewController.h"
 #import "EveryDayHomeViewController.h"
 #import "IndexViewController.h"
-#import "ChartViewController.h"
+#import "ToolViewController.h"
 #import "SettingViewController.h"
 #import "KeepAccountViewController.h"
 
@@ -30,7 +30,7 @@
     @[@{@"vc":[EveryDayHomeViewController new],@"normalImg":@"home_normal",@"selectImg":@"home_highlight",@"itemTitle":@"流水账"},
       @{@"vc":[IndexViewController new],@"normalImg":@"mycity_normal",@"selectImg":@"mycity_highlight",@"itemTitle":@"礼账"},
       @{@"vc":[KeepAccountViewController new],@"normalImg":@"",@"selectImg":@"",@"itemTitle":@"记一笔"},
-      @{@"vc":[ChartViewController new],@"normalImg":@"message_normal",@"selectImg":@"message_highlight",@"itemTitle":@"图表"},
+      @{@"vc":[ToolViewController new],@"normalImg":@"message_normal",@"selectImg":@"message_highlight",@"itemTitle":@"速记"},
       @{@"vc":[SettingViewController new],@"normalImg":@"account_normal",@"selectImg":@"account_highlight",@"itemTitle":@"我的"}];
     // 1.遍历这个集合
     // 1.1 设置一个保存构造器的数组
@@ -122,7 +122,8 @@ static NSInteger lastIdx = 0;
         [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
         KeepAccountViewController * keep = [[KeepAccountViewController alloc] init];
        // [self hh_presentErectVC:keep completion:nil];
-        [self presentViewController:keep animated:YES completion:nil];
+        //[self.navigationController presentViewController:keep animated:YES completion:nil];
+        [self.navigationController hh_pushErectViewController:keep];
     }
 }
 - (void)setSelectedIndex:(NSUInteger)selectedIndex{

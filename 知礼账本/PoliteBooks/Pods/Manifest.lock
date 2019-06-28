@@ -16,15 +16,11 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - BmobSDK (2.3.1)
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
   - HHTransition (1.2.0)
   - IQKeyboardManager (6.2.0)
-  - JQFMDB (1.1.6):
-    - FMDB
   - LCText (0.0.2)
   - Masonry (1.1.0)
+  - MJRefresh (3.1.15.7)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
@@ -33,9 +29,9 @@ DEPENDENCIES:
   - BmobSDK
   - HHTransition (~> 1.2.0)
   - IQKeyboardManager
-  - JQFMDB
   - LCText
   - Masonry
+  - MJRefresh (~> 3.1.12)
   - YYModel
 
 EXTERNAL SOURCES:
@@ -51,14 +47,13 @@ SPEC CHECKSUMS:
   AAChartKit: c2133dde14a07c8d537001964646d8636a06e846
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   BmobSDK: e0f9e4b451233a80af63a8ae4f2d239474bf567b
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   HHTransition: 35c278fbe8374cdf0931a805aef066d52256a897
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
-  JQFMDB: 39ab0d6d7c26fd30e51c4dd92edcb27506a34c3a
   LCText: d4dc2a932fc9a5cedb6982455239a101959f5858
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: dd85316cea8f4e279816a1bc96ba080a2fa7ef79
+PODFILE CHECKSUM: 99a6a9b20d51b9d53d00b05bd0573fdd5a99a2b4
 
 COCOAPODS: 1.4.0

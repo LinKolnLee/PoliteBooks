@@ -18,7 +18,9 @@
 #import "LoginViewController.h"
 @interface SettingViewController ()
 
-@property(nonatomic,strong)PBIndexNavigationBarView * naviView;
+
+
+/*@property(nonatomic,strong)PBIndexNavigationBarView * naviView;
 
 @property(nonatomic,strong)UILabel * outBookLabel;
 
@@ -34,13 +36,14 @@
 
 @property(nonatomic,strong)UIButton * aboutBtn;
 
-@property(nonatomic,strong)UIButton * loginOutBtn;
+@property(nonatomic,strong)UIButton * loginOutBtn;*/
 @end
 
 @implementation SettingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    /*
     [self.view addSubview:self.naviView];
     [self.view addSubview:self.outBookLabel];
     [self.view addSubview:self.exportButton];
@@ -49,26 +52,29 @@
     [self.view addSubview:self.registerButton];
     [self.view addSubview:self.priveButton];
     [self.view addSubview:self.aboutBtn];
-    [self.view addSubview:self.loginOutBtn];
+    [self.view addSubview:self.loginOutBtn];*/
     
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    /*
     if (![BmobUser currentUser].mobilePhoneNumber) {
         [self.loginOutBtn setTitle:@"登录" forState:UIControlStateNormal];
     }else{
         [self.loginOutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
     }
+     */
 }
+/*
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
-        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
-        _naviView.backgroundColor = kWhiteColor;
+        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 74)];
         _naviView.title = @"应用信息";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"BookChars";
         _naviView.rightHidden = YES;
+        _naviView.titleFont = kFont16;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -225,7 +231,8 @@
     AboutViewController * about = [[AboutViewController alloc] init];
     about.dataSource = self.dataSource;
     [self.navigationController hh_pushBackViewController:about];
-}
+}*/
+
 /*
 #pragma mark - Navigation
 

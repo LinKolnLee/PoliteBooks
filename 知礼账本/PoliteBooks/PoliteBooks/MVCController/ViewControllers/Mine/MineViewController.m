@@ -61,10 +61,10 @@
 #pragma mark - # Getter
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
-        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 84)];
-        _naviView.backgroundColor = kWhiteColor;
+        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 74)];
+         _naviView.titleFont = kFont16;
         _naviView.title = @"用户账簿信息";
-        _naviView.titleFont = kFont15;
+        _naviView.titleFont = kFont16;
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"realtion";
         _naviView.rightHidden = NO;
@@ -106,7 +106,7 @@
         _bookNumberLabel = [[UILabel alloc] init];
         _bookNumberLabel.font = kPingFangTC_Light(15);
         _bookNumberLabel.text = @"账簿个数";
-        _bookNumberLabel.textColor = kHexRGB(0x3f3f4d);
+        _bookNumberLabel.textColor = kColor_Loding;
         _bookNumberLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _bookNumberLabel;
@@ -116,7 +116,7 @@
         _inMoneyLabel = [[UILabel alloc] init];
         _inMoneyLabel.font = kPingFangTC_Light(15);
         _inMoneyLabel.text = @"总进礼：1000";
-        _inMoneyLabel.textColor = kHexRGB(0x3f3f4d);
+        _inMoneyLabel.textColor = kColor_Loding;
         _inMoneyLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _inMoneyLabel;
@@ -126,7 +126,7 @@
         _outMoneyLabel = [[UILabel alloc] init];
         _outMoneyLabel.font = kPingFangTC_Light(15);
         _outMoneyLabel.text = @"总收礼：1000";
-        _outMoneyLabel.textColor = kHexRGB(0x3f3f4d);
+        _outMoneyLabel.textColor = kColor_Loding;
         _outMoneyLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _outMoneyLabel;

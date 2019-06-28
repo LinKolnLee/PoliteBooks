@@ -12,7 +12,6 @@
 #import "DetailViewController.h"
 #import "BooksViewController.h"
 #import "BaseCollectionView.h"
-#import "ChartViewController.h"
 #import "CreatBookView.h"
 #import "DateViewController.h"
 #import "SettingViewController.h"
@@ -67,11 +66,11 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     self.currentItem = 0;
     self.tableNames = [[NSMutableArray alloc] init];
     self.dataSource = [[NSMutableArray alloc] init];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadSelfDataSource) name:kUserRegiseBook object:nil];
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadSelfDataSource) name:kUserRegiseBook object:nil];
 }
--(void)reloadSelfDataSource{
-    [self queryBookList];
-}
+//-(void)reloadSelfDataSource{
+//    [self queryBookList];
+//}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (kMemberInfoManager.objectId) {
@@ -89,7 +88,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(84);
+        make.height.mas_equalTo(74);
     }];
     [self.userButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(kIphone6Width(-20));
@@ -110,12 +109,11 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        //_naviView.backgroundColor = kWhiteColor;
-        _naviView.title = @"礼尚往来";
+        _naviView.title = @"礼账";
         _naviView.leftImage = @"Bookcase";
         _naviView.rightImage = @"chart";
         _naviView.rightHidden = NO;
-        _naviView.backgroundColor = [UIColor clearColor];
+        _naviView.titleFont = kFont16;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -129,24 +127,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     }
     return _naviView;
 }
-/*-(NewInputButton *)inputButton{
-    if (!_inputButton) {
-        _inputButton = [[NewInputButton alloc] init];
-        _inputButton.backgroundColor = kWhiteColor;
-        _inputButton.layer.cornerRadius = kIphone6Width(21);
-        //_inputButton.clipsToBounds = YES;
-        _inputButton.layer.borderColor = kBlackColor.CGColor;
-        _inputButton.layer.borderWidth = 1;
-        _inputButton.layer.shadowColor = kHexRGB(0xC9AF99).CGColor;
-        _inputButton.layer.shadowOffset = CGSizeMake(0, 5);//偏移距离
-        _inputButton.layer.shadowOpacity = 3.5;
-        _inputButton.layer.shadowRadius = 2.0;
-        _inputButton.hidden = YES;
-        [_inputButton addTarget:self action:@selector(inputButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _inputButton;
-}
- */
+
 -(UIButton *)userButton{
     if (!_userButton) {
         _userButton = [[UIButton alloc] init];

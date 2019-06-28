@@ -86,7 +86,7 @@ static  NSInteger timeNum;
 - (void)addMasonry {
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(84);
+        make.height.mas_equalTo(74);
     }];
     // 手机号
     [self.phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -135,7 +135,7 @@ static  NSInteger timeNum;
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
-        _naviView.backgroundColor = kWhiteColor;
+        _naviView.titleFont = kFont16;
         _naviView.title = @"用户登录";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"BookChars";
@@ -373,11 +373,11 @@ static  NSInteger timeNum;
         [LEEAlert alert].config
         .LeeAddTitle(^(UILabel *label) {
             label.text = @"合并账户";
-            label.textColor = kHexRGB(0x3f3f4d);
+            label.textColor = kColor_Loding;
         })
         .LeeAddContent(^(UILabel *label) {
             label.text = @"是否合并当前账目到账户中";
-            label.textColor = [kHexRGB(0x3f3f4d) colorWithAlphaComponent:0.75f];
+            label.textColor = [kColor_Loding colorWithAlphaComponent:0.75f];
         })
         .LeeAddAction(^(LEEAction *action) {
             action.type = LEEActionTypeCancel;

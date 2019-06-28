@@ -33,8 +33,7 @@
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        _naviView.backgroundColor = kWhiteColor;
-        _naviView.titleFont = kFont14;
+        _naviView.titleFont = kFont16;
         _naviView.title = @"导出Excel";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"export";

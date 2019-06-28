@@ -42,12 +42,9 @@ UITextViewDelegate
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        _naviView.backgroundColor = kWhiteColor;
-        _naviView.titleFont = kFont14;
+        _naviView.titleFont = kFont16;
         _naviView.title = @"意见反馈";
         _naviView.leftImage = @"NavigationBack";
-        _naviView.rightImage = @"Chinesebrush";
-        _naviView.rightHidden = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -63,7 +60,7 @@ UITextViewDelegate
         [_feedbackTextView setTextColor:[UIColor blackColor]];
         _feedbackTextView.layer.cornerRadius = 5;
         _feedbackTextView.layer.masksToBounds = YES;
-        _feedbackTextView.layer.borderColor = kHexRGB(0X3f3f4d).CGColor;
+        _feedbackTextView.layer.borderColor = kColor_Loding.CGColor;
         _feedbackTextView.layer.borderWidth  = 1;
         _feedbackTextView.font = kPingFangSC_Regular(14);
     }
@@ -85,7 +82,7 @@ UITextViewDelegate
         [_makeSureButton setTitle:@"意见反馈" forState:UIControlStateNormal];
         [_makeSureButton setTitleColor:kWhiteColor forState:UIControlStateNormal];
         _makeSureButton.titleLabel.font = kPingFangTC_Light(15);
-        _makeSureButton.backgroundColor = kHexRGB(0x3f3f4d);
+        _makeSureButton.backgroundColor = kColor_Loding;
         _makeSureButton.layer.cornerRadius = kIphone6Width(15);
         _makeSureButton.layer.masksToBounds = YES;
         [_makeSureButton addTarget:self action:@selector(makeSureButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
@@ -97,7 +94,7 @@ UITextViewDelegate
         _tipLabel = [[UILabel alloc] init];
         _tipLabel.text = @"感谢您使用知礼账本~\r您对知礼账本的任何意见和建议都会让知礼账本变的更好。\r如果您对知礼账本有更好的建议，被采纳后您将会获得知礼账本送出的小礼品。\r对于您的意见知礼账本会认真严肃的对待。\r再次感谢您的使用~";
         _tipLabel.font = kPingFangTC_Light(13);
-        _tipLabel.textColor = kHexRGB(0x3f3f4d);
+        _tipLabel.textColor = kColor_Loding;
         _tipLabel.numberOfLines = 0;
     }
     return _tipLabel;

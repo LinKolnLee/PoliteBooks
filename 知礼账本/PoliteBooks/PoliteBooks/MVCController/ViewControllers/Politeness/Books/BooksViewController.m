@@ -10,7 +10,6 @@
 #import "BooksCollectionViewCell.h"
 #import "BooksModel.h"
 #import "DetailViewController.h"
-#import "BaseCollectionView.h"
 #import "TranslationMicTipView.h"
 @interface BooksViewController()<
 UICollectionViewDelegateFlowLayout,
@@ -50,7 +49,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     [self addMasonry];
     self.dataSource = [[NSMutableArray alloc] init];
     [self queryBookList];
-    [self setupTipViewWithCell];
+   // [self setupTipViewWithCell];
     
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -62,14 +61,14 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(84);
+        make.height.mas_equalTo(74);
     }];
 }
 
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        _naviView.backgroundColor = kWhiteColor;
+        _naviView.titleFont = kFont16;
         _naviView.title = @"账本目录";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"addNewBooks";
@@ -169,10 +168,6 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     if (!cell) {
         cell = [[BooksCollectionViewCell alloc] init];
     }
-    if (indexPath.row == 0) {
-        cell.isShowTip = YES;
-    }
-    
     cell.bookModel = self.dataSource[indexPath.row];
     UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(lpGR:)];
     longPressGR.minimumPressDuration = 1;
@@ -291,7 +286,6 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 }
 
 -(void)animationWithView:(UIView *)view duration:(CFTimeInterval)duration{
-    
     CAKeyframeAnimation * animation;
     animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
     animation.duration = duration;

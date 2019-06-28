@@ -13,7 +13,5 @@
 -(NSString *)timeToString;
 //获取当前时间
 +(NSString*)getCurrentTimes;
-
 +(NSString *)getCurrentYear;
-
 @end

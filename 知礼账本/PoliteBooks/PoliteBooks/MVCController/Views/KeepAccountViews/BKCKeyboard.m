@@ -4,7 +4,7 @@
  */
 
 #import "BKCKeyboard.h"
-
+#import "WSDatePickerView.h"
 #define DATE_TAG 13         // 日期
 #define PLUS_TAG 17         // 加
 #define LESS_TAG 21         // 减
@@ -44,7 +44,7 @@
     return view;
 }
 - (void)initUI {
-    [self borderForColor:kHexRGB(0x3f3f4d) borderWidth:1.f borderType:UIBorderSideTypeTop];
+    [self borderForColor:kColor_Loding borderWidth:1.f borderType:UIBorderSideTypeTop];
     [self setAnimation:NO];
     [self setIsLess:NO];
     [self setCurrentDate:[NSDate date]];
@@ -109,6 +109,9 @@
             else if (btn.tag == FINISH_TAG) {
                 [btn setTitle:@"完成" forState:UIControlStateNormal];
                 [btn setTitle:@"完成" forState:UIControlStateHighlighted];
+            }else if (btn.tag == DELETE_TAG) {
+                [btn setTitle:@"删除" forState:UIControlStateNormal];
+                [btn setTitle:@"删除" forState:UIControlStateHighlighted];
             }
             
             [btn setTitleColor:kColor_Text_Black forState:UIControlStateNormal];
@@ -255,25 +258,15 @@
 - (void)dateBtnClick:(UIButton *)btn {
     // 时间
     if (btn.tag == DATE_TAG) {
-        /*
-        @weakify(self)
-        NSDate *date = [NSDate date];
-        NSDate *min = [NSDate br_setYear:2000 month:1 day:1];
-        NSDate *max = [NSDate br_setYear:date.year + 3 month:12 day:31];
-        [BRDatePickerView showDatePickerWithTitle:@"选择日期" dateType:BRDatePickerModeYMD defaultSelValue:[self.currentDate formatYMD] minDate:min maxDate:max isAutoSelect:false themeColor:nil resultBlock:^(NSString *selectValue) {
-            @strongify(self)
-            [self setCurrentDate:({
-                NSDateFormatter *fora = [[NSDateFormatter alloc] init];
-                [fora setDateFormat:@"yyyy-MM-dd"];
-                NSDate *date = [fora dateFromString:selectValue];
-                date;
-            })];
-            selectValue = [self.currentDate isToday] ? @"今天" : selectValue;
+        WS(weakSelf);
+        WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDay CompleteBlock:^(NSDate *selectDate) {
+            weakSelf.currentDate = selectDate;
+            NSString * selectValue = [selectDate isToday] ? @"今天" : [selectDate timeToString];
             [btn setTitle:selectValue forState:UIControlStateNormal];
             [btn setTitle:selectValue forState:UIControlStateHighlighted];
-            [btn.titleLabel setFont:[UIFont systemFontOfSize:AdjustFont(12)]];
+            [btn.titleLabel setFont:kFont12];
         }];
-         */
+         [datepicker show];
     }
 }
 // 删除
@@ -502,7 +495,7 @@
     _model = model;
     NSString *key = [NSString stringWithFormat:@"%ld-%02ld-%02ld", (long)model.year, model.month, model.day];
     [self.markField setText:model.mark];
-    [self setMoney:[@(model.price) description].mutableCopy];
+    [self setMoney:[model.price description].mutableCopy];
     [self setCurrentDate:[NSDate dateWithYMD:key]];
     
     UIButton *btn = [self viewWithTag:DATE_TAG];

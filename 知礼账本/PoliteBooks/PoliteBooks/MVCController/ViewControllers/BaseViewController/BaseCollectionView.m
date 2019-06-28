@@ -39,7 +39,7 @@
     if (self.noDataImgName) {
         return [UIImage imageNamed:self.noDataImgName];
     }
-    return [UIImage imageNamed:@"ChinesebrushHold"];
+    return nil;
 }
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView;{
     return YES;

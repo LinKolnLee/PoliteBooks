@@ -7,7 +7,7 @@
 //
 
 #import "MineChartCollectionViewCell.h"
-#import "AAChartKit.h"
+
 
 @interface MineChartCollectionViewCell()
 
@@ -37,7 +37,7 @@
         _noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, ScreenWidth - 80 , 30)];
         _noDataLabel.font = kPingFangTC_Light(15);
         _noDataLabel.text = @"您还没有该创建账单，无法进行分析~";
-        _noDataLabel.textColor = kHexRGB(0x3f3f4d);
+        _noDataLabel.textColor = kColor_Loding;
         _noDataLabel.textAlignment = NSTextAlignmentCenter;
         _noDataLabel.hidden = YES;
     }
