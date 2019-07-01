@@ -47,7 +47,7 @@
 - (SKCalendarView *)calendarView
 {
     if (!_calendarView) {
-        _calendarView = [[SKCalendarView alloc] initWithFrame:CGRectMake(self.view.center.x - 150,kIphone6Width(74), kIphone6Width(300), kIphone6Width(300))];
+        _calendarView = [[SKCalendarView alloc] initWithFrame:CGRectMake(self.view.center.x - 150,kNavigationHeight, kIphone6Width(300), kIphone6Width(300))];
         _calendarView.layer.cornerRadius = 5;
         _calendarView.layer.borderColor = [UIColor blackColor].CGColor;
         _calendarView.layer.borderWidth = 0.5;

@@ -112,7 +112,7 @@
     if (!_searchButton) {
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _searchButton.frame = CGRectMake(0, 250, ScreenWidth, 25);
-        [_searchButton setTitle:@"账簿搜索" forState:UIControlStateNormal];
+        [_searchButton setTitle:@"账本搜索" forState:UIControlStateNormal];
         [_searchButton setTitleColor:TypeColor[6] forState:UIControlStateNormal];
         _searchButton.titleLabel.font = kPingFangTC_Light(15);
         [_searchButton addTarget:self action:@selector(searchButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
@@ -156,7 +156,7 @@
     if (!_aboutBtn) {
         _aboutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _aboutBtn.frame = CGRectMake(0, 450, ScreenWidth, 25);
-        [_aboutBtn setTitle:@"关于知礼" forState:UIControlStateNormal];
+        [_aboutBtn setTitle:@"关于虾米" forState:UIControlStateNormal];
         [_aboutBtn setTitleColor:TypeColor[6] forState:UIControlStateNormal];
         _aboutBtn.titleLabel.font = kPingFangTC_Light(15);
         [_aboutBtn addTarget:self action:@selector(aboutBtnTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];

@@ -35,7 +35,7 @@
 }
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
-        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 74)];
+        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
         _naviView.title = @"用户关系信息";
         _naviView.titleFont = kFont16;
         _naviView.leftImage = @"NavigationBack";

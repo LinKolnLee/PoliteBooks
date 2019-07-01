@@ -61,9 +61,9 @@
 #pragma mark - # Getter
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
-        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 74)];
+        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
          _naviView.titleFont = kFont16;
-        _naviView.title = @"用户账簿信息";
+        _naviView.title = @"用户账本信息";
         _naviView.titleFont = kFont16;
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"realtion";
@@ -105,7 +105,7 @@
     if (!_bookNumberLabel) {
         _bookNumberLabel = [[UILabel alloc] init];
         _bookNumberLabel.font = kPingFangTC_Light(15);
-        _bookNumberLabel.text = @"账簿个数";
+        _bookNumberLabel.text = @"账本个数";
         _bookNumberLabel.textColor = kColor_Loding;
         _bookNumberLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -174,7 +174,7 @@
     }];
 }
 -(void)reloadSubviews{
-    NSString * str = [NSString stringWithFormat: @"账簿个数: %@  ",self.bookNumber];
+    NSString * str = [NSString stringWithFormat: @"账本个数: %@  ",self.bookNumber];
     self.bookNumberLabel.text = str;
     NSInteger inMoney = 0;
     for (PBBookModel * model in self.dataSource[0]) {

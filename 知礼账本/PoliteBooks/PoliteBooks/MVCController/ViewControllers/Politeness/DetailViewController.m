@@ -21,7 +21,7 @@ BaseCollectionViewButtonClickDelegate
 /// collectionViewCollectionViewLayout
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionViewFlowLayout;
 /**
- 账簿列表
+ 账本列表
  */
 @property (nonatomic, strong) BaseCollectionView *collectionView;
 
@@ -74,15 +74,15 @@ BaseCollectionViewButtonClickDelegate
         };
         [self.navigationController hh_presentTiltedVC:circleVC completion:nil];
     }else{
-        if ([UserGuideManager isGuideWithIndex:2]) {
-            [self guidanceWithIndex:2];
-        }
+//        if ([UserGuideManager isGuideWithIndex:2]) {
+//            [self guidanceWithIndex:2];
+//        }
     }
 }
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(kIphone6Width(74));
+        make.height.mas_equalTo(kNavigationHeight);
     }];
 }
 -(PBIndexNavigationBarView *)naviView{

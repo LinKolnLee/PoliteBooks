@@ -86,7 +86,7 @@ static  NSInteger timeNum;
 - (void)addMasonry {
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(74);
+        make.height.mas_equalTo(kNavigationHeight);
     }];
     // 手机号
     [self.phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -252,7 +252,7 @@ static  NSInteger timeNum;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(setupTimer) userInfo:nil repeats:YES];
     [self setupTimer];
     //发送验证码
-    [BmobSMS requestSMSCodeInBackgroundWithPhoneNumber:self.phoneTextField.text andTemplate:@"知礼账本" resultBlock:^(int number, NSError *error) {
+    [BmobSMS requestSMSCodeInBackgroundWithPhoneNumber:self.phoneTextField.text andTemplate:@"虾米账本" resultBlock:^(int number, NSError *error) {
         if (error) {
             [ToastManage showTopToastWith:@"短信发送失败"];
         }else{
@@ -398,7 +398,7 @@ static  NSInteger timeNum;
                     [BmobBookExtension updataAuthorForModel:oldBookList[i] andNewUser:newUser success:^(id  _Nonnull responseObject) {
                         if (i == oldBookList.count - 1) {
                             [weakSelf hiddenLoadingAnimation];
-                            [ToastManage showTopToastWith:@"账簿合并成功"];
+                            [ToastManage showTopToastWith:@"账本合并成功"];
                             [weakSelf.navigationController popViewControllerAnimated:YES];
                         }
                     }];

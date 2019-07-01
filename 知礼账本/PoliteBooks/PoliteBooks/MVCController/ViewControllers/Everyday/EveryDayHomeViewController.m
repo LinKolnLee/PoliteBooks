@@ -37,7 +37,7 @@
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(kIphone6Width(74));
+        make.height.mas_equalTo(kNavigationHeight);
     }];
     
 }
@@ -60,7 +60,7 @@
 }
 -(HomeHeader *)headView{
     if (!_headView) {
-        _headView = [HomeHeader loadFirstNib:CGRectMake(0, kIphone6Width(74), ScreenWidth, kIphone6Width(64))];
+        _headView = [HomeHeader loadFirstNib:CGRectMake(0, kNavigationHeight, ScreenWidth, kIphone6Width(64))];
         _headView.date = [NSDate new];
         WS(weakSelf);
         _headView.everyDayHeadViewCellBtnSelectBlock = ^(NSDate * _Nonnull date) {
@@ -73,7 +73,7 @@
 
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kIphone6Width(138), ScreenWidth, ScreenHeight - kTabBarSpace - kIphone6Width(138) - kTabbarHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(64), ScreenWidth, ScreenHeight - kTabBarSpace - kIphone6Width(64) - kTabbarHeight - kNavigationHeight) style:UITableViewStylePlain];
         [_tableView setDelegate:self];
         [_tableView setDataSource:self];
         _tableView.backgroundColor = kWhiteColor;
@@ -164,6 +164,25 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 40;
 }
+//左滑删除 和编辑
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
 
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WS(weakSelf);
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        //
+        [PBWatherExtension delegateDataForModel:weakSelf.dataSource[indexPath.section][indexPath.row] success:^(id  _Nonnull responseObject) {
+            [weakSelf queryWatherDatasourceListWithDate:weakSelf.selectData];
+        }];
+    }];
+    deleteAction.backgroundColor = kColor_Main_Color;
+    return @[deleteAction];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    editingStyle = UITableViewCellEditingStyleDelete;
+}
 
 @end

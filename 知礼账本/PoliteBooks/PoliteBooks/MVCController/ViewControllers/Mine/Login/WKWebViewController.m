@@ -26,7 +26,7 @@
     [self.view addSubview:self.naviView];
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(74);
+        make.height.mas_equalTo(kNavigationHeight);
     }];
     [self.view addSubview:self.webView];
     
@@ -132,7 +132,7 @@
 
 - (WKWebView *)webView{
     if (!_webView) {
-        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 94, ScreenWidth, ScreenHeight - 94 - kTabBarSpace) configuration:self.configuration];
+        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, kNavigationHeight, ScreenWidth, ScreenHeight - kNavigationHeight - kTabBarSpace) configuration:self.configuration];
         if (self.urlStr) {
             [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]]];
         }

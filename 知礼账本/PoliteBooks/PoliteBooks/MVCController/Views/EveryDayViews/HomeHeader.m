@@ -57,6 +57,9 @@
             }
             [self setDate:selectDate];
         }];
+        datepicker.dateLabelColor = kColor_Main_Color;
+        datepicker.datePickerColor = kColor_Main_Color;
+        datepicker.doneButtonColor = kColor_Main_Color;
         [datepicker show];
     }];
 }

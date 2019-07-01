@@ -20,22 +20,22 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSArray<UserColorModel *> *)colors;
 
 /**
- 初始化账簿颜色及纸张颜色
+ 初始化账本颜色及纸张颜色
  */
 +(void)initUserColorsInFirstboot;
 
 /**
- 修改账簿颜色
+ 修改账本颜色
 
  @param color 修改的颜色
- @param index 第几个账簿的颜色被修改
+ @param index 第几个账本的颜色被修改
  */
 +(void)changeUserColorsWithColor:(NSInteger)color WithIndex:(NSInteger)index;
 
 
 /**
- 删除账簿需要的操作
- @param index 第几个账簿
+ 删除账本需要的操作
+ @param index 第几个账本
  */
 +(void)deleteUserColorsWithIndex:(NSInteger)index;
 

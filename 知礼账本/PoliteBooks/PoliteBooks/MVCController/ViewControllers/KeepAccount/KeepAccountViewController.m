@@ -54,19 +54,31 @@ UICollectionViewDelegate,UIScrollViewDelegate
         _keyboard = [BKCKeyboard init];
         [_keyboard setComplete:^(NSString *price, NSString *mark, NSDate *date) {
             [weakSelf.keyboard hide];
-            PBWatherModel * model = [[PBWatherModel alloc] init];
-            model.price = price;
-            model.week = [date weekday];
-            model.year = [date year];
-            model.month = [date month];
-            model.day = [date day];
-            model.weekNum = [date weekOfYear];
-            model.mark = mark;
-            model.type = weakSelf.accountType;
-            model.moneyType = weakSelf.moneyType;
-            [PBWatherExtension inserDataForModel:model success:^(id  _Nonnull responseObject) {
-                 [weakSelf.navigationController popViewControllerAnimated:YES];
-            }];
+            weakSelf.baseCollectionview.userInteractionEnabled = YES;
+            if (!weakSelf.quick) {
+                PBWatherModel * model = [[PBWatherModel alloc] init];
+                model.price = price;
+                model.week = [date weekday];
+                model.year = [date year];
+                model.month = [date month];
+                model.day = [date day];
+                model.weekNum = [date weekOfYear];
+                model.mark = mark;
+                model.type = weakSelf.accountType;
+                model.moneyType = weakSelf.moneyType;
+                [PBWatherExtension inserDataForModel:model success:^(id  _Nonnull responseObject) {
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                }];
+            }else{
+                PBQuickModel * model = [[PBQuickModel alloc] init];
+                model.price = price;
+                model.name = TypeClassStr[weakSelf.accountType];
+                model.type = weakSelf.accountType;
+                model.moneyType = weakSelf.moneyType;
+                [PBQuickExtension inserDataForModel:model success:^(id  _Nonnull responseObject) {
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                }];
+            };
         }];
         [self.view addSubview:_keyboard];
     }
@@ -106,7 +118,11 @@ UICollectionViewDelegate,UIScrollViewDelegate
 }
 -(SPMultipleSwitch *)classTypeSwitch{
     if (!_classTypeSwitch) {
-        _classTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"支出",@"收入",@"礼账"]];
+        if (!self.quick) {
+            _classTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"支出",@"收入",@"礼账"]];
+        }else{
+            _classTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"支出",@"收入"]];
+        }
         _classTypeSwitch.frame = CGRectMake((ScreenWidth - (ScreenWidth-150))/2, kStatusBarHeight + 10, ScreenWidth-150, 30);
         _classTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
         _classTypeSwitch.selectedTitleColor = kWhiteColor;
@@ -187,7 +203,11 @@ UICollectionViewDelegate,UIScrollViewDelegate
 
 #pragma mark delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 3;
+    if (self.quick) {
+        return 2;
+    }else{
+        return 3;
+    }
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row ==  2) {
@@ -223,6 +243,7 @@ UICollectionViewDelegate,UIScrollViewDelegate
         cell.keepAccountInOutCollectionViewCellBtnSelectBlock = ^(NSInteger type) {
             weakSelf.accountType = type;
             [weakSelf.keyboard show];
+            weakSelf.baseCollectionview.userInteractionEnabled = NO;
         };
         
         cell.row = indexPath.row;
@@ -231,7 +252,7 @@ UICollectionViewDelegate,UIScrollViewDelegate
     
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    self.classTypeSwitch.selectedSegmentIndex = (NSInteger)(scrollView.contentOffset.x / ScreenWidth);
+    self.classTypeSwitch.selectedSegmentIndex = scrollView.contentOffset.x/ScreenWidth;
+    self.moneyType = self.classTypeSwitch.selectedSegmentIndex;
 }
-
 @end

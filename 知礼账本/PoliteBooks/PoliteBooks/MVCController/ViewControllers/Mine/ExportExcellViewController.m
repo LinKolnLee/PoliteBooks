@@ -52,7 +52,7 @@
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(kIphone6Width(74));
+        make.height.mas_equalTo(kNavigationHeight);
     }];
 }
 -(void)setupExcelView{
@@ -60,7 +60,7 @@
     mode.style = YWExcelViewStyleDefalut;
     mode.headTexts = @[@"账本名称",@"姓名",@"金额",@"进礼",@"收礼",@"关系",@"日期"];
     mode.defalutHeight = 40;
-    YWExcelView *exceView = [[YWExcelView alloc] initWithFrame:CGRectMake(0, 84, ScreenWidth, ScreenHeight-100) mode:mode];
+    YWExcelView *exceView = [[YWExcelView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + 10, ScreenWidth, ScreenHeight-kNavigationHeight - 10) mode:mode];
     exceView.showBorderColor = kBlackColor;
     self.excelView = exceView;
     exceView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -162,7 +162,7 @@
 -(void)uploadWithPath:(NSString *)filePath{
     
     NSData *fileData = [NSData dataWithContentsOfFile:filePath];
-    BmobFile *file = [[BmobFile alloc]initWithFileName:[NSString stringWithFormat:@"知礼账本_%@.xls",kMemberInfoManager.objectId] withFileData:fileData];
+    BmobFile *file = [[BmobFile alloc]initWithFileName:[NSString stringWithFormat:@"虾米账本_%@.xls",kMemberInfoManager.objectId] withFileData:fileData];
     WS(weakSelf);
     [file saveInBackground:^(BOOL isSuccessful, NSError *error) {
         //如果文件保存成功，则把文件添加到filetype列

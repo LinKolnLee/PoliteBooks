@@ -122,6 +122,13 @@
 		42BBB1B9224B43CA002C11F6 /* WSDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBB1B5224B43C9002C11F6 /* WSDatePickerView.m */; };
 		42BBB1BA224B43CA002C11F6 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBB1B6224B43C9002C11F6 /* NSDate+Extension.m */; };
 		42BBB1BB224B43CA002C11F6 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBB1B7224B43C9002C11F6 /* UIView+Extension.m */; };
+		42BC282C22C9ADB0001829B1 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BC282B22C9ADB0001829B1 /* MyViewController.m */; };
+		42BC283022C9ADEA001829B1 /* MyHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BC282F22C9ADEA001829B1 /* MyHeadView.m */; };
+		42BC283322C9D826001829B1 /* ToolCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BC283222C9D826001829B1 /* ToolCollectionViewCell.m */; };
+		42BC283622C9DAAD001829B1 /* PBQuickModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BC283522C9DAAD001829B1 /* PBQuickModel.m */; };
+		42BC283922C9DAD9001829B1 /* PBQuickExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BC283822C9DAD9001829B1 /* PBQuickExtension.m */; };
+		42BC283F22CA13D3001829B1 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BC283E22CA13D3001829B1 /* start.png */; };
+		42BC284122CA1477001829B1 /* newIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BC284022CA1477001829B1 /* newIcon.png */; };
 		42BEAA9E21E8375F001F5F3E /* backImage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BEAA9721E8375F001F5F3E /* backImage1.png */; };
 		42BEAA9F21E8375F001F5F3E /* backImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BEAA9821E8375F001F5F3E /* backImage2.png */; };
 		42BEAAA021E8375F001F5F3E /* backImage3.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BEAA9921E8375F001F5F3E /* backImage3.png */; };
@@ -210,7 +217,6 @@
 		42F2B61C22BB2BCF00BE8D1B /* zlbookImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F2B61522BB2BCF00BE8D1B /* zlbookImage2.png */; };
 		42F2B61D22BB2BCF00BE8D1B /* zlbookImage7.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F2B61622BB2BCF00BE8D1B /* zlbookImage7.png */; };
 		42F2B61E22BB2BCF00BE8D1B /* zlbookImage4.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F2B61722BB2BCF00BE8D1B /* zlbookImage4.png */; };
-		42F2B62022BB696500BE8D1B /* stat.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F2B61F22BB696500BE8D1B /* stat.png */; };
 		42F8675622C5EBDF00B9FB4B /* KeepAccountPuliteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F8675522C5EBDF00B9FB4B /* KeepAccountPuliteCollectionViewCell.m */; };
 		42F8675822C6039400B9FB4B /* NewEdit.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F8675722C6039400B9FB4B /* NewEdit.png */; };
 		42F8675B22C6046E00B9FB4B /* ToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F8675A22C6046E00B9FB4B /* ToolViewController.m */; };
@@ -429,6 +435,18 @@
 		42BBB1B5224B43C9002C11F6 /* WSDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSDatePickerView.m; sourceTree = "<group>"; };
 		42BBB1B6224B43C9002C11F6 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		42BBB1B7224B43C9002C11F6 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		42BC282A22C9ADB0001829B1 /* MyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		42BC282B22C9ADB0001829B1 /* MyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		42BC282E22C9ADEA001829B1 /* MyHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyHeadView.h; sourceTree = "<group>"; };
+		42BC282F22C9ADEA001829B1 /* MyHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyHeadView.m; sourceTree = "<group>"; };
+		42BC283122C9D826001829B1 /* ToolCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolCollectionViewCell.h; sourceTree = "<group>"; };
+		42BC283222C9D826001829B1 /* ToolCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToolCollectionViewCell.m; sourceTree = "<group>"; };
+		42BC283422C9DAAD001829B1 /* PBQuickModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBQuickModel.h; sourceTree = "<group>"; };
+		42BC283522C9DAAD001829B1 /* PBQuickModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBQuickModel.m; sourceTree = "<group>"; };
+		42BC283722C9DAD9001829B1 /* PBQuickExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBQuickExtension.h; sourceTree = "<group>"; };
+		42BC283822C9DAD9001829B1 /* PBQuickExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBQuickExtension.m; sourceTree = "<group>"; };
+		42BC283E22CA13D3001829B1 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = start.png; path = PoliteBooks/ResourceFile/start.png; sourceTree = SOURCE_ROOT; };
+		42BC284022CA1477001829B1 /* newIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newIcon.png; sourceTree = "<group>"; };
 		42BEAA9721E8375F001F5F3E /* backImage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backImage1.png; sourceTree = "<group>"; };
 		42BEAA9821E8375F001F5F3E /* backImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backImage2.png; sourceTree = "<group>"; };
 		42BEAA9921E8375F001F5F3E /* backImage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backImage3.png; sourceTree = "<group>"; };
@@ -570,7 +588,6 @@
 		42F2B61522BB2BCF00BE8D1B /* zlbookImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zlbookImage2.png; sourceTree = "<group>"; };
 		42F2B61622BB2BCF00BE8D1B /* zlbookImage7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zlbookImage7.png; sourceTree = "<group>"; };
 		42F2B61722BB2BCF00BE8D1B /* zlbookImage4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zlbookImage4.png; sourceTree = "<group>"; };
-		42F2B61F22BB696500BE8D1B /* stat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stat.png; sourceTree = "<group>"; };
 		42F8675422C5EBDF00B9FB4B /* KeepAccountPuliteCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeepAccountPuliteCollectionViewCell.h; sourceTree = "<group>"; };
 		42F8675522C5EBDF00B9FB4B /* KeepAccountPuliteCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeepAccountPuliteCollectionViewCell.m; sourceTree = "<group>"; };
 		42F8675722C6039400B9FB4B /* NewEdit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NewEdit.png; path = PoliteBooks/ResourceFile/NewEdit.png; sourceTree = SOURCE_ROOT; };
@@ -712,6 +729,7 @@
 		42294BB421E733DC00A1D4D0 /* ResourceFile */ = {
 			isa = PBXGroup;
 			children = (
+				42BC284022CA1477001829B1 /* newIcon.png */,
 				42F8675722C6039400B9FB4B /* NewEdit.png */,
 				42B84C9822C1F65900F752D3 /* ClassImage */,
 				4272D30322BA53EC00193F65 /* export.png */,
@@ -732,6 +750,7 @@
 				42E04A5521F1D6A400A5567C /* creatBookbgImage.png */,
 				42ACFCBB21EEC96C00A40338 /* Cancel.png */,
 				42ACFCBC21EEC96C00A40338 /* Sure.png */,
+				42BC283E22CA13D3001829B1 /* start.png */,
 				42BEAA9621E8375F001F5F3E /* BackImages */,
 				42F0831421EC685E00948743 /* line.png */,
 				4200E74F21E8807800B4A8DC /* bookcase1.png */,
@@ -740,7 +759,6 @@
 				42F0832521EC7FF300948743 /* Date.png */,
 				42BBB1AE224B2988002C11F6 /* ChinesebrushHold.png */,
 				42294BD821E7479B00A1D4D0 /* Hammer.png */,
-				42F2B61F22BB696500BE8D1B /* stat.png */,
 				42D2C15F2224D76700A9977E /* DataBaseTableNameList.plist */,
 			);
 			path = ResourceFile;
@@ -844,6 +862,8 @@
 		42294BBC21E7345900A1D4D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				42BC282D22C9ADCF001829B1 /* MyViews */,
+				42BC282922C9ACCF001829B1 /* ToolViews */,
 				42EB0EA722C31CB90007FE31 /* EveryDayViews */,
 				42B84CDB22C20DF900F752D3 /* KeepAccountViews */,
 				42F2B61022BB2A3E00BE8D1B /* AboutViews */,
@@ -1006,6 +1026,10 @@
 				42B84CEE22C22BEF00F752D3 /* PBWatherModel.m */,
 				42B84CFC22C2391400F752D3 /* PBWatherExtension.h */,
 				42B84CFD22C2391400F752D3 /* PBWatherExtension.m */,
+				42BC283422C9DAAD001829B1 /* PBQuickModel.h */,
+				42BC283522C9DAAD001829B1 /* PBQuickModel.m */,
+				42BC283722C9DAD9001829B1 /* PBQuickExtension.h */,
+				42BC283822C9DAD9001829B1 /* PBQuickExtension.m */,
 			);
 			path = BmobExtended;
 			sourceTree = "<group>";
@@ -1175,6 +1199,24 @@
 			path = WSDatePickerView;
 			sourceTree = "<group>";
 		};
+		42BC282922C9ACCF001829B1 /* ToolViews */ = {
+			isa = PBXGroup;
+			children = (
+				42BC283122C9D826001829B1 /* ToolCollectionViewCell.h */,
+				42BC283222C9D826001829B1 /* ToolCollectionViewCell.m */,
+			);
+			path = ToolViews;
+			sourceTree = "<group>";
+		};
+		42BC282D22C9ADCF001829B1 /* MyViews */ = {
+			isa = PBXGroup;
+			children = (
+				42BC282E22C9ADEA001829B1 /* MyHeadView.h */,
+				42BC282F22C9ADEA001829B1 /* MyHeadView.m */,
+			);
+			path = MyViews;
+			sourceTree = "<group>";
+		};
 		42BEAA9621E8375F001F5F3E /* BackImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1287,6 +1329,8 @@
 				42C5BA7822B24EC100AB73D3 /* MineViewController.m */,
 				4272D29822BA0D3300193F65 /* RealtionViewController.h */,
 				4272D29922BA0D3300193F65 /* RealtionViewController.m */,
+				42BC282A22C9ADB0001829B1 /* MyViewController.h */,
+				42BC282B22C9ADB0001829B1 /* MyViewController.m */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -1624,11 +1668,11 @@
 				42294B8B21E7320A00A1D4D0 /* Assets.xcassets in Resources */,
 				42B84CC422C1F65A00F752D3 /* classImage_0.png in Resources */,
 				42BEAAA021E8375F001F5F3E /* backImage3.png in Resources */,
+				42BC284122CA1477001829B1 /* newIcon.png in Resources */,
 				42BEAAA321E8375F001F5F3E /* backImage6.png in Resources */,
 				42BEAAA221E8375F001F5F3E /* backImage5.png in Resources */,
 				42EFDC6022363D5E00FD2EDB /* NavigationBack@3x.png in Resources */,
 				42B84CB722C1F65A00F752D3 /* classImage_26.png in Resources */,
-				42F2B62022BB696500BE8D1B /* stat.png in Resources */,
 				42B84CC722C1F65A00F752D3 /* classImage_4.png in Resources */,
 				42BBB1AF224B2988002C11F6 /* ChinesebrushHold.png in Resources */,
 				42D8C96622B72C9F00FE34C5 /* Search.png in Resources */,
@@ -1661,6 +1705,7 @@
 				42B84CC022C1F65A00F752D3 /* classImage_22.png in Resources */,
 				42F2B61A22BB2BCF00BE8D1B /* zlbookImage6.png in Resources */,
 				42B84CCA22C1F65A00F752D3 /* classImage_9.png in Resources */,
+				42BC283F22CA13D3001829B1 /* start.png in Resources */,
 				42F2B61C22BB2BCF00BE8D1B /* zlbookImage2.png in Resources */,
 				42B84CC622C1F65A00F752D3 /* classImage_5.png in Resources */,
 				42B84CC222C1F65A00F752D3 /* classImage_2.png in Resources */,
@@ -1769,6 +1814,7 @@
 				42AE9B662264556100F5FD08 /* SKCalendarAnimationManage.m in Sources */,
 				42B0404D2238F40900092539 /* TranslationMicTipView.m in Sources */,
 				42294BC521E7350A00A1D4D0 /* BaseNavigationController.m in Sources */,
+				42BC283022C9ADEA001829B1 /* MyHeadView.m in Sources */,
 				42B84CF822C22F3000F752D3 /* NSString+Calculation.m in Sources */,
 				42EFDC5A2236304900FD2EDB /* UIScrollView+EmptyDataSet.m in Sources */,
 				42294BF221E7594000A1D4D0 /* UserColorConfiguration.m in Sources */,
@@ -1790,6 +1836,7 @@
 				42B040502238F42200092539 /* UIView+LLFrame.m in Sources */,
 				4272D2A222BA3F7300193F65 /* FeedbackViewController.m in Sources */,
 				42B84CE122C21E2B00F752D3 /* KeepAccountInOutCollectionViewCell.m in Sources */,
+				42BC282C22C9ADB0001829B1 /* MyViewController.m in Sources */,
 				42294BF821E75B1200A1D4D0 /* NSDate+String.m in Sources */,
 				42B84CFE22C2391400F752D3 /* PBWatherExtension.m in Sources */,
 				42BBB1BB224B43CA002C11F6 /* UIView+Extension.m in Sources */,
@@ -1801,6 +1848,7 @@
 				42D8C96422B72BD300FE34C5 /* PBSearchView.m in Sources */,
 				42294B9121E7320A00A1D4D0 /* main.m in Sources */,
 				4209557D22C4A7AE00C255B5 /* PBRefreshFooter.m in Sources */,
+				42BC283922C9DAD9001829B1 /* PBQuickExtension.m in Sources */,
 				42B84C8822C1C86500F752D3 /* AxcAE_TabBarBadge.m in Sources */,
 				42294BEE21E754D300A1D4D0 /* ConfigurationKeys.m in Sources */,
 				42E04A5421F1D57400A5567C /* CreatBookView.m in Sources */,
@@ -1852,6 +1900,7 @@
 				4296F66A22B0CFCD00FD70B7 /* PBBookModel.m in Sources */,
 				42EB0EEA22C377530007FE31 /* NSDate+KeyBoardExtension.m in Sources */,
 				42EB0EAA22C31CE60007FE31 /* AccentDetailTableViewCell.m in Sources */,
+				42BC283322C9D826001829B1 /* ToolCollectionViewCell.m in Sources */,
 				42B84CDE22C20E1000F752D3 /* KeepAccountCollectionViewCell.m in Sources */,
 				4296F66722B0CEDD00FD70B7 /* BmobBookExtension.m in Sources */,
 				42EB0E9F22C311170007FE31 /* HomeHeader.m in Sources */,
@@ -1871,6 +1920,7 @@
 				4272D2FF22BA4F0600193F65 /* YWExcelViewMode.m in Sources */,
 				42D8C97B22B741F100FE34C5 /* BaseViewController.m in Sources */,
 				42B84C8D22C1C8BC00F752D3 /* BaseTabbarViewController.m in Sources */,
+				42BC283622C9DAAD001829B1 /* PBQuickModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

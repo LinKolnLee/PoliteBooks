@@ -38,8 +38,9 @@
         }else{
             if (object) {
                 //异步删除object
-                [object deleteInBackground];
-                success(object);
+                [object deleteInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+                    success(object);
+                }];
             }
         }
     }];

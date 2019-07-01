@@ -71,7 +71,7 @@
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(kIphone6Width(74));
+        make.height.mas_equalTo(kNavigationHeight);
     }];
     [self.headView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -96,8 +96,8 @@
         _naviView.PBIndexNavigationBarViewTitleLabelBlock = ^{
             VIBRATION;
             [LEEAlert actionsheet].config
-            .LeeTitle(@"账簿编辑")
-            .LeeContent(@"删除账簿、编辑账簿名称")
+            .LeeTitle(@"账本编辑")
+            .LeeContent(@"删除账本、编辑账本名称")
             .LeeAction(@"支出", ^{
                 
                 [weakSelf requestOutData];

@@ -19,6 +19,7 @@
 #import "UIColor+HEX.h"
 #import <UIKit/UIKit.h>
 #import "ToastManage.h"
+#import "PBQuickModel.h"
 #import "PBTableModel.h"
 #import <BmobSDK/Bmob.h>
 #import "GlobalDefine.h"
@@ -28,6 +29,7 @@
 #import "NSString+Money.h"
 #import "UserColorModel.h"
 #import "PBRefreshFooter.h"
+#import "PBQuickExtension.h"
 #import "UserGuideManager.h"
 #import "BeautyLoadingHUD.h"
 #import "PBTableExtension.h"

@@ -43,13 +43,13 @@ UICollectionViewDelegate
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(74);
+        make.height.mas_equalTo(kNavigationHeight);
     }];
 }
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        _naviView.title = @"关于知礼";
+        _naviView.title = @"关于虾米";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"export";
         _naviView.rightHidden = YES;
@@ -94,7 +94,7 @@ UICollectionViewDelegate
     if (!_versionLabel) {
         _versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, ScreenHeight-100, ScreenWidth, 25)];
         _versionLabel.font = kPingFangTC_Light(15);
-        _versionLabel.text = [NSString stringWithFormat:@"当前版本：知礼账簿%@",kCurrentAppVersion];
+        _versionLabel.text = [NSString stringWithFormat:@"当前版本：虾米账本%@",kCurrentAppVersion];
         _versionLabel.textColor = TypeColor[5];
         _versionLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -127,7 +127,7 @@ UICollectionViewDelegate
 }
 -(void)setDataSource:(NSMutableArray<PBBookModel *> *)dataSource{
     _dataSource = dataSource;
-    self.bookNumberLabel.text = [NSString stringWithFormat:@"当前账簿个数：%ld",dataSource.count];
+    self.bookNumberLabel.text = [NSString stringWithFormat:@"当前账本个数：%ld",dataSource.count];
 }
 
 //MARK: UICollectionViewDelegate

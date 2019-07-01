@@ -92,7 +92,7 @@ UITextViewDelegate
 -(UILabel *)tipLabel{
     if (!_tipLabel) {
         _tipLabel = [[UILabel alloc] init];
-        _tipLabel.text = @"感谢您使用知礼账本~\r您对知礼账本的任何意见和建议都会让知礼账本变的更好。\r如果您对知礼账本有更好的建议，被采纳后您将会获得知礼账本送出的小礼品。\r对于您的意见知礼账本会认真严肃的对待。\r再次感谢您的使用~";
+        _tipLabel.text = @"感谢您使用虾米账本~\r您对虾米账本的任何意见和建议都会让虾米账本变的更好。\r如果您对虾米账本有更好的建议，被采纳后您将会获得虾米账本送出的小礼品。\r对于您的意见虾米账本会认真严肃的对待。\r再次感谢您的使用~";
         _tipLabel.font = kPingFangTC_Light(13);
         _tipLabel.textColor = kColor_Loding;
         _tipLabel.numberOfLines = 0;
@@ -102,7 +102,7 @@ UITextViewDelegate
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(kIphone6Width(74));
+        make.height.mas_equalTo(kNavigationHeight);
     }];
     // 建议文本框
     [self.feedbackTextView mas_makeConstraints:^(MASConstraintMaker *make) {

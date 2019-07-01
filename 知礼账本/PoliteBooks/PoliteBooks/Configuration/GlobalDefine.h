@@ -60,7 +60,7 @@
 /**
  Navigation高度
  */
-#define kNavigationHeight (44 + [[UIApplication sharedApplication] statusBarFrame].size.height)
+#define kNavigationHeight (54 + [[UIApplication sharedApplication] statusBarFrame].size.height)
 
 /**
  状态栏高度

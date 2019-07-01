@@ -53,8 +53,8 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(kIphone6Width(180));
         make.height.mas_equalTo(kIphone6Width(25));
-        make.centerX.mas_equalTo(-5);
-        make.centerY.mas_equalTo(kIphone6Width(10));
+        make.centerX.mas_equalTo(0);
+        make.bottom.mas_equalTo(kIphone6Width(-15));
     }];
     // 左侧按钮
     [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {

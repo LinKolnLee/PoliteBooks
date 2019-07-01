@@ -10,7 +10,7 @@
 #import "EveryDayHomeViewController.h"
 #import "IndexViewController.h"
 #import "ToolViewController.h"
-#import "SettingViewController.h"
+#import "MyViewController.h"
 #import "KeepAccountViewController.h"
 
 @interface NewTabbarViewController ()<AxcAE_TabBarDelegate>
@@ -30,8 +30,8 @@
     @[@{@"vc":[EveryDayHomeViewController new],@"normalImg":@"home_normal",@"selectImg":@"home_highlight",@"itemTitle":@"流水账"},
       @{@"vc":[IndexViewController new],@"normalImg":@"mycity_normal",@"selectImg":@"mycity_highlight",@"itemTitle":@"礼账"},
       @{@"vc":[KeepAccountViewController new],@"normalImg":@"",@"selectImg":@"",@"itemTitle":@"记一笔"},
-      @{@"vc":[ToolViewController new],@"normalImg":@"message_normal",@"selectImg":@"message_highlight",@"itemTitle":@"速记"},
-      @{@"vc":[SettingViewController new],@"normalImg":@"account_normal",@"selectImg":@"account_highlight",@"itemTitle":@"我的"}];
+      @{@"vc":[ToolViewController new],@"normalImg":@"message_normal",@"selectImg":@"message_highlight",@"itemTitle":@"日常速记"},
+      @{@"vc":[MyViewController new],@"normalImg":@"account_normal",@"selectImg":@"account_highlight",@"itemTitle":@"我的"}];
     // 1.遍历这个集合
     // 1.1 设置一个保存构造器的数组
     NSMutableArray *tabBarConfs = @[].mutableCopy;
@@ -76,8 +76,8 @@
             // 来点效果好看
             model.interactionEffectStyle = AxcAE_TabBarInteractionEffectStyleSpring;
             // 点击背景稍微明显点吧
-            model.selectBackgroundColor = AxcAE_TabBarRGBA(248, 248, 248, 1);
-            model.normalBackgroundColor = [UIColor clearColor];
+//            model.selectBackgroundColor = AxcAE_TabBarRGBA(248, 248, 248, 1);
+//            model.normalBackgroundColor = [UIColor clearColor];
         }
         // 备注 如果一步设置的VC的背景颜色，VC就会提前绘制驻留，优化这方面的话最好不要这么写
         // 示例中为了方便就在这写了

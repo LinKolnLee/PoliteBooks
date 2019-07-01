@@ -31,16 +31,9 @@ static UserManager *manager = nil;
         if (isSuccessful){
             [bUser setObject:nickName forKey:@"nickName"];
             [bUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-//                BmobUser *newUser = [BmobUser currentUser];
-//                [UserManager sharedInstance].user_id = newUser.objectId;
-//                PBBookModel * bookModel = [[PBBookModel alloc] init];
-//                bookModel.bookName = @"婚礼账簿";
-//                bookModel.bookColor = 0;
-//                bookModel.bookDate = [[NSDate getCurrentTimes] getCNDate];;
-//                [BmobBookExtension inserDataForModel:bookModel success:^(id  _Nonnull responseObject) {
-//                    [[NSNotificationCenter defaultCenter] postNotificationName:@"kUserRegiseBook" object:nil];
-//                    DLog(@"用户注册成功");
-//                }];
+                BmobUser *newUser = [BmobUser currentUser];
+                kMemberInfoManager.objectId = newUser.objectId;
+
             }];
         } else {
             NSLog(@"%@",error);

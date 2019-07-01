@@ -39,7 +39,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 /// collectionViewCollectionViewLayout
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionViewFlowLayout;
 /**
- 账簿列表
+ 账本列表
  */
 @property (nonatomic, strong) BaseCollectionView *collectionView;
 
@@ -80,15 +80,15 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if ([UserGuideManager isGuideWithIndex:0]) {
-        [self guidanceWithIndex:0];
-    }
+//    if ([UserGuideManager isGuideWithIndex:0]) {
+//        [self guidanceWithIndex:0];
+//    }
 }
 
 -(void)addMasonry{
     [self.naviView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(74);
+        make.height.mas_equalTo(kNavigationHeight);
     }];
     [self.userButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(kIphone6Width(-20));
@@ -217,7 +217,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         _collectionView.bounces = NO;
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.baseDelegate = self;
-        _collectionView.btnTitle = @"点击添加账簿";
+        _collectionView.btnTitle = @"点击添加账本";
         [_collectionView registerClass:[IndexCollectionViewCell class] forCellWithReuseIdentifier:@"IndexCollectionViewCell"];
     }
     return _collectionView;

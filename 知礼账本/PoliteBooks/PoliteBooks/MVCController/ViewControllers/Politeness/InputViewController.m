@@ -213,8 +213,8 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.textColor = kBlackColor;
-        _titleLabel.font = kFont22;
-        _titleLabel.text = @"新记";
+        _titleLabel.font = kFont16;
+        _titleLabel.text = @"记一笔";
     }
     return _titleLabel;
 }
@@ -299,6 +299,7 @@
 -(void)sureButtonTouchUpInside:(UIButton *)sender{
     self.moneyString =  self.textInputView.numberField.text;
     if (self.nameString.length == 0 || self.moneyString.length == 0 ) {
+        [ToastManage showTopToastWith:@"请填写金额和姓名"];
         return;
     }
     if (self.isEdit) {

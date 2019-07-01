@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KeepAccountViewController : BaseViewController
 
+@property(nonatomic,assign)BOOL quick;
+
 @end
 
 NS_ASSUME_NONNULL_END

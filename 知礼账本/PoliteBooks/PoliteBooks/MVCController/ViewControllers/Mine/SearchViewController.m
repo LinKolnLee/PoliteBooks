@@ -17,7 +17,7 @@ UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionViewFlowLayout *collectionViewFlowLayout;
 
 /**
- 账簿列表
+ 账本列表
  */
 @property (nonatomic, strong) BaseCollectionView *collectionView;
 
@@ -53,7 +53,7 @@ UICollectionViewDelegate>
     }];
 }
 -(void)backButtonTouchUpInside:(UIButton *)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 -(PBSearchView *)searchView{
     if (!_searchView) {

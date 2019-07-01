@@ -43,7 +43,7 @@ UICollectionViewDelegate,BaseCollectionViewButtonClickDelegate>
         _collectionView.bounces = NO;
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.baseDelegate = self;
-        _collectionView.btnTitle = @"点击添加账簿";
+        _collectionView.btnTitle = @"点击添加账本";
         [_collectionView registerClass:[BooksCollectionViewCell class] forCellWithReuseIdentifier:@"BooksCollectionViewCell"];
     }
     return _collectionView;
