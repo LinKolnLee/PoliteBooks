@@ -34,7 +34,7 @@ UICollectionViewDelegate
     [self.view addSubview:self.naviView];
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.versionLabel];
-    [self.view addSubview:self.bookNumberLabel];
+    //[self.view addSubview:self.bookNumberLabel];
     [self.view addSubview:self.contactLabel];
 
     [self addMasonry];
@@ -65,6 +65,7 @@ UICollectionViewDelegate
     }
     return _naviView;
 }
+
 - (BaseCollectionView *)collectionView {
     if (!_collectionView) {
         WJFlowLayout *layout = [[WJFlowLayout alloc]init];
@@ -85,7 +86,7 @@ UICollectionViewDelegate
     if (!_bookNumberLabel) {
         _bookNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, ScreenHeight-150, ScreenWidth, 25)];
         _bookNumberLabel.font = kPingFangTC_Light(15);
-        _bookNumberLabel.textColor = TypeColor[5];
+        _bookNumberLabel.textColor = TypeColor[1];
         _bookNumberLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _bookNumberLabel;
@@ -95,7 +96,7 @@ UICollectionViewDelegate
         _versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, ScreenHeight-100, ScreenWidth, 25)];
         _versionLabel.font = kPingFangTC_Light(15);
         _versionLabel.text = [NSString stringWithFormat:@"当前版本：虾米账本%@",kCurrentAppVersion];
-        _versionLabel.textColor = TypeColor[5];
+        _versionLabel.textColor = kBlackColor;
         _versionLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _versionLabel;
@@ -105,13 +106,13 @@ UICollectionViewDelegate
         _contactLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, ScreenHeight-50, ScreenWidth, 25)];
         _contactLabel.font = kPingFangTC_Light(15);
         _contactLabel.text = @"联系方式：zhilibook@163.com";
-        _contactLabel.textColor = TypeColor[5];
+        _contactLabel.textColor = kBlackColor;
         _contactLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _contactLabel;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 6;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -122,7 +123,7 @@ UICollectionViewDelegate
     if (!cell) {
         cell = [[AboutCollectionViewCell alloc] init];
     }
-    cell.imageName = [NSString stringWithFormat:@"zlbookImage%ld",indexPath.row + 1];
+    cell.imageName = @"newAbout";
     return cell;
 }
 -(void)setDataSource:(NSMutableArray<PBBookModel *> *)dataSource{

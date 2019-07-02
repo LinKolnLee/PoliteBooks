@@ -75,12 +75,21 @@
 }
 -(void)setModel:(PBQuickModel *)model{
     _model = model;
-    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"classImage_%ld.png",(long)model.type]];
-    UIImage *image = [UIImage imageWithContentsOfFile:filePath];
-    [self.iconBtn setImage:image forState:UIControlStateNormal];
-    self.titleLabel.text = [NSString stringWithFormat:@"%@_%@元",TypeClassStr[model.type],model.price];
+    if (model.moneyType) {
+        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+        NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"inComeClass_%ld.png",(long)model.type]];
+        UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+        [self.iconBtn setImage:image forState:UIControlStateNormal];
+        self.titleLabel.text = [NSString stringWithFormat:@"%@_%@元",IncomeClassStr[model.type],model.price];
+    }else{
+        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+        NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"classImage_%ld.png",(long)model.type]];
+        UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+        [self.iconBtn setImage:image forState:UIControlStateNormal];
+        self.titleLabel.text = [NSString stringWithFormat:@"%@_%@元",TypeClassStr[model.type],model.price];
+    }
+    
     self.typeLabel.text = model.moneyType == 0 ? @"支出" : @"收入";
-    self.backgroundColor = model.moneyType == 0 ? kColor_Main_Color : TypeColor[3];
+    self.backgroundColor = model.moneyType == 0 ? TypeColor[2] : TypeColor[3];
 }
 @end

@@ -16,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)BOOL login;
 
+@property(nonatomic,assign)NSInteger watherNum;
+
+@property(nonatomic,assign)NSInteger politeNum;
+
 @end
 
 NS_ASSUME_NONNULL_END

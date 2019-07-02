@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)queryYearBookListWithDate:(NSDate *)date withType:(NSInteger)type success:(void (^)(NSMutableArray<NSMutableArray<PBWatherModel *> *>*bookList))success fail:(void (^)(id))fail;
 
 +(void)updataForModel:(PBWatherModel *)model success:(void (^)(id responseObject))success;
+
++(void)mergeWatherListForOldUser:(BmobUser *)user success:(void (^)(id responseObject))success;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -50,7 +50,7 @@
     BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:kMemberInfoManager.objectId];
     //添加作者是objectId为vbhGAAAY条件
     [query whereKey:@"author" equalTo:author];
-    query.cachePolicy = kBmobCachePolicyNetworkElseCache;
+    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (error) {

@@ -30,8 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
-    self.titles = @[@"查看日历",@"导出EXCEL",@"礼账搜索",@"意见反馈",@"注册协议",@"隐私政策",@"关于虾米"];
-    [self queryBookList];
+    self.titles = @[@"查看日历",@"礼账搜索",@"意见反馈",@"注册协议",@"隐私政策",@"关于虾米"];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -41,6 +40,8 @@
     }else{
         self.headView.login = YES;
     }
+    [self queryWaterList];
+    [self queryBookList];
 }
 -(MyHeadView *)headView{
     if (!_headView) {
@@ -105,25 +106,25 @@
             [self.navigationController hh_presentBackScaleVC:date height:ScreenHeight-kIphone6Width(230) completion:nil];
         }
             break;
+//        case 1:
+//        {
+//            ExportExcellViewController * export = [[ExportExcellViewController alloc] init];
+//            [self.navigationController hh_pushBackViewController:export];
+//        }
+//            break;
         case 1:
-        {
-            ExportExcellViewController * export = [[ExportExcellViewController alloc] init];
-            [self.navigationController hh_pushBackViewController:export];
-        }
-            break;
-        case 2:
         {
             SearchViewController * searchVc = [[SearchViewController alloc] init];
             [self.navigationController hh_pushBackViewController:searchVc];
         }
             break;
-        case 3:
+        case 2:
         {
             FeedbackViewController * feedBack = [[FeedbackViewController alloc] init];
             [self.navigationController hh_pushBackViewController:feedBack];
         }
             break;
-        case 4:
+        case 3:
         {
             WKWebViewController *webVC = [[WKWebViewController alloc] init];
             webVC.titleStr  = @"注册协议";
@@ -131,7 +132,7 @@
             [self.navigationController pushViewController:webVC  animated:NO];
         }
             break;
-        case 5:
+        case 4:
         {
             WKWebViewController *webVC = [[WKWebViewController alloc] init];
             webVC.titleStr  = @"隐私政策";
@@ -139,7 +140,7 @@
             [self.navigationController pushViewController:webVC  animated:NO];
         }
             break;
-        case 6:
+        case 5:
         {
             AboutViewController * about = [[AboutViewController alloc] init];
             about.dataSource = self.dataSource;
@@ -157,9 +158,21 @@
     [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
         [weakSelf hiddenLoadingAnimation];
         weakSelf.dataSource = bookList;
+        weakSelf.headView.politeNum = bookList.count;
         [weakSelf.tableView reloadData];
     } fail:^(id _Nonnull error) {
         [weakSelf hiddenLoadingAnimation];
+    }];
+}
+-(void)queryWaterList{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"userWatherTables"];
+    bquery.cachePolicy = kBmobCachePolicyCacheThenNetwork;
+    BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:kMemberInfoManager.objectId];
+    //添加作者是objectId为vbhGAAAY条件
+    [bquery whereKey:@"author" equalTo:author];
+    WS(weakSelf);
+    [bquery countObjectsInBackgroundWithBlock:^(int number,NSError  *error){
+        weakSelf.headView.watherNum = number;
     }];
 }
 -(void)loginOut{

@@ -18,12 +18,14 @@
 @property(nonatomic,strong)HomeHeader * headView;
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSDate * selectData;
+@property(nonatomic,strong)UIView * lineView;
 @end
 @implementation EveryDayHomeViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.naviView];
     [self.view addSubview:self.headView];
+    [self.view addSubview:self.lineView];
     [self.view addSubview:self.tableView];
     self.dataSource = [[NSMutableArray alloc] init];
     self.selectData = [NSDate new];
@@ -39,7 +41,11 @@
         make.left.right.top.mas_equalTo(0);
         make.height.mas_equalTo(kNavigationHeight);
     }];
-    
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.headView.mas_bottom);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(1);
+    }];
 }
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
@@ -70,10 +76,16 @@
     }
     return _headView;
 }
-
+-(UIView *)lineView{
+    if (!_lineView) {
+        _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = kBlackColor;
+    }
+    return _lineView;
+}
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(64), ScreenWidth, ScreenHeight - kTabBarSpace - kIphone6Width(64) - kTabbarHeight - kNavigationHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(64) + 1, ScreenWidth, ScreenHeight - kTabBarSpace - kIphone6Width(64) - kTabbarHeight - kNavigationHeight) style:UITableViewStylePlain];
         [_tableView setDelegate:self];
         [_tableView setDataSource:self];
         _tableView.backgroundColor = kWhiteColor;
@@ -177,7 +189,7 @@
             [weakSelf queryWatherDatasourceListWithDate:weakSelf.selectData];
         }];
     }];
-    deleteAction.backgroundColor = kColor_Main_Color;
+    deleteAction.backgroundColor = [UIColor redColor];
     return @[deleteAction];
 }
 

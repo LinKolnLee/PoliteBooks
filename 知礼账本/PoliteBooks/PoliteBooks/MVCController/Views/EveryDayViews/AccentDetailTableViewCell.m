@@ -99,13 +99,14 @@
 }
 -(void)setModel:(PBWatherModel *)model{
     _model = model;
-    self.nameLabel.text = TypeClassStr[model.type];
-    [self.typeButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"classImage_%ld",(long)model.type]] forState:UIControlStateNormal];
     if (model.moneyType) {
+        self.nameLabel.text = IncomeClassStr[model.type];
+        [self.typeButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"inComeClass_%ld",(long)model.type]] forState:UIControlStateNormal];
         self.moneyLabel.text = [NSString stringWithFormat:@"+%@",model.price];
     }else{
+        self.nameLabel.text = TypeClassStr[model.type];
+        [self.typeButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"classImage_%ld",(long)model.type]] forState:UIControlStateNormal];
         self.moneyLabel.text = [NSString stringWithFormat:@"-%@",model.price];
     }
-    
 }
 @end

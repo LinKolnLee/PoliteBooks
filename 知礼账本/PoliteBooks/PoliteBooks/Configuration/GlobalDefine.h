@@ -13,6 +13,7 @@
 #define TypeColorStr (@[@"#f15b6c",@"#2e4e7e",@"#ffc773",@"#7bcfa6",@"#f47983",@"#815463",@"#758a99",@"#3d3b4f"])
 
 #define TypeClassStr (@[@"早餐",@"午餐",@"晚餐",@"蔬菜",@"水果",@"服饰",@"零食",@"购物",@"交通",@"日用",@"住房",@"餐饮",@"运动",@"娱乐",@"通讯",@"美容",@"居家",@"孩子",@"长辈",@"社交",@"旅行",@"烟酒",@"数码",@"汽车",@"医疗",@"书籍",@"学习",@"宠物",@"彩票",@"其他"])
+#define IncomeClassStr (@[@"理财",@"兼职",@"工资",@"债务",@"其他"])
 #define random(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
 
 #define randomColor random(arc4random_uniform(256), 255.0, arc4random_uniform(256), 255.0)
@@ -25,7 +26,7 @@
 
 #define kColor_BG                  RGBA(250,250,250,1)
 #define kColor_Text_Gary           kHexColor(@"#999999")
-#define kColor_Main_Color          (kHexRGB(0Xf8e58c))
+#define kColor_Main_Color          (kHexRGB(0Xffffff))
 #define kColor_Main_Dark_Color     RGBA(241,206,65,1)
 #define kColor_Text_Black          RGBA(52, 50, 51, 1)       // 深
 #define kColor_Text_Light          HexColor(@"#8B8B8B")      // 浅

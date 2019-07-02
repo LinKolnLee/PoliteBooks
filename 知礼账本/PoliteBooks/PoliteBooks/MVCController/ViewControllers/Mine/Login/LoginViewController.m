@@ -50,7 +50,7 @@ static  NSInteger timeNum;
     [self.view addSubview:self.naviView];
     [self.view addSubview:self.phoneTextField];
     [self.view addSubview:self.codeTextField];
-    [self.codeTextField addSubview:self.getAuthCodeBtn];
+    [self.view addSubview:self.getAuthCodeBtn];
     [self.view addSubview:self.subTitleLabel];
     [self.view addSubview:self.sureBindButton];
     [self.view addSubview:self.cancelBindButton];
@@ -200,7 +200,7 @@ static  NSInteger timeNum;
         gradientLayer.endPoint = CGPointMake(1.0, 0);
         gradientLayer.frame = _sureBindButton.bounds;
         [_sureBindButton.layer addSublayer:gradientLayer];
-        [_sureBindButton setTitle:@"确认登录" forState:UIControlStateNormal];
+        [_sureBindButton setTitle:@"一件注册登录" forState:UIControlStateNormal];
     }
     return _sureBindButton;
 }
@@ -393,16 +393,35 @@ static  NSInteger timeNum;
             action.backgroundColor = kWhiteColor;
             action.clickBlock = ^{
                 kMemberInfoManager.objectId = newUser.objectId;
-                for (int i = 0; i < oldBookList.count; i++) {
-                    [weakSelf showLoadingAnimation];
-                    [BmobBookExtension updataAuthorForModel:oldBookList[i] andNewUser:newUser success:^(id  _Nonnull responseObject) {
-                        if (i == oldBookList.count - 1) {
-                            [weakSelf hiddenLoadingAnimation];
-                            [ToastManage showTopToastWith:@"账本合并成功"];
-                            [weakSelf.navigationController popViewControllerAnimated:YES];
-                        }
+                dispatch_queue_t concurrentQueue = dispatch_queue_create("concurrentQueue", DISPATCH_QUEUE_CONCURRENT);
+                dispatch_barrier_sync(concurrentQueue, ^{
+                    
+                    for (int i = 0; i < oldBookList.count; i++) {
+                        [weakSelf showLoadingAnimation];
+                        
+                        [BmobBookExtension updataAuthorForModel:oldBookList[i] andNewUser:newUser success:^(id  _Nonnull responseObject) {
+                            if (i == oldBookList.count - 1) {
+                                [weakSelf hiddenLoadingAnimation];
+                                DLog(@"合并礼账成功");
+
+                            }
+                        }];
+                    }
+                });
+                dispatch_barrier_sync(concurrentQueue, ^{
+                    [PBWatherExtension mergeWatherListForOldUser:self.oldUser success:^(id  _Nonnull responseObject) {
+                        DLog(@"合并流水账成功");
                     }];
-                }
+                });
+                dispatch_barrier_sync(concurrentQueue, ^{
+                    [ToastManage showTopToastWith:@"同步账本成功"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+                
+                //合并礼账
+                
+                //合并流水账
+                
             };
         })
         .LeeHeaderColor(kWhiteColor)
@@ -435,6 +454,9 @@ static  NSInteger timeNum;
             }
         }];
     }];
+}
+-(void)mergeWatherList{
+    
 }
 /*
 #pragma mark - Navigation

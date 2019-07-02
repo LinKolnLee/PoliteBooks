@@ -58,7 +58,7 @@
     BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:kMemberInfoManager.objectId];
     //添加作者是objectId为vbhGAAAY条件
     [query whereKey:@"author" equalTo:author];
-    query.cachePolicy = kBmobCachePolicyNetworkElseCache;
+    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (error) {
@@ -94,7 +94,7 @@
     [query whereKey:@"year" equalTo:@(year)];
     [query whereKey:@"month" equalTo:@(month)];
     [query orderByDescending:@"day"];
-    query.cachePolicy = kBmobCachePolicyNetworkElseCache;
+    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (error) {
@@ -149,7 +149,7 @@
     [query whereKey:@"year" equalTo:@(year)];
     [query whereKey:@"moneyType" equalTo:@(type)];
     [query orderByAscending:@"weekNum"];
-    query.cachePolicy = kBmobCachePolicyNetworkElseCache;
+    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
@@ -202,7 +202,7 @@
     [query whereKey:@"year" equalTo:@(year)];
      [query whereKey:@"moneyType" equalTo:@(type)];
     [query orderByAscending:@"month"];
-    query.cachePolicy = kBmobCachePolicyNetworkElseCache;
+    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (error) {
@@ -252,7 +252,7 @@
     [query whereKey:@"author" equalTo:author];
      [query whereKey:@"moneyType" equalTo:@(type)];
     [query orderByAscending:@"year"];
-    query.cachePolicy = kBmobCachePolicyNetworkElseCache;
+    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (error) {
@@ -290,6 +290,28 @@
                     [dateMutableArray addObject:tempArray];
                 }
                 success(dateMutableArray);
+            }
+        }
+    }];
+}
++(void)mergeWatherListForOldUser:(BmobUser *)user success:(nonnull void (^)(id _Nonnull))success{
+    BmobQuery *query = [BmobQuery queryWithClassName:@"userWatherTables"];
+    //构建objectId为vbhGAAAY 的作者
+    BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:user.objectId];
+    //添加作者是objectId为vbhGAAAY条件
+    [query whereKey:@"author" equalTo:author];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        [[BeautyLoadingHUD shareManager] stopAnimating];
+        if (error) {
+        } else if (array){
+            for (int i= 0; i <array.count; i++) {
+                BmobObject *book = array[i];
+                BmobUser *author = [BmobUser currentUser];
+                [book setObject:author forKey:@"author"];
+                [book updateInBackground];
+                if (i == array.count - 1) {
+                    success(@"");
+                }
             }
         }
     }];

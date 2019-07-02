@@ -9,16 +9,16 @@
 #import "KeepAccountCollectionViewCell.h"
 @interface KeepAccountCollectionViewCell()
 
-@property(nonatomic,strong)UIButton * iconBtn;
+@property(nonatomic,strong)UIImageView * iconView;
 @property(nonatomic,strong)UILabel * titleLabel;
 
 @end
 @implementation KeepAccountCollectionViewCell
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self.contentView addSubview:self.iconBtn];
+        [self.contentView addSubview:self.iconView];
         [self.contentView addSubview:self.titleLabel];
-        [self.iconBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kIphone6Width(20));
             make.top.mas_equalTo(kIphone6Width(5));
             make.right.mas_equalTo(-kIphone6Width(20));
@@ -27,19 +27,19 @@
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(kIphone6Width(10));
             make.right.mas_equalTo(-kIphone6Width(10));
-            make.top.mas_equalTo(self.iconBtn.mas_bottom).offset(kIphone6Width(5));
+            make.top.mas_equalTo(self.iconView.mas_bottom).offset(kIphone6Width(5));
         }];
         
     }
     return self;
 }
--(UIButton *)iconBtn{
-    if (!_iconBtn) {
-        _iconBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_iconBtn addTarget:self action:@selector(iconBtnTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+-(UIImageView *)iconView{
+    if (!_iconView) {
+        _iconView = [[UIImageView alloc] init];
+        _iconView.contentMode = UIViewContentModeScaleAspectFill;
         
     }
-    return _iconBtn;
+    return _iconView;
 }
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
@@ -50,18 +50,21 @@
     }
     return _titleLabel;
 }
--(void)iconBtnTouchUpInside:(UIButton *)sender{
-    if (self.keepAccountCollectionViewCellBtnSelectBlock) {
-        self.keepAccountCollectionViewCellBtnSelectBlock(self.row);
-    }
-}
+
 -(void)setRow:(NSInteger)row{
     _row = row;
-    //[_iconBtn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"classImage_%ld",(long)row]] forState:UIControlStateNormal];
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"classImage_%ld.png",(long)row]];
     UIImage *image = [UIImage imageWithContentsOfFile:filePath];
-    [_iconBtn setImage:image forState:UIControlStateNormal];
-        self.titleLabel.text = TypeClassStr[row];
+    _iconView.image = image;
+    self.titleLabel.text = TypeClassStr[row];
+}
+-(void)setSection:(NSInteger)section{
+    _section = section;
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"inComeClass_%ld.png",(long)section]];
+    UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+    _iconView.image = image;
+    self.titleLabel.text = IncomeClassStr[section];
 }
 @end

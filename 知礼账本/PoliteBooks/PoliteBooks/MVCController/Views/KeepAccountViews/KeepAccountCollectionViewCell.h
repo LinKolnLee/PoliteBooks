@@ -14,8 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)NSInteger row;
 
-
-@property (copy , nonatomic) void(^keepAccountCollectionViewCellBtnSelectBlock)(NSInteger row);
+@property(nonatomic,assign)NSInteger section;
 
 @end
 

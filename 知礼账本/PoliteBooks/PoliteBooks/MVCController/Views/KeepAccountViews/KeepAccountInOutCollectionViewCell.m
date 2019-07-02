@@ -13,14 +13,11 @@ UICollectionViewDataSource,
 UICollectionViewDelegate
 >
 @property(nonatomic,strong)UICollectionView * baseCollectionview;
-
-@property(nonatomic,assign)NSInteger  selectRow;
 @end
 @implementation KeepAccountInOutCollectionViewCell
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self.contentView addSubview:self.baseCollectionview];
-        self.selectRow = 0;
     }
     return self;
 }
@@ -58,28 +55,21 @@ UICollectionViewDelegate
     }
     cell.layer.cornerRadius = kIphone6Width(25);
     cell.layer.masksToBounds = YES;
-    cell.row = indexPath.row;
-    if (self.selectRow != 0) {
-        if (indexPath.row == self.selectRow - 1) {
-            cell.backgroundColor = kHexRGB(0xe9f1f6);
-        }else{
-            cell.backgroundColor = kWhiteColor;
-        }
+    if (self.row == 0) {
+         cell.row = indexPath.row;
+    }else{
+        cell.section = indexPath.row;
     }
-    WS(weakSelf);
-    cell.keepAccountCollectionViewCellBtnSelectBlock = ^(NSInteger row) {
-        weakSelf.selectRow = row + 1;
-        [weakSelf.baseCollectionview reloadData];
-        //弹起键盘
-        if (weakSelf.keepAccountInOutCollectionViewCellBtnSelectBlock) {
-            weakSelf.keepAccountInOutCollectionViewCellBtnSelectBlock(row);
-        }
-    };
     
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+    KeepAccountCollectionViewCell * cell = (KeepAccountCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; //即为要得到的cell
+    cell.backgroundColor = kHexRGB(0xe9f1f6);
+    //弹起键盘
+    if (self.keepAccountInOutCollectionViewCellBtnSelectBlock) {
+        self.keepAccountInOutCollectionViewCellBtnSelectBlock(indexPath.row);
+    }
 }
 -(void)setRow:(NSInteger)row{
     _row = row;

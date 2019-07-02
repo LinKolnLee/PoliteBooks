@@ -31,7 +31,7 @@
     [self.view addSubview:self.webView];
     
     self.shareDic = [[NSDictionary alloc] init];
-    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 94, [[UIScreen mainScreen] bounds].size.width, 2)];
+    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, kNavigationHeight, [[UIScreen mainScreen] bounds].size.width, 2)];
     self.progressView.backgroundColor = kHexRGB(0x3b3b4f);
     self.progressView.progressTintColor = kHexRGB(0x3b3b4f);
     self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);

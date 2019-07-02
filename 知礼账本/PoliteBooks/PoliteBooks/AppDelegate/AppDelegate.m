@@ -10,6 +10,8 @@
 #import "IndexViewController.h"
 #import "NewTabbarViewController.h"
 #import "BaseNavigationController.h"
+#import "KeepAccountViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -28,6 +30,10 @@
         [UITableView appearance].estimatedSectionFooterHeight = 0;
         [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {}
+    if(self.window.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable)
+    {
+        [self setup3DTouch];
+    }
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [UserColorConfiguration initUserColorsInFirstboot];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -44,6 +50,24 @@
         [UserManager showUserLoginView];
     }
     return YES;
+}
+-(void)setup3DTouch{
+     UIApplicationShortcutIcon *icon1 = [UIApplicationShortcutIcon iconWithTemplateImageName:@"NewEdit"];
+    UIMutableApplicationShortcutItem *item1 = [[UIMutableApplicationShortcutItem alloc]initWithType:@"1" localizedTitle:@"记一笔" localizedSubtitle:@"快速记账" icon:icon1 userInfo:nil];
+     [[UIApplication sharedApplication] setShortcutItems:@[item1]];
+}
+#pragma mark -  通过快捷选项进入app的时候会调用该方法
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler
+{
+    
+    
+    //1.获得shortcutItem的type type就是初始化shortcutItem的时候传入的唯一标识符
+    NSString *type = shortcutItem.type;
+    //2.可以通过type来判断点击的是哪一个快捷按钮 并进行每个按钮相应的点击事件
+    if ([type isEqualToString:@"1"]) {
+        KeepAccountViewController *vc = [[KeepAccountViewController alloc] init];
+        [(UINavigationController *)self.window.rootViewController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
