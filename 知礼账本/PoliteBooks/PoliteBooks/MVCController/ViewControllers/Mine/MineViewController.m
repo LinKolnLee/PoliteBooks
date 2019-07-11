@@ -62,12 +62,13 @@
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
-         _naviView.titleFont = kFont16;
+         _naviView.titleFont = kFont18;
         _naviView.title = @"用户账本信息";
-        _naviView.titleFont = kFont16;
+        _naviView.titleFont = kFont18;
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"realtion";
         _naviView.rightHidden = NO;
+        _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -143,9 +144,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MineChartCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MineChartCollectionViewCell" forIndexPath:indexPath];
-    cell.layer.shadowColor = kHexRGB(0x75664d).CGColor;
-    cell.layer.shadowOffset = CGSizeMake(2, 4);
-    cell.layer.shadowOpacity = 0.5;
+//    cell.layer.shadowColor = kHexRGB(0x75664d).CGColor;
+//    cell.layer.shadowOffset = CGSizeMake(2, 4);
+//    cell.layer.shadowOpacity = 0.5;
     if (!cell) {
         cell = [[MineChartCollectionViewCell alloc] init];
     }

@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)PBWatherModel * model;
 
+@property(nonatomic,assign)BOOL screening;
+
 @end
 
 NS_ASSUME_NONNULL_END

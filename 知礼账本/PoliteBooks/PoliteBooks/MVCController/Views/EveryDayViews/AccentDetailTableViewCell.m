@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UILabel *moneyLabel;
 
 @property (nonatomic, strong) UIView *bottomLineView;
+
+@property (nonatomic, strong) UILabel *dateLabel;
 @end
 
 @implementation AccentDetailTableViewCell
@@ -27,6 +29,7 @@
         [self.contentView addSubview:self.typeButton];
         [self.contentView addSubview:self.nameLabel];
         [self.contentView addSubview:self.moneyLabel];
+        [self.contentView addSubview:self.dateLabel];
         [self.contentView addSubview:self.bottomLineView];
         [self addMasonry];
     }
@@ -55,6 +58,12 @@
         make.right.mas_equalTo(-10);
         make.centerY.mas_equalTo(self.nameLabel);
     }];
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.nameLabel.mas_right).mas_offset(10);
+        make.right.mas_equalTo(self.moneyLabel.mas_left);
+         make.centerY.mas_equalTo(self.nameLabel);
+    }];
+    
     [self.bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
@@ -87,7 +96,15 @@
     }
     return _nameLabel;
 }
-
+-(UILabel *)dateLabel{
+    if (!_dateLabel) {
+        _dateLabel = [[UILabel alloc] init];
+        _dateLabel.textColor = kBlackColor;
+        _dateLabel.font = kFont11;
+        _dateLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _dateLabel;
+}
 - (UILabel *)moneyLabel {
     if (!_moneyLabel) {
         _moneyLabel = [[UILabel alloc] init];
@@ -101,12 +118,24 @@
     _model = model;
     if (model.moneyType) {
         self.nameLabel.text = IncomeClassStr[model.type];
-        [self.typeButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"inComeClass_%ld",(long)model.type]] forState:UIControlStateNormal];
+        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+        NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"sinComeClass_%ld.png",(long)model.type]];
+        UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+        [self.typeButton setImage:image forState:UIControlStateNormal];
         self.moneyLabel.text = [NSString stringWithFormat:@"+%@",model.price];
     }else{
         self.nameLabel.text = TypeClassStr[model.type];
-        [self.typeButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"classImage_%ld",(long)model.type]] forState:UIControlStateNormal];
+        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+        NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"sclassImage_%ld.png",(long)model.type]];
+        UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+        [self.typeButton setImage:image forState:UIControlStateNormal];
         self.moneyLabel.text = [NSString stringWithFormat:@"-%@",model.price];
+    }
+}
+-(void)setScreening:(BOOL)screening{
+    _screening = screening;
+    if (screening) {
+         self.dateLabel.text = [NSString stringWithFormat:@"%ld/%ld/%ld/星期%ld",self.model.year,self.model.month,self.model.day,(long)self.model.week];
     }
 }
 @end

@@ -25,7 +25,7 @@
 -(UIImageView *)abImageView{
     if (!_abImageView) {
         _abImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        _abImageView.contentMode = UIViewContentModeScaleToFill;
+        _abImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _abImageView;
 }

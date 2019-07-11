@@ -38,10 +38,11 @@ self.cardView = [[TABCardView alloc] initWithFrame:CGRectMake(ScreenWidth/4, (Sc
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
         _naviView.title = @"新手引导";
-        _naviView.titleFont = kFont16;
+        _naviView.titleFont = kFont18;
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"BookChars";
         _naviView.rightHidden = YES;
+        _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击

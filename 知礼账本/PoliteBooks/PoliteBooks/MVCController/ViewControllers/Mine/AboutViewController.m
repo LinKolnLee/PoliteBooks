@@ -53,7 +53,8 @@ UICollectionViewDelegate
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"export";
         _naviView.rightHidden = YES;
-        _naviView.titleFont = kFont16;
+        _naviView.titleFont = kFont18;
+        _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击

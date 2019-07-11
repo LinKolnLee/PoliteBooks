@@ -141,7 +141,7 @@ UITextFieldDelegate
 }
 -(SPMultipleSwitch *)moneyTypeSwitch{
     if (!_moneyTypeSwitch) {
-        _moneyTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"進禮",@"收禮"]];
+        _moneyTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"进礼",@"收礼"]];
         _moneyTypeSwitch.backgroundColor = kWhiteColor;
         _moneyTypeSwitch.selectedTitleColor = kWhiteColor;
         _moneyTypeSwitch.titleColor = kHexRGB(0x665757);

@@ -130,4 +130,12 @@
         self.PBIndexNavigationBarViewTitleLabelBlock();
     }
 }
+-(void)setIsShadow:(BOOL)isShadow{
+    _isShadow = isShadow;
+    if (isShadow) {
+        self.layer.shadowColor = kBlackColor.CGColor;
+        self.layer.shadowOffset = CGSizeMake(1, 1);
+        self.layer.shadowOpacity = 0.1;
+    }
+}
 @end

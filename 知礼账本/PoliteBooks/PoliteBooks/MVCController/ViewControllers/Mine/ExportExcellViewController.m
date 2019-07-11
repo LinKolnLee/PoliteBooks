@@ -33,11 +33,12 @@
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        _naviView.titleFont = kFont16;
+        _naviView.titleFont = kFont18;
         _naviView.title = @"导出Excel";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"export";
         _naviView.rightHidden = NO;
+        _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -197,7 +198,7 @@
             }];
         }
     })
-    .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
+    .LeeCancelAction(@"取消导出", nil) // 点击事件的Block如果不需要可以传nil
     .LeeShow();
 }
 /*

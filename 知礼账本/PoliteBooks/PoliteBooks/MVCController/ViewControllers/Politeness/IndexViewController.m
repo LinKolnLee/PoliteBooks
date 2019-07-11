@@ -111,9 +111,10 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         _naviView = [[PBIndexNavigationBarView alloc] init];
         _naviView.title = @"礼账";
         _naviView.leftImage = @"Bookcase";
-        _naviView.rightImage = @"chart";
+        _naviView.rightImage = @"BookChars";
         _naviView.rightHidden = NO;
-        _naviView.titleFont = kFont16;
+        _naviView.titleFont = kFont18;
+        _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -321,7 +322,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 -(void)setupTipViewWithCell{
     CGFloat popHeight =kIphone6Width(35.0);
     CGRect popRect = CGRectMake(0, kIphone6Width(0), kIphone6Width(200), popHeight);
-    self.micTipView = [[TranslationMicTipView alloc] initWithFrame:popRect Title:@"登录后数据可以实时备份 ，更安全哦~"];
+    self.micTipView = [[TranslationMicTipView alloc] initWithFrame:popRect Title:@"登陆后数据可以实时备份 ，更安全哦~"];
     self.micTipView.centerX = ScreenWidth/2;
     self.micTipView.centerY = ScreenHeight - kIphone6Width(17.7);
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tipViewTouchUpInside:)];

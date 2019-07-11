@@ -17,11 +17,13 @@
 #import "ExportExcellViewController.h"
 #import "AboutViewController.h"
 #import "LoginViewController.h"
+#import "MyTableViewSectionView.h"
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)MyHeadView * headView;
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSArray * titles;
 @property(nonatomic,strong)NSMutableArray<PBBookModel *> * dataSource;
+@property(nonatomic,strong)NSMutableArray<PBWatherModel *> * orderDataSource;
 
 @end
 
@@ -30,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
+    self.orderDataSource =[[NSMutableArray alloc] init];
     self.titles = @[@"查看日历",@"礼账搜索",@"意见反馈",@"注册协议",@"隐私政策",@"关于虾米"];
     
 }
@@ -42,6 +45,7 @@
     }
     [self queryWaterList];
     [self queryBookList];
+    [self queryMonthList];
 }
 -(MyHeadView *)headView{
     if (!_headView) {
@@ -68,8 +72,9 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _tableView.tableHeaderView = self.headView;
-        _tableView.tableHeaderView.height = kIphone6Width(250);
+        _tableView.tableHeaderView.height = kIphone6Width(200);
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+        [_tableView registerClass:[MyTableViewSectionView class] forHeaderFooterViewReuseIdentifier:@"MyTableViewSectionView"];
     }
     return _tableView;
 }
@@ -152,16 +157,32 @@
             break;
     }
 }
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    MyTableViewSectionView *sectionHeadView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"MyTableViewSectionView"];
+    if(!sectionHeadView){
+        sectionHeadView = [[MyTableViewSectionView alloc] initWithReuseIdentifier:@"MyTableViewSectionView"];
+    }
+    sectionHeadView.backgroundColor = kWhiteColor;
+    sectionHeadView.model = self.orderDataSource;
+    //WS(weakSelf);
+    sectionHeadView.myTableViewSectionViewGotoButtonBlock = ^{
+        
+    };
+    return sectionHeadView;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return kIphone6Width(100);
+}
 -(void)queryBookList{
-    [self showLoadingAnimation];
+    //[self showLoadingAnimation];
     WS(weakSelf);
     [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
-        [weakSelf hiddenLoadingAnimation];
+       // [weakSelf hiddenLoadingAnimation];
         weakSelf.dataSource = bookList;
         weakSelf.headView.politeNum = bookList.count;
         [weakSelf.tableView reloadData];
     } fail:^(id _Nonnull error) {
-        [weakSelf hiddenLoadingAnimation];
+        //[weakSelf hiddenLoadingAnimation];
     }];
 }
 -(void)queryWaterList{
@@ -173,6 +194,16 @@
     WS(weakSelf);
     [bquery countObjectsInBackgroundWithBlock:^(int number,NSError  *error){
         weakSelf.headView.watherNum = number;
+    }];
+}
+-(void)queryMonthList{
+    WS(weakSelf);
+    [PBWatherExtension queryMonthOrderListWithDate:[NSDate new] success:^(NSMutableArray<NSMutableArray<PBWatherModel *> *> * _Nonnull bookList) {
+        if (bookList.count != 0) {
+            weakSelf.orderDataSource = bookList[0];
+            [weakSelf.tableView reloadData];
+        }
+    } fail:^(id _Nonnull error) {
     }];
 }
 -(void)loginOut{
@@ -188,7 +219,7 @@
     })
     .LeeAddAction(^(LEEAction *action) {
         action.type = LEEActionTypeCancel;
-        action.title = @"取消";
+        action.title = @"取消退出";
         action.titleColor = kColor_Main_Color;
         action.backgroundColor = kBlackColor;
         action.clickBlock = ^{
@@ -204,7 +235,7 @@
             [BmobUser logout];
             kMemberInfoManager.objectId = 0;
             [UserManager showUserLoginView];
-            [ToastManage showTopToastWith:@"账户已退出登录"];
+            [ToastManage showTopToastWith:@"账户已退出登陆"];
             weakSelf.headView.login = NO;
         };
     })

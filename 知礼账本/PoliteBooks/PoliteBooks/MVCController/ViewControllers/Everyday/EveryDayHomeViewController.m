@@ -11,6 +11,7 @@
 #import "AccentDetailTableViewCell.h"
 #import "AccountDetailSectionView.h"
 #import "EveryDayChartViewController.h"
+#import "ScreeningViewController.h"
 @interface EveryDayHomeViewController()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)PBIndexNavigationBarView * naviView;
@@ -51,11 +52,14 @@
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
         _naviView.title = @"日常流水";
-        _naviView.titleFont = kFont16;
-        _naviView.rightImage = @"chart";
+        _naviView.titleFont = kFont18;
+        _naviView.leftImage = @"Screening";
+        _naviView.rightImage = @"BookChars";
+        _naviView.isShadow = NO;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
-            
+            ScreeningViewController * screening = [[ScreeningViewController alloc] init];
+           [weakSelf.navigationController hh_pushTiltViewController:screening];
         };
         _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{
             EveryDayChartViewController * chart = [[EveryDayChartViewController alloc] init];

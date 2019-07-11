@@ -54,7 +54,7 @@
     BmobQuery *query = [BmobQuery queryWithClassName:@"userTables"];
     BmobObject *bookAu = [BmobObject objectWithoutDataWithClassName:@"userBooks" objectId:model.objectId];
     [query whereKey:@"bookAu" equalTo:bookAu];
-    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
+    //query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     //匹配查询
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         if (error) {
@@ -91,7 +91,7 @@
                 BmobObject *bookAu = [BmobObject objectWithoutDataWithClassName:@"userBooks" objectId:model.objectId];
                 [query whereKey:@"bookAu" equalTo:bookAu];
                 [query whereKey:@"dUserName" equalTo:str];
-                query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
+               // query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
                 [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
                     if (error) {
                         fail(error);

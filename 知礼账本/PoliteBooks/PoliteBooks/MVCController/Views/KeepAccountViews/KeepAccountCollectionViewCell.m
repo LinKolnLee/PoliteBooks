@@ -54,7 +54,7 @@
 -(void)setRow:(NSInteger)row{
     _row = row;
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"classImage_%ld.png",(long)row]];
+    NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"nclassImage_%ld.png",(long)row]];
     UIImage *image = [UIImage imageWithContentsOfFile:filePath];
     _iconView.image = image;
     self.titleLabel.text = TypeClassStr[row];

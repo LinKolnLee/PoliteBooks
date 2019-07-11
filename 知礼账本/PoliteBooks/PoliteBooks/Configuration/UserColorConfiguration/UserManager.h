@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic,strong)NSString * user_id;
 /**
- 登录
+ 登陆
  */
 +(void)showUserLoginView;
 
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- 用户是否登录
+ 用户是否登陆
  */
 //+(BOOL)userIsLogin;
 

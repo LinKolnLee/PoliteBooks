@@ -29,7 +29,7 @@
         _classTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
         _classTypeSwitch.selectedTitleColor = kWhiteColor;
         _classTypeSwitch.titleColor = kHexRGB(0x665757);
-        _classTypeSwitch.trackerColor = TypeColor[3];
+        _classTypeSwitch.trackerColor = kBlackColor;
         _classTypeSwitch.contentInset = 5;
         _classTypeSwitch.spacing = 10;
         _classTypeSwitch.titleFont = kFont14;

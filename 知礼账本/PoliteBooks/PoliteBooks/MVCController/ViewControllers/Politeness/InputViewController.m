@@ -137,12 +137,12 @@
     [self.sureButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kIphone6Width(20));
         make.top.mas_equalTo(kIphone6Width(40));
-        make.width.height.mas_equalTo(kIphone6Width(20));
+        make.width.height.mas_equalTo(kIphone6Width(25));
     }];
     [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kIphone6Width(20));
         make.top.mas_equalTo(kIphone6Width(40));
-        make.width.height.mas_equalTo(kIphone6Width(20));
+        make.width.height.mas_equalTo(kIphone6Width(25));
     }];
     // 图片
     [self.topTitleImage mas_makeConstraints:^(MASConstraintMaker *make) {

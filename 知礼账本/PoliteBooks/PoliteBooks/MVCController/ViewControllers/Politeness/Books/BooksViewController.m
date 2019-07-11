@@ -68,16 +68,18 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        _naviView.titleFont = kFont16;
+        _naviView.titleFont = kFont18;
         _naviView.title = @"账本目录";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"addNewBooks";
+        _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
             [weakSelf.navigationController popViewControllerAnimated:YES];
         };
         _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{
+            VIBRATION;
             //右按钮点击
             weakSelf.view.userInteractionEnabled = NO;
             [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.creatBookView];
@@ -215,7 +217,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     })
     .LeeAddAction(^(LEEAction *action) {
         action.type = LEEActionTypeCancel;
-        action.title = @"取消";
+        action.title = @"取消删除";
         action.titleColor = blueColor;
         action.backgroundColor = kWhiteColor;
         action.clickBlock = ^{

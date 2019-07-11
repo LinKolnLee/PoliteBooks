@@ -25,6 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)updataForModel:(PBWatherModel *)model success:(void (^)(id responseObject))success;
 
 +(void)mergeWatherListForOldUser:(BmobUser *)user success:(void (^)(id responseObject))success;
+
+
++ (void)queryListWithType:(NSInteger)type andMoneyType:(NSInteger)moneyType success:(void (^)(NSMutableArray<PBWatherModel *> *weekMonets,NSMutableArray<PBWatherModel *> *monthMonets,NSMutableArray<PBWatherModel *> *yearMonets))success fail:(void (^)(id))fail;
+
++(void)queryMonthOrderListWithDate:(NSDate *)date success:(void (^)(NSMutableArray<NSMutableArray<PBWatherModel *> *>*bookList))success fail:(void (^)(id))fail;
 @end
 
 NS_ASSUME_NONNULL_END

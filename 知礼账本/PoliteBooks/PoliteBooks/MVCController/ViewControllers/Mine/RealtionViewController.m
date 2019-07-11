@@ -37,10 +37,11 @@
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
         _naviView.title = @"用户关系信息";
-        _naviView.titleFont = kFont16;
+        _naviView.titleFont = kFont18;
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"realtion";
         _naviView.rightHidden = YES;
+        _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -56,7 +57,7 @@
         _relationTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
         _relationTypeSwitch.selectedTitleColor = kWhiteColor;
         _relationTypeSwitch.titleColor = kHexRGB(0x665757);
-        _relationTypeSwitch.trackerColor = kHexRGB(0x3f3f4d);
+        _relationTypeSwitch.trackerColor = kBlackColor;
         _relationTypeSwitch.contentInset = 5;
         _relationTypeSwitch.spacing = 10;
         _relationTypeSwitch.titleFont = kFont14;
@@ -71,9 +72,9 @@
         flowLayout.minimumLineSpacing = kIphone6Width(14);
         flowLayout.minimumInteritemSpacing = kIphone6Width(10);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - kIphone6Width(160));
+        flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - kIphone6Width(180));
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, kIphone6Width(135) , ScreenWidth, ScreenHeight - 140) collectionViewLayout:flowLayout];
+        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(45) , ScreenWidth, ScreenHeight - kNavigationHeight - kIphone6Width(50)) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
@@ -112,15 +113,15 @@
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-160);
+    maskLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180));
     
     CAShapeLayer *borderLayer = [CAShapeLayer layer];
-    borderLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-160);
+    borderLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180));
     borderLayer.lineWidth = 1.f;
     borderLayer.strokeColor = kBlackColor.CGColor;
     borderLayer.fillColor = [UIColor clearColor].CGColor;
     
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-160) cornerRadius:kIphone6Width(15)];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180)) cornerRadius:kIphone6Width(15)];
     maskLayer.path = bezierPath.CGPath;
     borderLayer.path = bezierPath.CGPath;
     

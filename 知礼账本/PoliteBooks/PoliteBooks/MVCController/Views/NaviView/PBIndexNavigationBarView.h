@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)BOOL rightHidden;
 
+
+@property(nonatomic,assign)BOOL isShadow;
+
 /**
  title
  */

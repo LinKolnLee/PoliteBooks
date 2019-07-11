@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AccountDetailSectionView : UITableViewHeaderFooterView
 @property(nonatomic,strong)NSMutableArray<PBWatherModel *> * models;
-
+@property(nonatomic,assign)NSInteger selectIndex;
 @end
 
 NS_ASSUME_NONNULL_END

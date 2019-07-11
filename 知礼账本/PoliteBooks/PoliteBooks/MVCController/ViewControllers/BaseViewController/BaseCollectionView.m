@@ -83,6 +83,7 @@
 #pragma mark 按钮事件
 -(void)buttonEvent
 {
+    VIBRATION;
     if ([self.baseDelegate respondsToSelector:@selector(baseCollectionViewButtonClick)]) {
         [self.baseDelegate baseCollectionViewButtonClick];
     }

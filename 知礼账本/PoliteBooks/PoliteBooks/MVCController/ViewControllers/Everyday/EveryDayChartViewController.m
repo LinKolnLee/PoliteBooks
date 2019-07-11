@@ -87,26 +87,29 @@
         _naviView.titleFont = kFont16;
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightHidden = YES;
+        _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
              [weakSelf.navigationController popViewControllerAnimated:YES];
         };
         _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{
         };
+        __weak PBIndexNavigationBarView * newNavi = _naviView;
+
         _naviView.PBIndexNavigationBarViewTitleLabelBlock = ^{
             VIBRATION;
             [LEEAlert actionsheet].config
-            .LeeTitle(@"账本编辑")
-            .LeeContent(@"删除账本、编辑账本名称")
+            .LeeTitle(@"选择")
+            .LeeContent(@"选择支出、收入")
             .LeeAction(@"支出", ^{
                 
                 [weakSelf requestOutData];
-                weakSelf.naviView.title  = @"日常流水图表 -> 支出·";
+                newNavi.title  = @"日常流水图表 -> 支出·";
                 weakSelf.headView.selectIndex = 0;
             })
             .LeeAction(@"收入", ^{
                 [weakSelf requestIncomeData];
-                weakSelf.naviView.title  = @"日常流水图表 -> 收入·";
+                newNavi.title  = @"日常流水图表 -> 收入·";
                 weakSelf.headView.selectIndex = 0;
 
             })
@@ -122,6 +125,7 @@
         _headView = [[EveryDayChartHeadView alloc] init];
         WS(weakSelf);
         _headView.everyDayChartHeadViewSegementSelectBlock = ^(NSInteger index) {
+            VIBRATION;
             switch (index) {
                 case 0:
                     {
@@ -156,6 +160,7 @@
 }
 
 -(void)queryForWeekDayWithType:(NSInteger)type{
+    [self showLoadingAnimation];
     WS(weakSelf);
     [PBWatherExtension queryWeekBookListWithDate:[NSDate new]  withType:type success:^(NSMutableArray<NSMutableArray<PBWatherModel *> *> * _Nonnull bookList) {
         //
@@ -174,6 +179,7 @@
         [weakSelf.view addSubview:weakSelf.aaChartView];
         AAOptions *aaOptions = [weakSelf configureChartWithBackgroundImage:weakSelf.dataArray];
         [weakSelf.aaChartView aa_drawChartWithOptions:aaOptions];
+        [weakSelf hiddenLoadingAnimation];
     } fail:^(id _Nonnull error) {
     }];
 }
@@ -226,7 +232,7 @@
                @[AASeriesElement.new
                  .nameSet(name)
                  .dataSet(datas)
-                 .colorSet((id)[AAGradientColor lusciousLimeColor])
+                 .colorSet((id)[AAGradientColor configureGradientColorWithStartColorString:@"#555555" endColorString:@"#999999"])
                  .stepSet((id)@true)]
                )
     ;
@@ -247,7 +253,7 @@
                @[AASeriesElement.new
                  .nameSet(@"周汇总")
                  .dataSet(datas)
-                 .colorSet((id)[AAGradientColor lusciousLimeColor])
+                 .colorSet((id)[AAGradientColor configureGradientColorWithStartColorString:@"#555555" endColorString:@"#999999"])
                  .stepSet((id)@true)]
                )
     ;

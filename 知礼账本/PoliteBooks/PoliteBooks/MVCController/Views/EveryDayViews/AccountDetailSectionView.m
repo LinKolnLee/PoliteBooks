@@ -110,7 +110,40 @@
         self.moneySum.hidden = YES;
     }    
 }
-
+-(void)setSelectIndex:(NSInteger)selectIndex{
+    _selectIndex = selectIndex;
+    switch (selectIndex) {
+        case 1:
+            {
+                self.dateLabel.text = [NSString stringWithFormat:@"%ld周",(long)self.models[0].weekNum];
+            }
+            break;
+        case 2:
+        {
+            self.dateLabel.text = [NSString stringWithFormat:@"%ld月",(long)self.models[0].month];
+        }
+            break;
+        case 3:
+        {
+            self.dateLabel.text = [NSString stringWithFormat:@"%ld年",(long)self.models[0].year];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    if (self.moneySum.hidden) {
+        [self.incomeMoneySum mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(kIphone6Width(-10));
+            make.top.mas_equalTo(10);
+        }];
+    }else{
+        [self.incomeMoneySum mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.moneySum.mas_left).offset(kIphone6Width(-10));
+            make.top.mas_equalTo(10);
+        }];
+    }
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

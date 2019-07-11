@@ -53,6 +53,7 @@ UICollectionViewDelegate,UIScrollViewDelegate
         WS(weakSelf);
         _keyboard = [BKCKeyboard init];
         [_keyboard setComplete:^(NSString *price, NSString *mark, NSDate *date) {
+            VIBRATION;
             [weakSelf.keyboard hide];
             weakSelf.baseCollectionview.userInteractionEnabled = YES;
             if (!weakSelf.quick) {
@@ -66,7 +67,9 @@ UICollectionViewDelegate,UIScrollViewDelegate
                 model.mark = mark;
                 model.type = weakSelf.accountType;
                 model.moneyType = weakSelf.moneyType;
+                [weakSelf showLoadingAnimation];
                 [PBWatherExtension inserDataForModel:model success:^(id  _Nonnull responseObject) {
+                    [weakSelf hiddenLoadingAnimation];
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 }];
             }else{
@@ -75,7 +78,9 @@ UICollectionViewDelegate,UIScrollViewDelegate
                 model.name = TypeClassStr[weakSelf.accountType];
                 model.type = weakSelf.accountType;
                 model.moneyType = weakSelf.moneyType;
+                [weakSelf showLoadingAnimation];
                 [PBQuickExtension inserDataForModel:model success:^(id  _Nonnull responseObject) {
+                    [weakSelf hiddenLoadingAnimation];
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 }];
             };
@@ -127,7 +132,7 @@ UICollectionViewDelegate,UIScrollViewDelegate
         _classTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
         _classTypeSwitch.selectedTitleColor = kWhiteColor;
         _classTypeSwitch.titleColor = kHexRGB(0x665757);
-        _classTypeSwitch.trackerColor = TypeColor[3];
+        _classTypeSwitch.trackerColor = kBlackColor;
         _classTypeSwitch.contentInset = 5;
         _classTypeSwitch.spacing = 10;
         _classTypeSwitch.titleFont = kFont14;

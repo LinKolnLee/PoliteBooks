@@ -60,9 +60,9 @@
     [super viewWillAppear:animated];
     /*
     if (![BmobUser currentUser].mobilePhoneNumber) {
-        [self.loginOutBtn setTitle:@"登录" forState:UIControlStateNormal];
+        [self.loginOutBtn setTitle:@"登陆" forState:UIControlStateNormal];
     }else{
-        [self.loginOutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+        [self.loginOutBtn setTitle:@"退出登陆" forState:UIControlStateNormal];
     }
      */
 }
@@ -74,7 +74,7 @@
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"BookChars";
         _naviView.rightHidden = YES;
-        _naviView.titleFont = kFont16;
+        _naviView.titleFont = kFont18;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -168,9 +168,9 @@
         _loginOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _loginOutBtn.frame = CGRectMake((ScreenWidth - 150)/2, 500, kIphone6Width(150), kIphone6Width(35));
         if (![BmobUser currentUser].mobilePhoneNumber) {
-            [_loginOutBtn setTitle:@"登录" forState:UIControlStateNormal];
+            [_loginOutBtn setTitle:@"登陆" forState:UIControlStateNormal];
         }else{
-            [_loginOutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+            [_loginOutBtn setTitle:@"退出登陆" forState:UIControlStateNormal];
         }
         [_loginOutBtn setTitleColor:kWhiteColor forState:UIControlStateNormal];
         _loginOutBtn.backgroundColor = kHexRGB(0x3d3d4f);
@@ -198,7 +198,7 @@
         kMemberInfoManager.objectId = 0;
         WS(weakSelf);
         [UserManager showUserLoginView];
-        [ToastManage showTopToastWith:@"账户已退出登录"];
+        [ToastManage showTopToastWith:@"账户已退出登陆"];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }
     

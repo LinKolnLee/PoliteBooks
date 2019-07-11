@@ -167,10 +167,10 @@
     if (!_outTypeLabel) {
         _outTypeLabel = [[UILabel alloc] init];
         _outTypeLabel.font = kFont14;
-        _outTypeLabel.textColor = kHexRGB(0x3d3d4f);
+        _outTypeLabel.textColor = kWhiteColor;
         //_outTypeLabel.backgroundColor =
         _outTypeLabel.textAlignment = NSTextAlignmentCenter;
-        _outTypeLabel.text = @"進禮";
+        _outTypeLabel.text = @"进礼";
         _outTypeLabel.layer.cornerRadius = kIphone6Width(12.5);
         _outTypeLabel.clipsToBounds = YES;
         _outTypeLabel.hidden = YES;
@@ -185,7 +185,7 @@
         _inTypeLabel.textColor = kHexRGB(0x3d3d4f);
         _inTypeLabel.backgroundColor = kHexRGB(0x7bcfa6);
         _inTypeLabel.textAlignment = NSTextAlignmentCenter;
-        _inTypeLabel.text = @"收禮";
+        _inTypeLabel.text = @"收礼";
         _inTypeLabel.hidden = YES;
         _inTypeLabel.layer.cornerRadius = kIphone6Width(12.5);
         _inTypeLabel.clipsToBounds = YES;

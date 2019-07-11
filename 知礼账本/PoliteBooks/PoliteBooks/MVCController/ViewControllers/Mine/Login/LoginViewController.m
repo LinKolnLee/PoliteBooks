@@ -135,11 +135,12 @@ static  NSInteger timeNum;
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
-        _naviView.titleFont = kFont16;
-        _naviView.title = @"用户登录";
+        _naviView.titleFont = kFont18;
+        _naviView.title = @"用户登陆";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"BookChars";
         _naviView.rightHidden = YES;
+        _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -200,14 +201,14 @@ static  NSInteger timeNum;
         gradientLayer.endPoint = CGPointMake(1.0, 0);
         gradientLayer.frame = _sureBindButton.bounds;
         [_sureBindButton.layer addSublayer:gradientLayer];
-        [_sureBindButton setTitle:@"一件注册登录" forState:UIControlStateNormal];
+        [_sureBindButton setTitle:@"一键注册登陆" forState:UIControlStateNormal];
     }
     return _sureBindButton;
 }
 - (UIButton *)cancelBindButton {
     if (!_cancelBindButton) {
         _cancelBindButton = [[UIButton alloc] init];
-        [_cancelBindButton setTitle:@"取消登录" forState:UIControlStateNormal];
+        [_cancelBindButton setTitle:@"取消登陆" forState:UIControlStateNormal];
         _cancelBindButton.titleLabel.font = kFont15;
         [_cancelBindButton setTitleColor:kHexRGB(0x3d3b4f) forState:UIControlStateNormal];
         [_cancelBindButton addTarget:self action:@selector(cancelBindButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
@@ -231,7 +232,7 @@ static  NSInteger timeNum;
         _subTitleLabel.textAlignment = NSTextAlignmentCenter;
         _subTitleLabel.textColor = kHexRGB(0X898989);
         _subTitleLabel.font = kPingFangSC_Regular(12);
-        NSString * str = @"登录代表你已同意注册协议和隐私政策";
+        NSString * str = @"登陆代表你已同意注册协议和隐私政策";
         NSMutableAttributedString * attributedText = [[NSMutableAttributedString alloc] initWithString:str];
         [attributedText addAttribute:NSForegroundColorAttributeName value:kHexRGB(0X4169E1) range:[str rangeOfString:@"注册协议"]];
         [attributedText addAttribute:NSForegroundColorAttributeName value:kHexRGB(0X4169E1) range:[str rangeOfString:@"隐私政策"]];
@@ -318,9 +319,9 @@ static  NSInteger timeNum;
             [weakSelf hiddenLoadingAnimation];
             if (error) {
                 [UserManager sharedInstance].user_id = weakSelf.oldUser.objectId;
-                [ToastManage showTopToastWith:@"用户登录失败"];
+                [ToastManage showTopToastWith:@"用户登陆失败"];
             }else{
-                [ToastManage showTopToastWith:@"用户登录成功"];
+                [ToastManage showTopToastWith:@"用户登陆成功"];
                 [UserManager sharedInstance].user_id = user.objectId;
                 if (!self.oldUser.mobilePhoneNumber) {
                     [self accoutMergeWithNewUser:user andBookList:bookList];
@@ -348,7 +349,7 @@ static  NSInteger timeNum;
             if (isSuccessful){
                 [buser setObject:nickName forKey:@"nickName"];
                 [buser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                    [ToastManage showTopToastWith:@"用户注册登录成功"];
+                    [ToastManage showTopToastWith:@"用户注册登陆成功"];
                     BmobUser *newUser = [BmobUser currentUser];
                     [UserManager sharedInstance].user_id = newUser.objectId;
                     if (!self.oldUser.mobilePhoneNumber) {
@@ -445,7 +446,7 @@ static  NSInteger timeNum;
     WS(weakSelf);
     [self setupOldUserAccountSuccess:^(NSMutableArray<PBBookModel *> *bookList) {
         [BmobUser loginWithUsernameInBackground:phone password:@"zhiliBook" block:^(BmobUser *user, NSError *error) {
-            [ToastManage showTopToastWith:@"用户登录成功"];
+            [ToastManage showTopToastWith:@"用户登陆成功"];
             [UserManager sharedInstance].user_id = user.objectId;
             if (!weakSelf.oldUser.mobilePhoneNumber) {
                 [weakSelf accoutMergeWithNewUser:user andBookList:bookList];

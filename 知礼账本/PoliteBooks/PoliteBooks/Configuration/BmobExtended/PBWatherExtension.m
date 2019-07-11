@@ -58,7 +58,7 @@
     BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:kMemberInfoManager.objectId];
     //添加作者是objectId为vbhGAAAY条件
     [query whereKey:@"author" equalTo:author];
-    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
+   // query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (error) {
@@ -94,7 +94,7 @@
     [query whereKey:@"year" equalTo:@(year)];
     [query whereKey:@"month" equalTo:@(month)];
     [query orderByDescending:@"day"];
-    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
+  //  query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (error) {
@@ -129,6 +129,7 @@
                             j -= 1;
                         }
                     }
+                    tempArray = [NSMutableArray arrayWithArray:[[tempArray reverseObjectEnumerator] allObjects]];
                     [dateMutableArray addObject:tempArray];
                 }
                 
@@ -149,7 +150,7 @@
     [query whereKey:@"year" equalTo:@(year)];
     [query whereKey:@"moneyType" equalTo:@(type)];
     [query orderByAscending:@"weekNum"];
-    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
+    //query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
@@ -202,7 +203,7 @@
     [query whereKey:@"year" equalTo:@(year)];
      [query whereKey:@"moneyType" equalTo:@(type)];
     [query orderByAscending:@"month"];
-    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
+   // query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (error) {
@@ -252,7 +253,7 @@
     [query whereKey:@"author" equalTo:author];
      [query whereKey:@"moneyType" equalTo:@(type)];
     [query orderByAscending:@"year"];
-    query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
+    //query.cachePolicy = kBmobCachePolicyCacheThenNetwork;
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         [[BeautyLoadingHUD shareManager] stopAnimating];
         if (error) {
@@ -312,6 +313,112 @@
                 if (i == array.count - 1) {
                     success(@"");
                 }
+            }
+        }
+    }];
+}
+
++(void)queryListWithType:(NSInteger)type andMoneyType:(NSInteger)moneyType success:(void (^)(NSMutableArray<PBWatherModel *> * _Nonnull, NSMutableArray<PBWatherModel *> * _Nonnull, NSMutableArray<PBWatherModel *> * _Nonnull))success fail:(void (^)(id _Nonnull))fail{
+    BmobQuery *query = [BmobQuery queryWithClassName:@"userWatherTables"];
+    //构建objectId为vbhGAAAY 的作者
+    BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:kMemberInfoManager.objectId];
+    //添加作者是objectId为vbhGAAAY条件
+    [query whereKey:@"author" equalTo:author];
+    [query whereKey:@"type" equalTo:@(type)];
+    [query whereKey:@"moneyType" equalTo:@(moneyType)];
+    NSInteger year = [[NSDate new] year];
+    [query whereKey:@"year" equalTo:@(year)];
+     [query orderByDescending:@"day"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        [[BeautyLoadingHUD shareManager] stopAnimating];
+        if (error) {
+            fail(error);
+        } else if (array){
+            if (array != nil) {
+                NSMutableArray * arr = [[NSMutableArray alloc] init];
+                for (BmobObject *book in array) {
+                    PBWatherModel * model = [[PBWatherModel alloc] init];
+                    model.price = [book objectForKey:@"price"];
+                    model.year = [[book objectForKey:@"year"] integerValue];
+                    model.month = [[book objectForKey:@"month"] integerValue];
+                    model.objectId = book.objectId;
+                    model.weekNum = [[book objectForKey:@"weekNum"] integerValue];
+                    model.week = [[book objectForKey:@"week"] integerValue];
+                    model.type = [[book objectForKey:@"type"] integerValue];
+                    model.day = [[book objectForKey:@"day"] integerValue];
+                    model.mark = [book objectForKey:@"mark"] ;
+                    model.moneyType = [[book objectForKey:@"moneyType"] integerValue];
+                    [arr addObject:model];
+                }
+                
+                NSMutableArray *  weekMoneys = [[NSMutableArray alloc] init];
+                NSMutableArray *  monthMoneys = [[NSMutableArray alloc] init];
+                NSMutableArray * yearMoneys = [[NSMutableArray alloc] init];;
+                NSDate * newDate = [NSDate new];
+                for (int i = 0; i < arr.count; i ++) {
+                    PBWatherModel * newModel = arr[i];
+                    if (newModel.weekNum == [newDate weekOfYear]
+                        ) {
+                        [weekMoneys addObject:newModel];
+                    }
+                    if (newModel.month == [newDate month]) {
+                        [monthMoneys addObject:newModel];
+                    }
+                    if (newModel.year == [newDate year]) {
+                        [yearMoneys addObject:newModel];
+                    }
+                }
+                success(weekMoneys,monthMoneys,yearMoneys);
+            }
+        }
+    }];
+}
++(void)queryMonthOrderListWithDate:(NSDate *)date success:(void (^)(NSMutableArray<NSMutableArray<PBWatherModel *> *> * _Nonnull))success fail:(void (^)(id _Nonnull))fail{
+    BmobQuery *query = [BmobQuery queryWithClassName:@"userWatherTables"];
+    //构建objectId为vbhGAAAY 的作者
+    BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:kMemberInfoManager.objectId];
+    //添加作者是objectId为vbhGAAAY条件
+    [query whereKey:@"author" equalTo:author];
+    [query whereKey:@"year" equalTo:@([date year])];
+    [query whereKey:@"month" equalTo:@([date month])];
+    [query orderByAscending:@"month"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        [[BeautyLoadingHUD shareManager] stopAnimating];
+        if (error) {
+            fail(error);
+        } else if (array){
+            if (array != nil) {
+                NSMutableArray * arr = [[NSMutableArray alloc] init];
+                for (BmobObject *book in array) {
+                    PBWatherModel * model = [[PBWatherModel alloc] init];
+                    model.price = [book objectForKey:@"price"];
+                    model.year = [[book objectForKey:@"year"] integerValue];
+                    model.month = [[book objectForKey:@"month"] integerValue];
+                    model.objectId = book.objectId;
+                    model.weekNum = [[book objectForKey:@"weekNum"] integerValue];
+                    model.week = [[book objectForKey:@"week"] integerValue];
+                    model.type = [[book objectForKey:@"type"] integerValue];
+                    model.day = [[book objectForKey:@"day"] integerValue];
+                    model.mark = [book objectForKey:@"mark"] ;
+                    model.moneyType = [[book objectForKey:@"moneyType"] integerValue];
+                    [arr addObject:model];
+                }
+                NSMutableArray *dateMutableArray = [[NSMutableArray alloc] init];
+                for (int i = 0; i < arr.count; i ++) {
+                    PBWatherModel * oldmodel = arr[i];
+                    NSMutableArray *tempArray = [[NSMutableArray alloc] init];;
+                    [tempArray addObject:oldmodel];
+                    for (int j = i+1; j < arr.count; j ++) {
+                        PBWatherModel * newModel = arr[j];
+                        if(oldmodel.month == newModel.month){
+                            [tempArray addObject:newModel];
+                            [arr removeObjectAtIndex:j];
+                            j -= 1;
+                        }
+                    }
+                    [dateMutableArray addObject:tempArray];
+                }
+                success(dateMutableArray);
             }
         }
     }];

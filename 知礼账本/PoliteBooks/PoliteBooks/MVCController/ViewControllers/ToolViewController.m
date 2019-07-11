@@ -51,7 +51,8 @@ UICollectionViewDelegate,UIScrollViewDelegate,BaseCollectionViewButtonClickDeleg
         _naviView = [[PBIndexNavigationBarView alloc] init];
         _naviView.title = @"日常速记";
          _naviView.rightImage = @"addNewBooks";
-        _naviView.titleFont = kFont16;
+        _naviView.titleFont = kFont18;
+         _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{
             KeepAccountViewController * keep = [[KeepAccountViewController alloc] init];
@@ -67,8 +68,8 @@ UICollectionViewDelegate,UIScrollViewDelegate,BaseCollectionViewButtonClickDeleg
         flowLayout.minimumLineSpacing = kIphone6Width(30);
         flowLayout.minimumInteritemSpacing = kIphone6Width(30);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        flowLayout.itemSize = CGSizeMake(kIphone6Width(100), kIphone6Width(100));
-        _collectionview = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0,134,ScreenWidth,ScreenHeight - kNavigationHeight - kIphone6Width(30) - kTabBarSpace) collectionViewLayout:flowLayout];
+        flowLayout.itemSize = CGSizeMake(kIphone6Width(60), kIphone6Width(60));
+        _collectionview = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0,kNavigationHeight+kIphone6Width(20),ScreenWidth,ScreenHeight - kNavigationHeight - kIphone6Width(30) - kTabBarSpace) collectionViewLayout:flowLayout];
         _collectionview.showsVerticalScrollIndicator = NO;
         _collectionview.showsHorizontalScrollIndicator = NO;
         _collectionview.delegate = self;
@@ -96,15 +97,18 @@ UICollectionViewDelegate,UIScrollViewDelegate,BaseCollectionViewButtonClickDeleg
     if (!cell) {
         cell = [[ToolCollectionViewCell alloc] init];
     }
-    cell.layer.cornerRadius = kIphone6Width(50);
+    cell.layer.cornerRadius = kIphone6Width(30);
     cell.layer.masksToBounds = YES;
     cell.model = self.dataSource[indexPath.row];
+    cell.layer.borderColor = kBlackColor.CGColor; //self.dataSource[indexPath.row].moneyType == 0 ? kBlackColor.CGColor : kHexRGB(0xf15b6c).CGColor;
+    cell.layer.borderWidth = kIphone6Width(2);
     UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(lpGR:)];
     longPressGR.minimumPressDuration = 1;
     [cell addGestureRecognizer:longPressGR];
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    VIBRATION;
     NSDate * date = [NSDate new];
     PBWatherModel * waterModel = [[PBWatherModel alloc] init];
     waterModel.price = self.dataSource[indexPath.row].price;
@@ -152,7 +156,7 @@ UICollectionViewDelegate,UIScrollViewDelegate,BaseCollectionViewButtonClickDeleg
     })
     .LeeAddAction(^(LEEAction *action) {
         action.type = LEEActionTypeCancel;
-        action.title = @"取消";
+        action.title = @"取消删除";
         action.titleColor = kColor_Main_Color;
         action.backgroundColor = kBlackColor;
         action.clickBlock = ^{

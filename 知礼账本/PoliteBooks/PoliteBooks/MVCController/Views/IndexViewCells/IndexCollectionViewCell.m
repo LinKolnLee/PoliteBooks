@@ -118,7 +118,7 @@
         _outTypeLabel.font = kFont14;
         _outTypeLabel.textColor = kWhiteColor;
         _outTypeLabel.textAlignment = NSTextAlignmentCenter;
-        _outTypeLabel.text = @"進禮";
+        _outTypeLabel.text = @"进礼";
         _outTypeLabel.hidden = YES;
         _outTypeLabel.numberOfLines = 0;
     }
@@ -130,7 +130,7 @@
         _inTypeLabel.font = kFont14;
         _inTypeLabel.textColor = kWhiteColor;
         _inTypeLabel.textAlignment = NSTextAlignmentCenter;
-        _inTypeLabel.text = @"收禮";
+        _inTypeLabel.text = @"收礼";
         _inTypeLabel.hidden = YES;
         _inTypeLabel.numberOfLines = 0;
     }
@@ -148,13 +148,13 @@
     self.dateLabel.text = model.bookDate;
     
     if (model.bookOutMoney) {
-        self.inTypeLabel.text = [NSString stringWithFormat:@"進禮 .. %@",[[NSString stringWithFormat:@"%ld",model.bookOutMoney] getCnMoney]];
+        self.inTypeLabel.text = [NSString stringWithFormat:@"进礼 .. %@",[[NSString stringWithFormat:@"%ld",(long)model.bookOutMoney] getCnMoney]];
         self.inTypeLabel.hidden = NO;
     }else{
         self.inTypeLabel.hidden = YES;
     }
     if (model.bookInMoney) {
-        self.outTypeLabel.text = [NSString stringWithFormat:@"收禮 .. %@",[[NSString stringWithFormat:@"%ld",model.bookInMoney] getCnMoney]];
+        self.outTypeLabel.text = [NSString stringWithFormat:@"收礼 .. %@",[[NSString stringWithFormat:@"%ld",(long)model.bookInMoney] getCnMoney]];
         self.outTypeLabel.hidden = NO;
     }else{
         self.outTypeLabel.hidden = YES;

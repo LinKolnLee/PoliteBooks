@@ -37,7 +37,7 @@
         _noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, ScreenWidth - 80 , 30)];
         _noDataLabel.font = kPingFangTC_Light(15);
         _noDataLabel.text = @"您还没有该创建账单，无法进行分析~";
-        _noDataLabel.textColor = kColor_Loding;
+        _noDataLabel.textColor = kBlackColor;
         _noDataLabel.textAlignment = NSTextAlignmentCenter;
         _noDataLabel.hidden = YES;
     }
@@ -56,7 +56,7 @@
     .titleSet(@"")
     .subtitleSet(self.title)
     .dataLabelEnabledSet(true)//是否直接显示扇形图数据
-    .yAxisTitleSet(@"摄氏度")
+    //.yAxisTitleSet(@"摄氏度")
     .colorsThemeSet(self.colorArray)
     .seriesSet(
                @[AASeriesElement.new

@@ -19,22 +19,22 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self.contentView addSubview:self.iconBtn];
+        //[self.contentView addSubview:self.iconBtn];
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.typeLabel];
-        [self.iconBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(kIphone6Width(10));
-            make.centerX.mas_equalTo(0);
-            make.width.height.mas_equalTo(30);
-        }];
+//        [self.iconBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//
+//            make.width.height.mas_equalTo(30);
+//        }];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
            
-        make.top.mas_equalTo(self.iconBtn.mas_bottom).offset(kIphone6Width(5));
+            make.top.mas_equalTo(kIphone6Width(10));
             make.left.mas_equalTo(kIphone6Width(10));
             make.right.mas_equalTo(-kIphone6Width(10));
         }];
         [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(kIphone6Width(5));
+            make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(kIphone6Width(0));
             make.left.mas_equalTo(kIphone6Width(10));
             make.right.mas_equalTo(-kIphone6Width(10));
         }];
@@ -53,16 +53,17 @@
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = kFont13;
+        _titleLabel.font = kFont11;
         _titleLabel.textColor = kColor_Loding;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.numberOfLines = 0;
     }
     return _titleLabel;
 }
 -(UILabel *)typeLabel{
     if (!_typeLabel) {
         _typeLabel = [[UILabel alloc] init];
-        _typeLabel.font = kFont13;
+        _typeLabel.font = kFont12;
         _typeLabel.textColor = kColor_Loding;
         _typeLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -76,20 +77,15 @@
 -(void)setModel:(PBQuickModel *)model{
     _model = model;
     if (model.moneyType) {
-        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-        NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"inComeClass_%ld.png",(long)model.type]];
-        UIImage *image = [UIImage imageWithContentsOfFile:filePath];
-        [self.iconBtn setImage:image forState:UIControlStateNormal];
-        self.titleLabel.text = [NSString stringWithFormat:@"%@_%@元",IncomeClassStr[model.type],model.price];
+        self.titleLabel.text = [NSString stringWithFormat:@"%@\r%@元",IncomeClassStr[model.type],model.price];
     }else{
-        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-        NSString *filePath = [resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"classImage_%ld.png",(long)model.type]];
-        UIImage *image = [UIImage imageWithContentsOfFile:filePath];
-        [self.iconBtn setImage:image forState:UIControlStateNormal];
-        self.titleLabel.text = [NSString stringWithFormat:@"%@_%@元",TypeClassStr[model.type],model.price];
+        self.titleLabel.text = [NSString stringWithFormat:@"%@\r%@元",TypeClassStr[model.type],model.price];
     }
-    
-    self.typeLabel.text = model.moneyType == 0 ? @"支出" : @"收入";
-    self.backgroundColor = model.moneyType == 0 ? TypeColor[2] : TypeColor[3];
+    self.typeLabel.text = model.moneyType == 0 ? @"支" : @"收";
+    self.backgroundColor = kWhiteColor;
+    self.typeLabel.textColor = model.moneyType == 0 ? kBlackColor : kWhiteColor;
+    self.titleLabel.textColor = model.moneyType == 0 ? kBlackColor : kWhiteColor;
+    self.backgroundColor =  model.moneyType == 0 ? kWhiteColor : kBlackColor;
+
 }
 @end

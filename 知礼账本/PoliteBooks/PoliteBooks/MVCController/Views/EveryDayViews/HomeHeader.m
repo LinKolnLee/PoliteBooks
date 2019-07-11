@@ -51,6 +51,7 @@
     [self.incomeLab setAttributedText:[NSAttributedString createMath:@"00.00" integer:kFont14 decimal:kFont12]];
     WS(weakSelf);
     [self.monthView addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        VIBRATION;
         WSDatePickerView *datepicker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonth CompleteBlock:^(NSDate *selectDate) {
             if (weakSelf.everyDayHeadViewCellBtnSelectBlock) {
                 weakSelf.everyDayHeadViewCellBtnSelectBlock(selectDate);

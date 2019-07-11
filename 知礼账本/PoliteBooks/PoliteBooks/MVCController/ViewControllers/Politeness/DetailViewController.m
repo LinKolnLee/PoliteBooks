@@ -92,6 +92,7 @@ BaseCollectionViewButtonClickDelegate
         _naviView.titleFont = kFont12;
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"NewEdit";
+        _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
@@ -114,7 +115,7 @@ BaseCollectionViewButtonClickDelegate
 -(SPMultipleSwitch *)relationTypeSwitch{
     if (!_relationTypeSwitch) {
         _relationTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"全部",@"亲戚",@"朋友",@"同学",@"同事",@"邻里"]];
-        _relationTypeSwitch.frame = CGRectMake(15, kIphone6Width(85), ScreenWidth-30, 30);
+        _relationTypeSwitch.frame = CGRectMake(15, kNavigationHeight + kIphone6Width(10), ScreenWidth-kIphone6Width(30), kIphone6Width(30));
         _relationTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
         _relationTypeSwitch.selectedTitleColor = kWhiteColor;
         _relationTypeSwitch.titleColor = kHexRGB(0x665757);
@@ -134,9 +135,9 @@ BaseCollectionViewButtonClickDelegate
         flowLayout.minimumLineSpacing = kIphone6Width(14);
         flowLayout.minimumInteritemSpacing = kIphone6Width(5);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - kIphone6Width(160));
+        flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - kIphone6Width(180));
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, kIphone6Width(125) , ScreenWidth, ScreenHeight - 140) collectionViewLayout:flowLayout];
+        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(45) , ScreenWidth, ScreenHeight - kNavigationHeight - kIphone6Width(50)) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
@@ -176,7 +177,7 @@ BaseCollectionViewButtonClickDelegate
     cell.model = self.tableDataSource[indexPath.row];
     cell.layer.cornerRadius = kIphone6Width(10);
     cell.layer.masksToBounds = YES;
-    cell.backgroundColor = kHexRGB(0xf6f5ec);
+    cell.backgroundColor = kWhiteColor;
     UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(lpGR:)];
     longPressGR.minimumPressDuration = 1;
     [cell addGestureRecognizer:longPressGR];
@@ -185,15 +186,15 @@ BaseCollectionViewButtonClickDelegate
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-160);
+    maskLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180));
     
     CAShapeLayer *borderLayer = [CAShapeLayer layer];
-    borderLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-160);
+    borderLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180));
     borderLayer.lineWidth = 1.f;
     borderLayer.strokeColor = kBlackColor.CGColor;
     borderLayer.fillColor = [UIColor clearColor].CGColor;
     
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-160) cornerRadius:kIphone6Width(15)];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180)) cornerRadius:kIphone6Width(15)];
     maskLayer.path = bezierPath.CGPath;
     borderLayer.path = bezierPath.CGPath;
     
@@ -211,10 +212,10 @@ BaseCollectionViewButtonClickDelegate
     }
     if (model.inType) {
         //回礼
-        [self showInOrOutWithModel:model WithTitle:@"收禮"];
+        [self showInOrOutWithModel:model WithTitle:@"收礼"];
     }
     if (model.outType) {
-        [self showInOrOutWithModel:model WithTitle:@"進禮"];
+        [self showInOrOutWithModel:model WithTitle:@"进礼"];
         //进礼
     }
     

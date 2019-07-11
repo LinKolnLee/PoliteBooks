@@ -119,6 +119,7 @@ static NSInteger lastIdx = 0;
         [self setSelectedIndex:index];
         lastIdx = index;
     }else{ // 点击了中间的
+        VIBRATION;
         [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
         KeepAccountViewController * keep = [[KeepAccountViewController alloc] init];
        // [self hh_presentErectVC:keep completion:nil];
