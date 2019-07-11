@@ -9,6 +9,7 @@ target 'PoliteBooks' do
   pod 'HHTransition', '~> 1.2.0'
   pod 'BmobSDK'
   pod 'LCText'
+  pod 'skpsmtpmessage'
   pod 'AAChartKit', :git => 'https://github.com/AAChartModel/AAChartKit.git'
 
 end

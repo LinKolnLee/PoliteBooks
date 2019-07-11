@@ -21,6 +21,7 @@ PODS:
   - LCText (0.0.2)
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.7)
+  - skpsmtpmessage (0.0.1)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - LCText
   - Masonry
   - MJRefresh (~> 3.1.12)
+  - skpsmtpmessage
   - YYModel
 
 EXTERNAL SOURCES:
@@ -52,8 +54,9 @@ SPEC CHECKSUMS:
   LCText: d4dc2a932fc9a5cedb6982455239a101959f5858
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  skpsmtpmessage: f6e913380c784dd8d4a9f83c8790a302445a5e05
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 99a6a9b20d51b9d53d00b05bd0573fdd5a99a2b4
+PODFILE CHECKSUM: 2af6bc7a4ed9458c4446db48707b3c4d0aed3704
 
 COCOAPODS: 1.4.0

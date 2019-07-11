@@ -8,8 +8,10 @@
 
 #import "ExportExcellViewController.h"
 #import "YWExcelView.h"
+#import "SKPSMTPMessage.h"
+#import "NSData+Base64Additions.h"
 //#import "MFMailComposeViewController.h"
-@interface ExportExcellViewController ()<YWExcelViewDataSource>
+@interface ExportExcellViewController ()<YWExcelViewDataSource,SKPSMTPMessageDelegate>
 @property(nonatomic,strong)PBIndexNavigationBarView * naviView;
 
 @property(nonatomic,strong)YWExcelView * excelView;
@@ -158,26 +160,10 @@
     [fileHandle seekToEndOfFile];
     
     [fileHandle closeFile];
-    [self uploadWithPath:filePath];
+    [self hiddenLoadingAnimation];
+    [self setupEmailNumberWithPath:filePath];
 }
--(void)uploadWithPath:(NSString *)filePath{
-    
-    NSData *fileData = [NSData dataWithContentsOfFile:filePath];
-    BmobFile *file = [[BmobFile alloc]initWithFileName:[NSString stringWithFormat:@"虾米账本_%@.xls",kMemberInfoManager.objectId] withFileData:fileData];
-    WS(weakSelf);
-    [file saveInBackground:^(BOOL isSuccessful, NSError *error) {
-        //如果文件保存成功，则把文件添加到filetype列
-        if (isSuccessful) {
-            [weakSelf hiddenLoadingAnimation];
-            DLog(@"%@",file.url);
-            [weakSelf setupEmailNumber];
-        }else{
-            //进行处理
-            [weakSelf hiddenLoadingAnimation];
-        }
-    }];
-}
--(void)setupEmailNumber{
+-(void)setupEmailNumberWithPath:(NSString *)filePath{
     __block UITextField *tf = nil;
     [LEEAlert alert].config
     .LeeTitle(@"请输入您的邮箱地址")
@@ -187,28 +173,64 @@
         textField.textColor = kBlackColor;
         tf = textField;
     })
+    .LeeCancelAction(@"取消导出", nil) // 点击事件的Block如果不需要可以传nil
     .LeeAction(@"导出", ^{
         if (tf.text.length == 0) {
             [ToastManage showTopToastWith:@"请输入正确的邮箱地址"];
+        }else if (![tf.text isEmail]){
+            [ToastManage showTopToastWith:@"请输入正确的邮箱地址"];
         }else{
-            BmobUser * user = [BmobUser currentUser];
-            [user setObject:tf.text forKey:@"email"];
-            [user updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                [ToastManage showTopToastWith:@"邮件已经导出成功，请稍后查看"];
-            }];
+            [self sendEmailWithPath:filePath andEmail:tf.text];
         }
     })
-    .LeeCancelAction(@"取消导出", nil) // 点击事件的Block如果不需要可以传nil
+    
     .LeeShow();
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)sendEmailWithPath:(NSString *)filePath andEmail:(NSString *)email{
+    [self showLoadingAnimation];
+    SKPSMTPMessage *myMessage = [[SKPSMTPMessage alloc] init];
+    myMessage.fromEmail = @"zhilibook@163.com"; //发送邮箱
+    myMessage.toEmail = email; //收件邮箱
+    myMessage.relayHost = @"smtp.163.com"; //发送地址host 网易企业邮箱
+    myMessage.requiresAuth = YES;
+    myMessage.login = @"zhilibook@163.com"; //发送邮箱的用户名
+    myMessage.pass = @"liliangkui0";  //发送邮箱的密码
+    myMessage.wantsSecure = YES;
+    myMessage.subject = @"虾米记账"; //邮件主题
+    myMessage.delegate = self;
+    // 附件
+    NSData *txtData = [NSData dataWithContentsOfFile:filePath];
+    if (txtData.length > 0) {
+        NSDictionary *txtPart = @{kSKPSMTPPartContentTypeKey:@"text/directory;\r\n\tx-unix-mode=0644;\r\n\tname=\"虾米记账.xls\"",
+                                  kSKPSMTPPartContentDispositionKey:@"attachment;\r\n\tfilename=\"虾米记账.xls\"",
+                                  kSKPSMTPPartMessageKey:[txtData encodeBase64ForData],
+                                  kSKPSMTPPartContentTransferEncodingKey:@"base64"};
+        
+        myMessage.parts = [NSArray arrayWithObjects:txtPart, txtPart,nil];
+    } else {
+        [ToastManage showTopToastWith:@"邮件路径失效"];
+         [self hiddenLoadingAnimation];
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+        [myMessage send];
+        [[NSRunLoop currentRunLoop] run]; //这里开启一下runloop要不然重试其他端口的操作不会进行
+    });
 }
-*/
+// 发送成功
+- (void)messageSent:(SKPSMTPMessage *)message {
+    // 邮件发送成功
+    [self hiddenLoadingAnimation];
+    [ToastManage showTopToastWith:@"邮件发送成功"];
+}
+
+// 发送失败
+- (void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error {
+    // 邮件发送失败
+    [self hiddenLoadingAnimation];
+    [ToastManage showTopToastWith:@"邮件发送失败"];
+}
+
 
 @end
