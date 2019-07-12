@@ -81,6 +81,7 @@
     if (!_lineView) {
         _lineView = [[UIView alloc] init];
         _lineView.backgroundColor = kLineColor;
+        _lineView.hidden = YES;
     }
     return _lineView;
 }

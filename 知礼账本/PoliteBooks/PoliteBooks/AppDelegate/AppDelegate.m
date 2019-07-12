@@ -29,6 +29,8 @@
         [UITableView appearance].estimatedSectionHeaderHeight = 0;
         [UITableView appearance].estimatedSectionFooterHeight = 0;
         [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        [UITableView appearance].showsVerticalScrollIndicator =NO;
+        [UICollectionView appearance].showsVerticalScrollIndicator =NO;
     } else {}
     if(self.window.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable)
     {

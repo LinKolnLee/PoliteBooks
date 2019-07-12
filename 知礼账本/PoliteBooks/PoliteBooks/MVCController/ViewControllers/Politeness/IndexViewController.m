@@ -305,10 +305,10 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     }];
 }
 -(void)queryBookList{
-    //[self showLoadingAnimation];
+    [self showLoadingAnimation];
     WS(weakSelf);
     [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
-    //   [weakSelf hiddenLoadingAnimation];
+       [weakSelf hiddenLoadingAnimation];
         weakSelf.dataSource = bookList;
         [weakSelf.collectionView reloadData];
     } fail:^(id _Nonnull error) {
