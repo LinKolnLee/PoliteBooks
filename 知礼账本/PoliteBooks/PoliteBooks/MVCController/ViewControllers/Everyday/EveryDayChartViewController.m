@@ -152,7 +152,7 @@
 }
 -(AAChartView *)aaChartView{
     if (!_aaChartView) {
-        _aaChartView = [[AAChartView alloc]initWithFrame:CGRectMake(10, 150, ScreenWidth - 20, ScreenHeight - 200)];
+        _aaChartView = [[AAChartView alloc]initWithFrame:CGRectMake(0, kIphone6Width(150), ScreenWidth , ScreenHeight - kIphone6Width(180))];
         _aaChartView.scrollEnabled = YES;
         
     }

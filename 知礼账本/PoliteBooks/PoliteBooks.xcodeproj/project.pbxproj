@@ -13,6 +13,12 @@
 		4209557D22C4A7AE00C255B5 /* PBRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4209557C22C4A7AE00C255B5 /* PBRefreshFooter.m */; };
 		4209559822C4C48800C255B5 /* EveryDayChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4209559722C4C48800C255B5 /* EveryDayChartViewController.m */; };
 		4209559B22C4C5A900C255B5 /* EveryDayChartHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4209559A22C4C5A900C255B5 /* EveryDayChartHeadView.m */; };
+		420AAE0D22D8264000622694 /* UINavigationController+DZM.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE0922D8264000622694 /* UINavigationController+DZM.m */; };
+		420AAE0E22D8264000622694 /* DZMATViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE0A22D8264000622694 /* DZMATViewController.m */; };
+		420AAE0F22D8264000622694 /* DZMAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE0B22D8264000622694 /* DZMAnimatedTransitioning.m */; };
+		420AAE1022D8264000622694 /* UIViewController+DZM.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE0C22D8264000622694 /* UIViewController+DZM.m */; };
+		420AAE1F22D8554E00622694 /* TableViewAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE1922D8554E00622694 /* TableViewAnimationKit.m */; };
+		420AAE2022D8554E00622694 /* UITableView+XSAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE1E22D8554E00622694 /* UITableView+XSAnimationKit.m */; };
 		421E843322D6D5DA00A9DB11 /* nclassImage_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F622D6D5DA00A9DB11 /* nclassImage_1.png */; };
 		421E843422D6D5DA00A9DB11 /* nclassImage_12.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F722D6D5DA00A9DB11 /* nclassImage_12.png */; };
 		421E843522D6D5DA00A9DB11 /* nclassImage_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F822D6D5DA00A9DB11 /* nclassImage_13.png */; };
@@ -297,6 +303,20 @@
 		4209559722C4C48800C255B5 /* EveryDayChartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EveryDayChartViewController.m; sourceTree = "<group>"; };
 		4209559922C4C5A900C255B5 /* EveryDayChartHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EveryDayChartHeadView.h; sourceTree = "<group>"; };
 		4209559A22C4C5A900C255B5 /* EveryDayChartHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EveryDayChartHeadView.m; sourceTree = "<group>"; };
+		420AAE0522D8264000622694 /* DZMATViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMATViewController.h; sourceTree = "<group>"; };
+		420AAE0622D8264000622694 /* UINavigationController+DZM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+DZM.h"; sourceTree = "<group>"; };
+		420AAE0722D8264000622694 /* UIViewController+DZM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DZM.h"; sourceTree = "<group>"; };
+		420AAE0822D8264000622694 /* DZMAnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMAnimatedTransitioning.h; sourceTree = "<group>"; };
+		420AAE0922D8264000622694 /* UINavigationController+DZM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+DZM.m"; sourceTree = "<group>"; };
+		420AAE0A22D8264000622694 /* DZMATViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMATViewController.m; sourceTree = "<group>"; };
+		420AAE0B22D8264000622694 /* DZMAnimatedTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMAnimatedTransitioning.m; sourceTree = "<group>"; };
+		420AAE0C22D8264000622694 /* UIViewController+DZM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DZM.m"; sourceTree = "<group>"; };
+		420AAE1922D8554E00622694 /* TableViewAnimationKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewAnimationKit.m; sourceTree = "<group>"; };
+		420AAE1A22D8554E00622694 /* TableViewAnimationKitHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewAnimationKitHeaders.h; sourceTree = "<group>"; };
+		420AAE1B22D8554E00622694 /* UITableView+XSAnimationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+XSAnimationKit.h"; sourceTree = "<group>"; };
+		420AAE1C22D8554E00622694 /* TableViewAnimationKitConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewAnimationKitConfig.h; sourceTree = "<group>"; };
+		420AAE1D22D8554E00622694 /* TableViewAnimationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewAnimationKit.h; sourceTree = "<group>"; };
+		420AAE1E22D8554E00622694 /* UITableView+XSAnimationKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+XSAnimationKit.m"; sourceTree = "<group>"; };
 		421E83F622D6D5DA00A9DB11 /* nclassImage_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_1.png; sourceTree = "<group>"; };
 		421E83F722D6D5DA00A9DB11 /* nclassImage_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_12.png; sourceTree = "<group>"; };
 		421E83F822D6D5DA00A9DB11 /* nclassImage_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_13.png; sourceTree = "<group>"; };
@@ -746,6 +766,34 @@
 			path = RefreshExtension;
 			sourceTree = "<group>";
 		};
+		420AAE0422D8264000622694 /* DZMAnimatedTransitioning */ = {
+			isa = PBXGroup;
+			children = (
+				420AAE0822D8264000622694 /* DZMAnimatedTransitioning.h */,
+				420AAE0B22D8264000622694 /* DZMAnimatedTransitioning.m */,
+				420AAE0522D8264000622694 /* DZMATViewController.h */,
+				420AAE0A22D8264000622694 /* DZMATViewController.m */,
+				420AAE0622D8264000622694 /* UINavigationController+DZM.h */,
+				420AAE0922D8264000622694 /* UINavigationController+DZM.m */,
+				420AAE0722D8264000622694 /* UIViewController+DZM.h */,
+				420AAE0C22D8264000622694 /* UIViewController+DZM.m */,
+			);
+			path = DZMAnimatedTransitioning;
+			sourceTree = "<group>";
+		};
+		420AAE1822D8554E00622694 /* TableViewAnimationKit */ = {
+			isa = PBXGroup;
+			children = (
+				420AAE1922D8554E00622694 /* TableViewAnimationKit.m */,
+				420AAE1A22D8554E00622694 /* TableViewAnimationKitHeaders.h */,
+				420AAE1B22D8554E00622694 /* UITableView+XSAnimationKit.h */,
+				420AAE1C22D8554E00622694 /* TableViewAnimationKitConfig.h */,
+				420AAE1D22D8554E00622694 /* TableViewAnimationKit.h */,
+				420AAE1E22D8554E00622694 /* UITableView+XSAnimationKit.m */,
+			);
+			path = TableViewAnimationKit;
+			sourceTree = "<group>";
+		};
 		421E83F522D6D5DA00A9DB11 /* newClassImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -952,6 +1000,7 @@
 		42294BB721E733DC00A1D4D0 /* ToolFile */ = {
 			isa = PBXGroup;
 			children = (
+				420AAE0422D8264000622694 /* DZMAnimatedTransitioning */,
 				4209557722C4A73C00C255B5 /* RefreshExtension */,
 				42B84C8022C1C86500F752D3 /* AxcAE_TabBar */,
 				4272D2F322BA4F0500193F65 /* YWExcelView */,
@@ -1030,6 +1079,7 @@
 		42294BBC21E7345900A1D4D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				420AAE1822D8554E00622694 /* TableViewAnimationKit */,
 				42F60BA822CB62A300710BC4 /* ScreeningViews */,
 				42BC282D22C9ADCF001829B1 /* MyViews */,
 				42BC282922C9ACCF001829B1 /* ToolViews */,
@@ -2023,6 +2073,7 @@
 				4272D2A222BA3F7300193F65 /* FeedbackViewController.m in Sources */,
 				42B84CE122C21E2B00F752D3 /* KeepAccountInOutCollectionViewCell.m in Sources */,
 				42BC282C22C9ADB0001829B1 /* MyViewController.m in Sources */,
+				420AAE2022D8554E00622694 /* UITableView+XSAnimationKit.m in Sources */,
 				42294BF821E75B1200A1D4D0 /* NSDate+String.m in Sources */,
 				42B84CFE22C2391400F752D3 /* PBWatherExtension.m in Sources */,
 				42BBB1BB224B43CA002C11F6 /* UIView+Extension.m in Sources */,
@@ -2033,6 +2084,7 @@
 				4296F66322B0A68600FD70B7 /* UIDevice+FCUUID.m in Sources */,
 				42D8C96422B72BD300FE34C5 /* PBSearchView.m in Sources */,
 				42FC10E622CC481900D0869C /* SereenHeadCollectionViewCell.m in Sources */,
+				420AAE0D22D8264000622694 /* UINavigationController+DZM.m in Sources */,
 				42294B9121E7320A00A1D4D0 /* main.m in Sources */,
 				4209557D22C4A7AE00C255B5 /* PBRefreshFooter.m in Sources */,
 				42BC283922C9DAD9001829B1 /* PBQuickExtension.m in Sources */,
@@ -2066,6 +2118,7 @@
 				42B84CF522C22DE400F752D3 /* UIColor+HEX.m in Sources */,
 				42E7E13B21ED7BE7009B95FB /* YLNumberKeyboard.m in Sources */,
 				42F0832421EC7DE200948743 /* InputDateMarkView.m in Sources */,
+				420AAE1F22D8554E00622694 /* TableViewAnimationKit.m in Sources */,
 				42F8675B22C6046E00B9FB4B /* ToolViewController.m in Sources */,
 				4200E74B21E86F0800B4A8DC /* DetailOrderCollectionViewCell.m in Sources */,
 				42294BDF21E74F4200A1D4D0 /* IndexCollectionViewCell.m in Sources */,
@@ -2080,6 +2133,7 @@
 				42D37F702275478D00092049 /* TABBaseCardView.m in Sources */,
 				4272D30222BA4F0600193F65 /* YWTableViewHeadView.m in Sources */,
 				4296F67022B0E1A000FD70B7 /* PBTableExtension.m in Sources */,
+				420AAE1022D8264000622694 /* UIViewController+DZM.m in Sources */,
 				4209559822C4C48800C255B5 /* EveryDayChartViewController.m in Sources */,
 				42F8675622C5EBDF00B9FB4B /* KeepAccountPuliteCollectionViewCell.m in Sources */,
 				42C5BA6722B1FCBD00AB73D3 /* UIView+GradientBgColor.m in Sources */,
@@ -2087,9 +2141,11 @@
 				42FC10E922CC54B800D0869C /* ScreeningClassView.m in Sources */,
 				42F88B2122D58AAB00C4BBC7 /* ScreeningClassSubView.m in Sources */,
 				42C5BA6622B1FCBD00AB73D3 /* WLToast.m in Sources */,
+				420AAE0E22D8264000622694 /* DZMATViewController.m in Sources */,
 				42EB0EE722C35C240007FE31 /* AccountDetailSectionView.m in Sources */,
 				42BEAAA721E83BA4001F5F3E /* NSString+Money.m in Sources */,
 				4296F66A22B0CFCD00FD70B7 /* PBBookModel.m in Sources */,
+				420AAE0F22D8264000622694 /* DZMAnimatedTransitioning.m in Sources */,
 				42EB0EEA22C377530007FE31 /* NSDate+KeyBoardExtension.m in Sources */,
 				42EB0EAA22C31CE60007FE31 /* AccentDetailTableViewCell.m in Sources */,
 				42BC283322C9D826001829B1 /* ToolCollectionViewCell.m in Sources */,

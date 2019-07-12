@@ -20,6 +20,7 @@
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSDate * selectData;
 @property(nonatomic,strong)UIView * lineView;
+@property(nonatomic,assign)BOOL animation;
 @end
 @implementation EveryDayHomeViewController
 - (void)viewDidLoad {
@@ -30,6 +31,7 @@
     [self.view addSubview:self.tableView];
     self.dataSource = [[NSMutableArray alloc] init];
     self.selectData = [NSDate new];
+    self.animation = YES;
     [self addMasonry];
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -139,15 +141,24 @@
 }
 -(void)queryWatherDatasourceListWithDate:(NSDate *)date{
     WS(weakSelf);
-    [self showLoadingAnimation];
+   // [self showLoadingAnimation];
     [PBWatherExtension queryDayBookListWithDate:date success:^(NSMutableArray<NSMutableArray<PBWatherModel *> *> * _Nonnull bookList) {
-         [weakSelf hiddenLoadingAnimation];
+        // [weakSelf hiddenLoadingAnimation];
         weakSelf.dataSource = bookList;
         weakSelf.headView.dataSource = bookList;
         [weakSelf.tableView reloadData];
+        if (weakSelf.animation) {
+            [weakSelf starAnimationWithTableView:weakSelf.tableView];
+            weakSelf.animation = NO;
+        }
+
     } fail:^(id _Nonnull error) {
         
     }];
+}
+- (void)starAnimationWithTableView:(UITableView *)tableView {
+    
+    [TableViewAnimationKit showWithAnimationType:2 tableView:tableView];
 }
 #pragma mark Delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

@@ -96,6 +96,7 @@ BaseCollectionViewButtonClickDelegate
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
+            weakSelf.collectionView.hidden = YES;
             [weakSelf.navigationController popViewControllerAnimated:YES];
         };
         _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{

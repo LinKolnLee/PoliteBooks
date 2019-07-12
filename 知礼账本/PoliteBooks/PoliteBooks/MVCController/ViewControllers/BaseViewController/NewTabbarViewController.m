@@ -12,7 +12,6 @@
 #import "ToolViewController.h"
 #import "MyViewController.h"
 #import "KeepAccountViewController.h"
-
 @interface NewTabbarViewController ()<AxcAE_TabBarDelegate>
 
 @end
@@ -122,8 +121,6 @@ static NSInteger lastIdx = 0;
         VIBRATION;
         [self.axcTabBar setSelectIndex:lastIdx WithAnimation:NO]; // 换回上一个选中状态
         KeepAccountViewController * keep = [[KeepAccountViewController alloc] init];
-       // [self hh_presentErectVC:keep completion:nil];
-        //[self.navigationController presentViewController:keep animated:YES completion:nil];
         [self.navigationController hh_pushErectViewController:keep];
     }
 }
@@ -143,5 +140,8 @@ static NSInteger lastIdx = 0;
     [super viewDidLayoutSubviews];
     self.axcTabBar.frame = self.tabBar.bounds;
     [self.axcTabBar viewDidLayoutItems];
+}
+-(void)setATTarget:(UIView *)ATTarget{
+    _ATTarget = ATTarget;
 }
 @end

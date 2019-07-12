@@ -167,7 +167,7 @@
 -(void)setLogin:(BOOL)login{
     _login = login;
     if (login) {
-        self.titleLabel.text = @"已登陆";
+        self.titleLabel.text = [NSString stringWithFormat:@"xm%@",[BmobUser currentUser].mobilePhoneNumber];
     }else{
         self.titleLabel.text = @"登陆后同步数据";;
     }

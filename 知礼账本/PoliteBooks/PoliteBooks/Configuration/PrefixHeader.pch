@@ -43,14 +43,18 @@
 #import "BaseCollectionView.h"
 #import "UIView+BlockGesture.h"
 #import "NSString+Calculation.h"
+#import "UIViewController+DZM.h"
 #import "UserColorConfiguration.h"
 #import "UIViewController+PBGuide.h"
 #import "PBIndexNavigationBarView.h"
 #import "NSDate+KeyBoardExtension.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
+#import "UINavigationController+DZM.h"
 #import "NSAttributedString+Extension.h"
+#import "TableViewAnimationKitHeaders.h"
 #import "UIViewController+HHTransition.h"
+//#import "UINavigationController+WXSTransition.h"
 
 
 // Include any system framework and library headers here that should be included in all compilation units.

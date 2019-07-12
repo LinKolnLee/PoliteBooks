@@ -280,11 +280,15 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 }
 //MARK: UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    BooksCollectionViewCell * cell = (BooksCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    self.ATTarget = cell;
     DetailViewController * detail = [[DetailViewController alloc] init];
     detail.isLook = YES;
     detail.bookModel = self.dataSource[indexPath.row];
     detail.currentTableName = self.dataSource[indexPath.row].bookName;
-    [self.navigationController pushViewController:detail animated:YES];
+   // [self.navigationController pushViewController:detail animated:YES];
+    [self.navigationController pushATViewController:detail animated:true];
+
 }
 
 -(void)animationWithView:(UIView *)view duration:(CFTimeInterval)duration{

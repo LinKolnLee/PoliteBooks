@@ -89,6 +89,11 @@
             break;
     }
     [self.tableView reloadData];
+    [self starAnimationWithTableView:self.tableView];
+}
+- (void)starAnimationWithTableView:(UITableView *)tableView {
+    
+    [TableViewAnimationKit showWithAnimationType:2 tableView:tableView];
 }
 #pragma mark Delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -141,6 +146,8 @@
         weakSelf.dataSource = weekMonets;
         [weakSelf.tableView reloadData];
         [[BeautyLoadingHUD  shareManager] stopAnimating];
+        [weakSelf starAnimationWithTableView:weakSelf.tableView];
+        
     } fail:^(id _Nonnull error) {
         
     }];

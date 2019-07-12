@@ -6,11 +6,11 @@
 //  Copyright © 2019 Beauty. All rights reserved.
 //
 
-#import "BaseViewController.h"
-
+//#import "BaseViewController.h"
+#import "DZMATViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DetailViewController : BaseViewController
+@interface DetailViewController : DZMATViewController
 
 @property(nonatomic,strong)PBBookModel * bookModel;
 

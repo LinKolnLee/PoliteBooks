@@ -247,11 +247,12 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 
 //MARK: UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    IndexCollectionViewCell * cell = (IndexCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    self.tabBarController.ATTarget = cell;
     DetailViewController * detail = [[DetailViewController alloc] init];
     detail.isLook = YES;
     detail.bookModel = self.dataSource[indexPath.row];
-    [self.navigationController pushViewController:detail animated:YES];
+    [self.navigationController pushATViewController:detail animated:true];
 
 }
 
@@ -304,16 +305,11 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
     }];
 }
 -(void)queryBookList{
-    [self showLoadingAnimation];
+    //[self showLoadingAnimation];
     WS(weakSelf);
     [BmobBookExtension queryBookListsuccess:^(NSMutableArray<PBBookModel *> * _Nonnull bookList) {
-       [weakSelf hiddenLoadingAnimation];
+    //   [weakSelf hiddenLoadingAnimation];
         weakSelf.dataSource = bookList;
-//        if (bookList.count == 0) {
-//            weakSelf.inputButton.hidden = YES;
-//        }else{
-//            weakSelf.inputButton.hidden = NO;
-//        }
         [weakSelf.collectionView reloadData];
     } fail:^(id _Nonnull error) {
         [weakSelf hiddenLoadingAnimation];

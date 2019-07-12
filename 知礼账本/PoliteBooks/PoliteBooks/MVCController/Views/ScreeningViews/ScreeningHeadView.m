@@ -83,5 +83,6 @@ UICollectionViewDelegate>
 }
 -(void)setTitles:(NSArray *)titles{
     _titles = titles;
+    [self.collectionview reloadData];
 }
 @end
