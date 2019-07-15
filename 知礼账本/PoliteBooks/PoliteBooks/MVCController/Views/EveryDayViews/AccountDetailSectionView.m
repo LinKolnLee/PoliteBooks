@@ -22,6 +22,7 @@
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self)
         {
+            //self.contentView.backgroundColor = kwhi
             [self addSubview:self.dateLabel];
             [self addSubview:self.moneySum];
             [self addSubview:self.incomeMoneySum];

@@ -40,7 +40,7 @@ UICollectionViewDelegate,BaseCollectionViewButtonClickDelegate>
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
-        _collectionView.bounces = NO;
+        _collectionView.bounces = YES;
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.baseDelegate = self;
         _collectionView.btnTitle = @"点击添加账本";

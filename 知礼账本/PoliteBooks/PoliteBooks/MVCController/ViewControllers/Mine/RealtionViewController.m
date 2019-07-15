@@ -53,7 +53,7 @@
 -(SPMultipleSwitch *)relationTypeSwitch{
     if (!_relationTypeSwitch) {
         _relationTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"亲戚",@"朋友",@"同学",@"同事",@"邻里"]];
-        _relationTypeSwitch.frame = CGRectMake(15, kIphone6Width(95), ScreenWidth-30, 30);
+        _relationTypeSwitch.frame = CGRectMake(kIphone6Width(15), kIphone6Width(95), ScreenWidth-kIphone6Width(30), kIphone6Width(30));
         _relationTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
         _relationTypeSwitch.selectedTitleColor = kWhiteColor;
         _relationTypeSwitch.titleColor = kHexRGB(0x665757);
@@ -74,7 +74,7 @@
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
         flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - kIphone6Width(180));
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(45) , ScreenWidth, ScreenHeight - kNavigationHeight - kIphone6Width(50)) collectionViewLayout:flowLayout];
+        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(55) , ScreenWidth, ScreenHeight - kNavigationHeight - kIphone6Width(55)) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;

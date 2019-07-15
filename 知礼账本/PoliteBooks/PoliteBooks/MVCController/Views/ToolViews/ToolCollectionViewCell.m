@@ -81,7 +81,7 @@
     }else{
         self.titleLabel.text = [NSString stringWithFormat:@"%@\r%@元",TypeClassStr[model.type],model.price];
     }
-    self.typeLabel.text = model.moneyType == 0 ? @"支" : @"收";
+    self.typeLabel.text = model.moneyType == 0 ? @"支出" : @"收入";
     self.backgroundColor = kWhiteColor;
     self.typeLabel.textColor = model.moneyType == 0 ? kBlackColor : kWhiteColor;
     self.titleLabel.textColor = model.moneyType == 0 ? kBlackColor : kWhiteColor;

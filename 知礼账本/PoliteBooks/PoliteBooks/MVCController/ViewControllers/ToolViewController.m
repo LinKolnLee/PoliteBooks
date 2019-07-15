@@ -97,7 +97,7 @@ UICollectionViewDelegate,UIScrollViewDelegate,BaseCollectionViewButtonClickDeleg
     if (!cell) {
         cell = [[ToolCollectionViewCell alloc] init];
     }
-    cell.layer.cornerRadius = kIphone6Width(30);
+    cell.layer.cornerRadius = kIphone6Width(10);
     cell.layer.masksToBounds = YES;
     cell.model = self.dataSource[indexPath.row];
     cell.layer.borderColor = kBlackColor.CGColor; //self.dataSource[indexPath.row].moneyType == 0 ? kBlackColor.CGColor : kHexRGB(0xf15b6c).CGColor;

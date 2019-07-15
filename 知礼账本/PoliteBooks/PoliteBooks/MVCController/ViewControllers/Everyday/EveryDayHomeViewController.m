@@ -45,8 +45,9 @@
         make.height.mas_equalTo(kNavigationHeight);
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.headView.mas_bottom);
-        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(self.headView.mas_bottom).offset(kIphone6Width(5));
+        make.left.mas_equalTo(kIphone6Width(5));
+        make.right.mas_equalTo(kIphone6Width(-5));
         make.height.mas_equalTo(1);
     }];
 }
@@ -72,7 +73,7 @@
 }
 -(HomeHeader *)headView{
     if (!_headView) {
-        _headView = [HomeHeader loadFirstNib:CGRectMake(0, kNavigationHeight, ScreenWidth, kIphone6Width(64))];
+        _headView = [HomeHeader loadFirstNib:CGRectMake(kIphone6Width(10), kNavigationHeight, ScreenWidth - kIphone6Width(20), kIphone6Width(64))];
         _headView.date = [NSDate new];
         WS(weakSelf);
         _headView.everyDayHeadViewCellBtnSelectBlock = ^(NSDate * _Nonnull date) {
@@ -91,14 +92,13 @@
 }
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(64) + 1, ScreenWidth, ScreenHeight - kTabBarSpace - kIphone6Width(64) - kTabbarHeight - kNavigationHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(kIphone6Width(10), kNavigationHeight + kIphone6Width(75), ScreenWidth - kIphone6Width(20), ScreenHeight - kTabBarSpace - kIphone6Width(75) - kTabbarHeight - kNavigationHeight) style:UITableViewStylePlain];
         [_tableView setDelegate:self];
         [_tableView setDataSource:self];
         _tableView.backgroundColor = kWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        _tableView.layer.cornerRadius = kIphone6Width(10);
-        _tableView.layer.masksToBounds = YES;
+
         [_tableView registerClass:[AccentDetailTableViewCell class] forCellReuseIdentifier:@"AccentDetailTableViewCell"];
         [_tableView registerClass:[AccountDetailSectionView class] forHeaderFooterViewReuseIdentifier:@"AccountDetailSectionView"];
        // _tableView.hidden = YES;
@@ -175,7 +175,6 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = self.dataSource[indexPath.section][indexPath.row];
     return cell;
-    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return kIphone6Width(50);
@@ -189,7 +188,7 @@
     return sectionHeadView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
+    return kIphone6Width(40);
 }
 //左滑删除 和编辑
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{

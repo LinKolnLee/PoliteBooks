@@ -146,7 +146,7 @@
         _politeLabel = [[UILabel alloc] init];
         _politeLabel.font = kFont14;
         _politeLabel.textColor = kWhiteColor;
-        _politeLabel.text = @"3账";
+        _politeLabel.text = @"礼账";
         _politeLabel.textAlignment = NSTextAlignmentCenter;
         _politeLabel.numberOfLines = 0;
     }

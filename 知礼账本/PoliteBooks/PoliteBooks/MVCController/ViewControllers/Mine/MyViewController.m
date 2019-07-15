@@ -23,6 +23,7 @@
 #import "TroopsViewController.h"
 
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SKPSMTPMessageDelegate>
+@property(nonatomic,strong)PBIndexNavigationBarView * naviView;
 @property(nonatomic,strong)MyHeadView * headView;
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSArray * titles;
@@ -36,10 +37,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview:self.naviView];
     [self.view addSubview:self.tableView];
     self.orderDataSource =[[NSMutableArray alloc] init];
     self.xlsSourceList =[[NSMutableArray alloc] init];
-    self.titles = @[@"组队记账",@"导出邮件",@"查看日历",@"礼账搜索",@"意见反馈",@"注册协议",@"隐私政策",@"关于虾米"];
+    self.titles = @[@"组队记账",@"导出邮件",@"查看日历",@"礼账搜索",@"意见反馈",@"注册协议",@"隐私政策",@"关于虾米"];//
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -54,9 +56,32 @@
     [self queryTableList];
     [self queryMonthList];
 }
+#pragma mark - # Getter
+-(PBIndexNavigationBarView *)naviView{
+    if (!_naviView) {
+        _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
+        _naviView.titleFont = kFont18;
+        _naviView.title = @"我的";
+        _naviView.titleFont = kFont18;
+        _naviView.leftImage = @"";
+        _naviView.rightImage = @"realtion";
+        _naviView.rightHidden = YES;
+        _naviView.isShadow = YES;
+        WS(weakSelf);
+        _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
+            //左按钮点击
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        };
+        _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{
+        };
+    }
+    return _naviView;
+}
 -(MyHeadView *)headView{
     if (!_headView) {
         _headView = [[MyHeadView alloc] init];
+        _headView.layer.cornerRadius = kIphone6Width(10);
+        _headView.layer.masksToBounds = YES;
         WS(weakSelf);
         _headView.myHeadViewBtnSelectBlock = ^{
             if (![BmobUser currentUser].mobilePhoneNumber) {
@@ -71,15 +96,17 @@
 }
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - kTabBarSpace  - kTabbarHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(kIphone6Width(5), kNavigationHeight , ScreenWidth - kIphone6Width(10), ScreenHeight - kNavigationHeight - kTabBarSpace  - kTabbarHeight) style:UITableViewStylePlain];
         [_tableView setDelegate:self];
         [_tableView setDataSource:self];
         _tableView.bounces = YES;
         _tableView.backgroundColor = kWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.showsVerticalScrollIndicator = NO;
         _tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _tableView.tableHeaderView = self.headView;
         _tableView.tableHeaderView.height = kIphone6Width(200);
+        
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
         [_tableView registerClass:[MyTableViewSectionView class] forHeaderFooterViewReuseIdentifier:@"MyTableViewSectionView"];
     }
@@ -112,7 +139,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
-       /* case 0:
+        case 0:
         {
             if (![BmobUser currentUser].mobilePhoneNumber) {
                 LoginViewController * login = [[LoginViewController alloc] init];
@@ -129,8 +156,8 @@
             }
             
         }
-            break;*/
-        case 0:
+            break;
+        case 1:
         {
             if (![BmobUser currentUser].mobilePhoneNumber) {
                 LoginViewController * login = [[LoginViewController alloc] init];
@@ -152,26 +179,26 @@
             }
         }
             break;
-        case 1:
+        case 2:
         {
             
             DateViewController * date = [[DateViewController alloc] init];
             [self.navigationController hh_presentBackScaleVC:date height:ScreenHeight-kIphone6Width(230) completion:nil];
         }
             break;
-        case 2:
+        case 3:
         {
             SearchViewController * searchVc = [[SearchViewController alloc] init];
             [self.navigationController hh_pushBackViewController:searchVc];
         }
             break;
-        case 3:
+        case 4:
         {
             FeedbackViewController * feedBack = [[FeedbackViewController alloc] init];
             [self.navigationController hh_pushBackViewController:feedBack];
         }
             break;
-        case 4:
+        case 5:
         {
             WKWebViewController *webVC = [[WKWebViewController alloc] init];
             webVC.titleStr  = @"注册协议";
@@ -179,7 +206,7 @@
             [self.navigationController pushViewController:webVC  animated:NO];
         }
             break;
-        case 5:
+        case 6:
         {
             WKWebViewController *webVC = [[WKWebViewController alloc] init];
             webVC.titleStr  = @"隐私政策";
@@ -187,7 +214,7 @@
             [self.navigationController pushViewController:webVC  animated:NO];
         }
             break;
-        case 6:
+        case 7:
         {
             AboutViewController * about = [[AboutViewController alloc] init];
             about.dataSource = self.dataSource;
