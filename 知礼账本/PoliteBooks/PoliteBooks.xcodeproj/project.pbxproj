@@ -19,6 +19,7 @@
 		420AAE1022D8264000622694 /* UIViewController+DZM.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE0C22D8264000622694 /* UIViewController+DZM.m */; };
 		420AAE1F22D8554E00622694 /* TableViewAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE1922D8554E00622694 /* TableViewAnimationKit.m */; };
 		420AAE2022D8554E00622694 /* UITableView+XSAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE1E22D8554E00622694 /* UITableView+XSAnimationKit.m */; };
+		420AAE2322D86FB300622694 /* TroopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE2222D86FB300622694 /* TroopsViewController.m */; };
 		421E843322D6D5DA00A9DB11 /* nclassImage_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F622D6D5DA00A9DB11 /* nclassImage_1.png */; };
 		421E843422D6D5DA00A9DB11 /* nclassImage_12.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F722D6D5DA00A9DB11 /* nclassImage_12.png */; };
 		421E843522D6D5DA00A9DB11 /* nclassImage_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F822D6D5DA00A9DB11 /* nclassImage_13.png */; };
@@ -100,6 +101,9 @@
 		42294BF221E7594000A1D4D0 /* UserColorConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BF021E7594000A1D4D0 /* UserColorConfiguration.m */; };
 		42294BF521E7596200A1D4D0 /* UserColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BF421E7596200A1D4D0 /* UserColorModel.m */; };
 		42294BF821E75B1200A1D4D0 /* NSDate+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 42294BF721E75B1200A1D4D0 /* NSDate+String.m */; };
+		422E262922D87A0500E1A483 /* TroopsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 422E262822D87A0500E1A483 /* TroopsCollectionViewCell.m */; };
+		422E262C22D87E3500E1A483 /* ToopsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 422E262B22D87E3500E1A483 /* ToopsTableViewCell.m */; };
+		422E262F22D8808600E1A483 /* PBTroopsEctension.m in Sources */ = {isa = PBXBuildFile; fileRef = 422E262E22D8808600E1A483 /* PBTroopsEctension.m */; };
 		4272D29522B9CF4B00193F65 /* SPMultipleSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4272D29322B9CF4B00193F65 /* SPMultipleSwitch.m */; };
 		4272D29722BA0CB600193F65 /* realtion.png in Resources */ = {isa = PBXBuildFile; fileRef = 4272D29622BA0CB600193F65 /* realtion.png */; };
 		4272D29A22BA0D3300193F65 /* RealtionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4272D29922BA0D3300193F65 /* RealtionViewController.m */; };
@@ -317,6 +321,8 @@
 		420AAE1C22D8554E00622694 /* TableViewAnimationKitConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewAnimationKitConfig.h; sourceTree = "<group>"; };
 		420AAE1D22D8554E00622694 /* TableViewAnimationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewAnimationKit.h; sourceTree = "<group>"; };
 		420AAE1E22D8554E00622694 /* UITableView+XSAnimationKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+XSAnimationKit.m"; sourceTree = "<group>"; };
+		420AAE2122D86FB300622694 /* TroopsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TroopsViewController.h; sourceTree = "<group>"; };
+		420AAE2222D86FB300622694 /* TroopsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TroopsViewController.m; sourceTree = "<group>"; };
 		421E83F622D6D5DA00A9DB11 /* nclassImage_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_1.png; sourceTree = "<group>"; };
 		421E83F722D6D5DA00A9DB11 /* nclassImage_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_12.png; sourceTree = "<group>"; };
 		421E83F822D6D5DA00A9DB11 /* nclassImage_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_13.png; sourceTree = "<group>"; };
@@ -418,6 +424,12 @@
 		42294BF421E7596200A1D4D0 /* UserColorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserColorModel.m; sourceTree = "<group>"; };
 		42294BF621E75B1200A1D4D0 /* NSDate+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+String.h"; sourceTree = "<group>"; };
 		42294BF721E75B1200A1D4D0 /* NSDate+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+String.m"; sourceTree = "<group>"; };
+		422E262722D87A0500E1A483 /* TroopsCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TroopsCollectionViewCell.h; sourceTree = "<group>"; };
+		422E262822D87A0500E1A483 /* TroopsCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TroopsCollectionViewCell.m; sourceTree = "<group>"; };
+		422E262A22D87E3500E1A483 /* ToopsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToopsTableViewCell.h; sourceTree = "<group>"; };
+		422E262B22D87E3500E1A483 /* ToopsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToopsTableViewCell.m; sourceTree = "<group>"; };
+		422E262D22D8808600E1A483 /* PBTroopsEctension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBTroopsEctension.h; sourceTree = "<group>"; };
+		422E262E22D8808600E1A483 /* PBTroopsEctension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBTroopsEctension.m; sourceTree = "<group>"; };
 		4272D29322B9CF4B00193F65 /* SPMultipleSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMultipleSwitch.m; sourceTree = "<group>"; };
 		4272D29422B9CF4B00193F65 /* SPMultipleSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMultipleSwitch.h; sourceTree = "<group>"; };
 		4272D29622BA0CB600193F65 /* realtion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = realtion.png; sourceTree = "<group>"; };
@@ -1191,6 +1203,17 @@
 			path = UserColorConfiguration;
 			sourceTree = "<group>";
 		};
+		422E262622D879E500E1A483 /* TroopsViews */ = {
+			isa = PBXGroup;
+			children = (
+				422E262722D87A0500E1A483 /* TroopsCollectionViewCell.h */,
+				422E262822D87A0500E1A483 /* TroopsCollectionViewCell.m */,
+				422E262A22D87E3500E1A483 /* ToopsTableViewCell.h */,
+				422E262B22D87E3500E1A483 /* ToopsTableViewCell.m */,
+			);
+			path = TroopsViews;
+			sourceTree = "<group>";
+		};
 		4272D29222B9CF4B00193F65 /* SPMultipleSwitch */ = {
 			isa = PBXGroup;
 			children = (
@@ -1249,6 +1272,8 @@
 				42BC283522C9DAAD001829B1 /* PBQuickModel.m */,
 				42BC283722C9DAD9001829B1 /* PBQuickExtension.h */,
 				42BC283822C9DAD9001829B1 /* PBQuickExtension.m */,
+				422E262D22D8808600E1A483 /* PBTroopsEctension.h */,
+				422E262E22D8808600E1A483 /* PBTroopsEctension.m */,
 			);
 			path = BmobExtended;
 			sourceTree = "<group>";
@@ -1509,6 +1534,8 @@
 				4272D2A422BA4A1000193F65 /* ExportExcellViewController.m */,
 				42F2B60A22BB28F700BE8D1B /* AboutViewController.h */,
 				42F2B60B22BB28F700BE8D1B /* AboutViewController.m */,
+				420AAE2122D86FB300622694 /* TroopsViewController.h */,
+				420AAE2222D86FB300622694 /* TroopsViewController.m */,
 				42C5BA4D22B1EE1300AB73D3 /* Login */,
 				42EE5A6F22B372190099A6CE /* Views */,
 				42C5BA7722B24EC100AB73D3 /* MineViewController.h */,
@@ -1644,6 +1671,7 @@
 		42EE5A6F22B372190099A6CE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				422E262622D879E500E1A483 /* TroopsViews */,
 				42EE5A7322B37FEF0099A6CE /* MineChartCollectionViewCell.h */,
 				42EE5A7422B37FEF0099A6CE /* MineChartCollectionViewCell.m */,
 			);
@@ -2053,6 +2081,7 @@
 				42BC283022C9ADEA001829B1 /* MyHeadView.m in Sources */,
 				42B84CF822C22F3000F752D3 /* NSString+Calculation.m in Sources */,
 				42EFDC5A2236304900FD2EDB /* UIScrollView+EmptyDataSet.m in Sources */,
+				420AAE2322D86FB300622694 /* TroopsViewController.m in Sources */,
 				42294BF221E7594000A1D4D0 /* UserColorConfiguration.m in Sources */,
 				42B84C9022C1C8F800F752D3 /* NewTabbarViewController.m in Sources */,
 				42AE9B6A2264556100F5FD08 /* SKCalendarCollectionViewCell.m in Sources */,
@@ -2061,7 +2090,9 @@
 				42DBBA1F22672B5A0055DBD9 /* SettingViewController.m in Sources */,
 				42C5BA6822B1FCBD00AB73D3 /* ToastManage.m in Sources */,
 				42C5BA5022B1EE3100AB73D3 /* LoginViewController.m in Sources */,
+				422E262922D87A0500E1A483 /* TroopsCollectionViewCell.m in Sources */,
 				42D8C96F22B73C0A00FE34C5 /* XManager.m in Sources */,
+				422E262F22D8808600E1A483 /* PBTroopsEctension.m in Sources */,
 				42C5BA5A22B1FBC000AB73D3 /* UITextField+Extension.m in Sources */,
 				42BBB1BA224B43CA002C11F6 /* NSDate+Extension.m in Sources */,
 				42294BEB21E7533900A1D4D0 /* UserDefaultStorageManager.m in Sources */,
@@ -2118,6 +2149,7 @@
 				42B84CF522C22DE400F752D3 /* UIColor+HEX.m in Sources */,
 				42E7E13B21ED7BE7009B95FB /* YLNumberKeyboard.m in Sources */,
 				42F0832421EC7DE200948743 /* InputDateMarkView.m in Sources */,
+				422E262C22D87E3500E1A483 /* ToopsTableViewCell.m in Sources */,
 				420AAE1F22D8554E00622694 /* TableViewAnimationKit.m in Sources */,
 				42F8675B22C6046E00B9FB4B /* ToolViewController.m in Sources */,
 				4200E74B21E86F0800B4A8DC /* DetailOrderCollectionViewCell.m in Sources */,

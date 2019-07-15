@@ -38,6 +38,7 @@
 #import "PBWatherExtension.h"
 #import "BmobBookExtension.h"
 #import "IQKeyboardManager.h"
+#import "PBTroopsEctension.h"
 #import "ConfigurationKeys.h"
 #import "UIView+BorderLine.h"
 #import "BaseCollectionView.h"

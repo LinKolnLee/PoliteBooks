@@ -20,6 +20,7 @@
 #import "MyTableViewSectionView.h"
 #import "SKPSMTPMessage.h"
 #import "NSData+Base64Additions.h"
+#import "TroopsViewController.h"
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SKPSMTPMessageDelegate>
 @property(nonatomic,strong)MyHeadView * headView;
 @property(nonatomic,strong)UITableView * tableView;
@@ -37,7 +38,7 @@
     [self.view addSubview:self.tableView];
     self.orderDataSource =[[NSMutableArray alloc] init];
     self.xlsSourceList =[[NSMutableArray alloc] init];
-    self.titles = @[@"导出邮件",@"查看日历",@"礼账搜索",@"意见反馈",@"注册协议",@"隐私政策",@"关于虾米"];
+    self.titles = @[@"组队记账",@"导出邮件",@"查看日历",@"礼账搜索",@"意见反馈",@"注册协议",@"隐私政策",@"关于虾米"];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -112,6 +113,12 @@
     switch (indexPath.row) {
         case 0:
         {
+            TroopsViewController * troops = [[TroopsViewController alloc] init];
+            [self.navigationController hh_pushBackViewController:troops];
+        }
+            break;
+        case 1:
+        {
             WS(weakSelf);
             [LEEAlert actionsheet].config
             .LeeTitle(@"导出Excel")
@@ -127,26 +134,26 @@
             .LeeShow();
         }
             break;
-        case 1:
+        case 2:
         {
             
             DateViewController * date = [[DateViewController alloc] init];
             [self.navigationController hh_presentBackScaleVC:date height:ScreenHeight-kIphone6Width(230) completion:nil];
         }
             break;
-        case 2:
+        case 3:
         {
             SearchViewController * searchVc = [[SearchViewController alloc] init];
             [self.navigationController hh_pushBackViewController:searchVc];
         }
             break;
-        case 3:
+        case 4:
         {
             FeedbackViewController * feedBack = [[FeedbackViewController alloc] init];
             [self.navigationController hh_pushBackViewController:feedBack];
         }
             break;
-        case 4:
+        case 5:
         {
             WKWebViewController *webVC = [[WKWebViewController alloc] init];
             webVC.titleStr  = @"注册协议";
@@ -154,7 +161,7 @@
             [self.navigationController pushViewController:webVC  animated:NO];
         }
             break;
-        case 5:
+        case 6:
         {
             WKWebViewController *webVC = [[WKWebViewController alloc] init];
             webVC.titleStr  = @"隐私政策";
@@ -162,7 +169,7 @@
             [self.navigationController pushViewController:webVC  animated:NO];
         }
             break;
-        case 6:
+        case 7:
         {
             AboutViewController * about = [[AboutViewController alloc] init];
             about.dataSource = self.dataSource;

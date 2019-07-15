@@ -55,7 +55,7 @@
     [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(kIphone6Width(12.5));
         make.centerY.mas_equalTo(-kIphone6Width(30));
-        make.width.mas_equalTo(kIphone6Width(80));
+        make.width.mas_equalTo(kIphone6Width(100));
         make.height.mas_equalTo(kIphone6Width(25));
     }];
     [self.commendAppBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -96,10 +96,10 @@
 -(UIButton *)shareBtn{
     if (!_shareBtn) {
         _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_shareBtn setTitle:@"分享App" forState:UIControlStateNormal];
+        [_shareBtn setTitle:@"分享给好友" forState:UIControlStateNormal];
         [_shareBtn setTitleColor:kBlackColor forState:UIControlStateNormal];
         _shareBtn.backgroundColor = kWhiteColor;
-        _shareBtn.hidden = YES;
+        //_shareBtn.hidden = YES;
         _shareBtn.titleLabel.font = kFont13;
         _shareBtn.layer.cornerRadius =  kIphone6Width(12.5);
         _shareBtn.layer.masksToBounds = YES;
