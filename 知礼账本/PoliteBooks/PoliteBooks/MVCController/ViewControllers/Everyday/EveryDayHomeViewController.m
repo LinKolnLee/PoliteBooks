@@ -205,7 +205,39 @@
         }];
     }];
     deleteAction.backgroundColor = [UIColor redColor];
-    return @[deleteAction];
+    UITableViewRowAction *remarkAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"查看备注" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        [LEEAlert alert].config
+        .LeeAddTitle(^(UILabel *label) {
+            label.text = @"查看备注";
+            label.textColor = kBlackColor;
+        })
+        .LeeAddContent(^(UILabel *label) {
+            NSString * mark = @"";
+            mark = weakSelf.dataSource[indexPath.section][indexPath.row].mark;
+            label.text = mark;
+            label.textColor = [kBlackColor colorWithAlphaComponent:0.75f];
+        })
+        .LeeAddAction(^(LEEAction *action) {
+            action.type = LEEActionTypeCancel;
+            action.title = @"取消";
+            action.titleColor = kColor_Main_Color;
+            action.backgroundColor = kBlackColor;
+            action.clickBlock = ^{
+            };
+        })
+        .LeeAddAction(^(LEEAction *action) {
+            action.type = LEEActionTypeDefault;
+            action.title = @"确定";
+            action.titleColor = kColor_Main_Color;
+            action.backgroundColor = kBlackColor;
+            action.clickBlock = ^{
+            };
+        })
+        .LeeHeaderColor(kColor_Main_Color)
+        .LeeShow();
+    }];
+    remarkAction.backgroundColor = TypeColor[1];
+    return @[deleteAction,remarkAction];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{

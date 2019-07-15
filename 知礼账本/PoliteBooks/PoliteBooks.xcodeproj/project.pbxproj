@@ -2396,6 +2396,7 @@
 					"$(PROJECT_DIR)/PoliteBooks/ToolFile/UMengUShare/UShareSDK/SocialLibraries/WeChat/WechatSDK",
 					"$(PROJECT_DIR)/PoliteBooks/ToolFile/UMengUShare/UShareSDK/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/PoliteBooks/ToolFile/UMengUShare/UShareSDK/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/PoliteBooks/ToolFile/WechatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Beauty.PoliteBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2430,6 +2431,7 @@
 					"$(PROJECT_DIR)/PoliteBooks/ToolFile/UMengUShare/UShareSDK/SocialLibraries/WeChat/WechatSDK",
 					"$(PROJECT_DIR)/PoliteBooks/ToolFile/UMengUShare/UShareSDK/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/PoliteBooks/ToolFile/UMengUShare/UShareSDK/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/PoliteBooks/ToolFile/WechatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Beauty.PoliteBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";

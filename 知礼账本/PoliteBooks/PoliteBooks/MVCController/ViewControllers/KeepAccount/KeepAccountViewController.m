@@ -159,7 +159,7 @@ UICollectionViewDelegate,UIScrollViewDelegate
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
         flowLayout.itemSize = CGSizeMake(ScreenWidth, ScreenHeight - kNavigationHeight - kIphone6Width(30) - kTabBarSpace);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _baseCollectionview = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(30) , ScreenWidth, ScreenHeight - kNavigationHeight - kIphone6Width(20) - kTabBarSpace) collectionViewLayout:flowLayout];
+        _baseCollectionview = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(10) , ScreenWidth, ScreenHeight - kNavigationHeight - kIphone6Width(10) - kTabBarSpace) collectionViewLayout:flowLayout];
         _baseCollectionview.showsVerticalScrollIndicator = NO;
         _baseCollectionview.showsHorizontalScrollIndicator = NO;
         

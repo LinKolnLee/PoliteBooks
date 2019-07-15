@@ -12,7 +12,7 @@
 #import "BaseNavigationController.h"
 #import "KeepAccountViewController.h"
 #import "ToolViewController.h"
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -36,6 +36,7 @@
     {
         [self setup3DTouch];
     }
+    [WXApi registerApp:@"wx35c4040cd67b3568"];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [UserColorConfiguration initUserColorsInFirstboot];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -76,7 +77,32 @@
         [(UINavigationController *)self.window.rootViewController pushViewController:vc animated:YES];
     }
 }
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+- (void)onResp:(BaseResp *)resp{
+    /*
+     WXSuccess           = 0,   成功
+     WXErrCodeCommon     = -1,   普通错误类型
+     WXErrCodeUserCancel = -2,   用户点击取消并返回
+     WXErrCodeSentFail   = -3,    发送失败
+     WXErrCodeAuthDeny   = -4,   授权失败
+     WXErrCodeUnsupport  = -5,    微信不支持
+     */
+    NSString * strMsg = [NSString stringWithFormat:@"errorCode: %d",resp.errCode];
+    NSLog(@"strMsg: %@",strMsg);
+    NSString * errStr       = [NSString stringWithFormat:@"errStr: %@",resp.errStr];
+    NSLog(@"errStr: %@",errStr);
+    //判断是微信消息的回调 --> 是支付回调回来的还是消息回调回来的.
+    
+    if ([resp isKindOfClass:[SendMessageToWXResp class]]){
+        // 判断errCode 进行回调处理
+        if (resp.errCode == 0){
+            NSLog(@"分享成功");
+        }
+    }
 
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

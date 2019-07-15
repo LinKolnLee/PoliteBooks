@@ -21,6 +21,7 @@
 #import "SKPSMTPMessage.h"
 #import "NSData+Base64Additions.h"
 #import "TroopsViewController.h"
+
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SKPSMTPMessageDelegate>
 @property(nonatomic,strong)MyHeadView * headView;
 @property(nonatomic,strong)UITableView * tableView;
@@ -111,49 +112,66 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
+       /* case 0:
+        {
+            if (![BmobUser currentUser].mobilePhoneNumber) {
+                LoginViewController * login = [[LoginViewController alloc] init];
+                [self.navigationController hh_pushErectViewController:login];
+            }else{
+                if ([[BmobUser currentUser] objectForKey:@"troopsid"]) {
+                    NSString * objectId = [[BmobUser currentUser] objectForKey:@"troopsid"];
+                    TroopsViewController * troops = [[TroopsViewController alloc] init];
+                    troops.troopsId = objectId;
+                    [self.navigationController hh_pushBackViewController:troops];
+                }else{
+                    [self setupTroopsid];
+                }
+            }
+            
+        }
+            break;*/
         case 0:
         {
-            TroopsViewController * troops = [[TroopsViewController alloc] init];
-            [self.navigationController hh_pushBackViewController:troops];
+            if (![BmobUser currentUser].mobilePhoneNumber) {
+                LoginViewController * login = [[LoginViewController alloc] init];
+                [self.navigationController hh_pushErectViewController:login];
+            }else{
+                WS(weakSelf);
+                [LEEAlert actionsheet].config
+                .LeeTitle(@"导出Excel")
+                .LeeContent(@"导出流水账、礼账")
+                .LeeAction(@"流水账", ^{
+                    [weakSelf setupEmailNumberWithType:0];
+                })
+                .LeeAction(@"礼账", ^{
+                    [weakSelf setupEmailNumberWithType:1];
+                })
+                .LeeCancelAction(@"取消", nil)
+                .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)
+                .LeeShow();
+            }
         }
             break;
         case 1:
-        {
-            WS(weakSelf);
-            [LEEAlert actionsheet].config
-            .LeeTitle(@"导出Excel")
-            .LeeContent(@"导出流水账、礼账")
-            .LeeAction(@"流水账", ^{
-                [weakSelf setupEmailNumberWithType:0];
-            })
-            .LeeAction(@"礼账", ^{
-                [weakSelf setupEmailNumberWithType:1];
-            })
-            .LeeCancelAction(@"取消", nil)
-            .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)
-            .LeeShow();
-        }
-            break;
-        case 2:
         {
             
             DateViewController * date = [[DateViewController alloc] init];
             [self.navigationController hh_presentBackScaleVC:date height:ScreenHeight-kIphone6Width(230) completion:nil];
         }
             break;
-        case 3:
+        case 2:
         {
             SearchViewController * searchVc = [[SearchViewController alloc] init];
             [self.navigationController hh_pushBackViewController:searchVc];
         }
             break;
-        case 4:
+        case 3:
         {
             FeedbackViewController * feedBack = [[FeedbackViewController alloc] init];
             [self.navigationController hh_pushBackViewController:feedBack];
         }
             break;
-        case 5:
+        case 4:
         {
             WKWebViewController *webVC = [[WKWebViewController alloc] init];
             webVC.titleStr  = @"注册协议";
@@ -161,7 +179,7 @@
             [self.navigationController pushViewController:webVC  animated:NO];
         }
             break;
-        case 6:
+        case 5:
         {
             WKWebViewController *webVC = [[WKWebViewController alloc] init];
             webVC.titleStr  = @"隐私政策";
@@ -169,7 +187,7 @@
             [self.navigationController pushViewController:webVC  animated:NO];
         }
             break;
-        case 7:
+        case 6:
         {
             AboutViewController * about = [[AboutViewController alloc] init];
             about.dataSource = self.dataSource;
@@ -441,7 +459,32 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
     [self hiddenLoadingAnimation];
     [ToastManage showTopToastWith:@"请检查邮箱是否正确"];
 }
-
+-(void)setupTroopsid{
+    WS(weakSelf);
+    __block UITextField *tf = nil;
+    [LEEAlert alert].config
+    .LeeTitle(@"请输入队友的手机号")
+    .LeeContent(@"队友未注册时无法邀请")
+    .LeeAddTextField(^(UITextField *textField) {
+        //textField.placeholder = @"";
+        textField.textColor = kBlackColor;
+        tf = textField;
+    })
+    .LeeCancelAction(@"取消组队", nil) 
+    .LeeAction(@"组队", ^{
+        if (![tf isAvailablePhone]) {
+            [ToastManage showTopToastWith:@"请输入正确的手机号"];
+        }else{
+            [PBTroopsEctension queryUserTroopsWithPhone:tf.text success:^(NSString * _Nonnull objectId) {
+                TroopsViewController * troops = [[TroopsViewController alloc] init];
+                troops.troopsId = objectId;
+                [weakSelf.navigationController hh_pushBackViewController:troops];
+            } fail:^(id _Nonnull error) {
+            }];
+        }
+    })
+    .LeeShow();
+}
 /*
 #pragma mark - Navigation
 

@@ -46,10 +46,10 @@
         }
     }];
 }
-+(void)queryMonthBookListWithDate:(NSDate *)date withType:(NSInteger)type success:(void (^)(NSMutableArray<NSMutableArray<PBWatherModel *> *> * _Nonnull))success fail:(void (^)(id _Nonnull))fail{
++(void)queryMonthBookListWithDate:(NSDate *)date withType:(NSInteger)type userObjectId:(nonnull NSString *)objectId success:(void (^)(NSMutableArray<NSMutableArray<PBWatherModel *> *> * _Nonnull))success fail:(void (^)(id _Nonnull))fail{
     BmobQuery *query = [BmobQuery queryWithClassName:@"userWatherTables"];
     //构建objectId为vbhGAAAY 的作者
-    BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:kMemberInfoManager.objectId];
+    BmobUser *author = [BmobUser objectWithoutDataWithClassName:@"_User" objectId:objectId];
     //添加作者是objectId为vbhGAAAY条件
     [query whereKey:@"author" equalTo:author];
     NSInteger year = [date year];
@@ -95,6 +95,35 @@
                     [dateMutableArray addObject:tempArray];
                 }
                 success(dateMutableArray);
+            }
+        }
+    }];
+}
++(void)queryUserTroopsWithPhone:(NSString *)phone success:(void (^)(NSString * _Nonnull))success fail:(void (^)(id _Nonnull))fail{
+    BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+    [query whereKey:@"mobilePhoneNumber" equalTo:phone];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        [[BeautyLoadingHUD shareManager] stopAnimating];
+        if (error) {
+            fail(error);
+        } else if (array){
+            if (array.count != 0) {
+                NSString * objectId = @"";
+                for (BmobUser * dic in array) {
+                    objectId = [dic objectForKey:@"objectId"];
+                    BmobUser * oldUser = dic;
+                    [oldUser setObject:kMemberInfoManager.objectId forKey:@"troopsid"];
+                    [oldUser updateInBackground];
+                }
+                BmobUser * user = [BmobUser currentUser];
+                [user setObject:objectId forKey:@"troopsid"];
+                [user updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    if (isSuccessful) {
+                        success(objectId);
+                    }
+                }];
+            }else{
+                [ToastManage showTopToastWith:@"该手机号未绑定用户"];
             }
         }
     }];

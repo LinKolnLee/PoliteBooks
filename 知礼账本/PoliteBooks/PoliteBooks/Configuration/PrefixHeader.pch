@@ -8,6 +8,7 @@
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
+#import "WXApi.h"
 #import "YYModel.h"
 #import "Masonry.h"
 #import "LEEAlert.h"
@@ -45,6 +46,7 @@
 #import "UIView+BlockGesture.h"
 #import "NSString+Calculation.h"
 #import "UIViewController+DZM.h"
+#import "UITextField+Extension.h"
 #import "UserColorConfiguration.h"
 #import "UIViewController+PBGuide.h"
 #import "PBIndexNavigationBarView.h"

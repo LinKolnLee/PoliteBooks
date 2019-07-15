@@ -51,7 +51,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == 0) {
-        cell.dataSource = self.dataSource;
+        cell.dataSource = self.dayDataSource;
         cell.title = @"日汇总";
     }else{
         cell.monthDataSource = self.monthDataSource;
@@ -60,24 +60,18 @@
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return kIphone6Width(300);
+    return kIphone6Width(330);
 }
 -(void)setDataSource:(NSMutableArray<PBWatherModel *> *)dataSource{
     _dataSource = dataSource;
     self.dayDataSource = dataSource;
-    [self.tableView reloadData];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0],nil] withRowAnimation:UITableViewRowAnimationAutomatic];
     
 }
 -(void)setMonthDataSource:(NSMutableArray *)monthDataSource{
     _monthDataSource = monthDataSource;
     [self.tableView reloadData];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:1 inSection:0],nil] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    AccountDetailSectionView *sectionHeadView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"AccountDetailSectionView"];
-//    if(!sectionHeadView){
-//        sectionHeadView = [[AccountDetailSectionView alloc] initWithReuseIdentifier:@"AccountDetailSectionView"];
-//    }
-//    sectionHeadView.models = self.dataSource[section];
-//    return sectionHeadView;
-//}
+
 @end

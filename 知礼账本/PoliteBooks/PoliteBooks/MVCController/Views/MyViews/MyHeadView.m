@@ -52,16 +52,16 @@
         make.left.mas_equalTo(self.headImageview.mas_right).offset(kIphone6Width(10));
         make.centerY.mas_equalTo(self.headImageview.mas_centerY);
     }];
-    [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(kIphone6Width(12.5));
-        make.centerY.mas_equalTo(-kIphone6Width(30));
-        make.width.mas_equalTo(kIphone6Width(100));
-        make.height.mas_equalTo(kIphone6Width(25));
-    }];
     [self.commendAppBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(kIphone6Width(12.5));
         make.centerY.mas_equalTo(kIphone6Width(30));
         make.width.mas_equalTo(kIphone6Width(80));
+        make.height.mas_equalTo(kIphone6Width(25));
+    }];
+    [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(kIphone6Width(12.5));
+        make.top.mas_equalTo(self.commendAppBtn.mas_bottom).offset(kIphone6Width(20));
+        make.width.mas_equalTo(kIphone6Width(100));
         make.height.mas_equalTo(kIphone6Width(25));
     }];
     [self.waterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -185,6 +185,31 @@ NSString*itunesurl = @"itms-apps://itunes.apple.com/cn/app/id1457792252?mt=8&a
 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesurl]];
 }
 -(void)shareBtnTouchUpInside:(UIButton *)sender{
+    WXMediaMessage * message = [WXMediaMessage message];
+    message.title = @"虾米记账";
+    message.description = @"给你最好的记账体验";
+    [message setThumbImage:[UIImage imageNamed:@"newIcon"]];
     
+    WXWebpageObject * webpageObject = [WXWebpageObject object];
+    webpageObject.webpageUrl = @"https://apps.apple.com/cn/app/%E8%B6%85%E7%BA%A7%E7%BE%8E/id1457792252";
+    message.mediaObject = webpageObject;
+    SendMessageToWXReq * req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    VIBRATION;
+    [LEEAlert actionsheet].config
+    .LeeTitle(@"分享")
+    .LeeContent(@"选择微信好友、微信朋友圈")
+    .LeeAction(@"微信好友", ^{
+        req.scene = WXSceneSession;
+        [WXApi sendReq:req];
+    })
+    .LeeAction(@"微信朋友圈", ^{
+        req.scene = WXSceneTimeline;
+        [WXApi sendReq:req];
+    })
+    .LeeCancelAction(@"取消", nil)
+    .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)
+    .LeeShow();
 }
 @end

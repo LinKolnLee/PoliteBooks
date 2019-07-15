@@ -29,13 +29,7 @@ UICollectionViewDelegate,UIScrollViewDelegate>
     [self.view addSubview:self.baseCollectionview];
     self.dataSource = [[NSMutableArray alloc] init];
     self.monthDataSource = [[NSMutableArray alloc] init];
-    dispatch_queue_t concurrentQueue = dispatch_queue_create("concurrentQueue", DISPATCH_QUEUE_CONCURRENT);
-    dispatch_barrier_sync(concurrentQueue, ^{
-        [self queryTroopsDayDataSourceWithType:0];
-    });
-    dispatch_barrier_sync(concurrentQueue, ^{
-         [self queryTroopsMonthDataSourceWithType:0];
-    });
+    [self queryUserDataSourceWithObjectId:kMemberInfoManager.objectId];
     // Do any additional setup after loading the view.
 }
 -(PBIndexNavigationBarView *)naviView{
@@ -84,6 +78,7 @@ UICollectionViewDelegate,UIScrollViewDelegate>
         _baseCollectionview = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(70) , ScreenWidth, ScreenHeight - kNavigationHeight - kIphone6Width(70) - kTabBarSpace) collectionViewLayout:flowLayout];
         _baseCollectionview.showsVerticalScrollIndicator = NO;
         _baseCollectionview.showsHorizontalScrollIndicator = NO;
+        _baseCollectionview.scrollEnabled = NO;
         _baseCollectionview.delegate = self;
         _baseCollectionview.dataSource = self;
         _baseCollectionview.pagingEnabled = YES;
@@ -94,7 +89,14 @@ UICollectionViewDelegate,UIScrollViewDelegate>
     return _baseCollectionview;
 }
 -(void)classTypeSwitchAction:(SPMultipleSwitch *)swit{
-
+    [self.baseCollectionview setContentOffset:CGPointMake(swit.selectedSegmentIndex * ScreenWidth, 0)];
+    [self.dataSource removeAllObjects];
+    [self.monthDataSource removeAllObjects];
+    if (swit.selectedSegmentIndex) {
+        [self queryUserDataSourceWithObjectId:self.troopsId];
+    }else{
+        [self queryUserDataSourceWithObjectId:kMemberInfoManager.objectId];
+    }
 }
 #pragma mark delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -106,25 +108,25 @@ UICollectionViewDelegate,UIScrollViewDelegate>
         cell = [[TroopsCollectionViewCell alloc] init];
     }
     cell.contentView.backgroundColor = TypeColor[indexPath.row];
-    if (self.dataSource.count != 0) {
+    //if (self.dataSource.count != 0) {
         cell.dataSource = self.dataSource;
-    }
-    if (self.monthDataSource.count != 0) {
+   // }
+    //if (self.monthDataSource.count != 0) {
         cell.monthDataSource = self.monthDataSource;
-    }
+    //}
     return cell;
 }
--(void)queryTroopsDayDataSourceWithType:(NSInteger)type{
+-(void)queryTroopsDayDataSourceWithType:(NSInteger)type andObjectId:(NSString *)objectId{
     WS(weakSelf);
-    [PBTroopsEctension queryDayBookListWithDate:[NSDate new] userObjectId:kMemberInfoManager.objectId withType:type success:^(NSMutableArray<PBWatherModel *> * _Nonnull bookList) {
+    [PBTroopsEctension queryDayBookListWithDate:[NSDate new] userObjectId:objectId withType:type success:^(NSMutableArray<PBWatherModel *> * _Nonnull bookList) {
         weakSelf.dataSource = bookList;
         [weakSelf.baseCollectionview reloadData];
     } fail:^(id _Nonnull error) {
     }];
 }
--(void)queryTroopsMonthDataSourceWithType:(NSInteger)type{
+-(void)queryTroopsMonthDataSourceWithType:(NSInteger)type andObjectId:(NSString *)objectId{
     WS(weakSelf);
-    [PBTroopsEctension queryMonthBookListWithDate:[NSDate new] withType:type success:^(NSMutableArray<NSMutableArray<PBWatherModel *> *> * _Nonnull bookList) {
+    [PBTroopsEctension queryMonthBookListWithDate:[NSDate new] withType:type userObjectId:objectId  success:^(NSMutableArray<NSMutableArray<PBWatherModel *> *> * _Nonnull bookList) {
         for (NSMutableArray * arr in bookList) {
             CGFloat monthPrice = 0.0;
             NSString * monthkNumber = @"";
@@ -137,6 +139,21 @@ UICollectionViewDelegate,UIScrollViewDelegate>
         [weakSelf.baseCollectionview reloadData];
     } fail:^(id _Nonnull error) {
     }];
+}
+-(void)queryUserDataSourceWithObjectId:(NSString *)object{
+    
+    dispatch_queue_t concurrentQueue = dispatch_queue_create("concurrentQueue", DISPATCH_QUEUE_CONCURRENT);
+    WS(weakSelf);
+    dispatch_barrier_sync(concurrentQueue, ^{
+        [weakSelf queryTroopsDayDataSourceWithType:0 andObjectId:object];
+    });
+    dispatch_barrier_sync(concurrentQueue, ^{
+        [weakSelf queryTroopsMonthDataSourceWithType:0 andObjectId:object];
+    });
+}
+
+-(void)setTroopsId:(NSString *)troopsId{
+    _troopsId = troopsId;
 }
 /*
 #pragma mark - Navigation

@@ -22,6 +22,7 @@ PODS:
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.7)
   - skpsmtpmessage (0.0.1)
+  - WechatOpenSDK (1.8.3)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - Masonry
   - MJRefresh (~> 3.1.12)
   - skpsmtpmessage
+  - WechatOpenSDK
   - YYModel
 
 EXTERNAL SOURCES:
@@ -55,8 +57,9 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   skpsmtpmessage: f6e913380c784dd8d4a9f83c8790a302445a5e05
+  WechatOpenSDK: 3117412f8aafde4758cac1e8d20b93c67cafcfef
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 2af6bc7a4ed9458c4446db48707b3c4d0aed3704
+PODFILE CHECKSUM: a7e7067e0941a1bb4f45b9caf8bcf15afd9739c1
 
 COCOAPODS: 1.4.0

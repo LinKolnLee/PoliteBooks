@@ -69,7 +69,7 @@ UICollectionViewDelegate,UIScrollViewDelegate,BaseCollectionViewButtonClickDeleg
         flowLayout.minimumInteritemSpacing = kIphone6Width(30);
         flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
         flowLayout.itemSize = CGSizeMake(kIphone6Width(60), kIphone6Width(60));
-        _collectionview = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0,kNavigationHeight+kIphone6Width(20),ScreenWidth,ScreenHeight - kNavigationHeight - kIphone6Width(30) - kTabBarSpace) collectionViewLayout:flowLayout];
+        _collectionview = [[BaseCollectionView alloc] initWithFrame:CGRectMake(kIphone6Width(20),kNavigationHeight+kIphone6Width(20),ScreenWidth - kIphone6Width(40),ScreenHeight - kNavigationHeight - kIphone6Width(30) - kTabBarSpace) collectionViewLayout:flowLayout];
         _collectionview.showsVerticalScrollIndicator = NO;
         _collectionview.showsHorizontalScrollIndicator = NO;
         _collectionview.delegate = self;
