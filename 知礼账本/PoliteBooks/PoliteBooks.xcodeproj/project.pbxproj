@@ -20,6 +20,11 @@
 		420AAE1F22D8554E00622694 /* TableViewAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE1922D8554E00622694 /* TableViewAnimationKit.m */; };
 		420AAE2022D8554E00622694 /* UITableView+XSAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE1E22D8554E00622694 /* UITableView+XSAnimationKit.m */; };
 		420AAE2322D86FB300622694 /* TroopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 420AAE2222D86FB300622694 /* TroopsViewController.m */; };
+		420ECDD422DD6E050021A46D /* relieve.png in Resources */ = {isa = PBXBuildFile; fileRef = 420ECDD322DD6E050021A46D /* relieve.png */; };
+		420ECDD722DD7D5C0021A46D /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 420ECDD622DD7D5C0021A46D /* OrderDetailViewController.m */; };
+		420ECDDB22DD9F670021A46D /* OrderDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 420ECDDA22DD9F670021A46D /* OrderDetailHeaderView.m */; };
+		420ECDDE22DDA1B20021A46D /* OrderDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 420ECDDD22DDA1B20021A46D /* OrderDetailTableViewCell.m */; };
+		420ECDE122DDA99D0021A46D /* OrderDetailTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 420ECDE022DDA99D0021A46D /* OrderDetailTableSectionView.m */; };
 		421E843322D6D5DA00A9DB11 /* nclassImage_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F622D6D5DA00A9DB11 /* nclassImage_1.png */; };
 		421E843422D6D5DA00A9DB11 /* nclassImage_12.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F722D6D5DA00A9DB11 /* nclassImage_12.png */; };
 		421E843522D6D5DA00A9DB11 /* nclassImage_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F822D6D5DA00A9DB11 /* nclassImage_13.png */; };
@@ -323,6 +328,15 @@
 		420AAE1E22D8554E00622694 /* UITableView+XSAnimationKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+XSAnimationKit.m"; sourceTree = "<group>"; };
 		420AAE2122D86FB300622694 /* TroopsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TroopsViewController.h; sourceTree = "<group>"; };
 		420AAE2222D86FB300622694 /* TroopsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TroopsViewController.m; sourceTree = "<group>"; };
+		420ECDD322DD6E050021A46D /* relieve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = relieve.png; sourceTree = "<group>"; };
+		420ECDD522DD7D5C0021A46D /* OrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
+		420ECDD622DD7D5C0021A46D /* OrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
+		420ECDD922DD9F670021A46D /* OrderDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailHeaderView.h; sourceTree = "<group>"; };
+		420ECDDA22DD9F670021A46D /* OrderDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailHeaderView.m; sourceTree = "<group>"; };
+		420ECDDC22DDA1B20021A46D /* OrderDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailTableViewCell.h; sourceTree = "<group>"; };
+		420ECDDD22DDA1B20021A46D /* OrderDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailTableViewCell.m; sourceTree = "<group>"; };
+		420ECDDF22DDA99D0021A46D /* OrderDetailTableSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailTableSectionView.h; sourceTree = "<group>"; };
+		420ECDE022DDA99D0021A46D /* OrderDetailTableSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailTableSectionView.m; sourceTree = "<group>"; };
 		421E83F622D6D5DA00A9DB11 /* nclassImage_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_1.png; sourceTree = "<group>"; };
 		421E83F722D6D5DA00A9DB11 /* nclassImage_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_12.png; sourceTree = "<group>"; };
 		421E83F822D6D5DA00A9DB11 /* nclassImage_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_13.png; sourceTree = "<group>"; };
@@ -806,6 +820,19 @@
 			path = TableViewAnimationKit;
 			sourceTree = "<group>";
 		};
+		420ECDD822DD9F420021A46D /* OrderDetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				420ECDD922DD9F670021A46D /* OrderDetailHeaderView.h */,
+				420ECDDA22DD9F670021A46D /* OrderDetailHeaderView.m */,
+				420ECDDC22DDA1B20021A46D /* OrderDetailTableViewCell.h */,
+				420ECDDD22DDA1B20021A46D /* OrderDetailTableViewCell.m */,
+				420ECDDF22DDA99D0021A46D /* OrderDetailTableSectionView.h */,
+				420ECDE022DDA99D0021A46D /* OrderDetailTableSectionView.m */,
+			);
+			path = OrderDetailViews;
+			sourceTree = "<group>";
+		};
 		421E83F522D6D5DA00A9DB11 /* newClassImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -962,6 +989,7 @@
 		42294BB421E733DC00A1D4D0 /* ResourceFile */ = {
 			isa = PBXGroup;
 			children = (
+				420ECDD322DD6E050021A46D /* relieve.png */,
 				421E83F522D6D5DA00A9DB11 /* newClassImage */,
 				42F60BA322CB5ED700710BC4 /* Screening.png */,
 				42BC284022CA1477001829B1 /* newIcon.png */,
@@ -1536,6 +1564,8 @@
 				42F2B60B22BB28F700BE8D1B /* AboutViewController.m */,
 				420AAE2122D86FB300622694 /* TroopsViewController.h */,
 				420AAE2222D86FB300622694 /* TroopsViewController.m */,
+				420ECDD522DD7D5C0021A46D /* OrderDetailViewController.h */,
+				420ECDD622DD7D5C0021A46D /* OrderDetailViewController.m */,
 				42C5BA4D22B1EE1300AB73D3 /* Login */,
 				42EE5A6F22B372190099A6CE /* Views */,
 				42C5BA7722B24EC100AB73D3 /* MineViewController.h */,
@@ -1671,6 +1701,7 @@
 		42EE5A6F22B372190099A6CE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				420ECDD822DD9F420021A46D /* OrderDetailViews */,
 				422E262622D879E500E1A483 /* TroopsViews */,
 				42EE5A7322B37FEF0099A6CE /* MineChartCollectionViewCell.h */,
 				42EE5A7422B37FEF0099A6CE /* MineChartCollectionViewCell.m */,
@@ -1874,6 +1905,7 @@
 				421E844222D6D5DA00A9DB11 /* nclassImage_17.png in Resources */,
 				421E845F22D6D5DA00A9DB11 /* sclassImage_1.png in Resources */,
 				42AE9B7422645F4500F5FD08 /* rightDateImage.png in Resources */,
+				420ECDD422DD6E050021A46D /* relieve.png in Resources */,
 				421E843A22D6D5DA00A9DB11 /* nclassImage_3.png in Resources */,
 				421E844D22D6D5DA00A9DB11 /* nclassImage_21.png in Resources */,
 				421E844322D6D5DA00A9DB11 /* nclassImage_16.png in Resources */,
@@ -2080,6 +2112,7 @@
 				42294BC521E7350A00A1D4D0 /* BaseNavigationController.m in Sources */,
 				42BC283022C9ADEA001829B1 /* MyHeadView.m in Sources */,
 				42B84CF822C22F3000F752D3 /* NSString+Calculation.m in Sources */,
+				420ECDDB22DD9F670021A46D /* OrderDetailHeaderView.m in Sources */,
 				42EFDC5A2236304900FD2EDB /* UIScrollView+EmptyDataSet.m in Sources */,
 				420AAE2322D86FB300622694 /* TroopsViewController.m in Sources */,
 				42294BF221E7594000A1D4D0 /* UserColorConfiguration.m in Sources */,
@@ -2093,6 +2126,7 @@
 				422E262922D87A0500E1A483 /* TroopsCollectionViewCell.m in Sources */,
 				42D8C96F22B73C0A00FE34C5 /* XManager.m in Sources */,
 				422E262F22D8808600E1A483 /* PBTroopsEctension.m in Sources */,
+				420ECDE122DDA99D0021A46D /* OrderDetailTableSectionView.m in Sources */,
 				42C5BA5A22B1FBC000AB73D3 /* UITextField+Extension.m in Sources */,
 				42BBB1BA224B43CA002C11F6 /* NSDate+Extension.m in Sources */,
 				42294BEB21E7533900A1D4D0 /* UserDefaultStorageManager.m in Sources */,
@@ -2128,6 +2162,7 @@
 				42C5BA8122B258BE00AB73D3 /* BeautyLoadingHUD.m in Sources */,
 				42D8C96022B72B9E00FE34C5 /* SearchViewController.m in Sources */,
 				4272D30122BA4F0600193F65 /* YWExcelView.m in Sources */,
+				420ECDD722DD7D5C0021A46D /* OrderDetailViewController.m in Sources */,
 				42AE9B682264556100F5FD08 /* SKWeekCollectionViewCell.m in Sources */,
 				42F0832121EC79AD00948743 /* InputClassTagCollectionViewCell.m in Sources */,
 				4296F66222B0A68600FD70B7 /* UICKeyChainStore.m in Sources */,
@@ -2193,6 +2228,7 @@
 				42E04A4D21F1D39200A5567C /* BooksModel.m in Sources */,
 				42AE9B7022645AB800F5FD08 /* DateViewController.m in Sources */,
 				42B84CF222C22C9200F752D3 /* UIView+BorderLine.m in Sources */,
+				420ECDDE22DDA1B20021A46D /* OrderDetailTableViewCell.m in Sources */,
 				42D8C97E22B7448200FE34C5 /* UIViewController+PBGuide.m in Sources */,
 				42294BCA21E73D8E00A1D4D0 /* IndexViewController.m in Sources */,
 				42B84CDA22C1F79E00F752D3 /* KeepAccountViewController.m in Sources */,

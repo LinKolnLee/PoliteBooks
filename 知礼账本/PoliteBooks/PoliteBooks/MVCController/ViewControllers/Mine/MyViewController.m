@@ -21,7 +21,7 @@
 #import "SKPSMTPMessage.h"
 #import "NSData+Base64Additions.h"
 #import "TroopsViewController.h"
-
+#import "OrderDetailViewController.h"
 @interface MyViewController ()<UITableViewDelegate,UITableViewDataSource,SKPSMTPMessageDelegate>
 @property(nonatomic,strong)PBIndexNavigationBarView * naviView;
 @property(nonatomic,strong)MyHeadView * headView;
@@ -41,7 +41,7 @@
     [self.view addSubview:self.tableView];
     self.orderDataSource =[[NSMutableArray alloc] init];
     self.xlsSourceList =[[NSMutableArray alloc] init];
-    self.titles = @[@"组队记账",@"导出邮件",@"查看日历",@"礼账搜索",@"意见反馈",@"注册协议",@"隐私政策",@"关于虾米"];//
+    self.titles = @[@"导出邮件",@"查看日历",@"礼账搜索",@"意见反馈",@"注册协议",@"隐私政策",@"关于虾米"];//@"组队记账",
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -60,9 +60,9 @@
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         _naviView.title = @"我的";
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         _naviView.leftImage = @"";
         _naviView.rightImage = @"realtion";
         _naviView.rightHidden = YES;
@@ -126,7 +126,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCell"];
-    cell.textLabel.font = kFont15;
+    cell.textLabel.font = kMBFont15;
     cell.textLabel.textColor = kHexRGB(0X020D1B);
     cell.detailTextLabel.textColor = kHexRGB(0X999999);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -139,13 +139,15 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
+            /*
         case 0:
         {
+            [[BmobUser currentUser] updateInBackground];
             if (![BmobUser currentUser].mobilePhoneNumber) {
                 LoginViewController * login = [[LoginViewController alloc] init];
                 [self.navigationController hh_pushErectViewController:login];
             }else{
-                if ([[BmobUser currentUser] objectForKey:@"troopsid"]) {
+                if ([[BmobUser currentUser] objectForKey:@"troopsid"] && ![[[BmobUser currentUser] objectForKey:@"troopsid"] isEqualToString:@""]) {
                     NSString * objectId = [[BmobUser currentUser] objectForKey:@"troopsid"];
                     TroopsViewController * troops = [[TroopsViewController alloc] init];
                     troops.troopsId = objectId;
@@ -156,8 +158,8 @@
             }
             
         }
-            break;
-        case 1:
+            break;*/
+        case 0:
         {
             if (![BmobUser currentUser].mobilePhoneNumber) {
                 LoginViewController * login = [[LoginViewController alloc] init];
@@ -179,26 +181,26 @@
             }
         }
             break;
-        case 2:
+        case 1:
         {
             
             DateViewController * date = [[DateViewController alloc] init];
             [self.navigationController hh_presentBackScaleVC:date height:ScreenHeight-kIphone6Width(230) completion:nil];
         }
             break;
-        case 3:
+        case 2:
         {
             SearchViewController * searchVc = [[SearchViewController alloc] init];
             [self.navigationController hh_pushBackViewController:searchVc];
         }
             break;
-        case 4:
+        case 3:
         {
             FeedbackViewController * feedBack = [[FeedbackViewController alloc] init];
             [self.navigationController hh_pushBackViewController:feedBack];
         }
             break;
-        case 5:
+        case 4:
         {
             WKWebViewController *webVC = [[WKWebViewController alloc] init];
             webVC.titleStr  = @"注册协议";
@@ -206,7 +208,7 @@
             [self.navigationController pushViewController:webVC  animated:NO];
         }
             break;
-        case 6:
+        case 5:
         {
             WKWebViewController *webVC = [[WKWebViewController alloc] init];
             webVC.titleStr  = @"隐私政策";
@@ -214,15 +216,13 @@
             [self.navigationController pushViewController:webVC  animated:NO];
         }
             break;
-        case 7:
+        case 6:
         {
             AboutViewController * about = [[AboutViewController alloc] init];
             about.dataSource = self.dataSource;
             [self.navigationController hh_pushBackViewController:about];
         }
             break;
-        
-            
         default:
             break;
     }
@@ -234,9 +234,10 @@
     }
     sectionHeadView.backgroundColor = kWhiteColor;
     sectionHeadView.model = self.orderDataSource;
-    //WS(weakSelf);
+    WS(weakSelf);
     sectionHeadView.myTableViewSectionViewGotoButtonBlock = ^{
-        
+        OrderDetailViewController * detail = [[OrderDetailViewController alloc] init];
+        [weakSelf.navigationController hh_pushBackViewController:detail];
     };
     return sectionHeadView;
 }
@@ -497,7 +498,7 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
         textField.textColor = kBlackColor;
         tf = textField;
     })
-    .LeeCancelAction(@"取消组队", nil) 
+    .LeeCancelAction(@"取消", nil)
     .LeeAction(@"组队", ^{
         if (![tf isAvailablePhone]) {
             [ToastManage showTopToastWith:@"请输入正确的手机号"];

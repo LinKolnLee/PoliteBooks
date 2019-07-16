@@ -55,7 +55,7 @@
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
         _naviView.title = @"日常流水";
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         _naviView.leftImage = @"Screening";
         _naviView.rightImage = @"BookChars";
         _naviView.isShadow = NO;

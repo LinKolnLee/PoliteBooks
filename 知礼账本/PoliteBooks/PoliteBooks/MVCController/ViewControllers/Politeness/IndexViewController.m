@@ -113,7 +113,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
         _naviView.leftImage = @"Bookcase";
         _naviView.rightImage = @"BookChars";
         _naviView.rightHidden = NO;
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{

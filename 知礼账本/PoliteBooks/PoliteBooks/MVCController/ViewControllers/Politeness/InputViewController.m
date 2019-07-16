@@ -85,8 +85,8 @@
     [self.view addSubview:self.titleSettingView];
     [self.view addSubview:self.textInputView];
     [self.view addSubview:self.dateMarkView];
-    [self.view addSubview:self.relationTypeSwitch];
     [self addMasonry];
+    [self.view addSubview:self.relationTypeSwitch];
     self.classType = 0;
     self.tableType = 0;
     self.tableRealtionType = 0;
@@ -266,7 +266,7 @@
 -(SPMultipleSwitch *)relationTypeSwitch{
     if (!_relationTypeSwitch) {
         _relationTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"亲戚",@"朋友",@"同学",@"同事",@"邻里"]];
-        _relationTypeSwitch.frame = CGRectMake(15, ScreenHeight - kIphone6Width(260), ScreenWidth-30, 40);
+        _relationTypeSwitch.frame = CGRectMake(kIphone6Width(15), kIphone6Width(400), ScreenWidth-kIphone6Width(30), kIphone6Width(40));
         _relationTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
         _relationTypeSwitch.selectedTitleColor = kWhiteColor;
         _relationTypeSwitch.titleColor = kHexRGB(0x665757);

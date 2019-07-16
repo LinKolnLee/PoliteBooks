@@ -31,21 +31,21 @@
 
 - (void)initUI {
     [self setBackgroundColor:kColor_Main_Color];
-    [self.yearLab setFont:kFont12];
+    self.yearLab.font = kPingFangSC_Semibold(12);
     [self.yearLab setTextColor:kColor_Text_Black];
-    [self.monthLab setFont:kFont20];
+    self.monthLab.font = kPingFangSC_Semibold(20);
     [self.monthLab setTextColor:kColor_Text_Black];
-    [self.payDescLab setFont:kFont12];
+    self.payDescLab.font = kPingFangSC_Semibold(12);
     [self.payDescLab setTextColor:kColor_Text_Black];
-    [self.incomeDescLab setFont:kFont12];
+    self.incomeDescLab.font = kPingFangSC_Semibold(12);
     [self.incomeDescLab setTextColor:kColor_Text_Black];
-    [self.monthDescLab setFont:kFont12];
+    self.monthDescLab.font = kPingFangSC_Semibold(12)
     [self.monthDescLab setTextColor:kColor_Text_Black];
     [self.line setBackgroundColor:kHexRGB(0x999999)];
     [self.lineConstraintL setConstant:ScreenWidth / 4];
-    [self.incomeLab setFont:kFont12];
+    self.incomeLab.font = kPingFangSC_Semibold(12)
     [self.incomeLab setTextColor:kColor_Text_Black];
-    [self.payLab setFont:kFont12];
+    self.payLab.font = kPingFangSC_Semibold(12)
     [self.payLab setTextColor:kColor_Text_Black];
     [self.payLab setAttributedText:[NSAttributedString createMath:@"00.00" integer:kFont14 decimal:kFont12]];
     [self.incomeLab setAttributedText:[NSAttributedString createMath:@"00.00" integer:kFont14 decimal:kFont12]];

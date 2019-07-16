@@ -51,7 +51,7 @@ UICollectionViewDelegate,UIScrollViewDelegate,BaseCollectionViewButtonClickDeleg
         _naviView = [[PBIndexNavigationBarView alloc] init];
         _naviView.title = @"日常速记";
          _naviView.rightImage = @"addNewBooks";
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
          _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{

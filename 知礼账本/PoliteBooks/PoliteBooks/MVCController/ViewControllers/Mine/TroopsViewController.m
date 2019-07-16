@@ -37,9 +37,8 @@ UICollectionViewDelegate,UIScrollViewDelegate>
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
         _naviView.title = @"组队记账";
         _naviView.leftImage = @"NavigationBack";
-        _naviView.rightImage = @"export";
-        _naviView.rightHidden = YES;
-        _naviView.titleFont = kFont18;
+        _naviView.rightImage = @"relieve";
+        _naviView.titleFont = kMBFont18;
         _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
@@ -48,6 +47,34 @@ UICollectionViewDelegate,UIScrollViewDelegate>
         };
         _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{
             //右按钮点击
+            [LEEAlert alert].config
+            .LeeAddTitle(^(UILabel *label) {
+                label.text = @"解散队伍?";
+                label.textColor = kBlackColor;
+            })
+            .LeeAddContent(^(UILabel *label) {
+                label.text = @"解散后将无法查看队伍支出明细";
+                label.textColor = [kBlackColor colorWithAlphaComponent:0.75f];
+            })
+            .LeeAddAction(^(LEEAction *action) {
+                action.type = LEEActionTypeCancel;
+                action.title = @"取消解散";
+                action.titleColor = kColor_Main_Color;
+                action.backgroundColor = kBlackColor;
+                action.clickBlock = ^{
+                };
+            })
+            .LeeAddAction(^(LEEAction *action) {
+                action.type = LEEActionTypeDefault;
+                action.title = @"解散";
+                action.titleColor = kColor_Main_Color;
+                action.backgroundColor = kBlackColor;
+                action.clickBlock = ^{
+                    [weakSelf relieveTroops];
+                };
+            })
+            .LeeHeaderColor(kColor_Main_Color)
+            .LeeShow();
         };
     }
     return _naviView;
@@ -151,7 +178,16 @@ UICollectionViewDelegate,UIScrollViewDelegate>
         [weakSelf queryTroopsMonthDataSourceWithType:0 andObjectId:object];
     });
 }
-
+-(void)relieveTroops{
+    [[BmobUser currentUser] setObject:nil forKey:@"troopsid"];
+    [[BmobUser currentUser] updateInBackground];
+    WS(weakSelf);
+    [PBTroopsEctension relieveTroopsWithId:kMemberInfoManager.objectId success:^(NSString * _Nonnull newId) {
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [ToastManage showTopToastWith:@"队伍解散成功"];
+    } fail:^(id _Nonnull error) {
+    }];
+}
 -(void)setTroopsId:(NSString *)troopsId{
     _troopsId = troopsId;
 }

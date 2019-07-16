@@ -37,7 +37,7 @@
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
         _naviView.title = @"用户关系信息";
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"realtion";
         _naviView.rightHidden = YES;

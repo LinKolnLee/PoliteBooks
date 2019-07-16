@@ -80,7 +80,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = kFont14;
+        _titleLabel.font = kMBFont14;
         _titleLabel.textColor = kBlackColor;
         _titleLabel.text = @"账单";
     }
@@ -90,12 +90,12 @@
 - (UILabel *)dateLabel {
     if (!_dateLabel) {
         _dateLabel = [[UILabel alloc] init];
-        _dateLabel.font = kFont18;
+        _dateLabel.font = kMBFont14;
         _dateLabel.textColor = kBlackColor;
         NSString * monthStr = [NSString stringWithFormat:@"%ld月",[[NSDate new] month]];
         NSMutableAttributedString *numString = [[NSMutableAttributedString alloc] initWithString:monthStr];
         NSRange ran = NSMakeRange(numString.length - 1, 1);
-        [numString addAttribute:NSFontAttributeName value:kFont11 range:ran];
+        [numString addAttribute:NSFontAttributeName value:kMBFont11 range:ran];
         _dateLabel.attributedText=numString;
     }
     return _dateLabel;
@@ -111,7 +111,7 @@
 -(UIButton *)gotoBtn{
     if (!_gotoBtn) {
         _gotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _gotoBtn.hidden = YES;
+        //_gotoBtn.hidden = YES;
         [_gotoBtn setImage:[UIImage imageNamed:@"rightDateImage"] forState:UIControlStateNormal];
         [_gotoBtn addTarget:self action:@selector(gotoBtnTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -120,7 +120,7 @@
 - (UILabel *)incomeLabel {
     if (!_incomeLabel) {
         _incomeLabel = [[UILabel alloc] init];
-        _incomeLabel.font = kFont14;
+        _incomeLabel.font = kMBFont14;
         _incomeLabel.textColor = kBlackColor;
         _incomeLabel.text = @"收入\r0元";
         _incomeLabel.textAlignment = NSTextAlignmentCenter;
@@ -132,7 +132,7 @@
 - (UILabel *)outLabel {
     if (!_outLabel) {
         _outLabel = [[UILabel alloc] init];
-        _outLabel.font = kFont14;
+        _outLabel.font = kMBFont14;
         _outLabel.textColor = kBlackColor;
         _outLabel.text = @"支出\r0元";
         _outLabel.textAlignment = NSTextAlignmentCenter;
@@ -144,7 +144,7 @@
 - (UILabel *)sumLabel {
     if (!_sumLabel) {
         _sumLabel = [[UILabel alloc] init];
-        _sumLabel.font = kFont14;
+        _sumLabel.font = kMBFont14;
         _sumLabel.textColor = kBlackColor;
         _sumLabel.text = @"结余\r0元";
         _sumLabel.textAlignment = NSTextAlignmentCenter;
@@ -168,9 +168,9 @@
     NSString * outStr = [NSString stringWithFormat:@"支出\r%.2f元",outMoney];
     NSString * incomeStr= [NSString stringWithFormat:@"收入\r%.2f元",incomeMoney];
     NSString * sumStr = [NSString stringWithFormat:@"结余\r%.2f元",sumMoney];
-    [self.incomeLabel setAttributedText:[NSAttributedString createMath:incomeStr integer:kFont14 decimal:kFont12]];
-    [self.outLabel setAttributedText:[NSAttributedString createMath:outStr integer:kFont14 decimal:kFont12]];
-    [self.sumLabel setAttributedText:[NSAttributedString createMath:sumStr integer:kFont14 decimal:kFont12]];
+    [self.incomeLabel setAttributedText:[NSAttributedString createMath:incomeStr integer:kMBFont14 decimal:kMBFont12]];
+    [self.outLabel setAttributedText:[NSAttributedString createMath:outStr integer:kMBFont14 decimal:kMBFont12]];
+    [self.sumLabel setAttributedText:[NSAttributedString createMath:sumStr integer:kMBFont14 decimal:kMBFont12]];
 }
 -(void)gotoBtnTouchUpInside:(UIButton *)sender{
     if (self.myTableViewSectionViewGotoButtonBlock) {

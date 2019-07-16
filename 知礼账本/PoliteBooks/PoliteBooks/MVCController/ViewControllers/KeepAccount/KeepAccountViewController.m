@@ -128,14 +128,14 @@ UICollectionViewDelegate,UIScrollViewDelegate
         }else{
             _classTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"支出",@"收入"]];
         }
-        _classTypeSwitch.frame = CGRectMake((ScreenWidth - (ScreenWidth-150))/2, kStatusBarHeight + 10, ScreenWidth-150, 30);
-        _classTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
+        _classTypeSwitch.frame = CGRectMake(kIphone6Width(10), kStatusBarHeight + 10, ScreenWidth-150, kIphone6Width(50));
+        _classTypeSwitch.backgroundColor = kWhiteColor;
         _classTypeSwitch.selectedTitleColor = kWhiteColor;
         _classTypeSwitch.titleColor = kHexRGB(0x665757);
         _classTypeSwitch.trackerColor = kBlackColor;
         _classTypeSwitch.contentInset = 5;
         _classTypeSwitch.spacing = 10;
-        _classTypeSwitch.titleFont = kFont14;
+        _classTypeSwitch.titleFont = [UIFont boldSystemFontOfSize:kIphone6Width(18)];
         //        _relationTypeSwitch.layer.borderWidth = 1 / [UIScreen mainScreen].scale;
         //        _relationTypeSwitch.layer.borderColor = kHexRGB(0x665757).CGColor;
         [_classTypeSwitch addTarget:self action:@selector(classTypeSwitchAction:) forControlEvents:UIControlEventTouchUpInside];

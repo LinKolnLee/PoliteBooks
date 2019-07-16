@@ -53,7 +53,7 @@ UICollectionViewDelegate
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"export";
         _naviView.rightHidden = YES;
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         _naviView.isShadow = YES;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{

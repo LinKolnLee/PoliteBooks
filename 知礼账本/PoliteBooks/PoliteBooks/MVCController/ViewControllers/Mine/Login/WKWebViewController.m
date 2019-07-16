@@ -102,7 +102,7 @@
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         _naviView.title = @"用户协议及隐私政策";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"BookChars";

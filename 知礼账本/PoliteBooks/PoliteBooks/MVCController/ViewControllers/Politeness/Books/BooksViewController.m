@@ -68,7 +68,7 @@ UIScrollViewDelegate,BaseCollectionViewButtonClickDelegate
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         _naviView.title = @"账本目录";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"addNewBooks";

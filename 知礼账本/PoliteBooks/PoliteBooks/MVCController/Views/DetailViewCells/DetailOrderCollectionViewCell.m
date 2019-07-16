@@ -130,7 +130,7 @@
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.font = kFont14;
+        _nameLabel.font = kMBFont14;
         _nameLabel.textColor = kBlackColor;
         _nameLabel.textAlignment = NSTextAlignmentCenter;
         _nameLabel.text = @"李煮粥";
@@ -142,7 +142,7 @@
 - (UILabel *)moneyLabel {
     if (!_moneyLabel) {
         _moneyLabel = [[UILabel alloc] init];
-        _moneyLabel.font = kFont18;
+        _moneyLabel.font = kMBFont18;
         _moneyLabel.textColor = kBlackColor;
         _moneyLabel.textAlignment = NSTextAlignmentCenter;
         _moneyLabel.text = @"壹佰伍拾元";
@@ -154,7 +154,7 @@
 - (UILabel *)dateLabel {
     if (!_dateLabel) {
         _dateLabel = [[UILabel alloc] init];
-        _dateLabel.font = kPingFangTC_Light(11);
+        _dateLabel.font = kMBFont11;
         _dateLabel.textColor = kHexRGB(0x3d3d4f);
         _dateLabel.textAlignment = NSTextAlignmentCenter;
         _dateLabel.text = @"貳零壹玖年一月";
@@ -166,7 +166,7 @@
 -(UILabel *)outTypeLabel{
     if (!_outTypeLabel) {
         _outTypeLabel = [[UILabel alloc] init];
-        _outTypeLabel.font = kFont14;
+        _outTypeLabel.font = kMBFont14;
         _outTypeLabel.textColor = kWhiteColor;
         //_outTypeLabel.backgroundColor =
         _outTypeLabel.textAlignment = NSTextAlignmentCenter;
@@ -181,7 +181,7 @@
 -(UILabel *)inTypeLabel{
     if (!_inTypeLabel) {
         _inTypeLabel = [[UILabel alloc] init];
-        _inTypeLabel.font = kFont14;
+        _inTypeLabel.font = kMBFont14;
         _inTypeLabel.textColor = kHexRGB(0x3d3d4f);
         _inTypeLabel.backgroundColor = kHexRGB(0x7bcfa6);
         _inTypeLabel.textAlignment = NSTextAlignmentCenter;
@@ -199,7 +199,7 @@
         _tableLabel.backgroundColor = kHexRGB(0xA20115);
         _tableLabel.text = @"结婚";
         _tableLabel.textColor = kWhiteColor;
-        _tableLabel.font = kFont12;
+        _tableLabel.font = kMBFont12;
         _tableLabel.numberOfLines = 0;
         _tableLabel.textAlignment = NSTextAlignmentCenter;
         _tableLabel.layer.cornerRadius = kIphone6Width(12.5);

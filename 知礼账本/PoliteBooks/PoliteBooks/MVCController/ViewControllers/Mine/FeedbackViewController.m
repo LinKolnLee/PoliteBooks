@@ -42,7 +42,7 @@ UITextViewDelegate
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] init];
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         _naviView.title = @"意见反馈";
         _naviView.leftImage = @"NavigationBack";
         _naviView.isShadow = YES;

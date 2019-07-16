@@ -123,7 +123,7 @@ static  NSInteger timeNum;
         make.centerY.mas_equalTo(self.codeTextField);
     }];
     [self.cancelBindButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.sureBindButton.mas_bottom).mas_offset(kIphone6Width(20));
+        make.top.mas_equalTo(self.sureBindButton.mas_bottom).mas_offset(kIphone6Width(10));
         make.width.mas_equalTo(kIphone6Width(260));
         make.height.mas_equalTo(50);
         make.centerX.mas_equalTo(0);
@@ -135,7 +135,7 @@ static  NSInteger timeNum;
 -(PBIndexNavigationBarView *)naviView{
     if (!_naviView) {
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         _naviView.title = @"用户登陆";
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"BookChars";
@@ -185,22 +185,14 @@ static  NSInteger timeNum;
     if (!_sureBindButton) {
         _sureBindButton = [[UIButton alloc] init];
         [_sureBindButton addTarget:self action:@selector(sureBindButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-        _sureBindButton.titleLabel.font = kFont18;
-        [_sureBindButton setBackgroundColor:kHexRGB(0x3d3b4f)];
+        _sureBindButton.titleLabel.font = kFont15;
+        [_sureBindButton setBackgroundColor:kBlackColor];
         _sureBindButton.layer.cornerRadius = kIphone6Width(25);
         _sureBindButton.layer.shadowColor = kHexRGB(0x3d3b4f).CGColor;
         _sureBindButton.layer.shadowOffset = CGSizeMake(0,6);
         _sureBindButton.layer.shadowOpacity = 1;
         _sureBindButton.layer.shadowRadius = 9;
         _sureBindButton.layer.masksToBounds = NO;
-        CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-        gradientLayer.colors = @[(__bridge id)kHexRGB(0xff6ca3).CGColor,(__bridge id)kHexRGB(0xff2992).CGColor];
-        
-        gradientLayer.locations = @[@0.2,@0.8];
-        gradientLayer.startPoint = CGPointMake(0, 0);
-        gradientLayer.endPoint = CGPointMake(1.0, 0);
-        gradientLayer.frame = _sureBindButton.bounds;
-        [_sureBindButton.layer addSublayer:gradientLayer];
         [_sureBindButton setTitle:@"一键注册登陆" forState:UIControlStateNormal];
     }
     return _sureBindButton;
@@ -209,7 +201,7 @@ static  NSInteger timeNum;
     if (!_cancelBindButton) {
         _cancelBindButton = [[UIButton alloc] init];
         [_cancelBindButton setTitle:@"取消登陆" forState:UIControlStateNormal];
-        _cancelBindButton.titleLabel.font = kFont15;
+        _cancelBindButton.titleLabel.font = kFont12;
         [_cancelBindButton setTitleColor:kHexRGB(0x3d3b4f) forState:UIControlStateNormal];
         [_cancelBindButton addTarget:self action:@selector(cancelBindButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }

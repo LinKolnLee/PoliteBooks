@@ -25,8 +25,8 @@
 -(SPMultipleSwitch *)classTypeSwitch{
     if (!_classTypeSwitch) {
         _classTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"周",@"月",@"年"]];
-        _classTypeSwitch.frame = CGRectMake((ScreenWidth - (ScreenWidth-100))/2,   10, ScreenWidth-100, 30);
-        _classTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
+        _classTypeSwitch.frame = CGRectMake(kIphone6Width(10),   kIphone6Width(10), ScreenWidth-kIphone6Width(150), kIphone6Width(30));
+        _classTypeSwitch.backgroundColor = kWhiteColor;
         _classTypeSwitch.selectedTitleColor = kWhiteColor;
         _classTypeSwitch.titleColor = kHexRGB(0x665757);
         _classTypeSwitch.trackerColor = kBlackColor;

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)queryMonthBookListWithDate:(NSDate *)date withType:(NSInteger)type userObjectId:(NSString *)objectId success:(void (^)(NSMutableArray<NSMutableArray<PBWatherModel *> *>*bookList))success fail:(void (^)(id))fail;
 +(void)queryUserTroopsWithPhone:(NSString *)phone success:(void (^)(NSString*objectId))success fail:(void (^)(id))fail;
++(void)relieveTroopsWithId:(NSString *)objectId success:(void (^)(NSString*newId))success fail:(void (^)(id))fail;
 @end
 
 NS_ASSUME_NONNULL_END

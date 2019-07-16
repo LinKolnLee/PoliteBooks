@@ -128,4 +128,24 @@
         }
     }];
 }
++(void)relieveTroopsWithId:(NSString *)objectId success:(void (^)(NSString * _Nonnull))success fail:(void (^)(id _Nonnull))fail{
+    BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+    [query whereKey:@"troopsid" equalTo:objectId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        if (error) {
+            fail(error);
+        } else if (array){
+            if (array.count != 0) {
+                for (BmobUser * dic in array) {
+                    BmobUser * oldUser = dic;
+                    [oldUser setObject:nil forKey:@"troopsid"];
+                    [oldUser updateInBackground];
+                }
+                success(@"");
+            }else{
+                [ToastManage showTopToastWith:@"数据发生错误请稍后再试"];
+            }
+        }
+    }];
+}
 @end

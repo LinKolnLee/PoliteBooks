@@ -105,7 +105,7 @@
 -(UILabel *)bookNumberLabel{
     if (!_bookNumberLabel) {
         _bookNumberLabel = [[UILabel alloc] init];
-        _bookNumberLabel.font = kPingFangTC_Light(15);
+        _bookNumberLabel.font = kFont15;
         _bookNumberLabel.text = @"账本个数";
         _bookNumberLabel.textColor = kColor_Loding;
         _bookNumberLabel.textAlignment = NSTextAlignmentCenter;
@@ -115,7 +115,7 @@
 -(UILabel *)inMoneyLabel{
     if (!_inMoneyLabel) {
         _inMoneyLabel = [[UILabel alloc] init];
-        _inMoneyLabel.font = kPingFangTC_Light(15);
+        _inMoneyLabel.font = kFont15;
         _inMoneyLabel.text = @"总进礼：1000";
         _inMoneyLabel.textColor = kColor_Loding;
         _inMoneyLabel.textAlignment = NSTextAlignmentCenter;
@@ -125,7 +125,7 @@
 -(UILabel *)outMoneyLabel{
     if (!_outMoneyLabel) {
         _outMoneyLabel = [[UILabel alloc] init];
-        _outMoneyLabel.font = kPingFangTC_Light(15);
+        _outMoneyLabel.font = kFont15;
         _outMoneyLabel.text = @"总收礼：1000";
         _outMoneyLabel.textColor = kColor_Loding;
         _outMoneyLabel.textAlignment = NSTextAlignmentCenter;

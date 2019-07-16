@@ -92,7 +92,7 @@
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.textColor = kBlackColor;
-        _nameLabel.font = kFont14;
+        _nameLabel.font = kMBFont14;
     }
     return _nameLabel;
 }
@@ -100,7 +100,7 @@
     if (!_dateLabel) {
         _dateLabel = [[UILabel alloc] init];
         _dateLabel.textColor = kBlackColor;
-        _dateLabel.font = kFont11;
+        _dateLabel.font = kMBFont11;
         _dateLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _dateLabel;
@@ -109,7 +109,7 @@
     if (!_moneyLabel) {
         _moneyLabel = [[UILabel alloc] init];
         _moneyLabel.textColor = kBlackColor;
-        _moneyLabel.font = kFont14;
+        _moneyLabel.font = kMBFont14;
         _moneyLabel.textAlignment = NSTextAlignmentRight;
     }
     return _moneyLabel;
@@ -135,7 +135,7 @@
 -(void)setScreening:(BOOL)screening{
     _screening = screening;
     if (screening) {
-         self.dateLabel.text = [NSString stringWithFormat:@"%ld/%ld/%ld/星期%ld",self.model.year,self.model.month,self.model.day,(long)self.model.week];
+        self.dateLabel.text = [NSString stringWithFormat:@"%ld/%ld/%ld/星期%ld",(long)self.model.year,self.model.month,self.model.day,(long)self.model.week];
     }
 }
 @end

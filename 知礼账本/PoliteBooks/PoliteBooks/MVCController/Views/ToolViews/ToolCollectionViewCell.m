@@ -53,7 +53,7 @@
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = kFont11;
+        _titleLabel.font = kMBFont11;
         _titleLabel.textColor = kColor_Loding;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.numberOfLines = 0;
@@ -63,7 +63,7 @@
 -(UILabel *)typeLabel{
     if (!_typeLabel) {
         _typeLabel = [[UILabel alloc] init];
-        _typeLabel.font = kFont12;
+        _typeLabel.font = kMBFont12;
         _typeLabel.textColor = kColor_Loding;
         _typeLabel.textAlignment = NSTextAlignmentCenter;
     }

@@ -74,7 +74,7 @@
         _naviView.leftImage = @"NavigationBack";
         _naviView.rightImage = @"BookChars";
         _naviView.rightHidden = YES;
-        _naviView.titleFont = kFont18;
+        _naviView.titleFont = kMBFont18;
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击

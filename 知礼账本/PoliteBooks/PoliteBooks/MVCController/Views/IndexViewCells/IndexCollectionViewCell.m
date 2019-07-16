@@ -95,7 +95,7 @@
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.font = kPingFangSC_Regular(41);
+        _nameLabel.font = kFont40;
         _nameLabel.textAlignment = NSTextAlignmentRight;
         _nameLabel.textColor = kWhiteColor;
     }
@@ -105,7 +105,7 @@
 - (UILabel *)dateLabel {
     if (!_dateLabel) {
         _dateLabel = [[UILabel alloc] init];
-        _dateLabel.font = kPingFangSC_Regular(13);
+        _dateLabel.font = kFont13;
         _dateLabel.textAlignment = NSTextAlignmentRight;
         _dateLabel.textColor = kWhiteColor;
     }
