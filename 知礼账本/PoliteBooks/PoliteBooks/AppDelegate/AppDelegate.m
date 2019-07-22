@@ -13,7 +13,6 @@
 #import "KeepAccountViewController.h"
 #import "ToolViewController.h"
 @interface AppDelegate ()<WXApiDelegate>
-
 @end
 
 @implementation AppDelegate
@@ -54,6 +53,7 @@
     }
     return YES;
 }
+
 -(void)setup3DTouch{
     UIApplicationShortcutIcon *icon1 = [UIApplicationShortcutIcon iconWithTemplateImageName:@"NewEdit"];
     UIMutableApplicationShortcutItem *item1 = [[UIMutableApplicationShortcutItem alloc]initWithType:@"1" localizedTitle:@"记一笔" localizedSubtitle:@"记一笔" icon:icon1 userInfo:nil];

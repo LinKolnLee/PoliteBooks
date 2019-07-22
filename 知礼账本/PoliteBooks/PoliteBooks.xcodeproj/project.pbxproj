@@ -25,6 +25,17 @@
 		420ECDDB22DD9F670021A46D /* OrderDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 420ECDDA22DD9F670021A46D /* OrderDetailHeaderView.m */; };
 		420ECDDE22DDA1B20021A46D /* OrderDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 420ECDDD22DDA1B20021A46D /* OrderDetailTableViewCell.m */; };
 		420ECDE122DDA99D0021A46D /* OrderDetailTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 420ECDE022DDA99D0021A46D /* OrderDetailTableSectionView.m */; };
+		420ECDE322DDD88A0021A46D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDE222DDD88A0021A46D /* AdSupport.framework */; };
+		420ECDE522DDD8940021A46D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDE422DDD8940021A46D /* CoreLocation.framework */; };
+		420ECDE722DDD89D0021A46D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDE622DDD89D0021A46D /* QuartzCore.framework */; };
+		420ECDE922DDD8A60021A46D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDE822DDD8A60021A46D /* SystemConfiguration.framework */; };
+		420ECDEB22DDD8AF0021A46D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDEA22DDD8AF0021A46D /* CoreTelephony.framework */; };
+		420ECDED22DDD8BD0021A46D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDEC22DDD8BC0021A46D /* libz.tbd */; };
+		420ECDEF22DDD8C70021A46D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDEE22DDD8C70021A46D /* Security.framework */; };
+		420ECDF122DDD8D00021A46D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDF022DDD8D00021A46D /* StoreKit.framework */; };
+		420ECDF322DDD8DB0021A46D /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDF222DDD8DB0021A46D /* libxml2.tbd */; };
+		420ECDF522DDD8E40021A46D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDF422DDD8E40021A46D /* AVFoundation.framework */; };
+		420ECDF722DDD8EC0021A46D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420ECDF622DDD8EC0021A46D /* WebKit.framework */; };
 		421E843322D6D5DA00A9DB11 /* nclassImage_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F622D6D5DA00A9DB11 /* nclassImage_1.png */; };
 		421E843422D6D5DA00A9DB11 /* nclassImage_12.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F722D6D5DA00A9DB11 /* nclassImage_12.png */; };
 		421E843522D6D5DA00A9DB11 /* nclassImage_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 421E83F822D6D5DA00A9DB11 /* nclassImage_13.png */; };
@@ -260,6 +271,8 @@
 		42F2B61C22BB2BCF00BE8D1B /* zlbookImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F2B61522BB2BCF00BE8D1B /* zlbookImage2.png */; };
 		42F2B61D22BB2BCF00BE8D1B /* zlbookImage7.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F2B61622BB2BCF00BE8D1B /* zlbookImage7.png */; };
 		42F2B61E22BB2BCF00BE8D1B /* zlbookImage4.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F2B61722BB2BCF00BE8D1B /* zlbookImage4.png */; };
+		42F2DD8422E00FC50068425B /* DetailOtherCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F2DD8322E00FC50068425B /* DetailOtherCollectionViewCell.m */; };
+		42F2DD8622E0161B0068425B /* layout.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F2DD8522E0161B0068425B /* layout.png */; };
 		42F60B9422CB045300710BC4 /* newAbout.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F60B9322CB045300710BC4 /* newAbout.png */; };
 		42F60B9822CB370F00710BC4 /* newStart.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F60B9722CB370F00710BC4 /* newStart.png */; };
 		42F60B9E22CB420F00710BC4 /* inComeClass_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F60B9922CB420F00710BC4 /* inComeClass_2.png */; };
@@ -337,6 +350,17 @@
 		420ECDDD22DDA1B20021A46D /* OrderDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailTableViewCell.m; sourceTree = "<group>"; };
 		420ECDDF22DDA99D0021A46D /* OrderDetailTableSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailTableSectionView.h; sourceTree = "<group>"; };
 		420ECDE022DDA99D0021A46D /* OrderDetailTableSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailTableSectionView.m; sourceTree = "<group>"; };
+		420ECDE222DDD88A0021A46D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		420ECDE422DDD8940021A46D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		420ECDE622DDD89D0021A46D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		420ECDE822DDD8A60021A46D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		420ECDEA22DDD8AF0021A46D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		420ECDEC22DDD8BC0021A46D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		420ECDEE22DDD8C70021A46D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		420ECDF022DDD8D00021A46D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		420ECDF222DDD8DB0021A46D /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		420ECDF422DDD8E40021A46D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		420ECDF622DDD8EC0021A46D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		421E83F622D6D5DA00A9DB11 /* nclassImage_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_1.png; sourceTree = "<group>"; };
 		421E83F722D6D5DA00A9DB11 /* nclassImage_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_12.png; sourceTree = "<group>"; };
 		421E83F822D6D5DA00A9DB11 /* nclassImage_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nclassImage_13.png; sourceTree = "<group>"; };
@@ -704,6 +728,9 @@
 		42F2B61522BB2BCF00BE8D1B /* zlbookImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zlbookImage2.png; sourceTree = "<group>"; };
 		42F2B61622BB2BCF00BE8D1B /* zlbookImage7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zlbookImage7.png; sourceTree = "<group>"; };
 		42F2B61722BB2BCF00BE8D1B /* zlbookImage4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zlbookImage4.png; sourceTree = "<group>"; };
+		42F2DD8222E00FC50068425B /* DetailOtherCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailOtherCollectionViewCell.h; sourceTree = "<group>"; };
+		42F2DD8322E00FC50068425B /* DetailOtherCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailOtherCollectionViewCell.m; sourceTree = "<group>"; };
+		42F2DD8522E0161B0068425B /* layout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layout.png; sourceTree = "<group>"; };
 		42F60B9322CB045300710BC4 /* newAbout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newAbout.png; sourceTree = "<group>"; };
 		42F60B9722CB370F00710BC4 /* newStart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newStart.png; sourceTree = "<group>"; };
 		42F60B9922CB420F00710BC4 /* inComeClass_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inComeClass_2.png; sourceTree = "<group>"; };
@@ -737,6 +764,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				420ECDF722DDD8EC0021A46D /* WebKit.framework in Frameworks */,
+				420ECDF522DDD8E40021A46D /* AVFoundation.framework in Frameworks */,
+				420ECDF322DDD8DB0021A46D /* libxml2.tbd in Frameworks */,
+				420ECDF122DDD8D00021A46D /* StoreKit.framework in Frameworks */,
+				420ECDEF22DDD8C70021A46D /* Security.framework in Frameworks */,
+				420ECDED22DDD8BD0021A46D /* libz.tbd in Frameworks */,
+				420ECDEB22DDD8AF0021A46D /* CoreTelephony.framework in Frameworks */,
+				420ECDE922DDD8A60021A46D /* SystemConfiguration.framework in Frameworks */,
+				420ECDE722DDD89D0021A46D /* QuartzCore.framework in Frameworks */,
+				420ECDE522DDD8940021A46D /* CoreLocation.framework in Frameworks */,
+				420ECDE322DDD88A0021A46D /* AdSupport.framework in Frameworks */,
 				CB2F92A17CEAF4BD2240FEDD /* libPods-PoliteBooks.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -777,6 +815,8 @@
 			children = (
 				4200E74921E86F0800B4A8DC /* DetailOrderCollectionViewCell.h */,
 				4200E74A21E86F0800B4A8DC /* DetailOrderCollectionViewCell.m */,
+				42F2DD8222E00FC50068425B /* DetailOtherCollectionViewCell.h */,
+				42F2DD8322E00FC50068425B /* DetailOtherCollectionViewCell.m */,
 			);
 			path = DetailViewCells;
 			sourceTree = "<group>";
@@ -989,6 +1029,7 @@
 		42294BB421E733DC00A1D4D0 /* ResourceFile */ = {
 			isa = PBXGroup;
 			children = (
+				42F2DD8522E0161B0068425B /* layout.png */,
 				420ECDD322DD6E050021A46D /* relieve.png */,
 				421E83F522D6D5DA00A9DB11 /* newClassImage */,
 				42F60BA322CB5ED700710BC4 /* Screening.png */,
@@ -1767,6 +1808,17 @@
 		DBDFC073FEB359BD1200AA10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				420ECDF622DDD8EC0021A46D /* WebKit.framework */,
+				420ECDF422DDD8E40021A46D /* AVFoundation.framework */,
+				420ECDF222DDD8DB0021A46D /* libxml2.tbd */,
+				420ECDF022DDD8D00021A46D /* StoreKit.framework */,
+				420ECDEE22DDD8C70021A46D /* Security.framework */,
+				420ECDEC22DDD8BC0021A46D /* libz.tbd */,
+				420ECDEA22DDD8AF0021A46D /* CoreTelephony.framework */,
+				420ECDE822DDD8A60021A46D /* SystemConfiguration.framework */,
+				420ECDE622DDD89D0021A46D /* QuartzCore.framework */,
+				420ECDE422DDD8940021A46D /* CoreLocation.framework */,
+				420ECDE222DDD88A0021A46D /* AdSupport.framework */,
 				FAD4CC66F2E6853BAC664DFD /* libPods-PoliteBooks.a */,
 			);
 			name = Frameworks;
@@ -1928,6 +1980,7 @@
 				42DBBA1C22672B1E0055DBD9 /* setting.png in Resources */,
 				421E846622D6D5DA00A9DB11 /* sclassImage_10.png in Resources */,
 				42F2B61B22BB2BCF00BE8D1B /* zlbookImage1.png in Resources */,
+				42F2DD8622E0161B0068425B /* layout.png in Resources */,
 				421E845B22D6D5DA00A9DB11 /* sclassImage_7.png in Resources */,
 				421E847822D71CCD00A9DB11 /* sinComeClass_0.png in Resources */,
 				421E846A22D6D5DA00A9DB11 /* sclassImage_14.png in Resources */,
@@ -2124,6 +2177,7 @@
 				42C5BA6822B1FCBD00AB73D3 /* ToastManage.m in Sources */,
 				42C5BA5022B1EE3100AB73D3 /* LoginViewController.m in Sources */,
 				422E262922D87A0500E1A483 /* TroopsCollectionViewCell.m in Sources */,
+				42F2DD8422E00FC50068425B /* DetailOtherCollectionViewCell.m in Sources */,
 				42D8C96F22B73C0A00FE34C5 /* XManager.m in Sources */,
 				422E262F22D8808600E1A483 /* PBTroopsEctension.m in Sources */,
 				420ECDE122DDA99D0021A46D /* OrderDetailTableSectionView.m in Sources */,

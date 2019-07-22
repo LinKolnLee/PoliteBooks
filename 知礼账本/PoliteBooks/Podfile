@@ -12,5 +12,4 @@ target 'PoliteBooks' do
   pod 'skpsmtpmessage'
   pod 'AAChartKit', :git => 'https://github.com/AAChartModel/AAChartKit.git'
   pod 'WechatOpenSDK'
-
 end

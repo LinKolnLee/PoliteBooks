@@ -12,6 +12,7 @@
 #import "TranslationMicTipView.h"
 #import "BaseCollectionView.h"
 #import "SPMultipleSwitch.h"
+#import "DetailOtherCollectionViewCell.h"
 @interface DetailViewController ()<
 UICollectionViewDelegateFlowLayout,
 UICollectionViewDataSource,
@@ -25,6 +26,7 @@ BaseCollectionViewButtonClickDelegate
  */
 @property (nonatomic, strong) BaseCollectionView *collectionView;
 
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 /**
  navi
  */
@@ -46,6 +48,10 @@ BaseCollectionViewButtonClickDelegate
 @property(nonatomic,strong)NSArray * relationItems;
 
 @property(nonatomic,strong)NSMutableArray<PBTableModel *> * realtionDataSource;
+
+@property(nonatomic,strong)UIButton * flowButton;
+
+@property(nonatomic,assign)NSInteger flowStyle;
 @end
 
 @implementation DetailViewController
@@ -56,22 +62,29 @@ BaseCollectionViewButtonClickDelegate
     [self.view addSubview:self.naviView];
     [self.view addSubview:self.relationTypeSwitch];
     [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.flowButton];
     self.tableDataSource = [[NSMutableArray alloc] init];
     self.realtionDataSource = [[NSMutableArray alloc] init];
     self.relationItems = @[@"全部",@"亲戚",@"朋友",@"同学",@"同事",@"邻里"];
     self.tableRealtionType = 0;
+    self.flowStyle = 0;
     [self addMasonry];
     [self queryBookList];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+
+    self.relationTypeSwitch.hidden = NO;
     if (!_isLook) {
         InputViewController *circleVC = [InputViewController new];
         circleVC.bookModel = self.bookModel;
         WS(weakSelf);
         circleVC.InputViewControllerPopBlock = ^{
             [weakSelf queryBookList];
+            weakSelf.relationTypeSwitch.selectedSegmentIndex = 0;
+
         };
+
         [self.navigationController hh_presentTiltedVC:circleVC completion:nil];
     }else{
 //        if ([UserGuideManager isGuideWithIndex:2]) {
@@ -96,6 +109,7 @@ BaseCollectionViewButtonClickDelegate
         WS(weakSelf);
         _naviView.PBIndexNavigationBarViewLeftButtonBlock = ^{
             //左按钮点击
+            weakSelf.relationTypeSwitch.hidden = YES;
             weakSelf.collectionView.hidden = YES;
             [weakSelf.navigationController popViewControllerAnimated:YES];
         };
@@ -106,6 +120,7 @@ BaseCollectionViewButtonClickDelegate
             circleVC.bookModel = weakSelf.bookModel;
             circleVC.InputViewControllerPopBlock = ^{
                 [weakSelf queryBookList];
+                weakSelf.relationTypeSwitch.selectedSegmentIndex = 0;
             };
             [weakSelf.navigationController hh_presentTiltedVC:circleVC completion:nil];
             VIBRATION;
@@ -116,11 +131,12 @@ BaseCollectionViewButtonClickDelegate
 -(SPMultipleSwitch *)relationTypeSwitch{
     if (!_relationTypeSwitch) {
         _relationTypeSwitch = [[SPMultipleSwitch alloc] initWithItems:@[@"全部",@"亲戚",@"朋友",@"同学",@"同事",@"邻里"]];
-        _relationTypeSwitch.frame = CGRectMake(15, kNavigationHeight + kIphone6Width(10), ScreenWidth-kIphone6Width(30), kIphone6Width(30));
-        _relationTypeSwitch.backgroundColor = kHexRGB(0xe9f1f6);
+        _relationTypeSwitch.frame = CGRectMake(0, kNavigationHeight + kIphone6Width(10), ScreenWidth-kIphone6Width(50), kIphone6Width(30));
+        _relationTypeSwitch.backgroundColor = kWhiteColor;
         _relationTypeSwitch.selectedTitleColor = kWhiteColor;
         _relationTypeSwitch.titleColor = kHexRGB(0x665757);
         _relationTypeSwitch.trackerColor = TypeColor[self.bookModel.bookColor];
+        _relationTypeSwitch.hidden  = YES;
         _relationTypeSwitch.contentInset = 5;
         _relationTypeSwitch.spacing = 10;
         _relationTypeSwitch.titleFont = kFont14;
@@ -130,15 +146,33 @@ BaseCollectionViewButtonClickDelegate
     }
     return _relationTypeSwitch;
 }
+-(UIButton *)flowButton{
+    if (!_flowButton) {
+        _flowButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _flowButton.frame = CGRectMake(ScreenWidth - kIphone6Width(35), kNavigationHeight + kIphone6Width(10), kIphone6Width(30), kIphone6Width(30));
+//        _flowButton.layer.cornerRadius = kIphone6Width(15);
+//        _flowButton.layer.masksToBounds = YES;
+//        _flowButton.layer.borderColor = kBlackColor.CGColor;
+        _flowButton.backgroundColor = kWhiteColor;
+       // _flowButton.layer.borderWidth = 1;
+        [_flowButton setImage:[UIImage imageNamed:@"layout"] forState: UIControlStateNormal];
+        [_flowButton addTarget:self action:@selector(floatButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _flowButton;
+}
+-(UICollectionViewFlowLayout *)flowLayout{
+    if (!_flowLayout) {
+        _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        _flowLayout.minimumLineSpacing = kIphone6Width(14);
+        _flowLayout.minimumInteritemSpacing = kIphone6Width(5);
+        _flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
+        _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    }
+    return _flowLayout;
+}
 - (BaseCollectionView *)collectionView {
     if (!_collectionView) {
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.minimumLineSpacing = kIphone6Width(14);
-        flowLayout.minimumInteritemSpacing = kIphone6Width(5);
-        flowLayout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        flowLayout.itemSize = CGSizeMake(ScreenWidth/4, ScreenHeight - kIphone6Width(180));
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(45) , ScreenWidth, ScreenHeight - kNavigationHeight - kIphone6Width(50)) collectionViewLayout:flowLayout];
+        _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, kNavigationHeight + kIphone6Width(45) , ScreenWidth, ScreenHeight - kNavigationHeight - kIphone6Width(50)) collectionViewLayout:self.flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
@@ -149,20 +183,33 @@ BaseCollectionViewButtonClickDelegate
         _collectionView.noDataTitle = @"未记录该关系账目";
         _collectionView.btnTitle = @"记一笔~";
         _collectionView.backgroundColor = [UIColor whiteColor];
-        // right
-//        [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
-//            [ToastManage showTopToastWith:@"没有更多数据了"];
-//        }];
-//        [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
-//            [ToastManage showTopToastWith:@"已经是最新的啦"];
-//        }];
         [_collectionView registerClass:[DetailOrderCollectionViewCell class] forCellWithReuseIdentifier:@"DetailOrderCollectionViewCell"];
+        [_collectionView registerClass:[DetailOtherCollectionViewCell class] forCellWithReuseIdentifier:@"DetailOtherCollectionViewCell"];
     }
     return _collectionView;
 }
+-(void)floatButtonTouchUpInside:(UIButton *)sender{
+    
+    
+    self.flowStyle = self.flowStyle == 0 ? 1 : 0;
+    if (!self.flowStyle) {
+        self.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        [UIView animateWithDuration:0.5 animations:^{
+            sender.transform = CGAffineTransformMakeRotation(M_PI * 0.5);
+        } completion:^(BOOL finished) {
+        }];
+    }else{
+        self.flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        [UIView animateWithDuration:0.5 animations:^{
+            sender.transform = CGAffineTransformMakeRotation(M_PI * 1.0);
+        } completion:^(BOOL finished) {
+        }];
+    }
+    [self.collectionView reloadData];
+}
 #pragma mark - # Delegate
 //MARK: UICollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
@@ -171,36 +218,75 @@ BaseCollectionViewButtonClickDelegate
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    DetailOrderCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DetailOrderCollectionViewCell" forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[DetailOrderCollectionViewCell alloc] init];
+    if (self.flowStyle) {
+        DetailOtherCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DetailOtherCollectionViewCell" forIndexPath:indexPath];
+        if (!cell) {
+            cell = [[DetailOtherCollectionViewCell alloc] init];
+        }
+        cell.model = self.tableDataSource[indexPath.row];
+        cell.layer.cornerRadius = kIphone6Width(10);
+        cell.layer.masksToBounds = YES;
+        cell.backgroundColor = kWhiteColor;
+        UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(lpGR:)];
+        longPressGR.minimumPressDuration = 1;
+        [cell addGestureRecognizer:longPressGR];
+        return cell;
+    }else{
+        DetailOrderCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DetailOrderCollectionViewCell" forIndexPath:indexPath];
+        if (!cell) {
+            cell = [[DetailOrderCollectionViewCell alloc] init];
+        }
+        cell.model = self.tableDataSource[indexPath.row];
+        cell.layer.cornerRadius = kIphone6Width(10);
+        cell.layer.masksToBounds = YES;
+        cell.backgroundColor = kWhiteColor;
+        UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(lpGR:)];
+        longPressGR.minimumPressDuration = 1;
+        [cell addGestureRecognizer:longPressGR];
+        return cell;
     }
-    cell.model = self.tableDataSource[indexPath.row];
-    cell.layer.cornerRadius = kIphone6Width(10);
-    cell.layer.masksToBounds = YES;
-    cell.backgroundColor = kWhiteColor;
-    UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(lpGR:)];
-    longPressGR.minimumPressDuration = 1;
-    [cell addGestureRecognizer:longPressGR];
-    return cell;
+    
 }
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.flowStyle) {
+        return CGSizeMake(ScreenWidth - kIphone6Width(20), kIphone6Width(160));
+    }else{
+        return CGSizeMake(ScreenWidth/4, ScreenHeight - kIphone6Width(180));
+    }
+}
+
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180));
-    
-    CAShapeLayer *borderLayer = [CAShapeLayer layer];
-    borderLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180));
-    borderLayer.lineWidth = 1.f;
-    borderLayer.strokeColor = kBlackColor.CGColor;
-    borderLayer.fillColor = [UIColor clearColor].CGColor;
-    
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180)) cornerRadius:kIphone6Width(15)];
-    maskLayer.path = bezierPath.CGPath;
-    borderLayer.path = bezierPath.CGPath;
-    
-    [cell.contentView.layer insertSublayer:borderLayer atIndex:0];
-    [cell.layer setMask:maskLayer];
+    if (self.flowStyle) {
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
+        maskLayer.frame = CGRectMake(0, 0, ScreenWidth - kIphone6Width(20), kIphone6Width(160));
+        CAShapeLayer *borderLayer = [CAShapeLayer layer];
+        borderLayer.frame = CGRectMake(0, 0, ScreenWidth - kIphone6Width(20), kIphone6Width(160));
+        borderLayer.lineWidth = 1.f;
+        borderLayer.strokeColor = kBlackColor.CGColor;
+        borderLayer.fillColor = [UIColor clearColor].CGColor;
+        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth - kIphone6Width(20), kIphone6Width(160)) cornerRadius:kIphone6Width(15)];
+        maskLayer.path = bezierPath.CGPath;
+        borderLayer.path = bezierPath.CGPath;
+        [cell.contentView.layer insertSublayer:borderLayer atIndex:0];
+        [cell.layer setMask:maskLayer];
+    }else{
+         CAShapeLayer *maskLayer = [CAShapeLayer layer];
+         maskLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180));
+         
+         CAShapeLayer *borderLayer = [CAShapeLayer layer];
+         borderLayer.frame = CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180));
+         borderLayer.lineWidth = 1.f;
+         borderLayer.strokeColor = kBlackColor.CGColor;
+         borderLayer.fillColor = [UIColor clearColor].CGColor;
+         
+         UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, ScreenWidth/4, ScreenHeight-kIphone6Width(180)) cornerRadius:kIphone6Width(15)];
+         maskLayer.path = bezierPath.CGPath;
+         borderLayer.path = bezierPath.CGPath;
+         
+         [cell.contentView.layer insertSublayer:borderLayer atIndex:0];
+         [cell.layer setMask:maskLayer];
+    }
 }
 
 //MARK: UICollectionViewDelegate
@@ -237,6 +323,7 @@ BaseCollectionViewButtonClickDelegate
             WS(weakSelf);
             input.InputViewControllerPopBlock = ^{
                 [weakSelf queryBookList];
+                weakSelf.relationTypeSwitch.selectedSegmentIndex = 0;
             };
             [self.navigationController hh_presentTiltedVC:input completion:nil];
         })
@@ -260,6 +347,7 @@ BaseCollectionViewButtonClickDelegate
             WS(weakSelf);
             input.InputViewControllerPopBlock = ^{
                 [weakSelf queryBookList];
+                weakSelf.relationTypeSwitch.selectedSegmentIndex = 0;
             };
             [self.navigationController hh_presentTiltedVC:input completion:nil];
         })
@@ -419,6 +507,7 @@ BaseCollectionViewButtonClickDelegate
     WS(weakSelf);
     circleVC.InputViewControllerPopBlock = ^{
         [weakSelf queryBookList];
+        weakSelf.relationTypeSwitch.selectedSegmentIndex = 0;
     };
     [self.navigationController hh_presentTiltedVC:circleVC completion:nil];
     VIBRATION;

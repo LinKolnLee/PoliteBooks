@@ -73,7 +73,7 @@
     for (id obj in self.subviews) {
         if ([obj isKindOfClass:[UIButton class]] && [obj tag] >= 10) {
             UIButton *btn = obj;
-            [btn.titleLabel setFont:kFont14];
+            [btn.titleLabel setFont:kFont16];
             // 背景色
             if (btn.tag == FINISH_TAG) {
                 [btn setBackgroundImage:[UIColor createImageWithColor:kColor_Main_Color] forState:UIControlStateNormal];
@@ -266,6 +266,9 @@
             [btn setTitle:selectValue forState:UIControlStateHighlighted];
             [btn.titleLabel setFont:kFont12];
         }];
+        datepicker.dateLabelColor = kBlackColor;
+        datepicker.datePickerColor = kBlackColor;
+        datepicker.doneButtonColor = kBlackColor;
          [datepicker show];
     }
 }

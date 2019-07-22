@@ -75,26 +75,6 @@
 @implementation InputViewController
 
 #pragma mark - # Life Cycle
-- (void)loadView {
-    [super loadView];
-    
-    [self.view addSubview:self.sureButton];
-    [self.view addSubview:self.cancelButton];
-    [self.view addSubview:self.topTitleImage];
-    [self.view addSubview:self.titleLabel];
-    [self.view addSubview:self.titleSettingView];
-    [self.view addSubview:self.textInputView];
-    [self.view addSubview:self.dateMarkView];
-    [self addMasonry];
-    [self.view addSubview:self.relationTypeSwitch];
-    self.classType = 0;
-    self.tableType = 0;
-    self.tableRealtionType = 0;
-    self.moneyString = @"";
-    self.dateString = [[NSDate getCurrentTimes] getCNDate];
-    self.relationItems = @[@"亲戚",@"朋友",@"同学",@"同事",@"邻里"];
-}
-
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -109,6 +89,21 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview:self.sureButton];
+    [self.view addSubview:self.cancelButton];
+    [self.view addSubview:self.topTitleImage];
+    [self.view addSubview:self.titleLabel];
+    [self.view addSubview:self.titleSettingView];
+    [self.view addSubview:self.textInputView];
+    [self.view addSubview:self.dateMarkView];
+    [self addMasonry];
+    [self.view addSubview:self.relationTypeSwitch];
+    self.classType = 0;
+    self.tableType = 0;
+    self.tableRealtionType = 0;
+    self.moneyString = @"";
+    self.dateString = [[NSDate getCurrentTimes] getCNDate];
+    
 }
 - (void)showMoneyKeyboard
 {
@@ -404,6 +399,7 @@
 }
 -(void)setTableModel:(PBTableModel *)tableModel{
     _tableModel = tableModel;
+    self.relationItems = @[@"亲戚",@"朋友",@"同学",@"同事",@"邻里"];
     self.moneyString = tableModel.userMoney;
     self.textInputView.numberField.text = tableModel.userMoney;
     self.nameString = tableModel.userName;
@@ -412,6 +408,7 @@
         for (int i = 0; i < self.relationItems.count; i++) {
             if ([tableModel.userRelation isEqualToString:self.relationItems[i]]) {
                 self.tableRealtionType = i;
+                [self.relationTypeSwitch setSelectedSegmentIndex:i];
             }
         }
     }else{

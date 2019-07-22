@@ -58,9 +58,9 @@
             }
             [self setDate:selectDate];
         }];
-        datepicker.dateLabelColor = TypeColor[1];
-        datepicker.datePickerColor = TypeColor[1];
-        datepicker.doneButtonColor = TypeColor[1];
+        datepicker.dateLabelColor = kBlackColor;
+        datepicker.datePickerColor = kBlackColor;
+        datepicker.doneButtonColor = kBlackColor;
         [datepicker show];
     }];
 }
