@@ -18,6 +18,8 @@
 
 @property(nonatomic,strong)NSMutableArray<PBWatherModel *> * orderDataSource;
 @property(nonatomic,strong)NSMutableArray<NSMutableArray<PBWatherModel *> *> * dataSource;
+
+@property(nonatomic,strong)UILabel * shareLabel;
 @end
 
 @implementation OrderDetailViewController
@@ -36,8 +38,8 @@
         _naviView = [[PBIndexNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, kNavigationHeight)];
         _naviView.title = @"账单";
         _naviView.leftImage = @"NavigationBack";
-        _naviView.rightImage = @"relieve";
-        _naviView.rightHidden = YES;
+        _naviView.rightImage = @"share";
+        _naviView.rightHidden = NO;
         _naviView.titleFont = kMBFont16;
         _naviView.isShadow = YES;
         WS(weakSelf);
@@ -46,10 +48,57 @@
             [weakSelf.navigationController popViewControllerAnimated:YES];
         };
         _naviView.PBIndexNavigationBarViewRightButtonBlock = ^{
-            
+           UIImage * image =  [weakSelf getmakeImageWithView:weakSelf.view andWithSize:CGSizeMake(ScreenWidth, ScreenHeight)];
+            if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+                NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                UIImage *thumbImage = [UIImage imageWithData:UIImageJPEGRepresentation(image, 0.5)];
+                
+                WXImageObject *ext = [WXImageObject object];
+                // 小于10MB
+                ext.imageData = imageData;
+                
+                WXMediaMessage *message = [WXMediaMessage message];
+                message.mediaObject = ext;
+                //    message.messageExt = @"";
+                //    message.messageAction = @"";
+                //    message.mediaTagName = @"";
+                // 缩略图 小于32KB
+                [message setThumbImage:thumbImage];
+                
+                SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+                req.bText = NO;
+                req.message = message;
+                VIBRATION;
+                [LEEAlert actionsheet].config
+                .LeeTitle(@"账单分享")
+                .LeeContent(@"选择微信好友、微信朋友圈")
+                .LeeAction(@"微信好友", ^{
+                    req.scene = WXSceneSession;
+                    [WXApi sendReq:req];
+                })
+                .LeeAction(@"微信朋友圈", ^{
+                    req.scene = WXSceneTimeline;
+                    [WXApi sendReq:req];
+                })
+                .LeeCancelAction(@"取消", nil)
+                .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)
+                .LeeShow();
+            }
         };
     }
     return _naviView;
+}
+-(UILabel *)shareLabel{
+    if (!_shareLabel) {
+        _shareLabel= [[UILabel alloc] init];
+        _shareLabel.text = [NSString stringWithFormat:@"%ld年度账单",[[NSDate new] year]];
+        _shareLabel.textColor = kBlackColor;
+        _shareLabel.font = kPingFangTC_Light(15);
+        _shareLabel.textAlignment = NSTextAlignmentCenter;
+        _shareLabel.backgroundColor = kWhiteColor;
+        _shareLabel.frame = CGRectMake(0, 0, ScreenWidth, kNavigationHeight);
+    }
+    return _shareLabel;
 }
 -(OrderDetailHeaderView *)headView{
     if (!_headView) {
@@ -116,6 +165,19 @@
         }
     } fail:^(id _Nonnull error) {
     }];
+}
+#pragma mark 生成image
+- (UIImage *)getmakeImageWithView:(UIView *)view andWithSize:(CGSize)size{
+    self.naviView.hidden = YES;
+    [self.view addSubview:self.shareLabel];
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self.shareLabel removeFromSuperview];
+    self.naviView.hidden = NO;
+    return image;
+    
 }
 /*
 #pragma mark - Navigation

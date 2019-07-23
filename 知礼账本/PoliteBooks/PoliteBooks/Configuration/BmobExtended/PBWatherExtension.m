@@ -50,7 +50,22 @@
     }];
 }
 +(void)updataForModel:(PBWatherModel *)model success:(void (^)(id _Nonnull))success{
-    
+     BmobQuery *query = [BmobQuery queryWithClassName:@"userWatherTables"];
+    [query getObjectInBackgroundWithId:model.objectId block:^(BmobObject *object,NSError *error){
+        [[BeautyLoadingHUD shareManager] stopAnimating];
+        //没有返回错误
+        if (!error) {
+            //对象存在
+            if (object) {
+                [object setObject:model.mark forKey:@"mark"];
+                //异步更新数据
+                [object updateInBackground];
+                success(@"1");
+            }
+        }else{
+            [[BeautyLoadingHUD shareManager] stopAnimating];
+        }
+    }];
 }
 +(void)queryBookListsuccess:(void (^)(NSMutableArray<PBWatherModel *> * _Nonnull))success fail:(void (^)(id _Nonnull))fail{
     BmobQuery *query = [BmobQuery queryWithClassName:@"userWatherTables"];

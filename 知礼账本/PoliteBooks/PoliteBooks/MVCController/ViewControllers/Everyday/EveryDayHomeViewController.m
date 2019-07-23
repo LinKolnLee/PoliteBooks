@@ -204,35 +204,44 @@
         }];
     }];
     deleteAction.backgroundColor = [UIColor redColor];
-    UITableViewRowAction *remarkAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"查看备注" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+    UITableViewRowAction *remarkAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"备注" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        __block UITextField *tf = nil;
         [LEEAlert alert].config
-        .LeeAddTitle(^(UILabel *label) {
-            label.text = @"查看备注";
-            label.textColor = kBlackColor;
-        })
-        .LeeAddContent(^(UILabel *label) {
+        .LeeTitle(@"备注管理")
+        .LeeContent(@"查看、编辑备注")
+        .LeeAddTextField(^(UITextField *textField) {
+            textField.font = kPingFangTC_Light(kIphone6Width(14));
             NSString * mark = @"";
             mark = weakSelf.dataSource[indexPath.section][indexPath.row].mark;
-            label.text = mark;
-            label.textColor = [kBlackColor colorWithAlphaComponent:0.75f];
+            if ([mark isEqualToString:@""]) {
+                textField.placeholder = @"本条目未设置备注，点击输入备注";
+                textField.textColor = kBlackColor;
+                tf = textField;
+            }else{
+                textField.text = mark;
+                textField.textColor = kBlackColor;
+                tf = textField;
+            }
+            
         })
-        .LeeAddAction(^(LEEAction *action) {
-            action.type = LEEActionTypeCancel;
-            action.title = @"取消";
-            action.titleColor = kColor_Main_Color;
-            action.backgroundColor = kBlackColor;
-            action.clickBlock = ^{
-            };
+        .LeeCancelAction(@"关闭", nil) // 点击事件的Block如果不需要可以传nil
+        .LeeAction(@"完成", ^{
+            NSString * newMark = tf.text;
+            PBWatherModel * newModel = weakSelf.dataSource[indexPath.section][indexPath.row];
+            newModel.mark = newMark;
+            [PBWatherExtension updataForModel:newModel success:^(id  _Nonnull responseObject) {
+                [weakSelf.tableView reloadData];
+            }];
+            /*
+            if (tf.text.length == 0) {
+                [ToastManage showTopToastWith:@"请输入正确的邮箱地址"];
+            }else if (![tf.text isEmail]){
+                [ToastManage showTopToastWith:@"请输入正确的邮箱地址"];
+            }else{
+                [self sendEmailWithPath:filePath andEmail:tf.text];
+            }*/
         })
-        .LeeAddAction(^(LEEAction *action) {
-            action.type = LEEActionTypeDefault;
-            action.title = @"确定";
-            action.titleColor = kColor_Main_Color;
-            action.backgroundColor = kBlackColor;
-            action.clickBlock = ^{
-            };
-        })
-        .LeeHeaderColor(kColor_Main_Color)
+        
         .LeeShow();
     }];
     remarkAction.backgroundColor = TypeColor[1];

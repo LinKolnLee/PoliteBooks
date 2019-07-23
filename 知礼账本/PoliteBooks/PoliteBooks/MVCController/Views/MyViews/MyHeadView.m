@@ -185,31 +185,34 @@ NSString*itunesurl = @"itms-apps://itunes.apple.com/cn/app/id1457792252?mt=8&a
 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesurl]];
 }
 -(void)shareBtnTouchUpInside:(UIButton *)sender{
-    WXMediaMessage * message = [WXMediaMessage message];
-    message.title = @"虾米记账";
-    message.description = @"给你最好的记账体验";
-    [message setThumbImage:[UIImage imageNamed:@"newIcon"]];
+    if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+        WXMediaMessage * message = [WXMediaMessage message];
+        message.title = @"虾米记账";
+        message.description = @"给你最好的记账体验";
+        [message setThumbImage:[UIImage imageNamed:@"newIcon"]];
+        
+        WXWebpageObject * webpageObject = [WXWebpageObject object];
+        webpageObject.webpageUrl = @"https://apps.apple.com/cn/app/%E8%B6%85%E7%BA%A7%E7%BE%8E/id1457792252";
+        message.mediaObject = webpageObject;
+        SendMessageToWXReq * req = [[SendMessageToWXReq alloc] init];
+        req.bText = NO;
+        req.message = message;
+        VIBRATION;
+        [LEEAlert actionsheet].config
+        .LeeTitle(@"分享")
+        .LeeContent(@"选择微信好友、微信朋友圈")
+        .LeeAction(@"微信好友", ^{
+            req.scene = WXSceneSession;
+            [WXApi sendReq:req];
+        })
+        .LeeAction(@"微信朋友圈", ^{
+            req.scene = WXSceneTimeline;
+            [WXApi sendReq:req];
+        })
+        .LeeCancelAction(@"取消", nil)
+        .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)
+        .LeeShow();
+    }
     
-    WXWebpageObject * webpageObject = [WXWebpageObject object];
-    webpageObject.webpageUrl = @"https://apps.apple.com/cn/app/%E8%B6%85%E7%BA%A7%E7%BE%8E/id1457792252";
-    message.mediaObject = webpageObject;
-    SendMessageToWXReq * req = [[SendMessageToWXReq alloc] init];
-    req.bText = NO;
-    req.message = message;
-    VIBRATION;
-    [LEEAlert actionsheet].config
-    .LeeTitle(@"分享")
-    .LeeContent(@"选择微信好友、微信朋友圈")
-    .LeeAction(@"微信好友", ^{
-        req.scene = WXSceneSession;
-        [WXApi sendReq:req];
-    })
-    .LeeAction(@"微信朋友圈", ^{
-        req.scene = WXSceneTimeline;
-        [WXApi sendReq:req];
-    })
-    .LeeCancelAction(@"取消", nil)
-    .LeeBackgroundStyleBlur(UIBlurEffectStyleLight)
-    .LeeShow();
 }
 @end
